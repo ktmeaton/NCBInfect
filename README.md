@@ -3,8 +3,8 @@ Creates an SQLite database of genome metadata and downloads assemblies from NCBI
 
 ## Version
 
-Development - Version 0.1.2 (v0.1.2)  
-Stable - Version 0.1.1 (0.1.1) 
+Development - Version 0.2.0 (v0.2.0)  
+Stable - Version 0.1.2 (v0.1.2) 
 
 ## Installation
 
@@ -13,7 +13,7 @@ cd GenomeCollector
 make  
 
 Development:  
-git clone -b v0.1.2 https://github.com/ktmeaton/GenomeCollector.git   
+git clone -b v0.2.0 https://github.com/ktmeaton/GenomeCollector.git   
 cd GenomeCollector    
 make  
 
