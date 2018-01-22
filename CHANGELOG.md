@@ -6,7 +6,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
-## [v0.2.0] = 2018-0122
+## [v0.2.0] - 2018-0122
 ### Changed
 - Repository Rename: GenomeCollector -> NCBInfect
 
