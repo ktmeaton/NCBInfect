@@ -8,63 +8,6 @@ Created on Thu Jan 21 22:10:08 2016
 import os
 from sys import platform as _platform
 
-def metadata_count(meta_string, count_type):
-    '''Return the number of structures in the metadata record.'''
-    # Search for user specified attribute
-    if count_type == "chromosome":
-        tmp = meta_string[meta_string.find("\"chromosome_count"):]
-    elif count_type == "replicon":
-        tmp = meta_string[meta_string.find("\"replicon_count"):]
-    elif count_type == "non_chr_rep":
-        tmp = meta_string[meta_string.find("\"non_chromosome_replicon_count"):]
-    elif count_type == "contig":
-        tmp = meta_string[meta_string.find("\"contig_count"):]
-    elif count_type == "contig_l50":
-        tmp = meta_string[meta_string.find("contig_l50"):]
-    elif count_type == "contig_n50":
-        tmp = meta_string[meta_string.find("contig_n50"):]
-    elif count_type == "scaffold":
-        tmp = meta_string[meta_string.find("\"scaffold_count"):]
-    elif count_type == "scaffold_l50":
-        tmp = meta_string[meta_string.find("scaffold_l50"):]
-    elif count_type == "scaffold_n50":
-        tmp = meta_string[meta_string.find("scaffold_n50"):]
-    elif count_type == "length":
-        tmp = meta_string[meta_string.find("\"total_length"):]
-    elif count_type == "ungap_len":
-        tmp = meta_string[meta_string.find("\"ungapped_length"):]
-
-    # Process
-    start = tmp[tmp.find(">")+1:]
-    count_string = start[:start.find("<")]
-    return int(count_string)
-
-def metadata_print(meta_string):
-    ''' '''
-    chrom = metadata_count(meta_string, "chromosome")
-    rep = metadata_count(meta_string, "replicon")
-    non_chr_rep = metadata_count(meta_string, "non_chr_rep")
-    contig = metadata_count(meta_string, "contig")
-    contig_l50 = metadata_count(meta_string, "contig_l50")
-    contig_n50 = metadata_count(meta_string, "contig_n50")
-    scaffold = metadata_count(meta_string, "scaffold")
-    scaffold_l50 = metadata_count(meta_string, "scaffold_l50")
-    scaffold_n50 = metadata_count(meta_string, "scaffold_n50")
-    tot_len = metadata_count(meta_string, "length")
-    ungap_len = metadata_count(meta_string, "ungap_len")
-
-    print("Replicon Count: " + str(rep))
-    print("Chromosome Count: " + str(chrom))
-    print("Non-Chromosome Count: " + str(non_chr_rep))
-    print("Contig Count: " + str(contig))
-    print("Contig L50 Count: " + str(contig_l50))
-    print("Contig N50 Count: " + str(contig_n50))
-    print("Scaffold: " + str(scaffold))
-    print("Scaffold L50 Count: " + str(scaffold_l50))
-    print("Scaffold N50 Count: " + str(scaffold_n50))
-    print("Total Length: " + str(tot_len))
-    print("Ungapped Length: " + str(ungap_len))
-
 
 def sampledata_retrieve(sampledata_string, retrieve_type):
     ''' '''
@@ -118,28 +61,7 @@ def sampledata_retrieve(sampledata_string, retrieve_type):
     retrieve_string = start[:start.find("<")]
     return retrieve_string
 
-
-
-def sra_xml_parse(xml_string, keyword):
-    ''' '''
-    #print(xml_string)
-    xml_string = xml_string.replace("Experiment acc", "Experiment_acc")
-    xml_string = xml_string.replace("Organism taxid", "Organism_taxid")
-    tmp = xml_string[xml_string.find(keyword)+len(keyword)+1:]  # Search for keyword, remove keyword header
-
-    if(tmp[0] == "\""):
-        tmp = tmp[tmp.find("\"")+1:]
-        retrieve_string = tmp[:tmp.find("\"")]
-    
-    elif(tmp[0:2] == " <"):
-        tmp = tmp[tmp.find("<")+1:]
-        start = tmp[:tmp.find(">")]
-        retrieve_string = start[:start.find("<")]        
-
-    else:    
-        start = tmp[:tmp.find(">")-2]
-        retrieve_string = start[:start.find("<")]          
-    return retrieve_string    
+   
 
 def sampledata_print(sampledata_string):
     ''' '''
@@ -240,9 +162,9 @@ def check_accessory_dir(output_dir):
     if not os.path.exists(output_dir + OS_SEP + "genomes"):                                              # Check if log directory exists
         os.makedirs(output_dir + OS_SEP + "genomes")
     if not os.path.exists(output_dir + OS_SEP + "annotate"):                                              # Check if log directory exists
-        os.makedirs(output_dir + OS_SEP + "annotate")        
+        os.makedirs(output_dir + OS_SEP + "annotate")
     if not os.path.exists(output_dir + OS_SEP + "genbank"):
         os.makedirs(output_dir + OS_SEP + "genbank")
     if not os.path.exists(output_dir + OS_SEP + "gff3"):
         os.makedirs(output_dir + OS_SEP + "gff3")
-    return 0                                
+    return 0

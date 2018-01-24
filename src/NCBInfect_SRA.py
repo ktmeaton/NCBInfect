@@ -9,35 +9,37 @@ NCBI SRA Table Generator
 import sqlite3                                                              # SQL database functionality
 import datetime                                                             # Date and time for log files
 import os
-import xml.etree.ElementTree                                                # XML Parsing
-from bs4 import BeautifulSoup
 from xml.dom import minidom
-import tempfile
 
 from Bio import Entrez                                                      # Entrez NCBI API from biopython
-from NCBInfect_Utilities import metadata_count, os_check, parseSRARunInfo, sra_xml_parse
+from NCBInfect_Utilities import os_check
 
 
-def SRATable(dbName, ORGANISM, EMAIL, output_dir):
+def SRATable(db_name, SEARCH_TERM, EMAIL, output_dir):
     ''' '''
     print("\nCreating/Updating the SRA table using the following parameters: ")
-    print("Database: " + "\t" + dbName)
-    print("Organism: " + "\t" + ORGANISM)
+    print("Database: " + "\t" + db_name)
+    print("Search Term: " + "\t" + SEARCH_TERM)
     print("Email: " + "\t" + EMAIL)
     print("Output Directory: " + "\t" + output_dir + "\n\n")
 
     Entrez.email = EMAIL
 
-    OS_SEP = os_check()                                                     # Retrieve the directory separator by OS
+    # Retrieve the directory separator by OS
+    OS_SEP = os_check()
 
 
     #-----------------------------------------------------------------------#
     #                                File Setup                             #
     #-----------------------------------------------------------------------#
 
-    # Path to the SRA Log File
+    # Path to Database
+    db_path = output_dir + OS_SEP + "database" + OS_SEP + db_name
+
+    # Path and name of SRA Log File
     log_path = output_dir + OS_SEP + "log"
-    str_sra_log_file = log_path + OS_SEP + ORGANISM.replace(" ", "_") + "_db_sra.log"
+    str_sra_log_file = output_dir + OS_SEP + "log" + OS_SEP + db_name + "_sra.log"
+
 
     # Check if this log file exists, if not create, if so append to it.
     if os.path.exists(str_sra_log_file):
@@ -49,8 +51,9 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
     #                                SQL Setup                              #
     #-----------------------------------------------------------------------#
 
-    conn = sqlite3.connect(dbName)                                          # Connect to the DB
-    cur = conn.cursor()                                                     # Create cursor for commands
+    # Connect to database and establish cursor for commands.
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
 
     #cur.execute('''Drop TABLE IF EXISTS SRA''')
 
@@ -87,8 +90,8 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
 
     # ---------------------Get SRA ID-----------------------------------#
 
-    # Entrez search for a target organism
-    search_term = ORGANISM + "[Orgn]"
+    # Entrez search
+    search_term = SEARCH_TERM
 
     # Search the SRA database with constructed search term
     # retmax is set to 999999 as a limit that will not be exceeded.
@@ -106,8 +109,8 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
     num_ID = len(ID_list)
 
     # Keep a counter of how many records have been processed so far.
-    num_ID_processed = 0 
-        
+    num_ID_processed = 0
+
     #-------------------------SRA Record--------------------------------#
     for ID in ID_list:
         # Store unique ID
@@ -116,7 +119,7 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
         sra_ID = ID
 
         # Increment SRA record counter.
-        num_ID_processed += 1                                           
+        num_ID_processed += 1
 
         # Print a progress log of records processed.
         print("Processing SRA Record: " +
@@ -128,7 +131,7 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
         cur.execute('''
         SELECT EXISTS(SELECT sra_ID FROM SRA WHERE sra_ID=?)''',
         (sra_ID,))
-        
+
         # Return 0 if not found, return 1 if found
         record_exists = cur.fetchone()[0]
 
@@ -139,20 +142,19 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
 
 
         #-----------------Record Retrieval---------------------------#
-    
-        # Retrieve an individual SRA record. 
-        ID_handle = Entrez.esummary(db="sra",
-                                    id=ID, 
-                                    retmode="xml")    
 
-        ID_XML_handle = Entrez.efetch(db="sra", 
+        # Retrieve an individual SRA record.
+        ID_handle = Entrez.esummary(db="sra",
                                     id=ID,
-                                    rettype="full", 
                                     retmode="xml")
-        
+
+        ID_XML_handle = Entrez.efetch(db="sra",
+                                    id=ID,
+                                    rettype="full",
+                                    retmode="xml")
+
         ID_XML = ID_XML_handle.read()
-        id_xml_doc = minidom.parseString(ID_XML)       
-        #print(ID_XML)
+        id_xml_doc = minidom.parseString(ID_XML)
 
         # It is very unfortunate that NCBI named tags "TAG"
         # Strain information is under one of these TAG tags
@@ -161,7 +163,7 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
             tag = node.childNodes[0].firstChild.data
             value = node.childNodes[1].firstChild.data
             if tag == 'strain': strain = value
-            else: strain = "Missing"
+            else: strain = ""
 
         # When strain information is missing Sample name/Sample alias
         # is a useful backup.
@@ -172,7 +174,7 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
         # Originally, this script searched the esummary doc for the
         # Biosample accession. But author KE noticed at least two
         # records where it was filled out wrong (said "spleen" or
-        # "lung" instead of an accession. 
+        # "lung" instead of an accession.
         external_ID_tag_list = id_xml_doc.getElementsByTagName("EXTERNAL_ID")
         for element in external_ID_tag_list:
             namespace_attr = element.attributes['namespace'].value
@@ -188,28 +190,28 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
             strings, and values are either strings, full xml, or
             partial xml.
         '''
-        ID_record = Entrez.read(ID_handle)  
-                
+        ID_record = Entrez.read(ID_handle)
+
         # Store first and only element of the record list.
         # Remember this single item is a dictionary.
         sra_metadata = ID_record[0]
 
         # Retrieve 'date' fields by key:value return.
-        create_date = sra_metadata["CreateDate"]            
+        create_date = sra_metadata["CreateDate"]
         update_date = sra_metadata["UpdateDate"]
 
 
         '''
         Retrieve `Run Info` by key:value return
-        This is of type string, but looks like a partial xml, missing 
+        This is of type string, but looks like a partial xml, missing
         a root node.
         '''
         # First add a root node
-        run_info_xml = "<Root>" + sra_metadata["Runs"] + "</Root>"        
+        run_info_xml = "<Root>" + sra_metadata["Runs"] + "</Root>"
 
         # Second parse it into a proper minidom object
         run_info_doc = minidom.parseString(run_info_xml)
-  
+
 
         # Third, look for the 'Run' tag (it should be there)
         run_info_tag = run_info_doc.getElementsByTagName("Run")[0]
@@ -230,14 +232,14 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
         # manipulation by the minidom library.
         doc = minidom.parseString(exp_xml)
 
- 
+
         layout_tag = doc.getElementsByTagName("LIBRARY_LAYOUT")[0]
         # Info about library layout is stored as an empty node.
         # Parsing it requires walking through the child nodes.
-        for child in list(layout_tag.childNodes): 
-            if(child.localName): 
+        for child in list(layout_tag.childNodes):
+            if(child.localName):
                 library_layout = child.localName
-       
+
         # Library source is an 'element' object, containing one child
         # node containing the data.
         library_source_tag = doc.getElementsByTagName("LIBRARY_SOURCE")[0]
@@ -266,13 +268,13 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
         try:
            scientific_name = organism_tag.attributes['ScientificName'].value
         except KeyError:
-           scientific_name = "Missing"
+           scientific_name = ""
 
         # Instrument is a tuple: key is insttrument, value is model
         instrument_tag = doc.getElementsByTagName("Instrument")[0]
         instrument = instrument_tag.attributes.items()[0][0]
         model = instrument_tag.attributes.items()[0][1]
-   
+
 
         # --------------------------Update Database--------------------------#
         print ("Writing: " + run_accession + " to the database.\n")
@@ -322,14 +324,14 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
                                        organism_taxid,
                                        instrument,
                                        model))
-            
+
         # Write to logfile
         now = datetime.datetime.now()
         sra_log_file.write("[" + str(now) + "]" +
                      "\t" + "New SRA accession files added:" +
                      "\t" + run_accession + "." + "\n")
         conn.commit()
-                
+
     #----------------------------------------------------------------------#
     #                                    Cleanup                           #
     #----------------------------------------------------------------------#
@@ -337,4 +339,4 @@ def SRATable(dbName, ORGANISM, EMAIL, output_dir):
     cur.close()                                                        # Close the database
     sra_log_file.close()                                                   # Close the logfile
 
-SRATable("database/yersinia_pestis_sqlite.sqlite", "Yersinia pestis", "ktmeaton@gmail.com", ".")
+#SRATable("database/yersinia_pestis_sqlite.sqlite", "Yersinia pestis", "ktmeaton@gmail.com", ".")
