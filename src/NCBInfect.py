@@ -2,37 +2,43 @@
 """
 Created on Sat Jan 30 14:09:59 2016
 Edited: June 6, 2017 - post-GI number removal check
+Major Update: January 22, 2018 - rename to NCBInfect, conceptual
+change.
 
 @author: Katherine Eaton
 
-"Genome Collector Module"
+"NCBInfect Module"
 """
 
 import argparse                                                         # Command-line argument parsing
 import sqlite3
 import os
 
-from genomeerrors import *
-import genomeassembly
-import genomeutilities
-import genomebioproject
-import genomebiosample
-import genomenucleotide
-import genomesra
+from NCBInfect_Errors import *
+import NCBInfect_SRA
+import NCBInfect_Assembly
+import NCBInfect_Utilities
+import NCBInfect_Bioproject
+#import genomebiosample
+#import genomenucleotide
+#import genomesra
 
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-OS_SEP = genomeutilities.os_check()                                             # Retrieve the directory separator by OS
 
-parser = argparse.ArgumentParser(description='Description of the Genome Collector.',
+# Retrieve directory separator by Operating System
+OS_SEP = NCBInfect_Utilities.os_check()           
+
+# To Be Done: Full Description                      
+parser = argparse.ArgumentParser(description='Description of NCBInfect.',
                                  add_help=True)
 
+
+# Mandatory arguments to the program
 mandatory = parser.add_argument_group('mandatory')
-create_update = parser.add_argument_group('create/update')
-bonus = parser.add_argument_group('bonus')
 
 
 mandatory.add_argument('--mode',
@@ -57,50 +63,45 @@ mandatory.add_argument('--outputdir',
                     required=True)
 
 
-bonus.add_argument('--assembly-status',
-                   help='Filter by Assembly Status: Complete, Chromosome, Scaffold, or Contig',
-                   type = str,
-                   action = 'store',
-                   dest = 'assembly_status',
-                   required = False)
-
+# Retrieve user parameters
 args = vars(parser.parse_args())
-
 
 mode = args['mode']
 db_name = args['db_name'] + ".sqlite"
 output_dir = args['output_dir']
-assembly_status = args['assembly_status']
 
 
 #-------------------------------------------------------------------------------#
 #                           Argument Checking                                   #
 #-------------------------------------------------------------------------------#
 
-genomeutilities.check_accessory_dir(output_dir)                                 # Create accessory directories
+
+# Create accessory directory (ex. log, data, database, etc.)
+NCBInfect_Utilities.check_accessory_dir(output_dir)       
 
 db_path = output_dir + OS_SEP + "database" + OS_SEP + db_name
 
-#---------------------------Delete Database-------------------------------------#
-if mode.lower() == 'delete':                                                    # Delete mode check
-    if os.path.exists(db_path):                                                 # Make sure database exists in output directory
-        os.remove(db_path)                                                      # Delete database
+#-------------------------Delete Database-------------------------------------#
+
+if mode.lower() == 'delete':                                    
+    if os.path.exists(db_path):                                
+        os.remove(db_path)                 
         print('\nDeleting database: ' + db_path)
     else:
-        raise ErrorDBNotExists(db_path)                                        # If database doesn't exists, raise error
+        raise ErrorDBNotExists(db_path)   
 
 
-#---------------------------Create Database-------------------------------------#
-elif mode.lower() == 'create':                                                  # Create mode check
-    if not os.path.exists(db_path):                                             # Make sure database exists in output directory
-        conn = sqlite3.connect(db_path)                                         # Create database
+#-------------------------Create Database-------------------------------------#
+elif mode.lower() == 'create':               
+    if not os.path.exists(db_path):         
+        conn = sqlite3.connect(db_path)    
         conn.commit()
         print('\nCreating database: ' + db_path)
     else:
-        raise ErrorDBExists(db_path)                                             # If database already exists, raise error
+        raise ErrorDBExists(db_path)      
 
 
-#---------------------------Update Database-----------------------------#
+#---------------------------------Update Database-----------------------------#
 elif mode.lower() == 'update':
     if os.path.exists(db_path):
         conn = sqlite3.connect(db_path)
@@ -108,13 +109,18 @@ elif mode.lower() == 'update':
     else:
         raise ErrorDBNotExists(db_path)
 
-#----------------------------Invalid Mode------------------------------#
+#----------------------------------Invalid Mode-------------------------------#
 else:
     raise ErrorInvalidMode(mode)
 
 
 
-#------------------------Create Mode Processing------------------------#
+#-----------------------------------------------------------------------------#
+#                              Create/Update Tables                           #
+#-----------------------------------------------------------------------------#                              
+
+
+#-------------------------------Create Mode Processing------------------------#
 
 if mode.lower() == 'create' or mode.lower() == 'update':
 
@@ -123,6 +129,7 @@ if mode.lower() == 'create' or mode.lower() == 'update':
     Please enter a valid email address for NCBI queries: ')
     ORGANISM = input('\n\
     Please enter the name of the organism of interest: ')
+
 
     #------------------------Assembly User Input-----------------------#
     modify_assembly = input('\n\
@@ -135,9 +142,24 @@ if mode.lower() == 'create' or mode.lower() == 'update':
     #---------------------------Assembly Table--------------------------#
 
     if modify_assembly.lower() == 'y':
-        genomeassembly.AssemblyTable(db_path, ORGANISM, EMAIL, output_dir)
+        NCBInfect_Assembly.AssemblyTable(db_path, ORGANISM, EMAIL, output_dir)
 
 
+
+
+
+    #----------------------------SRA User Input-------------------------#
+    modify_sra = input('\n\
+    Do you want to create/update the SRA table? (Y/N)')
+    while modify_sra.lower() != 'y' and modify_sra.lower() != 'n':
+        print ("\tInvalid input, must be either 'Y','y','N', or 'n'.")
+        modify_sra = input('\n\
+        Do you want to create/update the SRA table? (Y/N)')
+
+
+    #-----------------------------SRA Table-----------------------------#
+    if modify_sra.lower() == 'y':
+        NCBInfect_SRA.SRATable(db_path, ORGANISM, EMAIL, output_dir)
 
 
 
@@ -152,12 +174,12 @@ if mode.lower() == 'create' or mode.lower() == 'update':
 
     #---------------------------Bioproject Table------------------------#
     if modify_bioproject.lower() == 'y':
-        genomebioproject.BioProjectTable(db_path, ORGANISM, EMAIL, output_dir)
+        NCBInfect_Bioproject.BioProjectTable(db_path, ORGANISM, EMAIL, output_dir)
 
 
 
 
-
+'''
 
     #----------------------------SRA User Input-------------------------#
     modify_sra = input('\n\
@@ -206,5 +228,6 @@ if mode.lower() == 'create' or mode.lower() == 'update':
     #--------------------------Nucleotide Table------------------------#
     if modify_nucleotide.lower() == 'y':
         genomenucleotide.NucleotideTable(db_path, ORGANISM, EMAIL, output_dir)
+'''
 
-print("Genome Collector module has finished.")
+print("NCBInfect has finished.")

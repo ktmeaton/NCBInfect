@@ -6,20 +6,24 @@ Creates an SQLite database of genome metadata and downloads assemblies from NCBI
 Development - Version 0.2.0 (v0.2.0)  
 Stable - Version 0.1.2 (v0.1.2) 
 
+## Requirements
+Python3.4+
+BioPython 1.70 (biopython)
+Beautiful Soup 4 (bs4)
+
+pip install --user biopython
+pip install --user bs4
+
 ## Installation
 
 git clone https://github.com/ktmeaton/GenomeCollector.git   
-cd GenomeCollector    
-make  
 
 Development:  
 git clone -b v0.2.0 https://github.com/ktmeaton/GenomeCollector.git   
-cd GenomeCollector    
-make  
 
 ## Usage
 
-TODO
+
 
 ## Contributing
 

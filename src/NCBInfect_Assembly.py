@@ -7,10 +7,11 @@ NCBI Assembly Table Generator
 import sqlite3                                                                 # SQL database functionality
 import datetime                                                                # Date and time for log files
 import os
+from xml.dom import minidom                                                    # XML Parsing
 
 
 from Bio import Entrez                                                         # Entrez NCBI API from biopython
-from genomeutilities import metadata_count, os_check
+from NCBInfect_Utilities import metadata_count, os_check
 
 
 def AssemblyTable(dbName, ORGANISM, EMAIL, output_dir):
@@ -29,14 +30,16 @@ def AssemblyTable(dbName, ORGANISM, EMAIL, output_dir):
     #                                File Setup                                 #
     #---------------------------------------------------------------------------#
 
-    log_path = output_dir + OS_SEP + "log"
-    
+    # Path and name of Assembly Log File
+    log_path = output_dir + OS_SEP + "log"    
     str_assembly_log_file = output_dir + OS_SEP + "log" + OS_SEP + ORGANISM.replace(" ", "_") + "_db_assembly.log"
 
+    # Check if the file already exists, either write or append to it.
     if os.path.exists(str_assembly_log_file):
         assembly_log_file = open(str_assembly_log_file, "a")                   # Open logfile for appending
     else:
         assembly_log_file = open(str_assembly_log_file, "w")                   # Open logfile for writing
+
     #--------------------------------------------------------------------------#
     #                                SQL Setup                                 #
     #--------------------------------------------------------------------------#
@@ -56,7 +59,7 @@ def AssemblyTable(dbName, ORGANISM, EMAIL, output_dir):
                                          assembly_status TEXT,
                                          organization TEXT,
                                          taxid TEXT,
-                                         biosample INTEGER,
+                                         biosample TEXT,
                                          coverage FLOAT,
                                          replicon_count int,
                                          chromosome_count int,
@@ -69,8 +72,7 @@ def AssemblyTable(dbName, ORGANISM, EMAIL, output_dir):
                                          scaffold_n50_count int,
                                          total_length int,
                                          ungapped_length int,
-                                         refseq_bioproject INTEGER,
-                                         genbank_bioproject INTEGER,
+                                         genbank_bioproject TEXT,
                                          wgs_project TEXT,
                                          submission_date TEXT,
                                          sequence_release_date TEXT,
@@ -136,21 +138,50 @@ def AssemblyTable(dbName, ORGANISM, EMAIL, output_dir):
            meta_string = record_dict['Meta']                                       # Metadata as entered by submitter
 
 
-           print(accession)
-           # -----------------------Metadata attributes-----------------------#
-           chromosome_count = metadata_count(meta_string, "chromosome")            # Number of chromosomes
-           replicon_count = metadata_count(meta_string, "replicon")                # Total number of replicons
-           non_chr_replicon_count = metadata_count(meta_string, "non_chr_rep")     # Total number of non-chromosome replicons
-           contig_count = metadata_count(meta_string, "contig")                    # Total number of contigs
-           contig_l50_count = metadata_count(meta_string, "contig_l50")            # Contig L50
-           contig_n50_count = metadata_count(meta_string, "contig_n50")            # Contig N50
-           scaffold_count = metadata_count(meta_string, "scaffold")                # Total number of scaffols
-           scaffold_l50_count = metadata_count(meta_string, "scaffold_l50")        # Scaffold L50
-           scaffold_n50_count = metadata_count(meta_string, "scaffold_n50")        # Scaffold N50
-           total_length = metadata_count(meta_string, "length")                    # Total assembly length
-           ungapped_length= metadata_count(meta_string, "ungap_len")               # Ungapped length
+           # The metadata is xml missing the root node. Wrap a root
+           # node around it.
+           meta_xml = "<Root>" + meta_string + "</Root>"
+           doc = minidom.parseString(meta_xml)
 
+           stat_tag_list = doc.getElementsByTagName("Stat")
 
+           for element in stat_tag_list:
+
+               category = element.attributes['category'].value
+
+               if category == 'chromosome_count':
+                   chromosome_count = element.firstChild.data
+
+               elif category == 'replicon_count':
+                   replicon_count = element.firstChild.data
+
+               elif category == 'non_chromosome_replicon_count':
+                   non_chr_replicon_count = element.firstChild.data
+
+               elif category == 'contig_count':
+                   contig_count = element.firstChild.data
+
+               elif category == 'contig_l50':
+                   contig_l50_count = element.firstChild.data
+
+               elif category == 'contig_n50':
+                   contig_n50_count = element.firstChild.data
+
+               elif category == 'scaffold_count':
+                   scaffold_count = element.firstChild.data
+
+               elif category == 'scaffold_l50':
+                   scaffold_l50_count = element.firstChild.data
+
+               elif category == 'scaffold_n50':
+                   scaffold_n50_count = element.firstChild.data
+
+               elif category == 'total_length':
+                   total_length = element.firstChild.data  
+
+               elif category == 'ungapped_length':
+                   ungapped_length = element.firstChild.data
+                   
 
            # --------------------Inconsistent attributes---------------------#
            if record_dict['Biosource']['InfraspeciesList']:                        # Useful when 'Organism' does not include strain info
@@ -161,9 +192,9 @@ def AssemblyTable(dbName, ORGANISM, EMAIL, output_dir):
                bioproj_gb_accession = record_dict['GB_BioProjects'][0]['BioprojectAccn']
            else: bioproj_gb_accession = ""                                         # Sometimes no Genabnk bioproject is associated
 
-           if record_dict['RS_BioProjects']:                                       # Refseq specific bioproject accession
-               bioproj_rs_accession = record_dict['RS_BioProjects'][0]['BioprojectAccn']
-           else: bioproj_rs_accession = ""                                         # Sometimes no Refseq bioproject is associated
+           #if record_dict['RS_BioProjects']:                                       # Refseq specific bioproject accession
+           #    bioproj_rs_accession = record_dict['RS_BioProjects'][0]['BioprojectAccn']
+           #else: bioproj_rs_accession = ""                                         # Sometimes no Refseq bioproject is associated
 
 
 
@@ -192,7 +223,6 @@ def AssemblyTable(dbName, ORGANISM, EMAIL, output_dir):
                                 scaffold_n50_count,
                                 total_length,
                                 ungapped_length,
-                                refseq_bioproject,
                                 genbank_bioproject,
                                 wgs_project,
                                 submission_date,
@@ -201,7 +231,7 @@ def AssemblyTable(dbName, ORGANISM, EMAIL, output_dir):
                                 VALUES (
                                 ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
                                 ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-                                ?, ?, ?, ?, ?, ?)''',
+                                ?, ?, ?, ?, ?)''',
                              (ID,
                              accession,
                              organism,
@@ -222,7 +252,6 @@ def AssemblyTable(dbName, ORGANISM, EMAIL, output_dir):
                              scaffold_n50_count,
                              total_length,
                              ungapped_length,
-                             bioproj_rs_accession,
                              bioproj_gb_accession,
                              wgs_proj,
                              sub_date,
@@ -248,3 +277,5 @@ def AssemblyTable(dbName, ORGANISM, EMAIL, output_dir):
     conn.commit()                                                                  # Make sure all changes are committed to database
     cur.close()                                                                    # Close the database
     assembly_log_file.close()                                                      # Close the logfile
+
+#AssemblyTable("database/Yersinia_pestis_db.sqlite", "Yersinia pestis", "ktmeaton@gmail.com", ".")

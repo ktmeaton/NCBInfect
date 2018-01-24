@@ -13,8 +13,7 @@ import os
 
 
 from Bio import Entrez                                                         # Entrez NCBI API from biopython
-from genomeutilities import metadata_count, os_check
-from genomesra import SRATable
+from NCBInfect_Utilities import metadata_count, os_check
 
 def BioProjectTable(dbName, ORGANISM, EMAIL, output_dir):
     ''' '''
@@ -45,13 +44,15 @@ def BioProjectTable(dbName, ORGANISM, EMAIL, output_dir):
     #                                SQL Setup                              #
     #-----------------------------------------------------------------------#
 
-    conn = sqlite3.connect(dbName)                                             # Connect to the DB
-    cur = conn.cursor()                                                        # Create cursor for commands
+    # Conncet to database and establish cursor for commands.
+    conn = sqlite3.connect(dbName)                                             
+    cur = conn.cursor()                                                       
 
 
     #---------------------------BioProjects Table----------------------------#
     cur.execute('''
-    Create TABLE IF NOT EXISTS BioProject (bioproject_id TEXT,
+    Create TABLE IF NOT EXISTS BioProject (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+                                           bioproject_id TEXT,
                                            accession TEXT,
                                            status TEXT,
                                            data_type TEXT,
@@ -65,44 +66,65 @@ def BioProjectTable(dbName, ORGANISM, EMAIL, output_dir):
 
 
     #-----------------------------------------------------------------------#
-    #                         Create Assembly List                          #
+    #                         Create Assembly/SRA List                          #
     #-----------------------------------------------------------------------#
 
-    cur.execute('''SELECT accession,
-                            genbank_bioproject,
-                            refseq_bioproject
-                            FROM Assembly''')                                  # Select all assembly accession numbers
+    # Grab all assemblies to get their corresponding bioprojects
+    cur.execute('''SELECT genbank_bioproject
+                            FROM Assembly''')                  
 
-    assembly_list = cur.fetchall()                                             # Store assembly accessions as list
-    num_assembly = len(assembly_list)                                          # Number of assemblies to process
-    num_assembly_processed = 0                                                 # Counter for the number of assemblies processed
+    # Store assembly-associated projects as list
+    assembly_bioproject_list = cur.fetchall()             
 
 
+    # Grab all SRA records to get their correspond bioprojects
+    cur.execute('''SELECT bioproject_accession
+                            FROM SRA''')
 
-    for assembly in assembly_list:
+    # Store SRA-associated proejcts as list
+    sra_bioproject_list = cur.fetchall()
+
+    # Combine the two lists into one master list
+    # Using 'set' ensures no duplicate entries
+    concat_bioproject_list = list(set(assembly_bioproject_list + sra_bioproject_list))
+    master_bioproject_list = []
+    
+    for tuple_pair in concat_bioproject_list:
+        master_bioproject_list.append(tuple_pair[0])
+
+    master_bioproject_list.sort()
+
+    
+    # Number of bioprojects to process
+    num_bioproject = len(master_bioproject_list)     
+    # Counter for progress log
+    num_bioproject_processed = 0                        
+
+
+
+
+    for bioproject_accession in master_bioproject_list:
+        
         #-------------------Progress Log and Entry Counter-------------------#
-        num_assembly_processed += 1                                            # Increment assembly entry counter
+        num_bioproject_processed += 1                
 
-        print("Processing Assembly Accession: " +
-                    str(num_assembly_processed) +
+        print("Processing Bioproject Accession: " +
+                    str(num_bioproject_processed) +
                     "/" +
-                    str(num_assembly))                                         # Print record progress to screen
+                    str(num_bioproject))             
 
-        asm_accession = str(assembly[0])                                       # Assembly accession string
-        asm_bioproj = str(assembly[1])                                         # Assembly bioproject (for entrez search term)
-
-        if asm_bioproj == "":
-            continue
 
         # ---------------------Check if record exists-----------------------#
+ 
+        # Check if this bioproject already exists in the db
         cur.execute('''
         SELECT EXISTS(SELECT accession
                             FROM BioProject
                             WHERE accession=?)''',
-                            (asm_bioproj,))                                   # Check if bioproject record is already in BioProject Table
+                            (bioproject_accession,))                    
 
-        record_exists = cur.fetchone()[0]                                      # 0 if not found, 1 if found
-
+        # 0 if not found, 1 if found
+        record_exists = cur.fetchone()[0]                  
 
         if record_exists:
             continue
@@ -114,7 +136,7 @@ def BioProjectTable(dbName, ORGANISM, EMAIL, output_dir):
             '''
 
         # ---------------------Get Bioproject ID-----------------------#
-        search_term = ORGANISM + "[Orgn] AND " + asm_bioproj + "[Bioproject]"
+        search_term = bioproject_accession + "[Bioproject]"
         handle = Entrez.esearch(db="bioproject",
                     term=search_term,
                     retmax = 1)
@@ -128,16 +150,22 @@ def BioProjectTable(dbName, ORGANISM, EMAIL, output_dir):
 
 
         # -----------------------Bioproject attributes-----------------#
-        accession = record_dict['Project_Acc']
         status = record_dict['Sequencing_Status']
         data_type = record_dict['Project_Data_Type']
 
 
-        # Objectives
+        # Objective are a list containing multiple dictionary element
         obj_list = record_dict['Project_Objectives_List']
+
+        # Going to construct a comma-separated strin gof objectives
         obj_str = ""
         obj_counter = 1
+
+        # Iterate over each objective
         for item in obj_list:
+
+           # This length is purely so a comma is only used to separate
+           # the last two elements.
            if obj_counter < len(obj_list):
               obj_str += item['Project_ObjectivesType'] + ", "
            else:
@@ -154,7 +182,7 @@ def BioProjectTable(dbName, ORGANISM, EMAIL, output_dir):
 
 
         # --------------------------Update Database--------------------------#
-        print ("Writing Bioproject: " + accession + " to the database.\n")
+        print ("Writing Bioproject: " + bioproject_accession + " to the database.\n")
         cur.execute('''
         INSERT INTO BioProject (bioproject_id,
                               accession,
@@ -168,7 +196,7 @@ def BioProjectTable(dbName, ORGANISM, EMAIL, output_dir):
                               VALUES
                               (?, ?, ?, ?, ?, ?, ?, ?, ?)''',
                          (ID,
-                         accession,
+                         bioproject_accession,
                           status,
                           data_type,
                           obj_str,
@@ -181,7 +209,7 @@ def BioProjectTable(dbName, ORGANISM, EMAIL, output_dir):
         now = datetime.datetime.now()
         bioproject_log_file.write("[" + str(now) + "]" +
                      "\t" + "New accession number added:" +
-                     "\t" + accession + "." + "\n")
+                     "\t" + bioproject_accession + "." + "\n")
         conn.commit()
 
 
@@ -192,3 +220,5 @@ def BioProjectTable(dbName, ORGANISM, EMAIL, output_dir):
     conn.commit()                                                              # Make sure all changes are committed to database
     cur.close()                                                                # Close the database
     bioproject_log_file.close()                                                # Close the logfile
+
+#BioProjectTable("database/Yersinia_pestis_sqlite.sqlite", "Yersinia pestis", "ktmeaton@gmail.com", ".")
