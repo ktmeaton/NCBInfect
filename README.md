@@ -1,4 +1,4 @@
-# GenomeCollector
+# NCBInfect
 Creates an SQLite database of genome metadata and downloads assemblies from NCBI.
 
 ## Version
