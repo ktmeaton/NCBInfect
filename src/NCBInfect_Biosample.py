@@ -7,23 +7,29 @@ NCBI BioSample Table Generator
 @author: Katherine Eaton
 """
 
+# Default python libraries to import
 import sqlite3                                                                 # SQL database functionality
 import datetime                                                                # Date and time for log files
 import os
-
-
-from Bio import Entrez                                                         # Entrez NCBI API from biopython
-from NCBInfect_Utilities import os_check
 from xml.dom import minidom
 
+# Extra modules (pip installed) and custom files
+from Bio import Entrez                                                         # Entrez NCBI API from biopython
+from NCBInfect_Utilities import os_check
+
+#-----------------------------------------------------------------------#
+#                       Manipulating The BioSample Table                #
+#-----------------------------------------------------------------------#
+
 def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
-    ''' '''
+    # User input variables to output
     print("\nCreating/Updating the BioSample table using the following parameters: ")
     print("Database: " + "\t" + db_name)
     print("SEARCH_TERM: " + "\t" + SEARCH_TERM)
     print("Email: " + "\t" + EMAIL)
     print("Output Directory: " + "\t" + output_dir + "\n\n")
 
+    # Valid email to monitor entrez queries
     Entrez.email = EMAIL
 
     # Make sure directory separator is compatible with operating system
@@ -57,17 +63,16 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
     cur = conn.cursor()
 
 
-    #cur.execute('''DROP TABLE IF EXISTS BioSample''')
+    cur.execute('''DROP TABLE IF EXISTS BioSample''')
 
     #---------------------------BioSample Table----------------------------#
     cur.execute('''
     Create TABLE IF NOT EXISTS BioSample (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+                         warning TEXT,
                          biosample_id TEXT,
                          biosample_accession TEXT,
                          biosample_secondary_accession TEXT,
                          bioproject_accession TEXT,
-                         assembly_accession TEXT,
-                         sra_run_accession TEXT,
                          organism TEXT,
                          strain TEXT,
                          organization TEXT,
@@ -111,8 +116,8 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
     sra_sample_list = cur.fetchall()
 
     # Concatenate lists
-    # NOTE: Assembly biosamples are always processed first
     master_sample_list = list(assembly_sample_list + sra_sample_list)
+    master_sample_list.sort()
 
     # Number of biosamples to process
     num_biosamples = len(master_sample_list)
@@ -132,7 +137,8 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
         # Second element is the BioProject accession number
         bioproject_accession = tuple_pair[1]
 
-        #biosample_accession = "SAMN00704274"
+        # Secondary biosample accession when SRA points to 'wrong' biosample record
+        biosample_secondary_accession = ""
 
         #-------------------Progress Log and Entry Counter-------------------#
         num_biosamples_processed += 1
@@ -142,8 +148,9 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
                     "/" +
                     str(num_biosamples))
 
-
         # ---------------------Check if record exists-----------------------#
+
+        # Check if record exists as primary biosample accession
         cur.execute('''
         SELECT EXISTS(SELECT biosample_accession
                             FROM BioSample
@@ -151,9 +158,20 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
                             (biosample_accession,))
 
         # 0 if not found, 1 if found
-        record_exists = cur.fetchone()[0]
+        record_exists_primary = cur.fetchone()[0]
 
-        if record_exists:
+        # Check if record exists as secondary biosample accession
+        cur.execute('''
+        SELECT EXISTS(SELECT biosample_secondary_accession
+                            FROM BioSample
+                            WHERE biosample_secondary_accession=?)''',
+                            (biosample_accession,))
+
+        # 0 if not found, 1 if found
+        record_exists_secondary = cur.fetchone()[0]
+
+        if record_exists_primary or record_exists_secondary:
+            print("RECORD EXISTS: ", biosample_accession)
             continue
         '''
         IMPORTANT:
@@ -163,9 +181,13 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
         '''
 
         #-------------------------------------------------------------------#
-        #                        ERROR CATCHING ACCESSION                   #
+        #                        ERROR CATCHING BIOSAMPLES                  #
         #-------------------------------------------------------------------#
 
+        # This table contains a heuristics to connecting records in the Assembly
+        # and SRA tables. As a result, a perfect merge is not always possible. when
+        # a perfect solution cannot be reached, warnings will be recorded.
+        warning = ""
         '''
         This section attempts to deals with the spurious issue in which an
         organism/isolate/strain has duplicate BioSample records. Typically one
@@ -174,51 +196,121 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
         duplicate one associated with the 'SRA' is poor).
         '''
 
-        biosample_secondary_accession = ""
+        #-------------------------------------------------------------------#
+        #            Check if Biosample is in Assembly and/or SRA           #
+        #-------------------------------------------------------------------#
 
-        #---------------------Get Assembly Link------------------#
+        #---------------------Get Assembly Record------------------#
         # Check if Biosample has an Assembly record
-        cur.execute('''
-                    SELECT accession
-                           FROM Assembly
-                           WHERE biosample=?''',
+        cur.execute('''SELECT infraspecies, accession FROM Assembly WHERE biosample=?''',
                           (biosample_accession,))
 
-        # 0 if not found, 1 if found
+        # Grab only the first record
         asm_sample_record = cur.fetchone()
 
-        if asm_sample_record: assembly_accession = asm_sample_record[0]
-        else: assembly_accession = ""
+        # If assembly record exists, save the infraspecies field
+        if asm_sample_record:
+            assembly_infraspecies = asm_sample_record[0]
 
-        #--------------------Get SRA Link------------------------#
+        #--------------------Get SRA Record------------------------#
         # Check if Biosample has an SRA record
-        cur.execute('''
-                    SELECT run_accession, bioproject_accession, organism_taxid, strain, sample_alias
-                           FROM SRA
-                           WHERE biosample_accession=?''',
+        cur.execute('''SELECT strain, sample_alias  FROM SRA WHERE biosample_accession=?''',
                            (biosample_accession,))
 
-        # 0 if not found, 1 if found
+        # Grab just the first record
         sra_sample_record = cur.fetchone()
 
-        if sra_sample_record: sra_run_accession = sra_sample_record[0]
-        else: sra_run_accession = ""
+        # If SRA record exists, save the strain and alias fields
+        if sra_sample_record:
+            sra_strain = sra_sample_record[0]
+            sra_sample_alias = sra_sample_record[1]
+
+
+        #-------------------------------------------------------------------#
+        #               HEURISTIC DETECTION OF SECONDARY ACCESSION          #
+        #-------------------------------------------------------------------#
 
         '''
         Check for the issue of different biosample accession between SRA and Assembly.
         Option 1) Biosample has both SRA and Assembly record = TOTALLY FINE
-        Option 2) Biosample has only Assembly record = FINE,
-               assembly biosample metadata is as good as it gets.
-        Option 3) Biosample has only SRA Record = POTENTIAL PROBLEM
-               3a) Legitimate separate record (No issue)
-               3b) Submitter 'error', SRA points to duplicate BioSample (poor metadata).
+        Option 2) Biosample has only Assembly record = SEARCH FOR POSSIBLE SRA secondary accession
+        Option 3) Biosample has only SRA Record = SEARCH FOR POSSIBLE Assembly secondary accession
         '''
+        # Option 1) No issue, no checking or processing needed.
+
+        # Option 2) Biosample has only Assembly record
+        #           Search for secondary accession in SRA
+
+        if assembly_accession and not sra_run_accession:
+            # Check if Bioproject is in SRA Table
+            cur.execute('''SELECT EXISTS(SELECT bioproject_accession
+                                      FROM SRA
+                                      WHERE bioproject_accession=?)''',
+                                      (bioproject_accession,))
+
+            sra_bioproject_exists = cur.fetchone()[0]
+
+            # If it DOES NOT exist, no problem, this is an Assembly exclusive!
+            if not sra_bioproject_exists: continue
+
+            # If it DOES Exists, there are two options:
+            # 1) Not all strains in the BioProject were assembled = FINE
+            # 2) SRA points to duplicate/poor-metadata BioSample = BAD
+
+            # If Assembly:infraspecies field is missing, there's no hope of detecting
+            elif not assembly_infraspecies:
+                warning = "BIOPROECT OVERLAP, NO MATCH FOUND"
+
+
+            # If Assembly:infraspecies field is present, good to compare
+            else:
+                #-----------------Find Bioproject in SRA----------------------#
+                # Grab all SRA strains and sample_aliases associated with Bioproject
+                cur.execute('''SELECT biosample_accession, strain, sample_alias, run_accession
+                                 FROM SRA
+                                 WHERE bioproject_accession=?''',
+                                 (bioproject_accession,))
+
+                sra_bioproject_match = cur.fetchall()
+
+                # Go through each record, checking to see if there's a match in Assembly
+                # First element: Boolean if found
+                # Second element: biosample_accessions as csv
+                match_found = False
+
+                for record_match in sra_bioproject_match:
+                    # Store needed sra variables for comparison
+                    sra_match_strain = record_match[1]
+                    sra_match_sample_alias = record_match[2]
+
+                    # Search for match in infraspecies, strain, and sample_alias
+                    if (assembly_infraspecies and
+                      (assembly_infraspecies.lower() == sra_match_strain.lower() or
+                      assembly_infraspecies.lower() == sra_match_sample_alias.lower())):
+                        # If a match has already been found, check if it's simply duplicate biosamples
+                        if match_found[0] == True and sra_match_biosample not in match_found[1]:
+                            match_found[1].append(sra_match_biosample)
+
+                        # If a match has been found for the first time, set flag to True
+                        else:
+                            match_found[0] = True
+                            match_found[1] += sra_match_biosample
+                            match_found[2] += sra_match_run_accession
+
+
+                # If at this point we know there is bioproject overlap between
+                # SRA and Assembly, but no strain match was found, print a WARNING
+                # for users to go in and investigate.
+                if not biosample_secondary_accession:
+                    biosample_secondary_accession = "BIOPROECT OVERLAP, NO MATCH FOUND"
+
+
 
         # Option 3 Problem
         # If it's a legitimate separate record, the SRA-linked
         # BioProject WILL NOT be in the Assembly Table
 
-        if sra_run_accession and not assembly_accession:
+        elif sra_run_accession and not assembly_accession:
             # Check if Bioproject is in Assembly Table
             cur.execute('''
                        SELECT EXISTS(SELECT genbank_bioproject
@@ -226,7 +318,6 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
                                       WHERE genbank_bioproject=?)''',
                                       (bioproject_accession,))
 
-            print(biosample_accession)
             asm_bioproject_record_exists = cur.fetchone()[0]
             # If it DOES NOT exist, no problem, this is an SRA exclusive!
 
@@ -235,43 +326,45 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
             # 2) SRA points to duplicate/poor-metadata BioSample
             if asm_bioproject_record_exists:
 
-                sra_bioproject = sra_sample_record[1]
-                sra_taxid = sra_sample_record[2]
-                sra_strain = sra_sample_record[3]
-                sra_sample_alias = sra_sample_record[4]
-
-                cur.execute('''SELECT infraspecies, biosample, taxid, accession
+                cur.execute('''SELECT infraspecies, biosample, accession
                                  FROM Assembly
                                  WHERE genbank_bioproject=?''',
                                  (bioproject_accession,))
 
                 assembly_match = cur.fetchall()
 
+                match_found = [False, [] ]
                 for record_match in assembly_match:
                     asm_infraspecies = record_match[0]
                     asm_biosample = record_match[1]
-                    asm_taxid = record_match[2]
-                    asm_accession = record_match[3]
+                    asm_accession = record_match[2]
 
+                    if sra_strain and (sra_strain.lower() == asm_infraspecies.lower() or
+                                sra_sample_alias.lower() == asm_infraspecies.lower()):
+                        # If a match has already been found, exit program with warning
+                        if match_found[0] == True:
+                            # Check if there are multiple SRA runs per BioSample
+                            # Ie, same biosample accession
+                            if sra_match_biosample in match_found[1]:
+                                match_found[1].append(sra_match_biosample)
+                            else:
+                                biosample_secondary_accession = "MULTIPLE HITS"
+                                sra_run_accession = "MULTIPLE HITS"
 
+                        # If a match has been found for the first, set flag to True
+                        # This enables check for duplicate strain labelling
+                        if not match_found[0]:
+                            match_found[0] = True
+                            match_found[1].append(asm_biosample)
+                            biosample_secondary_accession = asm_biosample
+                            assembly_accession = asm_accession
 
-                    if sra_strain and (sra_strain.lower() == asm_infraspecies.lower())  :
-                        biosample_secondary_accession = asm_biosample
-                        assembly_accession = asm_accession
-                        break
-
-                    elif sra_sample_alias and (sra_sample_alias.lower() == asm_infraspecies.lower()):
-                        biosample_secondary_accession = asm_biosample
-                        assembly_accession = asm_accession
-                        break
-
+                # If at this point we know there is bioproject overlap between
+                # SRA and Assembly, but no strain match was found, print a WARNING
+                # for users to go in and investigate.
                 if not biosample_secondary_accession:
-                    print("WARNING: NO MATCH FOUND")
-                    return(0)
+                    biosample_secondary_accession = "BIOPROECT OVERLAP, NO MATCH FOUND"
 
-
-
-        #return(0)
 
 
         # ---------------------Get Biosample ID-----------------------#
@@ -352,12 +445,11 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
         # --------------------------Update Database--------------------------#
         print ("Writing: " + biosample_accession + " to the database.\n")
         cur.execute('''
-                     INSERT INTO BioSample (biosample_id,
+                     INSERT INTO BioSample (warning,
+                             biosample_id,
                              biosample_accession,
                              biosample_secondary_accession,
                              bioproject_accession,
-                             assembly_accession,
-                             sra_run_accession,
                              organism,
                              strain,
                              organization,
@@ -380,13 +472,12 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
                              modification_date)
                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
                                   ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-                                  ?, ?, ?, ?, ?, ?)''',
-                             (biosample_ID,
+                                  ?, ?, ?, ?, ?)''',
+                             (warning,
+                             biosample_ID,
                              biosample_accession,
                              biosample_secondary_accession,
                              bioproject_accession,
-                             assembly_accession,
-                             sra_run_accession,
                              organism,
                              attribute_dict['strain'],
                              org,

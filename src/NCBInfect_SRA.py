@@ -158,12 +158,12 @@ def SRATable(db_name, SEARCH_TERM, EMAIL, output_dir):
 
         # It is very unfortunate that NCBI named tags "TAG"
         # Strain information is under one of these TAG tags
+        strain = ''
         sample_attr_tag_list = id_xml_doc.getElementsByTagName("SAMPLE_ATTRIBUTE")
         for node in sample_attr_tag_list:
             tag = node.childNodes[0].firstChild.data
             value = node.childNodes[1].firstChild.data
-            if tag == 'strain': strain = value
-            else: strain = ""
+            if tag == 'strain' or tag == 'isolate': strain = value
 
         # When strain information is missing Sample name/Sample alias
         # is a useful backup.
@@ -339,4 +339,4 @@ def SRATable(db_name, SEARCH_TERM, EMAIL, output_dir):
     cur.close()                                                        # Close the database
     sra_log_file.close()                                                   # Close the logfile
 
-#SRATable("database/yersinia_pestis_sqlite.sqlite", "Yersinia pestis", "ktmeaton@gmail.com", ".")
+SRATable("yersinia_pestis_db.sqlite", "Yersinia pestis[Orgn]", "ktmeaton@gmail.com", ".")
