@@ -1,0 +1,10 @@
+strain	collection_date	host	geographic_location	
+BA200901799	6/17/2009	Human	"Sante Fe, NM"	
+AS200901539	7/9/2009	Cynomys gunnisoni	"Las Vegas, NM"	
+AS200901156	6/10/2009	"Feline Female, Age 12"	"Santa Fe, NM"	
+BA200901703	6/10/2009	Human male	"Santa Fe, NM"	
+BA200901990	7/8/2009	Human female	"Edgewood, NM"	
+BA200902009	7/10/2009	Human male	"Santa Fe, NM"	
+AS200902147	8/14/2009	Cynomys gunnisoni	"Santa Fe, NM"	
+AS200901434	6/30/2009	Sylvilagus audobonii	"Santa Fe, NM"	
+AS200901509	7/7/2009	Cynomys gunnisoni	"Santa Fe, NM"	
