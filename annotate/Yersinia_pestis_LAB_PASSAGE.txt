@@ -1,0 +1,5 @@
+strain	collection_date	host	geographic_location
+KIM D27	1968 (+LAB PASSAGES)	Human	Iran/Kurdistan
+KIM (D27)	1968 (+LAB PASSAGES)	Human	Iran/Kurdistan
+EV76-CN	1922 (+LAB PASSAGES)	Human	Madgascar (+CHINA)
+UC91309	LAB INFECTION	LAB INFECTION	LAB INFECTION

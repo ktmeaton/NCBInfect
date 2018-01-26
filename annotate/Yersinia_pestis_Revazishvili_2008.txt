@@ -1,0 +1,81 @@
+strain	collection_date	host	geographic_location			extra_strains	collection_date	host	geographic_location
+G1670	1979	Flea	Georgia: Ninotsminda			1390G	1979	Flea	"Ninotsminda, Georgia"
+G1670E	1979	Flea	Georgia: Ninotsminda			1391G	1979	Flea	"Ninotsminda, Georgia"
+G1670A	1979	Flea	"Ninotsminda, Georgia"			1392G	1979	Flea	"Ninotsminda, Georgia"
+Harbin 35	1940	Human	China: Manchuria			1393G	1979	Common vole	"Ninotsminda, Georgia"
+A1122	1939	California Ground Squirrel	USA: California			1412G	1979	Flea	"Dalidag, Georgia"
+1412	1979	Flea	Georgia: Dalidag			1413G	1979	Flea	"Ninotsminda, Georgia"
+1413	1979	Flea	Georgia: Ninotsminda			1670G	1979	Flea	"Ninotsminda, Georgia"
+3067	1982	Flea	Georgia: Ninotsminda			1851G	1980	Flea	"Ninotsminda, Georgia"
+G3768	1983	Flea	"Ninotsminda, Georgia"			1852G	1980	Flea	"Ninotsminda, Georgia"
+3770	1983	Flea	Georgia: Ninotsminda			1853G	1980	Flea	"Ninotsminda, Georgia"
+G8786	1992	Common vole	Georgia: Ninotsminda			1952G	1980	Common vole	"Ninotsminda, Georgia"
+8787	1992	Common vole	Georgia: Ninotsminda			1953G	1980	Flea	"Ninotsminda, Georgia"
+771	1966	Gerbil	Georgia: Dedophlistskaro			1954G	1980	Flea	"Ninotsminda, Georgia"
+790	1961	Red marmot	Kyrgyzia			2095G	1981	Flea	"Ninotsminda, Georgia"
+1045	1976	Gerbil	Azerbaijan: Apsheron Pen.			3064G	1982	Flea	"Akhalkalaki, Georgia"
+1522	1975	Common vole	Armenia: Shirak Province			3065G	1982	Flea	"Akhalkalaki, Georgia"
+2944	1975	Gopher	Russia: Kabardino-Balkaria			3066G	1982	Flea	"Akhalkalaki, Georgia"
+14735	1975	Common vole	Armenia OR Georgia: Ninotsminda			3067G	1982	Flea	"Akhalkalaki, Georgia"
+						3072G	1982	Common vole	"Akhalkalaki, Georgia"
+						3073G	1982	Flea	"Akhalkalaki, Georgia"
+						3082G	1982	Flea	"Akhalkalaki, Georgia"
+						3083G	1982	Flea	"Akhalkalaki, Georgia"
+						3757G	1983	Common vole	"Ninotsminda, Georgia"
+						3758G	1983	Common vole	"Ninotsminda, Georgia"
+						3768G	1983	Flea	"Ninotsminda, Georgia"
+						3769G	1983	Common vole	"Gekdag, Georgia"
+						3770G	1983	Flea	"Ninotsminda, Georgia"
+						8786G	1992	Common vole	"Ninotsminda, Georgia"
+						8787G	1992	Common vole	"Ninotsminda, Georgia"
+						8788G	1992	Common vole	"Ninotsminda, Georgia"
+						8789G	1992	Common vole	"Ninotsminda, Georgia"
+						8790G	1992	Common vole	"Ninotsminda, Georgia"
+						8791G	1992	Common vole	"Ninotsminda, Georgia"
+						8792G	1992	Flea	"Ninotsminda, Georgia"
+						8793G	1992	Flea	"Ninotsminda, Georgia"
+						8794G	1992	Flea	"Ninotsminda, Georgia"
+						8906G	1997	Flea	"Dalidag, Georgia"
+						8907G	1997	Flea	"Dalidag, Georgia"
+						8908G	1997	Flea	"Dalidag, Georgia"
+						771G	1966	Gerbil	"Dedophlistskaro, Georgia"
+						C790	1961	Red marmot	Kyrgyzia
+						C1045	1976	Gerbil	Azerbaijan
+						C1522	1975	Common vole	Armenia
+						C2614	1975	Flea	"Daghestan, Russia"
+						C2944	1975	Gopher	"Kabardino-Balkaria, Russia"
+						C14735	1975	Common vole	Armenia
+						9108101	1991	Cat	"New Mexico, USA"
+									
+						9910463	1999	Cat	"New Mexico,USA"
+									
+						9910256	1999	Dog	"New Mexico, USA"
+									
+						9910117	1999	Cat	"New Mexico, USA"
+									
+						9709959	1997	Dog	"New Mexico, USA"
+									
+						A1122	1939	Squirrel	"California, USA"
+									
+						Amal	1984	Human	Saudi Arabia
+									
+						9800419	1998	Dog	"New Mexico, USA"
+									
+						9808723	1998	Cat	"New Mexico, USA"
+									
+						Harbin	1940	Human	"Manchuria, China"
+									
+						9808780	1998	Cat	"New Mexico, USA"
+									
+						CO92	1992	Human	"Colorado, USA"
+									
+						KIM	1968	Human	"Kurdistan, Iran"
+									
+						91001	NK	Brandt’s vole	China
+									
+									
+									
+									
+									
+									
+									

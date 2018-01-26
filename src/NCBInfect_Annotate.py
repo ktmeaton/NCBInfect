@@ -151,6 +151,13 @@ while annot_line:
         elif header in db_col_names:
             line_dict[header] = element
 
+    # Check if strain is in table
+    query = "SELECT * FROM {0} WHERE strain={1}".format(db_table,"'" + line_strain + "'")
+    cur.execute(query)
+    if not cur.fetchone():
+        raise ErrorEntryNotInDB(line_strain)
+
+
     # This section allows for dynamic variable creation and column modification
     sql_dynamic_vars = ",".join([header + "=" + "'" + line_dict[header] + "'" for header in line_dict.keys()])
     query = ("UPDATE BioSample SET " + sql_dynamic_vars + " WHERE " + "strain=" + "'" + line_strain + "'")

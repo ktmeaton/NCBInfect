@@ -1,0 +1,4 @@
+strain	collection_date	host	geographic_location
+Z176003	1976	Marmota himalayana	China: Naqu (Tibet) County
+D182038	1982	Apodemus chevrieri	China: Jianchuan County
+D106004	2006	Apodemus chevrieri	China: Yulong County

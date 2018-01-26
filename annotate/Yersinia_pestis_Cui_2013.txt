@@ -14,12 +14,12 @@ A1956001	0.ANT3b	0.ANT	0.ANT3	214	8	Antiqua	1956	Marmota caudata	"Xinjiang, Chin
 42082	0.ANT3c	0.ANT	0.ANT3	216	8	Antiqua	1995	Citellus undulatus 	"Xinjiang, China"	84.62	44.45	This Project	ADPH00000000  47685	
 CMCC21106	0.ANT3d	0.ANT	0.ANT3	217	8	Antiqua	2001	Marmota baibacina 	"Xinjiang, China"	75.18	39.7	This Project	ADQP00000000  47685	
 42091	0.ANT3e	0.ANT	0.ANT3	217	8	Antiqua	1999	Citellus undulatus 	"Xinjiang, China"	84.62	44.45	This Project	ADPI00000000  47685	
-PestoidesF	0.PE2a	0.PE	0.PE2	280	3	Microtus	<1984		FSU	NA	NA	Published	GCF_000016445.1	
+Pestoides F	0.PE2a	0.PE	0.PE2	280	3	Microtus	<1984		USSR	NA	NA	Published	GCF_000016445.1	
 G8786	0.PE2b	0.PE	0.PE2	320	3	Microtus	NA	Microtus. arvalis	Georgia	NA	NA	This Project	ADSG00000000  47685	
 Angola	0.PE3a	0.PE	0.PE3	548	3	Microtus	<1984		Africa	NA	NA	Published	GCF_000018805.1	
 12	0.PE4Aa	0.PE	0.PE4A	183	6	Antiqua	2004	Patient	"Qinghai, China"	100.22	38.2	This Project	ADOV00000000  47685	
 9	0.PE4Ab	0.PE	0.PE4A	185	6	Antiqua	2004	Patient	"Qinghai, China"	97.12	33.35	This Project	ADPT00000000  47685	
-PestoidesA	0.PE4Ba	0.PE	0.PE4B	210	6	Microtus	NA		FSU	NA	NA	Published	ACNT01	
+Pestoides A	0.PE4Ba	0.PE	0.PE4B	210	6	Microtus	NA		USSR	NA	NA	Published	ACNT01	
 CMCCN010025	0.PE4Ca	0.PE	0.PE4C	220	7	Microtus	2000	Microtus fuscus	"Sichuan, China"	98.06	33.01	This Project	ADRT00000000  47685	
 M0000002	0.PE4Cb	0.PE	0.PE4C	222	8	Microtus	2001	Microtus fuscus	"Qinghai, China"	97.12	33.35	This Project	ADST00000000  47685	0.PE4b
 CMCC18019	0.PE4Cc	0.PE	0.PE4C	223	9	Microtus	2001	Microtus fuscus	"Qinghai, China"	97.12	33.35	This Project	ADQO00000000  47685	
@@ -29,7 +29,7 @@ CMCC91090	0.PE4Ce	0.PE	0.PE4C	231	9	Microtus	1970	Microtus brandti	"Inner Mongol
 CMCC05009	0.PE7a	0.PE	0.PE7	96	1	Antiqua	1961	Allactaga sibirica	"Qinghai, China"	99.99	35.6	This Project	ADQE00000000  47685	
 620024	0.PE7b	0.PE	0.PE7	97	2	Antiqua	1962	Patient	"Qinghai, China"	99.99	35.6	This Project	ADPM00000000  47685	0.PE7a
 Antiqua	1.ANTa	1.ANT	1.ANT	300	10	Antiqua	1965	Patient	Congo	NA	NA	Published	GCF_000013825.1	
-UG05	1.ANTb	1.ANT	1.ANT	305	10	Antiqua	2004	Patient	Uganda	NA	NA	Published	AAYR01	
+UG05-0454	1.ANTb	1.ANT	1.ANT	305	10	Antiqua	2004	Patient	Uganda	NA	NA	Published	AAYR01	
 CMCC11001	1.IN1a	1.IN	1.IN1	232	10	Antiqua	1954	Marmota himalayana	"Qinghai, China"	100.75	35.57	This Project	ADQK00000000  47685	
 780441	1.IN1b	1.IN	1.IN1	235	10	Antiqua	1978	Marmota himalayana	"Qinghai, China"	98.26	34.92	This Project	ADPS00000000  47685	
 K21985002	1.IN1c	1.IN	1.IN1	237	10	Antiqua	1985	Marmota himalayana	"Xinjiang, China"	88.1	39	This Project	ADSS00000000  47685	1.IN1a
@@ -60,9 +60,9 @@ E1977001	1.IN3g	1.IN	1.IN3	251	14	Antiqua	1977	Ctenophthalmus quadratus	"Yunnan,
 CMCC84033	1.IN3h	1.IN	1.IN3	245	14	Antiqua	1979	Eothenomys miletus	"Yunnan, China"	99.88	26.53	This Project	ADRE00000000  47685	
 CMCC84046	1.IN3i	1.IN	1.IN3	255	14	Antiqua	1984	Eothenomys miletus	"Yunnan, China"	99.88	26.53	This Project	ADRG00000000  47685	
 CMCC114001	1.ORI1a	1.ORI	1.ORI1	266	13	Orientalis	1952	Mus musculus	"Fujian, China"	119	25.44	This Project	ADQL00000000  47685	
-India195	1.ORI1b	1.ORI	1.ORI1	269	13	Orientalis	>1898	Patient	India	NA	NA	Published	ACNR01	
+India 195	1.ORI1b	1.ORI	1.ORI1	269	13	Orientalis	1898-1950	Patient	India	NA	NA	Published	ACNR01	
 F1946001	1.ORI1c	1.ORI	1.ORI1	270	13	Orientalis	1946	Patient	"Fujian, China"	118.75	26.58	This Project	ADSB00000000  47685	1.ORI1a
-CA88	1.ORI1d	1.ORI	1.ORI1	268	14	Orientalis	1988	Patient	"California, USA"	NA	NA	Published	ABCD01	
+CA88-4125	1.ORI1d	1.ORI	1.ORI1	268	14	Orientalis	1988	Patient	"California, USA"	NA	NA	Published	ABCD01	
 CO92	1.ORI1e	1.ORI	1.ORI1	278	14	Orientalis	1992	Patient	"Colorado, USA"	NA	NA	Published	GCF_000009065.1	
 YN2179	1.ORI2a	1.ORI	1.ORI2	280	14	Orientalis	1995	Rattus flavipectus	Myanmar	NA	NA	This Project	ADTE00000000  47685	
 CMCCK110001	1.ORI2b	1.ORI	1.ORI2	277	15	Orientalis	1991	Rattus flavipectus	"Yunnan, China"	99.02	23.92	This Project	ADRS00000000  47685	
@@ -74,7 +74,7 @@ F1984001	1.ORI2g	1.ORI	1.ORI2	278	17	Orientalis	1984	Rattus flavipectus	"Yunnan,
 YN663	1.ORI2h	1.ORI	1.ORI2	278	17	Orientalis	1982	Xenopsylla cneopis roths .	"Yunnan, China"	97.96	24.33	This Project	ADTI00000000  47685	
 CMCCK100001	1.ORI2i	1.ORI	1.ORI2	290	17	Orientalis	1991	Rattus flavipectus	"Yunnan, China"	98.08	24.08	This Project	ADRR00000000  47685	
 EV76	1.ORI3a	1.ORI	1.ORI3	271	14	Orientalis	1922	Patient	Madagascar	NA	NA	This Project	ADSA00000000  47685	
-MG05	1.ORI3b	1.ORI	1.ORI3	277	14	Orientalis	2005	Patient	Madagascar	NA	NA	Published	AAYS01	
+MG05-1020	1.ORI3b	1.ORI	1.ORI3	277	14	Orientalis	2005	Patient	Madagascar	NA	NA	Published	AAYS01	
 IP275	1.ORI3c	1.ORI	1.ORI3	278	14	Orientalis	1995	Patient	Madagascar	NA	NA	Published	AAOS02	
 34008	2.ANT1a	2.ANT	2.ANT1	248	12	Antiqua	1968	Marmota himalayana	"Tibet, China"	84.15	29.66	This Project	ADPD00000000  47685	
 34202	2.ANT1b	2.ANT	2.ANT1	251	12	Antiqua	1990	Marmota himalayana	"Tibet, China"	81.18	30.37	This Project	ADPE00000000  47685	
