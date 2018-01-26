@@ -1,0 +1,5 @@
+strain	collection_date	host	geographic_location
+Gyvakarai1	-2410	Human	Lithuania: Gyvakarai1
+KunilaII	-2006	Human	Estonia: Kunilall
+1343UnTal85	-1856	Human	Germany: Augsburg
+Post6	-1618	Human	Germany: Augsburg

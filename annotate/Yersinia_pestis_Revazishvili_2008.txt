@@ -1,13 +1,13 @@
 strain	collection_date	host	geographic_location			extra_strains	collection_date	host	geographic_location
 G1670	1979	Flea	Georgia: Ninotsminda			1390G	1979	Flea	"Ninotsminda, Georgia"
 G1670E	1979	Flea	Georgia: Ninotsminda			1391G	1979	Flea	"Ninotsminda, Georgia"
-G1670A	1979	Flea	"Ninotsminda, Georgia"			1392G	1979	Flea	"Ninotsminda, Georgia"
+G1670A	1979	Flea	Georgia: Ninotsminda			1392G	1979	Flea	"Ninotsminda, Georgia"
 Harbin 35	1940	Human	China: Manchuria			1393G	1979	Common vole	"Ninotsminda, Georgia"
 A1122	1939	California Ground Squirrel	USA: California			1412G	1979	Flea	"Dalidag, Georgia"
 1412	1979	Flea	Georgia: Dalidag			1413G	1979	Flea	"Ninotsminda, Georgia"
 1413	1979	Flea	Georgia: Ninotsminda			1670G	1979	Flea	"Ninotsminda, Georgia"
 3067	1982	Flea	Georgia: Ninotsminda			1851G	1980	Flea	"Ninotsminda, Georgia"
-G3768	1983	Flea	"Ninotsminda, Georgia"			1852G	1980	Flea	"Ninotsminda, Georgia"
+G3768	1983	Flea	Georgia: Ninotsminda			1852G	1980	Flea	"Ninotsminda, Georgia"
 3770	1983	Flea	Georgia: Ninotsminda			1853G	1980	Flea	"Ninotsminda, Georgia"
 G8786	1992	Common vole	Georgia: Ninotsminda			1952G	1980	Common vole	"Ninotsminda, Georgia"
 8787	1992	Common vole	Georgia: Ninotsminda			1953G	1980	Flea	"Ninotsminda, Georgia"
@@ -17,7 +17,7 @@ G8786	1992	Common vole	Georgia: Ninotsminda			1952G	1980	Common vole	"Ninotsmind
 1522	1975	Common vole	Armenia: Shirak Province			3065G	1982	Flea	"Akhalkalaki, Georgia"
 2944	1975	Gopher	Russia: Kabardino-Balkaria			3066G	1982	Flea	"Akhalkalaki, Georgia"
 14735	1975	Common vole	Armenia OR Georgia: Ninotsminda			3067G	1982	Flea	"Akhalkalaki, Georgia"
-						3072G	1982	Common vole	"Akhalkalaki, Georgia"
+1670	1979	Flea	Georgia: Ninotsminda			3072G	1982	Common vole	"Akhalkalaki, Georgia"
 						3073G	1982	Flea	"Akhalkalaki, Georgia"
 						3082G	1982	Flea	"Akhalkalaki, Georgia"
 						3083G	1982	Flea	"Akhalkalaki, Georgia"
@@ -72,10 +72,3 @@ G8786	1992	Common vole	Georgia: Ninotsminda			1952G	1980	Common vole	"Ninotsmind
 						KIM	1968	Human	"Kurdistan, Iran"
 									
 						91001	NK	Brandt’s vole	China
-									
-									
-									
-									
-									
-									
-									

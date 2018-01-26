@@ -558,4 +558,4 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
     # Close the logfile
     biosample_log_file.close()
 
-#BioSampleTable("Yersinia_pestis_db.sqlite", "Yersinia pestis[Orgn]", "ktmeaton@gmail.com", ".")
+BioSampleTable("Yersinia_pestis_db.sqlite", "Yersinia pestis[Orgn]", "ktmeaton@gmail.com", ".")

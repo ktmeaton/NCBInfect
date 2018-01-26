@@ -1,0 +1,7 @@
+strain	collection_date	host	geographic_location
+Pestoides F			Armenia
+Pestoides A			"Kazakhstan, Mongolia"
+Pestoides B			"Kazakhstan, Mongolia"
+Pestoides C			"Kazakhstan, Mongolia"
+Pestoides D			"Kazakhstan, Mongolia"
+IP674			Turkey
