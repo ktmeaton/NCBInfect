@@ -1,0 +1,398 @@
+strain	collection_date	geographic_location	latitude	longitude	latitude_and_longitude	lon	lat	geoAddress
+Gyvakarai1	-2535	"Lithuania, Gyvakarai"	NA	NA		24.890069	55.913699	gyvakarai, lithuania
+KunilaII	-2477	"Estonia, Kunila"	NA	NA		23.82755	58.6195329	kunila, 90222 lääne county, estonia
+Post6	-1923	"Germany, Augsburg"	NA	NA		10.89779	48.3705449	augsburg, germany
+1343UnTal85	-2253	"Germany, Augsburg"	NA	NA		10.89779	48.3705449	augsburg, germany
+GEN72	-2771	"Croatia, Beli Manastir"	NA	NA		18.6107524	45.7728664	beli manastir, croatia
+RK1001	-2770	"Russia, Rasshevatskaya"	NA	NA		41.030903	45.5695819	rasshevatskaya, stavropol krai, russia, 356012
+CO92	1992	"Colorado, USA"	NA	NA		-105.7820674	39.5500507	colorado, usa
+Algeria 3	2015	"Algeria, Chott el Hodna"	NA	NA		4.6037231	35.4344908	chott el hodna, algeria
+OBS107	1720-1722	"France, Marseille"	NA	NA		5.36978	43.296482	marseille, france
+OBS110	1720-1722	"France, Marseille"	NA	NA		5.36978	43.296482	marseille, france
+OBS116	1720-1722	"France, Marseille"	NA	NA		5.36978	43.296482	marseille, france
+OBS124	1720-1722	"France, Marseille"	NA	NA		5.36978	43.296482	marseille, france
+OBS137	1720-1722	"France, Marseille"	NA	NA		5.36978	43.296482	marseille, france
+Barcelona3031	1300-1420	"Spain, Barcelona"	NA	NA		2.1734035	41.3850639	barcelona, spain
+BolgarCity2370	1298-1388	"Russia, Bolgar City"	NA	NA		49.0342414	54.9670821	bolgar, tatarstan, russia, 422840
+Ellwangen549_O	1485-1627	"Germany, Ellwangen"	NA	NA		10.1301513	48.9626833	73479 ellwangen, germany
+AE1175	428-571	"Germany, Altenerding"	NA	NA		11.9048536	48.2884527	altenerding, 85435 erding, germany
+IP674	1952	Turkey	NA	NA		35.243322	38.963745	turkey
+I1991001	1991	"Inner Mongolia, China"	41.55	108.52		115.0594815	43.37822	inner mongolia, china
+12	2004	"Qinghai, China"	38.2	100.22		96.4077358	35.744798	qinghai, china
+5761	1956	"St.Petersbg, Russia"	NA	NA		30.3350986	59.9342802	st petersburg, russia
+164	1985	"Xinjiang, China"	39	88.1		87.5395855	42.5246357	xinjiang, china
+2	2004	"Qinghai, China"	32.23	96.47		96.4077358	35.744798	qinghai, china
+2330	2003	"Xinjiang, China"	44.95	81.08		87.5395855	42.5246357	xinjiang, china
+2504	2005	"Xinjiang, China"	44.02	88.11		87.5395855	42.5246357	xinjiang, china
+2506	2005	"Xinjiang, China"	44.02	88.11		87.5395855	42.5246357	xinjiang, china
+2654	2006	"Xinjiang, China"	44.02	88.11		87.5395855	42.5246357	xinjiang, china
+30017	1976	"Tibet, China"	31.47	92.1		88.7878678	30.1533605	tibet, china
+735	1965	"St. Petersberg, Russia"	NA	NA		30.3350986	59.9342802	st petersburg, russia
+34008	1968	"Tibet, China"	29.66	84.15		88.7878678	30.1533605	tibet, china
+34202	1990	"Tibet, China"	30.37	81.18		88.7878678	30.1533605	tibet, china
+351001	1996	"Tibet, China"	29.39	90.7		88.7878678	30.1533605	tibet, china
+G1996010	1996	"Tibet, China"	28.46	92.42		88.7878678	30.1533605	tibet, china
+G1996006	1996	"Tibet, China"	27.98	91.91		88.7878678	30.1533605	tibet, china
+A1973001	1973	"Xinjiang, China"	39.7	75.18		NA	NA	NA
+42013	1971	"Xinjiang, China"	44.45	84.62		84.62	NA	NA
+42082	1995	"Xinjiang, China"	44.45	84.62		84.62	NA	NA
+42091	1999	"Xinjiang, China"	44.45	84.62		84.62	NA	NA
+42095	2001	"Xinjiang, China"	44.45	84.62		84.62	NA	NA
+H1959004	1959	"Jilin, China"	45.2	124.82		124.82	NA	NA
+5	2004	"Qinghai, China"	36.9	98.46		98.46	NA	NA
+620024	1962	"Qinghai, China"	35.6	99.99		99.99	NA	NA
+D1964001	1964	"Qinghai, China"	37.37	101.62		101.62	NA	NA
+C1976001	1976	"Gansu, China"	38.46	94.25		94.25	NA	NA
+71021	1989	"Gansu, China"	38.46	94.25		94.25	NA	NA
+710317	1971	"Qinghai, China"	36.72	101.28		101.28	NA	NA
+7338	1973	"Xinjiang, China"	37.12	79.94		79.94	NA	NA
+D1982001	1982	"Gansu, China"	38.86	99.57		99.57	NA	NA
+7	2004	"Qinghai, China"	36.9	98.46		98.46	NA	NA
+780441	1978	"Qinghai, China"	34.92	98.26		98.26	NA	NA
+F1954001	1954	"Yunnan, China"	25.48	100.56		100.56	NA	NA
+C1989001	1989	"Qinghai, China"	32.92	95.3		95.3	NA	NA
+9	2004	"Qinghai, China"	33.35	97.12		97.12	NA	NA
+91	1987	"Xinjiang, China"	38.09	85.32		85.32	NA	NA
+D1991004	1991	"Qinghai, China"	35.03	101.5		101.5	NA	NA
+945	1994	"Xinjiang, China"	44.29	85.56		85.56	NA	NA
+970754	1997	"Qinghai, China"	32.23	96.47		96.47	NA	NA
+CMCC02041	1965	"Qinghai, China"	38.2	100.22		100.22	NA	NA
+CMCC03001	1954	"Qinghai, China"	34.75	101.62		101.62	NA	NA
+CMCC05009	1961	"Qinghai, China"	35.6	99.99		99.99	NA	NA
+CMCC05013	1988	"Qinghai, China"	35.6	99.99		99.99	NA	NA
+CMCC10012	1964	"Qinghai, China"	36.89	100.99		100.99	NA	NA
+CMCC104003	1989	"Inner Mongolia, China"	43.97	120.05		120.05	NA	NA
+CMCC106002	1996	"Inner Mongolia, China"	44.55	120.87		120.87	NA	NA
+CMCC107004	2003	"Inner Mongolia, China"	41.9	114		114	NA	NA
+CMCC11001	1954	"Qinghai, China"	35.57	100.75		100.75	NA	NA
+F1946001	1946	"Fujian, China"	26.58	118.75		118.75	NA	NA
+CMCC114001	1952	"Fujian, China"	25.44	119		119	NA	NA
+CMCC12003	1961	"Qinghai, China"	37.37	101.62		101.62	NA	NA
+I1994006	1994	"Hebei, China"	41.87	114.6		114.6	NA	NA
+D1964002	1964	"Qinghai, China"	37.37	101.62		101.62	NA	NA
+J1978002	1978	"Ningxia, China"	36.56	105.64		105.64	NA	NA
+CMCC125002	1964	"Ningxia, China"	35.97	105.7		105.7	NA	NA
+I1969003	1969	"Ningxia, China"	38.1	106.34		106.34	NA	NA
+C1975003	1975	"Qinghai, China"	33.03	96.97		96.97	NA	NA
+I2001001	2001	"Shaanxi, China"	37.6	107.59		107.59	NA	NA
+CMCC18019	2001	"Qinghai, China"	33.35	97.12		97.12	NA	NA
+CMCC21106	2001	"Xinjiang, China"	39.7	75.18		75.18	NA	NA
+CMCC27002	1991	"Qinghai, China"	35.24	100.63		100.63	NA	NA
+CMCC31004	1990	"Tibet, China"	32.29	91.68		91.68	NA	NA
+CMCC347001	1996	"Tibet, China"	30.2	91.24		91.24	NA	NA
+CMCC348002	1998	"Tibet, China"	29.71	89.02		89.02	NA	NA
+CMCC38001	1979	"Xinjiang, China"	39.73	76.12		76.12	NA	NA
+A1956001	1956	"Xinjiang, China"	39.7	75.18		75.18	NA	NA
+CMCC42007	1967	"Xinjiang, China"	44.45	84.62		84.62	NA	NA
+CMCC43032	1980	"Xinjiang, China"	44.18	86.92		86.92	NA	NA
+K21985002	1985	"Xinjiang, China"	39	88.1		88.1	NA	NA
+K11973002	1973	"Xinjiang, China"	37.12	79.94		79.94	NA	NA
+CMCC49003	1976	"Xinjiang, China"	43.82	82.53		82.53	NA	NA
+CMCC51020	1954	"Jilin, China"	44.3	123.97		123.97	NA	NA
+H1958004	1958	"Jilin, China"	43.87	126.57		126.57	NA	NA
+CMCC64001	1957	"Inner Mongolia, China"	45.05	121.47		121.47	NA	NA
+CMCC640047	1964	"Qinghai, China"	36.27	100.61		100.61	NA	NA
+CMCC67001	1959	"Inner Mongolia, China"	42.97	122.35		122.35	NA	NA
+CMCC71001	1961	"Gansu, China"	38.46	94.25		94.25	NA	NA
+J1963002	1963	"Gansu, China"	35.72	105.08		105.08	NA	NA
+F1984001	1984	"Yunnan, China"	24.69	97.93		97.93	NA	NA
+CMCC8211	1982	"Xinjiang, China"	44.67	82.92		82.92	NA	NA
+E1977001	1977	"Yunnan, China"	26.53	99.88		99.88	NA	NA
+CMCC84033	1979	"Yunnan, China"	26.53	99.88		99.88	NA	NA
+CMCC84038	1982	"Yunnan, China"	26.53	99.88		99.88	NA	NA
+CMCC84046	1984	"Yunnan, China"	26.53	99.88		99.88	NA	NA
+CMCC87001	1982	"Yunnan, China"	24	97.83		97.83	NA	NA
+CMCC90027	1970	"Inner Mongolia, China"	43.85	113.7		113.7	NA	NA
+CMCC91090	1970	"Inner Mongolia, China"	44.03	114.97		114.97	NA	NA
+CMCC92004	1957	"Inner Mongolia, China"	42.47	112.95		112.95	NA	NA
+CMCC92010	1971	"Inner Mongolia, China"	42.47	112.95		112.95	NA	NA
+CMCC93014	1970	"Inner Mongolia, China"	43.95	116.08		116.08	NA	NA
+CMCC95001	1970	"Inner Mongolia, China"	42.32	115		115	NA	NA
+CMCC96001	1957	"Inner Mongolia, China"	42.25	116.02		116.02	NA	NA
+CMCC96007	1989	"Inner Mongolia, China"	42.25	116.02		116.02	NA	NA
+I1970005	1970	"Inner Mongolia, China"	39.12	107.97		107.97	NA	NA
+CMCC99103	1970	"Inner Mongolia, China"	39.12	107.97		107.97	NA	NA
+CMCCK100001	1991	"Yunnan, China"	24.08	98.08		98.08	NA	NA
+CMCCK110001	1991	"Yunnan, China"	23.92	99.02		99.02	NA	NA
+CMCCN010025	2000	"Sichuan, China"	33.01	98.06		98.06	NA	NA
+EV76-CN	1922 (+LAB PASSAGES)	Madagascar	NA	NA		46.869107	-18.766947	madagascar
+G8786	1992	Georgia: Ninotsminda	NA	NA		43.5879386	41.2713699	ninotsminda, georgia
+I160001	1987	"Xinjiang, China"	38.09	85.32		85.32	NA	NA
+MGJZ11	2000	"Bayan-Olgii, Mongolia"	48.18	89.5		89.5	NA	NA
+MGJZ12	2002	"Bayan-Olgii, Mongolia"	48.18	89.5		89.5	NA	NA
+MGJZ3	1980	"Govi-Altai, Mongolia"	45.3	95.3		95.3	NA	NA
+MGJZ6	1997	"Dornogovi, Mongolia"	43.7	110.28		110.28	NA	NA
+MGJZ7	1997	"Dornogovi, Mongolia"	43.7	110.28		110.28	NA	NA
+MGJZ9	1998	"Govi-Altai, Mongolia"	45.3	95.3		95.3	NA	NA
+SHAN11	2006	"Shaanxi, China"	37.6	107.59		107.59	NA	NA
+SHAN12	2006	"Shaanxi, China"	37.6	107.59		107.59	NA	NA
+YN1065	1954	"Yunnan, China"	26.53	99.88		99.88	NA	NA
+YN1683	1977	"Yunnan, China"	26.53	99.88		99.88	NA	NA
+YN2179	1995	Myanmar	NA	NA		95.955974	21.916221	myanmar (burma)
+YN2551	2002	"Yunnan, China"	23.35	102.42		102.42	NA	NA
+YN2588	2000	"Guangxi, China"	24.8	105.34		105.34	NA	NA
+YN472	1957	"Yunnan, China"	26.53	99.88		99.88	NA	NA
+YN663	1982	"Yunnan, China"	24.33	97.96		97.96	NA	NA
+E1979001	1979	"Yunnan, China"	26.53	99.88		99.88	NA	NA
+PY-03	2006	"Peru, Jaen"	NA	NA	missing	-78.7986181	-5.7094412	jaén, peru
+PY-04	2006	"Peru, Chota"	NA	NA	missing	-78.6483843	-6.558193	chota, peru
+PY-05	2006	"Peru, Chota"	NA	NA	missing	-78.6483843	-6.558193	chota, peru
+PY-06	2006	"Peru, Chota"	NA	NA	missing	-78.6483843	-6.558193	chota, peru
+PY-07	2006	"Peru, Chota"	NA	NA	missing	-78.6483843	-6.558193	chota, peru
+PY-08	2006	"Peru, Jaen"	NA	NA	missing	-78.7986181	-5.7094412	jaén, peru
+PY-09	2006	"Peru, Jaen"	NA	NA	missing	-78.7986181	-5.7094412	jaén, peru
+PY-10	2006	"Peru, Jaen"	NA	NA	missing	-78.7986181	-5.7094412	jaén, peru
+PY-11	2007	Peru:Chota	NA	NA	missing	-78.6483843	-6.558193	chota, peru
+PY-12	2008	Peru:Jean	NA	NA	missing	-78.7986181	-5.7094412	jaén, peru
+PY-13	2008	Peru:Santa Cruz	NA	NA	missing	-77.7083	-8.89429	pukarahu, peru
+PY-14	2009	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-15	2009	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-16	2009	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-19	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-100	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-101	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-103	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-102	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-113	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-25	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-29	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-34	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-36	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-32	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-42	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-54	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-45	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-47	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-53	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-55	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-52	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-46	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-48	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-58	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-59	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-61	2010	Peru:Trujillo	NA	NA	missing	-79.0215336	-8.1090524	trujillo, peru
+PY-63	2010	Peru:Trujillo	NA	NA	missing	-79.0215336	-8.1090524	trujillo, peru
+PY-64	2010	Peru:Trujillo	NA	NA	missing	-79.0215336	-8.1090524	trujillo, peru
+PY-66	2010	Peru:Trujillo	NA	NA	missing	-79.0215336	-8.1090524	trujillo, peru
+PY-56	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-60	2010	Peru:Trujillo	NA	NA	missing	-79.0215336	-8.1090524	trujillo, peru
+PY-65	2010	Peru:Trujillo	NA	NA	missing	-79.0215336	-8.1090524	trujillo, peru
+PY-71	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-72	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-76	2010	Peru:Ascope	NA	NA	missing	-79.1072559	-7.7141138	ascope province, peru
+PY-88	2010	Peru:Pacasmayo	NA	NA	missing	-79.565078	-7.4040051	pacasmayo district, peru
+PY-89	2010	Peru:Pacasmayo	NA	NA	missing	-79.565078	-7.4040051	pacasmayo district, peru
+PY-90	2010	Peru:Pacasmayo	NA	NA	missing	-79.565078	-7.4040051	pacasmayo district, peru
+PY-91	2010	Peru:Chota	NA	NA	missing	-78.6483843	-6.558193	chota, peru
+PY-92	2010	Peru:Chota	NA	NA	missing	NA	NA	NA
+PY-93	2010	Peru:Chota	NA	NA	missing	NA	NA	NA
+PY-94	2010	Peru:Chota	NA	NA	missing	NA	NA	NA
+PY-95	2010	Peru:Chota	NA	NA	missing	NA	NA	NA
+PY-96	2010	Peru:Ascope	NA	NA	missing	NA	NA	NA
+PY-98	2010	Peru:Ascope	NA	NA	missing	NA	NA	NA
+PY-99	2010	Peru:Ascope	NA	NA	missing	NA	NA	NA
+PY-02	2006	Peru:Jaen	NA	NA	missing	NA	NA	NA
+PY-01	2006	Peru:Chota	NA	NA	missing	NA	NA	NA
+AS200901156	6/10/2009	"Santa Fe, NM"	NA	NA		NA	NA	NA
+AS200901434	6/30/2009	"Santa Fe, NM"	NA	NA		NA	NA	NA
+AS200901509	7/7/2009	"Santa Fe, NM"	NA	NA		NA	NA	NA
+AS200901539	7/9/2009	"Las Vegas, NM"	NA	NA		NA	NA	NA
+BA200901703	6/10/2009	"Santa Fe, NM"	NA	NA		NA	NA	NA
+BA200901799	6/17/2009	"Sante Fe, NM"	NA	NA		NA	NA	NA
+BA200901990	7/8/2009	"Edgewood, NM"	NA	NA		NA	NA	NA
+BA200902009	7/10/2009	"Santa Fe, NM"	NA	NA		NA	NA	NA
+AS200902147	8/14/2009	"Santa Fe, NM"	NA	NA		NA	NA	NA
+53/91	1991	"Mahajanga, Madagascar"	NA	NA	"46.31395349, -15.71171171"	NA	NA	NA
+64/91	1991	"Mahajanga, Madagascar"	NA	NA	"46.31395349, -15.71171171"	NA	NA	NA
+154/98 B	1998	"Mahajanga, Madagascar"	NA	NA	"46.31395349, -15.71171171"	NA	NA	NA
+17/99 B	1999	"Mahajanga, Madagascar"	NA	NA	"46.31395349, -15.71171171"	NA	NA	NA
+G1670	1979	Georgia: Ninotsminda	NA	NA		NA	NA	NA
+G1670E	1979	Georgia: Ninotsminda	NA	NA		NA	NA	NA
+G3768	1983	Georgia: Ninotsminda	NA	NA		NA	NA	NA
+G1670A	1979	Georgia: Ninotsminda	NA	NA		NA	NA	NA
+4139	1995	USA: NM	NA	NA		NA	NA	NA
+1866		USA: NM	NA	NA		NA	NA	NA
+8607116		USA: NM	NA	NA		NA	NA	NA
+KUMA (D11)		China: Manchuria	NA	NA		NA	NA	NA
+Java (D88)		"Java, Indonesia"	NA	NA		NA	NA	NA
+1901b	1983	USA: NM	NA	NA		NA	NA	NA
+4954	1987	USA: NM	NA	NA		NA	NA	NA
+4412	1991	USA: NM	NA	NA		NA	NA	NA
+2965	1995	USA: NM	NA	NA		NA	NA	NA
+2055	1998	USA: NM	NA	NA		NA	NA	NA
+2106	2001	USA: NM	NA	NA		NA	NA	NA
+2772	1984	USA: NM	NA	NA		NA	NA	NA
+3357	1999	USA: NM	NA	NA		NA	NA	NA
+AS 2509	2004	USA: NM	NA	NA		NA	NA	NA
+AS 200900596	2009	USA	NA	NA		NA	NA	NA
+V-6486		USA: NM	NA	NA		NA	NA	NA
+AS200901509	7/7/2009	"Santa Fe, NM"	NA	NA		NA	NA	NA
+EBD10-058	01-Jul-10	"Canada: Grasslands National Park, Saskatchewan"	NA	NA	missing	NA	NA	NA
+2501	2005	"China: Junggar Basin, Xinjiang"	NA	NA		NA	NA	NA
+M0000002	2001	"Qinghai, China"	33.35	97.12		97.12	NA	NA
+CA88-4125	1988	"California, USA"	NA	NA		NA	NA	NA
+Pestoides A	NA	Kazakhstan	NA	NA		NA	NA	NA
+INS	10-Jul	Peru	NA	NA		NA	NA	NA
+IP275	1995	Madagascar	NA	NA		NA	NA	NA
+F1991016	1991	"Yunnan, China"	23.15	99.24		99.24	NA	NA
+E1979001	1979	"Yunnan, China"	26.53	99.88		99.88	NA	NA
+B42003004	2003	"Xinjiang, China"	44.95	81.08		81.08	NA	NA
+K1973002	1991	"China, Cangyuan County"	NA	NA		NA	NA	NA
+MG05-1020	2005	Madagascar	NA	NA		NA	NA	NA
+UG05-0454	2004	Uganda	NA	NA		NA	NA	NA
+FV-1	2001	USA	NA	NA		NA	NA	NA
+A120_LP05	435-631	"Germany, Ascheim"	NA	NA		NA	NA	NA
+A76_LP07	443-566	"Germany, Ascheim"	NA	NA		NA	NA	NA
+S3	2002	India: Shimla	NA	NA		NA	NA	NA
+9	2004	"Qinghai, China"	33.35	97.12		97.12	NA	NA
+113	1994	India: Surat	NA	NA		NA	NA	NA
+24H	1998	India: Hosur	NA	NA		NA	NA	NA
+Antiqua	1965	Congo	NA	NA		NA	NA	NA
+Nepal516	1967	Nepal	NA	NA		NA	NA	NA
+Pestoides F	<1984	Armenia	NA	NA		NA	NA	NA
+EV NIIEG	1941	Russia: Research Institute of Epidemiology and Hygiene	NA	NA		NA	NA	NA
+91001	1970	"Inner Mongolia, China"	44.03	114.97		114.97	NA	NA
+Harbin 35	1940	China: Manchuria	NA	NA		NA	NA	NA
+A1122	1939	USA: California	NA	NA		NA	NA	NA
+D106004	2006	China: Yulong County	NA	NA		NA	NA	NA
+D182038	1982	China: Jianchuan County	NA	NA		NA	NA	NA
+Z176003	1976	China: Naqu (Tibet) County	NA	NA		NA	NA	NA
+KIM10+	1968 (+LAB PASSAGES)	Iran/Kurdistan	NA	NA		NA	NA	NA
+5001	1956	"China, Xinghai"	NA	NA		NA	NA	NA
+5006	1960	"China, Xinghai"	NA	NA		NA	NA	NA
+5008	1960	"China, Xinghai"	NA	NA		NA	NA	NA
+090952a	2009-07-30	"China, Xinghai"	NA	NA		NA	NA	NA
+090952b	2009-07-31	"China, Xinghai"	NA	NA		NA	NA	NA
+90953	2009-07-31	"China, Xinghai"	NA	NA		NA	NA	NA
+90954	2009-07-30	"China, Xinghai"	NA	NA		NA	NA	NA
+90955	2009-07-26	"China, Xinghai"	NA	NA		NA	NA	NA
+90958	2009-08-05	"China, Xinghai"	NA	NA		NA	NA	NA
+90959	2009-08-05	"China, Xinghai"	NA	NA		NA	NA	NA
+771	1966	Georgia: Dedophlistskaro	NA	NA		NA	NA	NA
+790	1961	Kyrgyzia	NA	NA		NA	NA	NA
+231(708)	1947	Kyrgyzstan	NA	NA		NA	NA	NA
+ZE94-2122	1994	Zimbabwe	NA	NA	Missing	NA	NA	NA
+PBM19	Unknown	Unknown	NA	NA		NA	NA	NA
+Shasta	1954	USA: California	NA	NA		NA	NA	NA
+El Dorado	2002	USA: NY: New York	NA	NA	Unknown	NA	NA	NA
+KIM5	2007	USA: Kentucky	NA	NA		NA	NA	NA
+Dodson	1967	"USA: Tuba City, AZ"	NA	NA		NA	NA	NA
+Pestoides G	<1984	USSR	NA	NA		NA	NA	NA
+Java9	unknown	Indonesia	NA	NA		NA	NA	NA
+Nicholisk 41	2008	China: Manchuria	NA	NA		NA	NA	NA
+Pestoides B	<1984	"Kazakhstan, Altai Mountains, Azerbaijan"	NA	NA		NA	NA	NA
+Nairobi	1985	Kenya: Nairobi	NA	NA		NA	NA	NA
+SCPM-O-B-6706	24-Mar-86	"Mongolia, Bayan-Ulgii"	NA	NA		NA	NA	NA
+SCPM-O-B-6906	27-Jun-74	"Mongolia, Bayan-Ulgii"	NA	NA		NA	NA	NA
+SCPM-O-B-7005	26-Jun-10	Dagestan	NA	NA		NA	NA	NA
+SCPM-O-B-7761	22-Oct-83	Armenia/Azerbaijan/Georgia	NA	NA		NA	NA	NA
+SCPM-O-B-6986	10-Nov-69	Armenia/Azerbaijan/Georgia	NA	NA		NA	NA	NA
+SCPM-O-B-7283	09-Nov-71	UNKNOWN	NA	NA		NA	NA	NA
+125 B plague Bombay	Missing	India: Mumbai	NA	NA	Missing	NA	NA	NA
+1412	1979	Georgia: Dalidag	NA	NA		NA	NA	NA
+1522	1975	Armenia: Shirak Province	NA	NA		NA	NA	NA
+1413	1979	Georgia: Ninotsminda	NA	NA		NA	NA	NA
+EV76D	1922 (+LAB PASSAGES)	Madgascar (+Worldwide)	NA	NA		NA	NA	NA
+SCPM-O-B-6706	24-Mar-86	"Mongolia, Bayan-Ulgii"	NA	NA		NA	NA	NA
+SCPM-O-B-6904	13-Jun-84	Armenia/Azerbaijan/Georgia	NA	NA		NA	NA	NA
+SCPM-O-B-6216	20-May-84	"Mongolia, Hongor Hudag, Bayan"	NA	NA		NA	NA	NA
+SCPM-O-B-6304	13-Sep-79	Tajikistan/Uzbekistan	NA	NA		NA	NA	NA
+SCPM-O-B-7074	06-Sep-80	Kyrgyzstan	NA	NA		NA	NA	NA
+SCPM-O-B-6990	04-Aug-71	Armenia/Azerbaijan/Georgia	NA	NA		NA	NA	NA
+SCPM-O-B-7812	21-Sep-02	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-B-7019	28-Aug-80	Kyrgyzstan	NA	NA		NA	NA	NA
+SCPM-O-B-6974	08-Dec-67	Armenia/Azerbaijan/Georgia	NA	NA		NA	NA	NA
+SCPM-O-B-6757	12-Sep-68	Armenia/Azerbaijan/Georgia	NA	NA		NA	NA	NA
+SCPM-O-B-6984	03-Jul-69	Armenia/Azerbaijan/Georgia	NA	NA		NA	NA	NA
+SCPM-O-B-7075	27-Jun-61	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-B-7832	09-Nov-78	Armenia/Azerbaijan/Georgia	NA	NA		NA	NA	NA
+SCPM-O-B-6300	19-Aug-71	Armenia/Azerbaijan/Georgia	NA	NA		NA	NA	NA
+SCPM-O-B-6213	22-Aug-72	"Mongolia, Bayan-Ulgii"	NA	NA		NA	NA	NA
+SCPM-O-B-6536	25-Oct-76	Armenia/Azerbaijan/Georgia	NA	NA		NA	NA	NA
+SCPM-O-B-6540	10-Feb-89	Armenia/Azerbaijan/Georgia	NA	NA		NA	NA	NA
+SCPM-O-B-6906	27-Jun-74	"Mongolia, Bayan-Ulgii"	NA	NA		NA	NA	NA
+2944	1975	Russia: Kabardino-Balkaria	NA	NA		NA	NA	NA
+1670	1979	Georgia: Ninotsminda	NA	NA		NA	NA	NA
+14735	1975	Armenia OR Georgia: Ninotsminda	NA	NA		NA	NA	NA
+8787	1992	Georgia: Ninotsminda	NA	NA		NA	NA	NA
+3770	1983	Georgia: Ninotsminda	NA	NA		NA	NA	NA
+3067	1982	Georgia: Ninotsminda	NA	NA		NA	NA	NA
+1045	1976	Azerbaijan: Apsheron Peninsula	NA	NA		NA	NA	NA
+Yp1945	2009	USA: Texas	NA	NA	Unknown	NA	NA	NA
+Yp2126	2011	USA: Arizona	NA	NA	Unknown	NA	NA	NA
+M-1864	2009	"Russia: Kalmykia, Lagansky District"	NA	NA	45.217463 N 47.06267700000001 E	NA	NA	NA
+KM918	1989	"Russia: Kabardino-Balkaria, Gizhgit Natural Boundary"	NA	NA	43.47001 N 42.992790000000014 E	NA	NA	NA
+C741	1999	"Russia: Dagestan, Kulinsky district"	NA	NA	41.942454 N 47.309124 E	NA	NA	NA
+A-1815	1980	Kyrgyzstan: Talas district	NA	NA	42.469232 N 72.24286600000005 E	NA	NA	NA
+I1996	1980	Russia: Zabaicalskiy krai	NA	NA	50.609718 N 115.708895 E	NA	NA	NA
+1116-D	1971	"Russia: Republic Ingushetia, Malgobek district"	NA	NA	43.405649 N 44.68555500000002 E	NA	NA	NA
+M-978	1990	"Russia: Republic of Kalmykia, Ketchenerovsky District"	NA	NA	47.10023 N 45.707251999999926 E	NA	NA	NA
+KM-816	1990	Turkmenistan: Balkany	NA	NA	41.000137 N 55.666886999999974 E	NA	NA	NA
+C-791	2003	Dagestan	NA	NA	missing	NA	NA	NA
+M-1484	1992	Russia	NA	NA	missing	NA	NA	NA
+M-1763	2002	"Russia: Astrakhan region, Krasnoyarsk District"	NA	NA	missing	NA	NA	NA
+M-519	1967	Turkmenistan: Kizyl-Atrek Region	NA	NA	missing	NA	NA	NA
+M-549	1977	Turkmenistan: Krasnovodsk Region	NA	NA	41.679476 N 54.966508999999974 E	NA	NA	NA
+M-1453	1991	"Kazakhstan: Guryev region, Makhambet district"	NA	NA	47.636863 N 51.70316200000002 E	NA	NA	NA
+SCPM-O-B-7111	12-Jun-97	Dagestan	NA	NA		NA	NA	NA
+SCPM-O-B-6994	08-Jun-98	Dagestan	NA	NA		NA	NA	NA
+SCPM-O-B-7469	31-May-90	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-B-4470	18-Apr-70	Tajikistan	NA	NA		NA	NA	NA
+SCPM-O-B-7042	10-Jun-96	Dagestan	NA	NA		NA	NA	NA
+A-1809	1980-08-28	"Kyrgyzstan: Range of Tien Shan Mountain System, Karagaily Area"	NA	NA	Missing	NA	NA	NA
+A-1249	1970-04-18	Tajikistan: Sogdiyskaya Region	NA	NA	Missing	NA	NA	NA
+A-1486	1966-11-25	"Kyrgyzstan: Oshskaya Region, Alayskiy District"	NA	NA	Missing	NA	NA	NA
+A-1691	1971-07-20	Kyrgyzstan	NA	NA	Missing	NA	NA	NA
+A-1836	1983-03-20	Kyrgyzstan: Issyk-Kul'skaya region	NA	NA	Missing	NA	NA	NA
+Cadman	06-Jun-16	"USA: Gallup, NM"	NA	NA	missing	NA	NA	NA
+SCPM-O-B-7037	12-Jun-78	Dagestan	NA	NA		NA	NA	NA
+SCPM-O-B-6176	28-Aug-84	Dagestan	NA	NA		NA	NA	NA
+SCPM-O-B-7040	31-Jul-88	Dagestan	NA	NA		NA	NA	NA
+SCPM-O-B-6992	31-Jul-95	Dagestan	NA	NA		NA	NA	NA
+SCPM-O-B-6983	16-Jun-69	Armenia	NA	NA		NA	NA	NA
+SCPM-O-B-4664	06-Sep-80	Kyrgyzstan	NA	NA		NA	NA	NA
+SCPM-O-DNA-01	05-Oct-01	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-DNA-02	05-Oct-01	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-DNA-03	04-Oct-01	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-DNA-04	04-Oct-01	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-DNA-05	28-Apr-07	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-DNA-06	23-Sep-07	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-DNA-07	06-Sep-07	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-DNA-08	12-Oct-07	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-DNA-09	15-Oct-07	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-DNA-10	Jun-77	"Russia, Altai Mountains"	NA	NA		NA	NA	NA
+SCPM-O-DNA-11	19-May-84	Inner Mongolia	NA	NA		NA	NA	NA
+SCPM-O-DNA-12	02-Jun-82	Inner Mongolia	NA	NA		NA	NA	NA
+Yp3009	2007	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp2979	2006	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3026	2008	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3016	2007	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3042	2009	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3078	2011	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp2963	2006	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3043	2009	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3019	2008	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3017	2007	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp2856	2003	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp2905	2004	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3010	2007	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3069	2011	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3048	2009	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp2871	2004	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp2983	2007	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3041	2009	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp2988	2007	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp2947	2006	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3014	2007	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3034	2008	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3079	2012	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp2872	2004	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp2991	2007	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3050	2010	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3059	2011	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3083	2012	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3023	2008	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3044	2009	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+Yp3045	2009	Madagascar	NA	NA	18.46 S 46.52 E	NA	NA	NA
+195/P	1898-1950	India	NA	NA		NA	NA	NA
+UC91309	LAB INFECTION	LAB INFECTION	NA	NA	unknown	NA	NA	NA
