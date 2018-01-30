@@ -1,0 +1,2 @@
+strain	collection_date	host	geographic_location
+AE1175	428-571	Human	"Germany, Altenerding"

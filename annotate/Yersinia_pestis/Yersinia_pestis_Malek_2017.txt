@@ -1,0 +1,2 @@
+strain	collection_date	host	geographic_location
+Algeria 3	2015	Soil	"Algeria, Chott el Hodna"

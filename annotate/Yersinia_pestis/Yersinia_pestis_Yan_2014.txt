@@ -1,0 +1,11 @@
+strain	collection_date	host	geographic_location	biosampleAccession
+5001	1956	"Flea, Marmot himalayana"	"China, Xinghai"	SAMN02690730
+5006	1960	Marmot himalayan	"China, Xinghai"	SAMN02690731
+5008	1960	Marmot himalayan	"China, Xinghai"	SAMN02690732
+090952a	2009-07-30	Human	"China, Xinghai"	SAMN02690733
+090952b	2009-07-31	Human	"China, Xinghai"	SAMN02690734
+90953	2009-07-31	Human	"China, Xinghai"	SAMN02690735
+90954	2009-07-30	Human	"China, Xinghai"	SAMN02690736
+90955	2009-07-26	Human	"China, Xinghai"	SAMN02690737
+90958	2009-08-05	Canis familiaris	"China, Xinghai"	SAMN02690738
+90959	2009-08-05	Canis familiaris	"China, Xinghai"	SAMN02690739

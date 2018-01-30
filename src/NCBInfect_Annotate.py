@@ -140,10 +140,11 @@ while annot_line:
     # Walk through each column value
     for i,element in enumerate(split_line):
         # Save the name of the column/header being processed
-        header = header_dict[i]
+        header = header_dict[i].strip()
         # Cleanup extra white space, remove extra quotation marks
         element = element.strip().replace('\"','')
-        # Retriev strain separately, it's the key to finding a matching record
+        # Retrieve strain separately, it's the key to finding a matching record
+
         if header == 'strain':
             line_strain = element
 
@@ -155,7 +156,8 @@ while annot_line:
     query = "SELECT * FROM {0} WHERE strain={1}".format(db_table,"'" + line_strain + "'")
     cur.execute(query)
     if not cur.fetchone():
-        raise ErrorEntryNotInDB(line_strain)
+        print("Entry not in DB: " + line_strain)
+        #raise ErrorEntryNotInDB(line_strain)
 
 
     # This section allows for dynamic variable creation and column modification

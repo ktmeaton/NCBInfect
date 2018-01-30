@@ -1,4 +1,4 @@
-strain	collection_date	host	geographic_location			extra_strains	collection_date	host	geographic_location
+strain	collection_date	host	geographic_location			extra_strains	extra_date	extra_host	extra_location
 G1670	1979	Flea	Georgia: Ninotsminda			1390G	1979	Flea	"Ninotsminda, Georgia"
 G1670E	1979	Flea	Georgia: Ninotsminda			1391G	1979	Flea	"Ninotsminda, Georgia"
 G1670A	1979	Flea	Georgia: Ninotsminda			1392G	1979	Flea	"Ninotsminda, Georgia"

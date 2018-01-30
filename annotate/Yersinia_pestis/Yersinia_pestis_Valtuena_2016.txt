@@ -1,0 +1,7 @@
+strain	collection_date	host	geographic_location
+Gyvakarai1	-2535	Human	"Lithuania, Gyvakarai1"
+KunilaII	-2477	Human	"Estonia, Kunilall"
+1343UnTal85	-2253	Human	"Germany, Augsburg"
+Post6	-1923	Human	"Germany, Augsburg"
+GEN72	-2771	Human	"Croatia, Beli Manastir"
+RK1001	-2770	Human	"Russia, Rasshevatskiy"
