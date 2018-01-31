@@ -45,6 +45,9 @@ distinct_data <- distinct(data, geographic_location, consensus_lat, consensus_lo
 #                PLOTTING                #
 ##########################################
 
+#-------------------#
+#  Plot by Pandemic #
+#-------------------#
 # Null ggplot
 gg <- ggplot()
 # Base world map
@@ -54,16 +57,21 @@ gg <- gg + geom_map(data=world, map=world,
 # Add data points
 gg <- gg + geom_point(data=distinct_data, 
                       aes(x=consensus_lon, y=consensus_lat, size=consensus_count, 
-                          fill=Established), shape=21, alpha=0.8)
+                          fill=Pandemic), shape=21, alpha=0.8)
 
 # Tableau color theme
-gg <- gg + scale_color_tableau()
+#gg <- gg + scale_color_tableau()
 # Theme: strip background, reposition legend
 gg <- gg + theme_map()
 gg <- gg + theme(strip.background=element_blank())
-gg <- gg + guides(fill=FALSE)
+#gg <- gg + guides(fill=FALSE)
 gg <- gg + guides(size=FALSE)
-
+gg <- gg + ggtitle(expression(paste("Global distribution of ", 
+                                    italic("Yersinia pestis"), " whole genome sequencing projects.")), 
+                   subtitle = "Visualized by Pandemic")
+gg <- gg + theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
+gg <- gg + theme(plot.subtitle = element_text(hjust = 0.5, size = 8))
+ggsave("testplot.pdf", device='pdf', width=10.185, height=5.67, dpi=600)
 
 
 
