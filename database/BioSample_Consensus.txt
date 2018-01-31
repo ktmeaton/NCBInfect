@@ -399,3 +399,9 @@ Yp3079	2012	Madagascar	-18.46	46.52	Third Pandemic	No
 Yp3083	2012	Madagascar	-18.46	46.52	Third Pandemic	No
 Z176003	1976	China: Naqu (Tibet) County	31.476202	92.051239	Third Pandemic	No
 ZE94-2122	1994	Zimbabwe	-19.015438	29.154857	Third Pandemic	No
+IP583	1994	India	20.583684	78.95288	Third Pandemic	This Study
+IP542	1952	Kenya	-0.033559	37.896193	Third Pandemic	This Study
+IP543	1953	Congo	-4.0482	21.748664	Third Pandemic	This Study
+IP557	1963	Kurdistan	36.40034	44.377195	Third Pandemic	This Study
+IP562	1947	Kurdistan	36.40034	44.377195	Third Pandemic	This Study
+IP579	1908	India	20.583684	78.95288	Third Pandemic	This Study

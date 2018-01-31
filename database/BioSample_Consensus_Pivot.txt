@@ -1,0 +1,125 @@
+pivot_geo	pivot_count	pivot_lat	pivot_lon
+"Algeria, Chott el Hodna"	1	35.434491	4.603723
+Altai Mountains	1	49.68891	86.079515
+Armenia	13	40.069099	45.038189
+"Armenia, Kapan"	1	39.2	46.4
+Armenia: Shirak Province	1	40.963081	43.810246
+Azerbaijan: Apsheron Peninsula	1	40.463667	49.957581
+"Bayan-Olgii, Mongolia"	2	48.18	89.5
+"California, USA"	1	36.778261	-119.417932
+"Canada: Grasslands National Park, Saskatchewan"	1	49.128598	-107.425616
+China	1	-18.766947	46.869107
+"China, Cangyuan County"	1	23.146712	99.246196
+"China, Xinghai"	10	35.588612	99.987965
+China: Jianchuan County	1	26.537033	99.905559
+"China: Junggar Basin, Xinjiang"	1	40.546044	81.292087
+China: Manchuria	3	45.323359	124.490099
+China: Naqu (Tibet) County	1	31.476202	92.051239
+China: Yulong County	1	26.821459	100.236954
+"Colorado, USA"	1	39.550051	-105.782067
+Congo	1	-4.038333	21.758664
+"Croatia, Beli Manastir"	1	45.772866	18.610752
+Dagestan	9	42.143189	47.09498
+"Dornogovi, Mongolia"	2	43.7	110.28
+"Edgewood, NM"	1	35.061436	-106.191414
+"Estonia, Kunila"	1	58.619533	23.82755
+"Estonia, Sope"	1	59.408	27.026
+"France, Marseille"	5	43.296482	5.36978
+"Fujian, China"	2	25.44	118.75
+"Gansu, China"	5	35.72	94.25
+Georgia	1	41.267146	43.587667
+Georgia: Dalidag	1	33.753068	-84.385282
+Georgia: Dedophlistskaro	1	41.467225	46.117522
+Georgia: Ninotsminda	10	41.27137	43.587939
+"Germany, Altenerding"	1	48.288453	11.904854
+"Germany, Ascheim"	2	48.17231	11.71591
+"Germany, Augsburg"	2	48.370545	10.89779
+"Germany, Ellwangen"	1	48.962683	10.130151
+"Govi-Altai, Mongolia"	2	45.3	95.3
+"Guangxi, China"	1	24.8	105.34
+"Hebei, China"	1	41.87	114.6
+India	1	20.593684	78.96288
+India: Hosur	1	12.740913	77.825292
+India: Mumbai	1	19.075984	72.877656
+India: Shimla	1	31.104815	77.173403
+India: Surat	2	21.17024	72.831061
+Indonesia	1	-0.789275	113.921327
+Inner Mongolia	2	43.37822	115.059481
+"Inner Mongolia, China"	17	39.12	107.97
+Iran/Kurdistan	1	35.955358	47.136213
+"Java, Indonesia"	1	-7.614529	110.712246
+"Jilin, China"	3	43.87	123.97
+Kazakhstan	1	48.019573	66.923684
+"Kazakhstan: Guryev region, Makhambet district"	1	47.636863	51.703162
+Kenya: Nairobi	1	-1.292066	36.821946
+Kyrgyzia	1	41.20438	74.766098
+Kyrgyzstan	5	41.20438	74.766098
+Kyrgyzstan: Issyk-Kul'skaya region	1	42.185943	77.561942
+"Kyrgyzstan: Oshskaya Region, Alayskiy District"	1	39.840737	72.898807
+"Kyrgyzstan: Range of Tien Shan Mountain System, Karagaily Area"	1	42.086662	79.245071
+Kyrgyzstan: Talas district	1	42.46923	72.242866
+"Las Vegas, NM"	1	35.594214	-105.222798
+"Lithuania, Gyvakarai"	1	55.913699	24.890069
+Madagascar	34	-18.843222	46.52
+"Mahajanga, Madagascar"	4	-15.71171171	46.31395349
+"Mongolia, Bayan-Ulgii"	5	48.398325	89.662591
+"Mongolia, Hongor Hudag, Bayan"	1	49.310752	105.922421
+Myanmar	1	21.916221	95.955974
+Nepal	1	28.394857	84.124008
+"Ningxia, China"	3	35.97	105.64
+Peru	1	-9.189967	-75.015152
+"Peru, Chota"	4	-6.558193	-78.648384
+"Peru, Jaen"	4	-5.709441	-78.798618
+Peru:Ascope	32	-7.714114	-79.107256
+Peru:Chota	7	-6.558193	-78.648384
+Peru:Jaen	1	-5.709441	-78.798618
+Peru:Jean	1	-5.709441	-78.798618
+Peru:Pacasmayo	3	-7.404005	-79.565078
+Peru:Santa Cruz	1	-8.89429	-77.7083
+Peru:Trujillo	6	-8.109052	-79.021534
+"Poland, Chociwel"	1	50.796	17.094
+"Qinghai, China"	25	32.23	95.3
+Russia	2	61.52401	105.318756
+"Russia, Afanasievo Gora"	2	54.584	90.775
+"Russia, Altai Mountains"	13	49.68891	86.079515
+"Russia, Bolgar City"	1	54.967082	49.034241
+"Russia, Bulanovo"	1	52.453	55.16
+"Russia, Kytmanovo"	1	53.456	85.447
+"Russia, Rasshevatskaya"	1	45.569582	41.030903
+"Russia: Astrakhan region, Krasnoyarsk District"	1	46.358805	48.059935
+"Russia: Dagestan, Kulinsky district"	1	41.942454	47.309124
+Russia: Kabardino-Balkaria	1	43.393247	43.56285
+"Russia: Kabardino-Balkaria, Gizhgit Natural Boundary"	1	43.47001	42.99279
+"Russia: Kalmykia, Lagansky District"	1	45.217463	47.062677
+"Russia: Republic Ingushetia, Malgobek district"	1	43.405649	44.685555
+"Russia: Republic of Kalmykia, Ketchenerovsky District"	1	47.10023	45.707252
+Russia: Zabaicalskiy krai	1	50.609718	115.708895
+"Santa Fe, NM"	7	35.686975	-105.937799
+"Sante Fe, NM"	1	35.686975	-105.937799
+"Shaanxi, China"	3	37.6	107.59
+"Sichuan, China"	1	33.01	98.06
+"Spain, Barcelona"	1	41.385064	2.173403
+"St. Petersberg, Russia"	1	59.93428	30.335099
+"St.Petersberg, Russia"	1	59.93428	30.335099
+Tajikistan	2	38.861034	69.262552
+Tajikistan: Sogdiyskaya Region	1	38.861034	71.276093
+"Tibet, China"	9	27.98	81.18
+Turkey	1	38.963745	35.243322
+Turkmenistan: Balkany	1	41.000137	55.666887
+Turkmenistan: Kizyl-Atrek Region	1	37.616089	54.769131
+Turkmenistan: Krasnovodsk Region	1	41.679476	54.966509
+Uganda	1	1.373333	32.290275
+Unknown	1	41.626271	-79.673584
+USA	2	37.09024	-95.712891
+USA: Arizona	1	34.048928	-111.093731
+USA: California	2	36.778261	-119.417932
+"USA: Gallup, NM"	1	35.528078	-108.742584
+USA: Kentucky	1	37.839333	-84.270018
+USA: NM	13	34.51994	-105.87009
+USA: NY: New York	1	40.712775	-74.005973
+USA: Texas	1	31.968599	-99.901813
+"USA: Tuba City, AZ"	1	36.134993	-111.239863
+USSR	1	41.117269	-73.414394
+"Xinjiang, China"	24	37.12	75.18
+"Yunnan, China"	15	23.15	97.83
+Zimbabwe	1	-19.015438	29.154857
