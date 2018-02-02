@@ -155,9 +155,16 @@ while annot_line:
     # Check if strain is in table
     query = "SELECT * FROM {0} WHERE strain={1}".format(db_table,"'" + line_strain + "'")
     cur.execute(query)
-    if not cur.fetchone():
+    fetch_records = cur.fetchall()
+
+    if not fetch_records:
         print("Entry not in DB: " + line_strain)
         #raise ErrorEntryNotInDB(line_strain)
+
+    elif len(fetch_records) > 1:
+        print("Multiple Matches in DB: " + line_strain)
+        raise ErrorEntryMultipleMatches(line_strain)
+    
 
 
     # This section allows for dynamic variable creation and column modification

@@ -339,4 +339,4 @@ def SRATable(db_name, SEARCH_TERM, EMAIL, output_dir):
     cur.close()                                                        # Close the database
     sra_log_file.close()                                                   # Close the logfile
 
-SRATable("yersinia_pestis_db.sqlite", "Yersinia pestis[Orgn]", "ktmeaton@gmail.com", ".")
+#SRATable("yersinia_pestis_db.sqlite", "Yersinia pestis[Orgn]", "ktmeaton@gmail.com", ".")

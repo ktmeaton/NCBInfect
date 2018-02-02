@@ -78,18 +78,11 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
                          organization TEXT,
                          collection_date TEXT,
                          geographic_location TEXT,
-                         collected_by TEXT,
-                         isolate_source TEXT,
-                         habitat TEXT,
                          latitude TEXT,
                          longitude TEXT,
                          latitude_and_longitude TEXT,
                          host TEXT,
-                         host_disease TEXT,
-                         host_status TEXT,
                          biovar TEXT,
-                         biotype TEXT,
-                         biogroup TEXT,
                          description TEXT,
                          publication_date TEXT,
                          modification_date TEXT)''')
@@ -452,10 +445,8 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
         description = title_tag.firstChild.data
 
         # A variety of fields found under generic tag "attribute_name"
-        attribute_name_list = ['strain','collection_date','geo_loc_name','collected_by',
-                          'isolation_source','habitat','latitude','longitude',
-                          'lat_lon','host','host_disease','host_status',
-                          'biovar','biotype','biogroup']
+        attribute_name_list = ['strain','collection_date','geo_loc_name','latitude',
+                            'longitude', 'lat_lon','host', 'biovar']
 
         # A dictionary to store names and values
         attribute_dict = {}
@@ -493,24 +484,16 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
                              organization,
                              collection_date,
                              geographic_location,
-                             collected_by,
-                             isolate_source,
-                             habitat,
                              latitude,
                              longitude,
                              latitude_and_longitude,
                              host,
-                             host_disease,
-                             host_status,
                              biovar,
-                             biotype,
-                             biogroup,
                              description,
                              publication_date,
                              modification_date)
                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-                                  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-                                  ?, ?, ?, ?, ?)''',
+                                  ?, ?, ?, ?, ?, ?, ?, ?)''',
                              (warning,
                              biosample_ID,
                              biosample_accession,
@@ -521,18 +504,11 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
                              org,
                              attribute_dict['collection_date'],
                              attribute_dict['geo_loc_name'],
-                             attribute_dict['collected_by'],
-                             attribute_dict['isolation_source'],
-                             attribute_dict['habitat'],
                              attribute_dict['latitude'],
                              attribute_dict['longitude'],
                              attribute_dict['lat_lon'],
                              attribute_dict['host'],
-                             attribute_dict['host_disease'],
-                             attribute_dict['host_status'],
                              attribute_dict['biovar'],
-                             attribute_dict['biotype'],
-                             attribute_dict['biogroup'],
                              description,
                              pub_date,
                              mod_date))
@@ -558,4 +534,4 @@ def BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir):
     # Close the logfile
     biosample_log_file.close()
 
-BioSampleTable("Yersinia_pestis_db.sqlite", "Yersinia pestis[Orgn]", "ktmeaton@gmail.com", ".")
+#BioSampleTable("Yersinia_pestis_db.sqlite", "Yersinia pestis[Orgn]", "ktmeaton@gmail.com", ".")
