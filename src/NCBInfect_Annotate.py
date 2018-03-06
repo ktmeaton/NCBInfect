@@ -148,12 +148,15 @@ while annot_line:
         if header == 'strain':
             line_strain = element
 
+        elif header == 'bioproject_accession':
+            line_bioproject = element
+
         # IF annotation file header is a db column name, retain for annotation
         elif header in db_col_names:
             line_dict[header] = element
 
     # Check if strain is in table
-    query = "SELECT * FROM {0} WHERE strain={1}".format(db_table,"'" + line_strain + "'")
+    query = "SELECT * FROM {0} WHERE strain={1} AND bioproject_accession={2}".format(db_table,"'" + line_strain + "'","'" + line_bioproject + "'")
     cur.execute(query)
     fetch_records = cur.fetchall()
 
@@ -164,7 +167,7 @@ while annot_line:
     elif len(fetch_records) > 1:
         print("Multiple Matches in DB: " + line_strain)
         raise ErrorEntryMultipleMatches(line_strain)
-    
+
 
 
     # This section allows for dynamic variable creation and column modification
