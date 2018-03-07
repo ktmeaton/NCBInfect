@@ -1,0 +1,7 @@
+bioproject_accession	strain	collection_date	host	geographic_location
+PRJEB19335	Gyvakarai1	-2535	Human	"Lithuania, Gyvakarai1"
+PRJEB19335	KunilaII	-2477	Human	"Estonia, Kunilall"
+PRJEB19335	1343UnTal85	-2253	Human	"Germany, Augsburg"
+PRJEB19335	Post6	-1923	Human	"Germany, Augsburg"
+PRJEB19335	GEN72	-2771	Human	"Croatia, Beli Manastir"
+PRJEB19335	RK1001	-2770	Human	"Russia, Rasshevatskiy"

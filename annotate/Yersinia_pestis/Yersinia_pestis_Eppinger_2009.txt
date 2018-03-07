@@ -1,2 +1,0 @@
-strain	collection_date	host	geographic_location
-K1973002	1991	Rattus flavipectus	"China, Cangyuan County"

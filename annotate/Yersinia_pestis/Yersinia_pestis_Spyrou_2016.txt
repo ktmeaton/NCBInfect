@@ -1,5 +1,0 @@
-strain	collection_date	host	geographic_location
-Barcelona3031	1300-1420	Human	"Spain, Barcelona"
-BolgarCity2370	1298-1388	Human	"Russia, Bolgar City"
-Ellwangen549_O_c	1485-1627	Human	"Germany, Ellwangen"
-Ellwangen549_O_m	1485-1627	Human	"Germany, Ellwangen"

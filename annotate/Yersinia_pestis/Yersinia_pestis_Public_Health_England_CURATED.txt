@@ -1,0 +1,4 @@
+bioproject_accession	strain	collection_date	host	geographic_location	biovar	alternate_strain	notes
+PRJEB6403	NCTC144	1920	Guinea Pig	London/Bombay		Parel	"innoculated with 3 vaccine strains 3249, 3232, 3251)"
+PRJEB6403	NCTC5923	1939		London/Javan		Soemedang	isolated from javan strain
+PRJNA194125	TS (D5)	1953		India/Indonesia		TS	

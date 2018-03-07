@@ -12,11 +12,11 @@ PRJNA208257	3770	1983	Flea	Georgia: Ninotsminda
 PRJNA47685	G8786	1992	Common vole	Georgia: Ninotsminda
 PRJNA208258	8787	1992	Common vole	Georgia: Ninotsminda
 PRJNA208246	771	1966	Gerbil	Georgia: Dedophlistskaro
-PRJNA208248	790	1961	Red marmot	Kyrgyzia
+PRJNA208248	790	1961	Red marmot	Kyrgyzstan
 PRJNA208260	1045	1976	Gerbil	Azerbaijan: Apsheron Pen.
 PRJNA208252	1522	1975	Common vole	Armenia: Shirak Province
 PRJNA208249	2944	1975	Gopher	Russia: Kabardino-Balkaria
-PRJNA208259	14735	1975	Common vole	Armenia OR Georgia: Ninotsminda
+PRJNA208259	14735	1975	Common vole	Armenia
 PRJNA208247	1670	1979	Flea	Georgia: Ninotsminda
 None	3073G	1982	Flea	"Akhalkalaki, Georgia"
 None	3082G	1982	Flea	"Akhalkalaki, Georgia"
@@ -39,7 +39,7 @@ None	8906G	1997	Flea	"Dalidag, Georgia"
 None	8907G	1997	Flea	"Dalidag, Georgia"
 None	8908G	1997	Flea	"Dalidag, Georgia"
 PRJNA208246	771	1966	Gerbil	"Dedophlistskaro, Georgia"
-PRJNA208248	790	1961	Red marmot	Kyrgyzia
+PRJNA208248	790	1961	Red marmot	Kyrgyzstan
 PRJNA208260	1045	1976	Gerbil	Azerbaijan
 PRJNA208252	1522	1975	Common vole	Armenia
 None	C2614	1975	Flea	"Daghestan, Russia"
