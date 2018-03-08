@@ -3,8 +3,8 @@ Creates an SQLite database of genome metadata and downloads assemblies from NCBI
 
 ## Version
 
-Development - Version 0.2.1 (v0.2.1)  
-Stable - Version 0.2.0 (v0.2.0)
+Development - Version 0.3.0 (v0.3.0)  
+Stable - Version 0.2.1 (v0.2.1)
 
 ## Requirements
 Python3.4+
@@ -19,7 +19,7 @@ pip install --user bs4
 git clone https://github.com/ktmeaton/NCBInfect.git   
 
 Development:  
-git clone -b v0.2.1 https://github.com/ktmeaton/NCBInfect.git   
+git clone -b v0.3.0 https://github.com/ktmeaton/NCBInfect.git   
 
 ## Usage
 
