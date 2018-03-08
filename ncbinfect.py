@@ -16,7 +16,8 @@ import os
 import sys
 from Bio import Entrez
 
-sys.path.append('D:\\Programs\\NCBInfect\\src')
+src_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '') + "src"
+sys.path.append(src_dir)
 
 import NCBInfect_Utilities
 import NCBInfect_Errors
@@ -36,8 +37,67 @@ def UpdateDB(table):
     #                                File Setup                                 #
     #---------------------------------------------------------------------------#
     # Name of Log File
-	log_file_path = output_dir + OS_SEP + "log" + OS_SEP + DATABASE + "_" + table + ".log"
-	print(log_file_path)
+	log_file_path = os.path.join(LOG_PATH, "",
+								os.path.splitext(DATABASE)[0] + "_" + table + ".log")
+
+	# Check if the file already exists, either write or append to it.
+	if os.path.exists(log_file_path):
+		log_file = open(log_file_path, "a")
+	else:
+		log_file = open(log_file_path, "w")
+
+    #--------------------------------------------------------------------------#
+    #                                SQL Setup                                 #
+    #--------------------------------------------------------------------------#
+
+	# Connect to database and establish cursor for commands.
+	conn = sqlite3.connect(DB_PATH)
+	cur = conn.cursor()
+
+    ## Create the database
+    # Check if strain is in table
+	sql_query = ("Create TABLE IF NOT EXISTS " + table +
+	" (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
+	"assembly_id TEXT")
+	for column in TABLE_COLUMNS:
+		# By default, every user-specified column is type TEXT
+		sql_query += ", " + column + " TEXT"
+	sql_query += ")"
+
+	cur.execute(sql_query)
+
+	#-----------------------------------------------------------------------#
+	#                           Entrez Assemblies                           #
+	#-----------------------------------------------------------------------#
+	search_term = SEARCH_TERM
+	handle = Entrez.esearch(db=table.lower(),
+                            term=SEARCH_TERM,
+                            retmax = 10)
+
+	# Read the record, count total number entries, create counter
+	record = Entrez.read(handle)
+	num_records = int(record['Count'])
+	num_processed = 0
+
+	#-----------------------------------------------------------------------#
+	#                          Iterate Through ID List                      #
+	#-----------------------------------------------------------------------#
+
+	for ID in record['IdList']:
+		#-------------------Progress Log and Entry Counter-------------------#
+		# Increment entry counter and record progress to screen
+		num_processed += 1
+		print("Processing record: " +
+	   		str(num_processed) + \
+	   		"/" + str(num_records))
+
+
+
+	# CLEANUP
+	conn.commit()
+	cur.close()
+	log_file.close()
+
 
 
 
@@ -46,9 +106,6 @@ def UpdateDB(table):
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
-
-# Retrieve directory separator by Operating System
-OS_SEP = NCBInfect_Utilities.os_check()
 
 # To Be Done: Full Description
 parser = argparse.ArgumentParser(description='Description of NCBInfect.',
@@ -112,7 +169,7 @@ if automate_mode:
 	# Flat mode checking
 	if flat_mode:
 		print("Flat mode was requested, organizational directories will not be used.")
-		DB_PATH = output_dir + OS_SEP + AUTOMATE.DATABASE
+		DB_PATH = os.path.join(output_dir, "", AUTOMATE.DATABASE)
 		LOG_PATH = output_dir
 
 
@@ -120,14 +177,15 @@ if automate_mode:
 		# Create accessory directory (ex. log, data, database, etc.)
 		print("Flat mode was not requested, organization directories will be used.")
 		NCBInfect_Utilities.check_accessory_dir(output_dir)
-		DB_PATH = output_dir + OS_SEP + "database" + OS_SEP + AUTOMATE.DATABASE
-		LOG_PATH = output_dir + OS_SEP + "log"
+		DB_PATH = os.path.join(output_dir, "", "database", "", AUTOMATE.DATABASE)
+		LOG_PATH = os.path.join(output_dir, "", "log")
 
 	for table in AUTOMATE.TABLES:
 		OUTPUT_DIR = AUTOMATE.OUTPUT_DIR
 		DATABASE = AUTOMATE.DATABASE
 		EMAIL = AUTOMATE.EMAIL
 		SEARCH_TERM = AUTOMATE.SEARCH_TERMS[table]
+		TABLE_COLUMNS = AUTOMATE.TABLE_COLUMNS[table]
 		UpdateDB(table)
 
 	quit()
@@ -140,7 +198,7 @@ if not automate_mode and not db_name:
 		parser.error("--database argument is required when not using --automate.")
 
 		# Database argument supplied, can use database name
-		db_path = output_dir + OS_SEP + db_name
+		db_path = os.path.join(output_dir, "", db_name)
 
 
 
