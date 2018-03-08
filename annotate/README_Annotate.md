@@ -72,3 +72,75 @@ D'Aunoy et al. (1923) Studies on Bacillus Pestis: I. Optimum and Limiting Hydrog
 TO ADD
 - SRP008060
 
+## Assembly Record Parsing
+- Removed Duplicates (Old assembly accessions for)
+	CA88-4125
+	PY-14
+	PY-34
+	PY-54
+	PY-58
+	PY-42
+	113
+	125 B Plague Bombay
+	9
+	24H
+	EV76
+
+## Text File of Assembly Accessions
+sed replace all ">" and "<" characters with an empty string
+
+sed replace all "GCF_" with "GCA_"
+
+while read line; \
+    do \
+        ACCESSION=$(echo "$line" | awk -F $'\t' '{print $3}'); 
+        DATE=$(echo "$line" | awk -F $'\t' '{print $36}'); \
+	GEO=$(echo "$line" | awk -F $'\t' '{print $36}'); \
+	INFILE=$(ls $ACCESSION*); \
+	OUTFILE=$(echo $DATE"_"$ACCESSION".fna.gz")
+	echo "Copying" $INFILE "to" $OUTFILE; \
+	cp $INFILE ../rename/$OUTFILE; \
+	done < ../../database/Assembly_InnerJoin_BioSample_Dedup.txt
+
+echo -e "Species\tStrain\tDate\tGeography\tGeographyDate" > annotation.txt
+
+awk -F $'\t' '{if (NR > 1){DATE=$36;ACCESSION=$3".fna"; GEO=$37; STRAIN=$34; print DATE"_"ACCESSION"\t"STRAIN"\t"DATE"\t"GEO"\t"DATE " " GEO}}'
+../database/Assembly_InnerJoin_BioSample_Dedup.txt >> annotation.txt
+
+sed -i 's/"//g' annotation.txt
+sed -i 's/://g' annotation.txt
+sed -i 's/,//g' annotation.txt
+
+mv 283.pilon.mask.fasta 1994_IP283.fna; \
+mv 542.pilon.mask.fasta 1952_IP542.fna; \
+mv 543.pilon.mask.fasta 1953_IP543.fna; \
+mv 557.pilon.mask.fasta 1963_IP557.fna; \
+mv 562.pilon.mask.fasta 1947_IP562.fna; \
+mv 579.pilon.mask.fasta 1898_IP579.fna
+
+echo -e "1994_IP283.fna\tIP283\t1994\tIndia\t1994 India" >> annotation.txt; \
+echo -e "1952_IP542.fna\tIP542\t1952\tKenya\t1952 Kenya" >> annotation.txt; \
+echo -e "1953_IP543.fna\tIP543\t1953\tCongo\t1953 Congo" >> annotation.txt; \
+echo -e "1963_IP557.fna\tIP557\t1963\tKurdistan\t1963 Kurdistan" >> annotation.txt; \
+echo -e "1947_IP562.fna\tIP562\t1947\tKurdistan\t1947 Kurdistan">> annotation.txt; \
+echo -e "1898_IP579.fna\tIP579\t1898\tIndia\t1898 India">> annotation.txt
+
+## SQL
+# Inner Join Assembly and BioSample
+SELECT *
+FROM Assembly
+INNER JOIN BioSample 
+ON 
+(Assembly.biosample = Biosample.biosample_accession
+OR Assembly.biosample = Biosample.biosample_secondary_accession)
+
+# Full Outer Join (Retain only BioSample columns)
+SELECT * FROM 
+(SELECT Assembly.accession,BioSample.* FROM BioSample
+LEFT JOIN Assembly
+ON (Assembly.biosample = Biosample.biosample_accession OR Assembly.biosample = Biosample.biosample_secondary_accession)
+UNION
+SELECT Assembly.accession,BioSample.* FROM Assembly
+LEFT JOIN BioSample
+ON Assembly.biosample = Biosample.biosample_accession OR Assembly.biosample = Biosample.biosample_secondary_accession)
+WHERE accession IS NULL
