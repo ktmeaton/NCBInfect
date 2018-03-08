@@ -1,0 +1,8 @@
+bioproject_accession	strain	collection_date	host	geographic_location	alternative_strain	biovar
+PRJEB2029	IP674	1952		Turkey	T15/1	
+None	IP283	1994		India		
+None	IP579	1898		India	195	
+None	IP542	1952		Kenya	144	
+None	IP543	1953		Congo	Lita	
+None	IP562	1947		Kurdistan	PKR 6	
+None	IP557	1963		Kurdistan	PKR 292	

@@ -1,0 +1,6 @@
+bioproject_accession	strain	collection_date	host	geographic_location
+PRJEB12163	OBS107	1720-1722	Human	"France, Marseille"
+PRJEB12163	OBS110	1720-1722	Human	"France, Marseille"
+PRJEB12163	OBS116	1720-1722	Human	"France, Marseille"
+PRJEB12163	OBS124	1720-1722	Human	"France, Marseille"
+PRJEB12163	OBS137	1720-1722	Human	"France, Marseille"

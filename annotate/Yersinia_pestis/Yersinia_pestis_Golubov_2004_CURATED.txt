@@ -1,0 +1,2 @@
+bioproject_accession	strain	collection_date	host	geographic_location	alternative_strain	biovar
+PRJNA16700	Pestoides F	<1984	Microtus arvalis	USSR (Estimated: High mountainous Caucasus/Dagestan)	Y. pestis subsp. Caucasica	Microtus

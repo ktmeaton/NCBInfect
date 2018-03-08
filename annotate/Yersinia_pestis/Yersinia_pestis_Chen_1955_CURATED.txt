@@ -1,0 +1,2 @@
+bioproject_accession	strain	collection_date	host	geographic_location
+PRJNA357858	195/P	<1950	Human	"Bombay, India"

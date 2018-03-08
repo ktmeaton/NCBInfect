@@ -13,40 +13,46 @@ import os
 
 
 from Bio import Entrez                                                         # Entrez NCBI API from biopython
-from NCBInfect_Utilities import metadata_count, os_check
+from NCBInfect_Utilities import os_check
 
-def BioProjectTable(dbName, ORGANISM, EMAIL, output_dir):
+def BioProjectTable(db_name, SEARCH_TERM, EMAIL, output_dir):
     ''' '''
     print("\nCreating/Updating the BioProject table using the following parameters: ")
-    print("Database: " + "\t" + dbName)
-    print("Organism: " + "\t" + ORGANISM)
+    print("Database: " + "\t" + db_name)
+    print("Search Term: " + "\t" + SEARCH_TERM)
     print("Email: " + "\t" + EMAIL)
     print("Output Directory: " + "\t" + output_dir + "\n\n")
 
     Entrez.email = EMAIL
 
-    OS_SEP = os_check()                                                        # Retrieve the directory separator by OS
+    # Retrieve the directory separator by OS
+    OS_SEP = os_check()
 
     #-----------------------------------------------------------------------#
     #                                File Setup                             #
     #-----------------------------------------------------------------------#
+
+    # Path to Database
+    db_path = output_dir + OS_SEP + "database" + OS_SEP + db_name
+
+    # Path and name of BioProject Log File
     log_path = output_dir + OS_SEP + "log"
+    str_bioproject_log_file = output_dir + OS_SEP + "log" + OS_SEP + db_name + "_bioproject.log"
 
-    str_bioproject_log_file = log_path + OS_SEP + ORGANISM.replace(" ", "_") + "_db_bioproject.log"
-
+    # Check if the file already exists, either write or append to it.
     if os.path.exists(str_bioproject_log_file):
-        bioproject_log_file = open(str_bioproject_log_file, "a")               # Open logfile for appending
+        bioproject_log_file = open(str_bioproject_log_file, "a")
     else:
-        bioproject_log_file = open(str_bioproject_log_file, "w")               # Open logfile for writing
-        
+        bioproject_log_file = open(str_bioproject_log_file, "w")
+
 
     #-----------------------------------------------------------------------#
     #                                SQL Setup                              #
     #-----------------------------------------------------------------------#
 
-    # Conncet to database and establish cursor for commands.
-    conn = sqlite3.connect(dbName)                                             
-    cur = conn.cursor()                                                       
+    # Connect to database and establish cursor for commands.
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
 
 
     #---------------------------BioProjects Table----------------------------#
@@ -71,10 +77,10 @@ def BioProjectTable(dbName, ORGANISM, EMAIL, output_dir):
 
     # Grab all assemblies to get their corresponding bioprojects
     cur.execute('''SELECT genbank_bioproject
-                            FROM Assembly''')                  
+                            FROM Assembly''')
 
     # Store assembly-associated projects as list
-    assembly_bioproject_list = cur.fetchall()             
+    assembly_bioproject_list = cur.fetchall()
 
 
     # Grab all SRA records to get their correspond bioprojects
@@ -88,43 +94,43 @@ def BioProjectTable(dbName, ORGANISM, EMAIL, output_dir):
     # Using 'set' ensures no duplicate entries
     concat_bioproject_list = list(set(assembly_bioproject_list + sra_bioproject_list))
     master_bioproject_list = []
-    
+
     for tuple_pair in concat_bioproject_list:
         master_bioproject_list.append(tuple_pair[0])
 
     master_bioproject_list.sort()
 
-    
+
     # Number of bioprojects to process
-    num_bioproject = len(master_bioproject_list)     
+    num_bioproject = len(master_bioproject_list)
     # Counter for progress log
-    num_bioproject_processed = 0                        
+    num_bioproject_processed = 0
 
 
 
 
     for bioproject_accession in master_bioproject_list:
-        
+
         #-------------------Progress Log and Entry Counter-------------------#
-        num_bioproject_processed += 1                
+        num_bioproject_processed += 1
 
         print("Processing Bioproject Accession: " +
                     str(num_bioproject_processed) +
                     "/" +
-                    str(num_bioproject))             
+                    str(num_bioproject))
 
 
         # ---------------------Check if record exists-----------------------#
- 
+
         # Check if this bioproject already exists in the db
         cur.execute('''
         SELECT EXISTS(SELECT accession
                             FROM BioProject
                             WHERE accession=?)''',
-                            (bioproject_accession,))                    
+                            (bioproject_accession,))
 
         # 0 if not found, 1 if found
-        record_exists = cur.fetchone()[0]                  
+        record_exists = cur.fetchone()[0]
 
         if record_exists:
             continue

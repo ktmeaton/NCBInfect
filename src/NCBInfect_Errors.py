@@ -40,3 +40,25 @@ class ErrorAccessionNotInDB(Exception):
     def __str__(self):
         print("\n\nFThe accession number does not exist in the database.")
         print("Unknown accession number found: " + repr(self.value))
+
+class ErrorTableNotInDB(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        print("\n\nThe table does not exist in the database.")
+        print("Unknown table found: " + repr(self.value))
+
+class ErrorEntryNotInDB(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        print("\n\nThe entry does not exist in the database.")
+        print("Unknown entry found: " + repr(self.value))
+
+class ErrorEntryMultipleMatches(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        print("\n\nThe entry has multiple matches in the database.")
+        print("Multiple matches for entry: " + repr(self.value))
+

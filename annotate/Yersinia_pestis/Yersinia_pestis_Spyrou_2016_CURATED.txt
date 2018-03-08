@@ -1,0 +1,5 @@
+bioproject_accession	strain	collection_date	host	geographic_location
+PRJEB13664	Barcelona3031	1300-1420	Human	"Spain, Barcelona"
+PRJEB13664	BolgarCity2370	1298-1388	Human	"Russia, Bolgar City"
+PRJEB13664	Ellwangen549_O_c	1485-1627	Human	"Germany, Ellwangen"
+PRJEB13664	Ellwangen549_O_m	1485-1627	Human	"Germany, Ellwangen"

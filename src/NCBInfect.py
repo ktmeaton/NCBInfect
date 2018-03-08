@@ -19,9 +19,7 @@ import NCBInfect_SRA
 import NCBInfect_Assembly
 import NCBInfect_Utilities
 import NCBInfect_Bioproject
-#import genomebiosample
-#import genomenucleotide
-#import genomesra
+import NCBInfect_Biosample
 
 
 #-----------------------------------------------------------------------#
@@ -30,9 +28,9 @@ import NCBInfect_Bioproject
 
 
 # Retrieve directory separator by Operating System
-OS_SEP = NCBInfect_Utilities.os_check()           
+OS_SEP = NCBInfect_Utilities.os_check()
 
-# To Be Done: Full Description                      
+# To Be Done: Full Description
 parser = argparse.ArgumentParser(description='Description of NCBInfect.',
                                  add_help=True)
 
@@ -77,28 +75,28 @@ output_dir = args['output_dir']
 
 
 # Create accessory directory (ex. log, data, database, etc.)
-NCBInfect_Utilities.check_accessory_dir(output_dir)       
+NCBInfect_Utilities.check_accessory_dir(output_dir)
 
 db_path = output_dir + OS_SEP + "database" + OS_SEP + db_name
 
 #-------------------------Delete Database-------------------------------------#
 
-if mode.lower() == 'delete':                                    
-    if os.path.exists(db_path):                                
-        os.remove(db_path)                 
+if mode.lower() == 'delete':
+    if os.path.exists(db_path):
+        os.remove(db_path)
         print('\nDeleting database: ' + db_path)
     else:
-        raise ErrorDBNotExists(db_path)   
+        raise ErrorDBNotExists(db_path)
 
 
 #-------------------------Create Database-------------------------------------#
-elif mode.lower() == 'create':               
-    if not os.path.exists(db_path):         
-        conn = sqlite3.connect(db_path)    
+elif mode.lower() == 'create':
+    if not os.path.exists(db_path):
+        conn = sqlite3.connect(db_path)
         conn.commit()
         print('\nCreating database: ' + db_path)
     else:
-        raise ErrorDBExists(db_path)      
+        raise ErrorDBExists(db_path)
 
 
 #---------------------------------Update Database-----------------------------#
@@ -117,7 +115,7 @@ else:
 
 #-----------------------------------------------------------------------------#
 #                              Create/Update Tables                           #
-#-----------------------------------------------------------------------------#                              
+#-----------------------------------------------------------------------------#
 
 
 #-------------------------------Create Mode Processing------------------------#
@@ -127,8 +125,8 @@ if mode.lower() == 'create' or mode.lower() == 'update':
    #-----------------------------NCBI Info-----------------------------#
     EMAIL =  input('\n\
     Please enter a valid email address for NCBI queries: ')
-    ORGANISM = input('\n\
-    Please enter the name of the organism of interest: ')
+    SEARCH_TERM = input('\n\
+    Please enter an entrez search term: ')
 
 
     #------------------------Assembly User Input-----------------------#
@@ -142,7 +140,7 @@ if mode.lower() == 'create' or mode.lower() == 'update':
     #---------------------------Assembly Table--------------------------#
 
     if modify_assembly.lower() == 'y':
-        NCBInfect_Assembly.AssemblyTable(db_path, ORGANISM, EMAIL, output_dir)
+        NCBInfect_Assembly.AssemblyTable(db_name, SEARCH_TERM, EMAIL, output_dir)
 
 
 
@@ -159,7 +157,7 @@ if mode.lower() == 'create' or mode.lower() == 'update':
 
     #-----------------------------SRA Table-----------------------------#
     if modify_sra.lower() == 'y':
-        NCBInfect_SRA.SRATable(db_path, ORGANISM, EMAIL, output_dir)
+        NCBInfect_SRA.SRATable(db_name, SEARCH_TERM, EMAIL, output_dir)
 
 
 
@@ -174,26 +172,7 @@ if mode.lower() == 'create' or mode.lower() == 'update':
 
     #---------------------------Bioproject Table------------------------#
     if modify_bioproject.lower() == 'y':
-        NCBInfect_Bioproject.BioProjectTable(db_path, ORGANISM, EMAIL, output_dir)
-
-
-
-
-'''
-
-    #----------------------------SRA User Input-------------------------#
-    modify_sra = input('\n\
-    Do you want to create/update the SRA table? (Y/N)')
-    while modify_sra.lower() != 'y' and modify_sra.lower() != 'n':
-        print ("\tInvalid input, must be either 'Y','y','N', or 'n'.")
-        modify_sra = input('\n\
-        Do you want to create/update the SRA table? (Y/N)')
-
-
-    #-----------------------------SRA Table-----------------------------#
-    if modify_sra.lower() == 'y':
-        genomesra.SRATable(db_path, ORGANISM, EMAIL, output_dir)
-
+        NCBInfect_Bioproject.BioProjectTable(db_name, SEARCH_TERM, EMAIL, output_dir)
 
 
 
@@ -209,11 +188,11 @@ if mode.lower() == 'create' or mode.lower() == 'update':
 
     #---------------------------Biosample Table------------------------#
     if modify_biosample.lower() == 'y':
-        genomebiosample.BioSampleTable(db_path, ORGANISM, EMAIL, output_dir)
+        NCBInfect_Biosample.BioSampleTable(db_name, SEARCH_TERM, EMAIL, output_dir)
 
 
 
-
+'''
 
 
     #-----------------------Nucleotide User Input----------------------#
@@ -227,7 +206,7 @@ if mode.lower() == 'create' or mode.lower() == 'update':
 
     #--------------------------Nucleotide Table------------------------#
     if modify_nucleotide.lower() == 'y':
-        genomenucleotide.NucleotideTable(db_path, ORGANISM, EMAIL, output_dir)
+        genomenucleotide.NucleotideTable(db_path, SEARCH_TERM, EMAIL, output_dir)
 '''
 
 print("NCBInfect has finished.")

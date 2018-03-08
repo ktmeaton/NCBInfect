@@ -1,10 +1,10 @@
-# GenomeCollector
+# NCBInfect
 Creates an SQLite database of genome metadata and downloads assemblies from NCBI.
 
 ## Version
 
-Development - Version 0.2.0 (v0.2.0)  
-Stable - Version 0.1.2 (v0.1.2) 
+Development - Version 0.2.1 (v0.2.1)  
+Stable - Version 0.2.0 (v0.2.0)
 
 ## Requirements
 Python3.4+
@@ -16,10 +16,10 @@ pip install --user bs4
 
 ## Installation
 
-git clone https://github.com/ktmeaton/GenomeCollector.git   
+git clone https://github.com/ktmeaton/NCBInfect.git   
 
 Development:  
-git clone -b v0.2.0 https://github.com/ktmeaton/GenomeCollector.git   
+git clone -b v0.2.1 https://github.com/ktmeaton/NCBInfect.git   
 
 ## Usage
 
