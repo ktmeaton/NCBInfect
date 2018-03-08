@@ -26,20 +26,10 @@ def check_accessory_dir(output_dir):
     output_dir = output_dir + OS_SEP
     if not os.path.exists(output_dir + OS_SEP + "log"):                                              # Check if log directory exists
         os.makedirs(output_dir + OS_SEP + "log")
-    if not os.path.exists(output_dir + OS_SEP + "docs"):                                              # Check if log directory exists
-        os.makedirs(output_dir + OS_SEP + "docs")
-    if not os.path.exists(output_dir + OS_SEP + "data"):                                              # Check if log directory exists
-        os.makedirs(output_dir + OS_SEP + "data")
     if not os.path.exists(output_dir + OS_SEP + "database"):                                              # Check if log directory exists
         os.makedirs(output_dir + OS_SEP + "database")
-    if not os.path.exists(output_dir + OS_SEP + "genomes"):                                              # Check if log directory exists
-        os.makedirs(output_dir + OS_SEP + "genomes")
     if not os.path.exists(output_dir + OS_SEP + "annotate"):                                              # Check if log directory exists
         os.makedirs(output_dir + OS_SEP + "annotate")
-    if not os.path.exists(output_dir + OS_SEP + "genbank"):
-        os.makedirs(output_dir + OS_SEP + "genbank")
-    if not os.path.exists(output_dir + OS_SEP + "gff3"):
-        os.makedirs(output_dir + OS_SEP + "gff3")
     return 0
 
 def table_exists(db_cur, table_name):
