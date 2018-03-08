@@ -125,6 +125,9 @@ echo -e "1963_IP557.fna\tIP557\t1963\tKurdistan\t1963 Kurdistan" >> annotation.t
 echo -e "1947_IP562.fna\tIP562\t1947\tKurdistan\t1947 Kurdistan">> annotation.txt; \
 echo -e "1898_IP579.fna\tIP579\t1898\tIndia\t1898 India">> annotation.txt
 
+for file in `ls *.fna*`; do sed -i 's/,//g' $file; done
+for file in `ls *.fna*`; do sed -i 's/ /_/g' $file; done
+
 ## SQL
 # Inner Join Assembly and BioSample
 SELECT *
