@@ -1,2 +1,0 @@
-bioproject_accession	strain	collection_date	host	geographic_location
-PRJNA412669	UC91309	2009	Human	"Atlanta, Georgia, USA"

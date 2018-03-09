@@ -1,2 +1,0 @@
-bioproject_accession	strain	collection_date	host	geographic_location	biovar
-PRJNA17687	K1973002	1973	Marmota himalayana	"China, Xinjiang"	medievalis

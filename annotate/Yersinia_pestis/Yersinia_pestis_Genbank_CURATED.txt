@@ -1,2 +1,0 @@
-bioproject_accession	strain	collection_date	host	geographic_location
-PRJNA41469	KIM D27	1968	Laboratory Strain	Kurdistan

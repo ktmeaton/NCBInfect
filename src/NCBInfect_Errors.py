@@ -62,3 +62,9 @@ class ErrorEntryMultipleMatches(Exception):
         print("\n\nThe entry has multiple matches in the database.")
         print("Multiple matches for entry: " + repr(self.value))
 
+class ErrorConfigFileNotExists(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        print("\n\nConfig.py does not exist in the specified location.")
+        print("Location specified: " + repr(self.value))
