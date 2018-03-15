@@ -128,7 +128,7 @@ TO ADD
 		- Kimberley D17 - Unknown Date - South Africa
 		- Java D88 - Unknown Date - Indonesia, Java
 - [Y] PRJEB2029: 1 Orientalis strain from Turkey, IP674, 1952. Very interested.
-- [Y] NCTC5923: 1 strain from London/Javan 1939. Interested.
+- [Y] NCTC5923: 1 strain from London/Javan 1939. 1 strain from London/Bombay 1920. Interested.
 		
 
 
