@@ -1,3 +1,4 @@
+bioproject_accession	strain	collection_date	geographic_location	alternate_name	biovar	foci	Other_1	Other_2
 PRJNA269675	SCPM-O-B-4470	1970	Tajikistan/Uzbekistan		Medievalis	Hissarica	"Gissar Focus #34, Tajikistan, Uzbekistan"	
 PRJNA269675	SCPM-O-B-4664	1980	Kyrgyzstan		Medievalis	Talassica	"Talas Focus, #40"	
 PRJNA269675	SCPM-O-B-6176	1984	Dagestan	C-535	Antiqua	Caucasica	"Transcaucasian highland, focus #4-6"	"Armenia/Azerbaijan,Georgia"
@@ -50,4 +51,3 @@ PRJNA269675	SCPM-O-DNA-14	1983	UNKNOWN			Microtus
 PRJNA269675	SCPM-O-DNA-15	1972						
 PRJNA269675	SCPM-O-DNA-16	1974						
 PRJNA269675	SCPM-O-DNA-17	1973						
-bioproject_accession	strain		geographic_location	alternate_name	biovar	foci	Other_1	Other_2

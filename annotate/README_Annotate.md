@@ -1,6 +1,12 @@
 
 ### Manual Curation  
 
+## PRIORITY QUESTIONS
+Cui or Sahl genomes?
+REMEMBER: E1979001 was removed from Cui genome set (replaced with original Eppinger genome)
+Harbin35/Nicholisk
+125 B Plague Bombay: Too Long Branch Length: Reassemble
+
 ## Strain Filtering
 - Removed all CO92 strains (Reference Genome supplied separately to avoid duplicates)
 
@@ -20,6 +26,43 @@
 - Removed PRJNA254747, radiation experiment
 - Removed PRJNA240083 (strain KIM 5) Labratory Strain
 - Removed PRJNA205233, small ncRNA experiment
+- NOTE: Bioprojects associated with Johnson et al. (2015) Thirty-Two Complete Genomes... advertise extremely high coverage!!!
+
+## BioSample Filtering
+- 125 B Bombay: Extraordinarily long branch length, attempting reassembly
+- Algeria 3 Options:
+	Algeria3; GCF_9... ; Scaffold Level; 50X Cov; 561 contigs; 4427555; 2016; orig nomenclature; 2.ANT1 Grouping (BAD)
+	Algeria 3; GCF_0... ; Contig Level; 20X Cov; 87 contigs; 4637400; 2015; mod nomenclature; Original Assembly; Orientalis Grouping (GOOD)
+ 	\*\*\* Biotyped Orientalis
+	CONCLUSION -> Retain Algeria 3 (GCF_0) and delete other, because this is placed similarly to orig publication phylo placement.
+
+- Angola: Removed SAMN02604042 and SAMN03177051; Problematic Branch Length
+- A1122: Removed SAMN02603531, newer assembly is available
+- E1977001: Independently sequenced in two studies (Eppinger and Cui):
+	Falls in the same clade: Likely won't have a crucial difference
+	In the parsnp.filtered.vcf: they differ by 3 SNPs (1 is LCB, all 3 are derived in GCA_000324785.1, ie. Cui 2013 assembly.
+	Delete Cui, use original Eppinger genome.
+
+- Harbin 35; Extraordinarily long branch length. Options:
+	Harbin 35; GCF_000186725.1; 2011;
+	Harbin35; GCF_000834275.1; 2015; 
+	Both are complete genomes. They differ by 88 SNPs. The SRA record is available. Attempt reassembly? No = requires PacBio data.
+	Could just reassembly using the illumina data to see if masking hides SNPs.
+
+- Nicholisk 41: Extraordinarily long branch length. Breaks up the duplicates of Harbin 35.
+	Assembled in same sequencing project as Harbin35
+
+- FV-1: Extradordinarily long branch length.
+	Removed, because I have little interested in more representation from US: Arizona prairie dogs.
+
+- Nepal516: Duplicates present
+	GCF_000182485.1; Scaffolds; 2009; Deleted 
+	GCF_000013805.1; Complete Genome; 2006; Retained
+	Close relatives of 195/P (broken up by it, poorly supported)	
+
+- Pestoides F: Duplicates present
+	GCF_000834315.1: Complete Genome; 2015; 723X; Removed SAMN03121016
+	GCF_000016445.1: Complete Genome; 2007; Retained
 
 ## Recoding
 - BioSample "KIM10+" is the original KIM genome sequenced (according to Bioproject accession in Cui et al. (2013))
@@ -56,7 +99,8 @@ Castro-Nallar et al. (2015) Concordance and discordance of sequence survey metho
 Bearden et al. (2009) Attenuated enzootic (pestoides) isolates of Yersinia pestis express active aspartase
 Yan et al. (2014) Two-Step Source Tracing Strategy of Yersinia pestis
 D'Aunoy et al. (1923) Studies on Bacillus Pestis: I. Optimum and Limiting Hydrogen-Ion Concentration for the Growth of Bacillus Pestis
-
+Harbin35: Wilmoth et al. (1996) Identification of Yersinia pestis by BBL crystal enteric/nonfermenter identification system.
+Java9: Hudson et al. (1976) Electrophoretic Studies of the Geographic Distribution of Yersinia pestis Protein Variants
 
 ## Raw Data
 - KIM10+ - Known sequencing error problems
@@ -71,6 +115,22 @@ D'Aunoy et al. (1923) Studies on Bacillus Pestis: I. Optimum and Limiting Hydrog
 - PRJEB14851 - Justinian, Feldman et al. (2016)
 TO ADD
 - SRP008060
+
+## Modern SRA-Exclusive Projects
+- PRJNA269675: 10 Bonus "USSR" strains from the SCPM-O project. Not needed now.
+- [Y] PRJNA341721: 30 Madagascar strains from 2003-2012. Needed now (I only have 2 Madagascar assemblies, and they're closely related to 1990s India plague)
+- [Y] PRJNA184590: 4 Madagascar strains from 1991-1999. Needed now.
+- PRJNA241466: 3 Xinghai strains from the 1950-1960s, 6 strains from Xinghai from 2009. Not currently interested.
+- PRJNA194125: 15 strains from USA: NM. Not currently interested.
+- PRJNA194125: 1 strain from Manchuria before 1936 (KUMA D11). Not currently interested, but maybe.
+- [Y] PRJNA194125: Many interesting one-off strains:
+		- TS D5 - 1953 India/Indonesia
+		- Kimberley D17 - Unknown Date - South Africa
+		- Java D88 - Unknown Date - Indonesia, Java
+- [Y] PRJEB2029: 1 Orientalis strain from Turkey, IP674, 1952. Very interested.
+- [Y] NCTC5923: 1 strain from London/Javan 1939. Interested.
+		
+
 
 ## Assembly Record Parsing
 - Removed Duplicates (Old assembly accessions for)

@@ -1,0 +1,2 @@
+bioproject_accession	strain	geographic_location	collection_date
+PRJNA240107	Java9	"Surakarta, Central Java"	1957
