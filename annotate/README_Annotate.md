@@ -6,6 +6,7 @@ Cui or Sahl genomes?
 REMEMBER: E1979001 was removed from Cui genome set (replaced with original Eppinger genome)
 Harbin35/Nicholisk
 125 B Plague Bombay: Too Long Branch Length: Reassemble
+	RESULT: Still lots of derived mutations (~400 SNPs compared to Reference). = EXCLUDE
 
 ## Strain Filtering
 - Removed all CO92 strains (Reference Genome supplied separately to avoid duplicates)
@@ -29,14 +30,18 @@ Harbin35/Nicholisk
 - NOTE: Bioprojects associated with Johnson et al. (2015) Thirty-Two Complete Genomes... advertise extremely high coverage!!!
 
 ## BioSample Filtering
-- 125 B Bombay: Extraordinarily long branch length, attempting reassembly
+- 125 B Bombay: Extraordinarily long branch length, attempting reassembly. Update: REMOVED.
 - Algeria 3 Options:
 	Algeria3; GCF_9... ; Scaffold Level; 50X Cov; 561 contigs; 4427555; 2016; orig nomenclature; 2.ANT1 Grouping (BAD)
 	Algeria 3; GCF_0... ; Contig Level; 20X Cov; 87 contigs; 4637400; 2015; mod nomenclature; Original Assembly; Orientalis Grouping (GOOD)
  	\*\*\* Biotyped Orientalis
 	CONCLUSION -> Retain Algeria 3 (GCF_0) and delete other, because this is placed similarly to orig publication phylo placement.
+	UPDATE: Extradordinarily long branch length
 
 - Angola: Removed SAMN02604042 and SAMN03177051; Problematic Branch Length
+
+- Antiqua: Duplicates Present. Retaining most recent assembly.
+
 - A1122: Removed SAMN02603531, newer assembly is available
 - E1977001: Independently sequenced in two studies (Eppinger and Cui):
 	Falls in the same clade: Likely won't have a crucial difference
@@ -48,6 +53,7 @@ Harbin35/Nicholisk
 	Harbin35; GCF_000834275.1; 2015; 
 	Both are complete genomes. They differ by 88 SNPs. The SRA record is available. Attempt reassembly? No = requires PacBio data.
 	Could just reassembly using the illumina data to see if masking hides SNPs.
+	UPDATE: Retain Harbin35 (Los Alamos) to keep it consistent with the Los Alamos sequencing project.
 
 - Nicholisk 41: Extraordinarily long branch length. Breaks up the duplicates of Harbin 35.
 	Assembled in same sequencing project as Harbin35
@@ -60,9 +66,16 @@ Harbin35/Nicholisk
 	GCF_000013805.1; Complete Genome; 2006; Retained
 	Close relatives of 195/P (broken up by it, poorly supported)	
 
+- PBM19: No metadata to be found. REMOVED.
+
 - Pestoides F: Duplicates present
 	GCF_000834315.1: Complete Genome; 2015; 723X; Removed SAMN03121016
 	GCF_000016445.1: Complete Genome; 2007; Retained
+
+- PEXU2: No metadata to be found. REMOVED.
+
+- SCPM-O-B-6706 and 6906 are duplicates:
+	Taking the most recent assemblies of each of these.
 
 ## Recoding
 - BioSample "KIM10+" is the original KIM genome sequenced (according to Bioproject accession in Cui et al. (2013))
@@ -82,6 +95,7 @@ Harbin35/Nicholisk
 - PRJNA17687, recode as Marmot himalayana, Xinjiang China, 1973
 - PRJNA169908, recode as Peru,  Trujillo
 - PRJEB19335, fill in missing strain name from description
+- Russian Kyrgyzstan samples have more information in their publication.
 
 ## Estimation
 - Pestoides isolates geography was estimated from documented plague foci and phylogeographic clustering
@@ -207,3 +221,13 @@ SELECT Assembly.accession,BioSample.* FROM Assembly
 LEFT JOIN BioSample
 ON Assembly.biosample = Biosample.biosample_accession OR Assembly.biosample = Biosample.biosample_secondary_accession)
 WHERE accession IS NULL
+
+## 1.ORI3 Strains (Assembly)
+IP275	Madagascar	1995
+MG05-1020	Madagascar	2005
+EV76D	Unknown	Unknown
+EV76-CN	China	>1922
+EV NIIEG	Russia	1941
+9	India	1994
+113	India	1994
+IP283	India	1994
