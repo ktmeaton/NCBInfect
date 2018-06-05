@@ -148,7 +148,8 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     conn = sqlite3.connect(os.path.join(db_dir, "", database))
     cur = conn.cursor()
 
-    ## Create the database, with dynamic variables from config file
+    ## Create the database
+    # Check if strain is in table
     sql_query = ("Create TABLE IF NOT EXISTS " + table +
     " (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
     table + "_id TEXT")
@@ -211,11 +212,9 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         flatten_record_dict = list(NCBInfect_Utilities.flatten_dict(record_dict))
         column_dict = {}
 
-        # Add ID to the dictionary
-        column_dict[table + "_id"] = ID
-         
-        # Iterate through each column to search for values
+
         for column in table_columns:
+            print(column)
             column_value = ""
             column_index = 0
 
@@ -229,18 +228,15 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
                 # For complex column types, as list       
                 elif type(column) == list:
-                    print(column, column[column_index])
                     while column[column_index] in row:
-                        print(row)
                         if column_index + 1 == len(column):
                             column_value = row[-1]    
                         column_index += 1
-                    # Set column name to first element
                     column = column[0]
 
-            # If the value was found, skip the next section of XML parsing
+
+
             if column_value:
-                column_value = "'" + column_value.replace("'","") + "'"
                 column_dict[column] = column_value
                 continue
 
@@ -257,24 +253,13 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 root = minidom.parseString(xml).documentElement
                 for child in root.childNodes:
                     for child in child.childNodes:
-                        if child.firstChild and "category" in child.attributes.keys(): 
-                            if column == child.attributes["category"].value:
-                                column_value = child.firstChild.nodeValue
-                                break
+                        if child.firstChild: print(child.firstChild.nodeValue)
                     break
 
-            column_value = "'" + column_value.replace("'","") + "'"
+
             column_dict[column] = column_value
 
-        # Write the column values to the db with dynamic variables
-        sql_dynamic_table = "INSERT INTO " + table + " ("
-        sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "
-        #sql_dynamic_qmarks = "VALUES (" + ",".join(["?" for column in column_dict.keys()]) + ") "
-        sql_dynamic_values = " VALUES (" + ",".join([column_dict[column] for column in column_dict.keys()]) + ")"
-        sql_query = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_values
-        print(sql_query)
-        cur.execute(sql_query)
-
+        print(column_dict)
 
     # CLEANUP
     conn.commit()
@@ -290,5 +275,4 @@ for table in CONFIG.TABLES:
     EMAIL = CONFIG.EMAIL
     SEARCH_TERM = CONFIG.SEARCH_TERMS[table]
     TABLE_COLUMNS = CONFIG.TABLE_COLUMNS[table]
-    print(table)
     UpdateDB(table, OUTPUT_DIR, DATABASE, EMAIL, SEARCH_TERM, TABLE_COLUMNS, LOG_PATH, DB_DIR)

@@ -1,0 +1,38 @@
+
+NCBInfect run with the following options: 
+	Output Directory: .
+	Email: ktmeaton@gmail.com
+	User Database: yersinia_pestis_db.sqlite
+	Tables: ['Assembly', 'BioSample']
+	Search Terms: {'Assembly': 'Yersinia pestis[Orgn]', 'BioSample': 'Yersinia pestis[Orgn]'}
+
+
+Flat mode was not requested, organization directories will be used.
+
+Creating database: .\database\yersinia_pestis_db.sqlite
+
+Connected to database: .\database\yersinia_pestis_db.sqlite
+Assembly
+
+Creating/Updating the Assembly table using the following parameters: 
+	Database: 		yersinia_pestis_db.sqlite
+	Search Term:		Yersinia pestis[Orgn]
+	Email: 			ktmeaton@gmail.com
+	Output Directory: 	.
+
+
+Processing record: 1/383
+['GB_BioProjects', 'BioprojectAccn'] GB_BioProjects
+['InfraspeciesList', 'Biosource', 'Sub_value'] InfraspeciesList
+INSERT INTO Assembly (Assembly_id,AssemblyAccession,Organism,AssemblyStatus,SubmitterOrganization,Taxid,BioSampleAccn,Coverage,SubmissionDate,SeqReleaseDate,WGS,GB_BioProjects,chromosome_count,contig_count,InfraspeciesList)  VALUES (1702541,'GCA_003086155.1','Yersinia pestis (enterobacteria)','Contig','Russian Research Anti-Plague Institute Microbe','632','SAMN05017638','48','2018/05/02 00:00','2018/05/02 00:00','LYCN01','PRJNA322120','0','420','strain')
+BioSample
+
+Creating/Updating the BioSample table using the following parameters: 
+	Database: 		yersinia_pestis_db.sqlite
+	Search Term:		Yersinia pestis[Orgn]
+	Email: 			ktmeaton@gmail.com
+	Output Directory: 	.
+
+
+Processing record: 1/1416
+INSERT INTO BioSample (BioSample_id,Accession)  VALUES (8866751,'SAMN08866751')
