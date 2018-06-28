@@ -1,0 +1,28 @@
+# This is the database schema for NCBI BioSample
+# To customize, consult https://www.ncbi.nlm.nih.gov/biosample/docs/attributes/
+
+{"Accession" : "Accession"}
+{"BioSampleTitle" : "Title"}
+{"TaxonomyID" : "Taxonomy"}
+{"SRAAccession" : "SRA"}
+{"Infraspecies" : "Infraspecies"}
+{"ModificationDate" : "ModificationDate"}
+{"PublicationDate" : "PublicationDate"}
+{"Package" : "Package"}
+{"Date" : "Date"}
+{"Organization" : "Organization"}
+{"Organism" : "Organism"}
+{"Strain" : "strain"}
+{"CollectionDate" : "collection_date"}
+{"GeographicLocation" : "geo_loc_name"}
+{"SampleType" : "sample_type"}
+{"Host" : "host"}
+{"IsolationSource" : "isolation_source"}
+{"Biovar" : "biovar"}
+{"SubSpecies" : "sub_species"}
+{"IsolateNameAlias" : "isolate_name_alias"}
+{"BioProject" : "bioproject"}
+{"HostDisease" : "host_disease"}
+{"LatLon" : "lat_lon"}
+{"Latitude" : "latitude"}
+{"Longitude" : "longitude"}

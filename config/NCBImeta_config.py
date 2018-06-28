@@ -1,4 +1,4 @@
-OUTPUT_DIR = "."
+OUTPUT_DIR = "../NCBImeta_ouput/"
 EMAIL = "ktmeaton@gmail.com"
 DATABASE = "yersinia_pestis_db.sqlite"
 TABLES = ["Assembly","BioSample"]
@@ -16,6 +16,7 @@ TABLE_COLUMNS = {"Assembly": ["AssemblyAccession",
                               "SeqReleaseDate",
                               "WGS",
                               ["GB_BioProjects","BioprojectAccn"],
+                              ["RS_BioProjects","BioprojectAccn"],
                               "chromosome_count",
                               "contig_count",
                               ["InfraspeciesList","Biosource","Sub_value"]],

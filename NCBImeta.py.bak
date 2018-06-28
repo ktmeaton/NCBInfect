@@ -188,7 +188,6 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         #-------------------Progress Log and Entry Counter-------------------#
         # Increment entry counter and record progress to screen
         num_processed += 1
-        print("ID: " + ID)
         print("Processing record: " +
                str(num_processed) + \
                "/" + str(num_records))
@@ -239,21 +238,25 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
                 # For complex column types, as list
                 elif type(column_payload) == list:
+                    #print(column, column[column_index])
                     while column_payload[column_index] in row:
-                        if column_index + 1 == len(column_payload):
+                        #print(row)
+                        if column_index + 1 == len(column):
                             column_value = row[-1]
-                            break
                         column_index += 1
 
             # If the value was found, skip the next section of XML parsing
             if column_value:
                 column_value = "'" + column_value.replace("'","") + "'"
                 column_dict[column_name] = column_value
+                continue
 
             #-------------------------------------------------------#
+
             # Attempt 2: XML Parse
+            print("Parsing XML for : " + column_payload)
             for row in flatten_record_dict:
-                if type(column_payload) == list: continue
+                print(row)
                 result = [s for s in row if column_payload in s]
                 if not result: continue
                 result = result[0].strip()
@@ -262,17 +265,16 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 xml = "<Root>" + result + "</Root>"
                 # minidom doc object for xml manipulation and parsing
                 root = minidom.parseString(xml).documentElement
+                #print(root.toprettyxml())
+                #quit()
                 # Dictionary to store our recovered attributes and values
                 attr_dict = {}
                 # Recursives descend through a dynamic xml
+                print("HERE WE GO")
                 NCBImeta_Utilities.xml_find_rec(root,column_payload,attr_dict)
-                try:
-                    column_value = attr_dict[column_payload]
-                    column_value = "'" + column_value.replace("'","") + "'"
-                    column_dict[column_name] = column_value
-                except KeyError:
-                    None
-
+                column_value = attr_dict[column_payload]
+                column_value = "'" + column_value.replace("'","") + "'"
+                column_dict[column_name] = column_value
                 break
 
         # Write the column values to the db with dynamic variables

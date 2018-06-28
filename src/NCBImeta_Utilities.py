@@ -8,6 +8,7 @@ Created on Thu Jan 21 22:10:08 2016
 import os
 from sys import platform as _platform
 import sqlite3
+import xml.etree.ElementTree as ET
 
 
 def os_check():
@@ -24,13 +25,13 @@ def os_check():
 def check_accessory_dir(output_dir):
     OS_SEP = os_check()
     output_dir = output_dir + OS_SEP
-    if not os.path.exists(output_dir + OS_SEP + "log"):                                              # Check if log directory exists
+    if not os.path.exists(output_dir + OS_SEP + "log"):
         os.makedirs(output_dir + OS_SEP + "log")
-    if not os.path.exists(output_dir + OS_SEP + "database"):                                              # Check if log directory exists
+    if not os.path.exists(output_dir + OS_SEP + "database"):
         os.makedirs(output_dir + OS_SEP + "database")
-    if not os.path.exists(output_dir + OS_SEP + "annotate"):                                              # Check if log directory exists
-        os.makedirs(output_dir + OS_SEP + "annotate")
-    return 0
+    #if not os.path.exists(output_dir + OS_SEP + "annotate"):
+    #    os.makedirs(output_dir + OS_SEP + "annotate")
+    #return 0
 
 def table_exists(db_cur, table_name):
     query = "SELECT name FROM sqlite_master WHERE type='table' AND name='{}'".format(table_name)
@@ -51,6 +52,37 @@ def flatten_dict(input_dict, pre=None):
                 yield pre + [key, value]
     else:
         yield input_dict
+
+
+def xml_find_rec(xml_root, node_name, attr_dict):
+    if not xml_root.childNodes:
+        # Pesky empty spaces in unicode strings
+        if xml_root.nodeValue and xml_root.nodeValue.replace(" ",""):
+            return(xml_root.nodeValue)
+    else:
+        for child_node in xml_root.childNodes:
+            value = xml_find_rec(child_node,node_name,attr_dict)
+            if value:
+                for item in xml_root.attributes.items():
+                    if node_name in item:
+                        attr_dict[str(node_name)] = str(value)
+                        return(value)
+
+
+def xml_find_rec_bak2(xml_root, node_name, attr_dict):
+    if xml_root.childNodes:
+        for child_node in xml_root.childNodes:
+            print("Descend: " + xml_find_rec(child_node,node_name))
+        for key in xml_root.attributes.keys():
+            if xml_root.attributes[key].value == node_name:
+                print(xml_find_rec(xml_root.firstChild,node_name))
+                return(xml_find_rec(xml_root.firstChild,node_name))
+        #for child_node in xml_root.childNodes:
+        #    xml_find_rec(child_node,node_name)
+    else:
+        print("Bottom: " + xml_root.wholeText)
+        return(xml_root.wholeText)
+
 
 class XmlListConfig(list):
     def __init__(self, aList):
