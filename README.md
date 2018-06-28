@@ -1,10 +1,10 @@
-# NCBInfect
-Creates an SQLite database of genome metadata and downloads assemblies from NCBI.
+# NCBImeta
+Creates an SQLite database of metadata from the NCBI database.
 
 ## Version
 
 Development - Version 0.3.0 (v0.3.0)  
-Stable - Version 0.2.1 (v0.2.1)
+Stable - Version 0.2.1 (master)
 
 ## Requirements
 Python3.4+
