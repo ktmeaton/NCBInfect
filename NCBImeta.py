@@ -232,6 +232,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             # Attempt 1: Simple Dictionary Parse, taking first match
 
             for row in flatten_record_dict:
+                print(row)
                 # For simple column types, as strings
                 if type(column_payload) == str and column_payload in row:
                     column_value = row[-1]

@@ -1,0 +1,13 @@
+# This is the database schema for NCBI BioProject
+# To customize, consult ???
+
+{"ProjectTargetScope" : "Project_Target_Scope"}
+{"ProjectTargetCapture" : "Project_Target_Capture"}
+{"ProjectName" : "Project_Name"}
+{"OrganismLabel" : "Organism_Label"}
+{"ProjectType" : "Project_Type"}
+{"ProjectDataType" : "Project_Data_Type"}
+{"" : ""}
+{"" : ""}
+{"" : ""}
+{"" : ""}
