@@ -4,6 +4,8 @@
 # Keyword Tips
 # Only records used by SRA:
 #        biosample sra[filter]
+# Only records used by Assembly:
+#      (Yersinia pestis[Organism]) AND biosample assembly[Filter]
 
 
 {"Accession": "Accession"},

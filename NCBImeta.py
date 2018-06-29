@@ -180,7 +180,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
     handle = Entrez.esearch(db=table.lower(),
                             term=search_term,
-                            retmax = 20)
+                            retmax = 100)
 
     # Read the record, count total number entries, create counter
     record = Entrez.read(handle)
@@ -324,7 +324,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 xml = "<Root>" + result + "</Root>"
                 # minidom doc object for xml manipulation and parsing
                 root = minidom.parseString(xml).documentElement
-                #print(root.toprettyxml())
+                print(root.toprettyxml())
                 # Names of nodes and attributes we are searching for
                 if type(column_payload) == str:
                     node_name = column_payload
@@ -342,28 +342,28 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
                 NCBImeta_Utilities.xml_find_node(root,node_name,node_dict)
                 NCBImeta_Utilities.xml_find_attr(root,node_name,attr_name,attr_dict)
-                #print(node_dict)
-                #print(attr_dict)
+                print(node_dict)
+                print(attr_dict)
 
                 if type(column_payload) == list:
                     attr_name = column_payload[1]
-
-                try:
-                    column_value = attr_dict[attr_name]
-                    column_value = "'" + column_value.encode('utf-8').replace("'","") + "'"
-                    column_dict[column_name] = column_value
+                    try:
+                        column_value = attr_dict[attr_name]
+                        column_value = "'" + column_value.encode('utf-8').replace("'","") + "'"
+                        column_dict[column_name] = column_value
+                        break
+                    except KeyError:
+                        None
+                else:
+                    try:
+                        column_value = node_dict[node_name]
+                        column_value = "'" + column_value.encode('utf-8').replace("'","") + "'"
+                        column_dict[column_name] = column_value
+                    except KeyError:
+                        None
                     break
-                except KeyError:
-                    None
 
-                try:
-                    column_value = node_dict[node_name]
-                    column_value = "'" + column_value.encode('utf-8').replace("'","") + "'"
-                    column_dict[column_name] = column_value
-                except KeyError:
-                    None
-                break
-
+        print(column_dict)
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
         sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "

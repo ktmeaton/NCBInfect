@@ -5,21 +5,12 @@
 # Only the WGS Master Record:
 #         WGS_MASTER[KYWD]
 
-# From esummary
-{"Status" : "Status"}
-{"Comment" : "Comment"}
-{"NucleotideAccession" : "Caption"}
-{"AccessionVersion" : "AccessionVersion"}
-{"Title" : "Title"}
-{"CreateDate" : "CreateDate"}
-{"UpdateDate" : "UpdateDate"}
-{"Extra" : "Extra"}
-{"TaxID" : "TaxId"}
-{"ReplacedBy" : "ReplacedBy"}
-{"Length" : "Length"}
-{"Flags" : "Flags"}
+# Downloading Tips in python (ex. WGS Contigs)
+id="QANK00000000.1"
+format="fasta"#or genbank
+handle=urllib.urlopen{"https://www.ncbi.nlm.nih.gov/Traces/wgs/wgsviewer.cgi?dump=%s&format=%s"%{id:format}}
 
-# From efetch
+
 {"MoleculeType" : "GBSeq_moltype"}
 {"Comment" : "GBSeq_comment"}
 {"Strandedness" : "GBSeq_strandedness"}

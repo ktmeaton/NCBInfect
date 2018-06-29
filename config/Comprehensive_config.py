@@ -3,10 +3,10 @@ EMAIL = "ktmeaton@gmail.com"
 DATABASE = "yersinia_pestis_db.sqlite"
 TABLES = ["Assembly","BioSample", "BioProject", "SRA", "Nucleotide"]
 SEARCH_TERMS = {"Assembly": "Yersinia pestis[Orgn]",
-                "BioProject": "Yersinia pestis[Orgn]",
-                "BioSample": "Yersinia pestis[Orgn]",
+                "BioProject": "Yersinia pestis[Orgn] AND (biosample assembly[Filter] OR biosample sra[Filter])",
+                "BioSample": "Yersinia pestis[Orgn] AND (biosample assembly[Filter] OR biosample sra[Filter])",
                 "SRA": "Yersinia pestis[Orgn]",
-                "Nucleotide": "Yersinia pestis[Orgn] AND WGS_MASTER[KYWD]"}
+                "Nucleotide": "Yersinia pestis[Orgn] AND WGS_MASTER[KYWD] AND biosample assembly[Filter]"}
 
 TABLE_COLUMNS = {
                 "Assembly": [
