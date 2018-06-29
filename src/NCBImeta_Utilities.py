@@ -96,11 +96,11 @@ def xml_find_attr(xml_root, node_name, attr_name, attr_dict):
                     # simple name, gran associated attribute value
                     if type(attr_name) == str:
                         if(attr_name == item[0]):
-                            attr_dict[str(attr_name)] = str(item[1])
+                            attr_dict[str(attr_name)] = item[1].encode('utf-8')
                     # complex node-attribute, grab nove value associated with attribute
                     elif type(attr_name) == list and value:
                         if item[0] == attr_name[1] and item[1] == attr_name[0]:
-                             attr_dict[attr_name[0]] = str(value)
+                             attr_dict[attr_name[0]] = value.encode('utf-8')
 
 def xml_find_node(xml_root, node_name, node_dict):
     '''Recursive search of xml to find a desired node value.
@@ -125,12 +125,12 @@ def xml_find_node(xml_root, node_name, node_dict):
             value = xml_find_node(child_node,node_name,node_dict)
             if node_name == xml_root.nodeName:
                 if value:
-                    node_dict[str(node_name)] = str(value)
+                    node_dict[str(node_name)] = value.encode('utf-8')
                     return(value)
                 else:
                     # ignore text nodes, this is only for SRA library layout
                     if child_node.nodeName != "#text":
-                        node_dict[str(node_name)] = str(child_node.nodeName)
+                        node_dict[str(node_name)] = child_node.nodeName.encode('utf-8')
 
 
 def xml_find_attr_bak(xml_root, node_name, attr_name, attr_dict):
@@ -189,6 +189,9 @@ def xml_find_node_bak(xml_root, node_name, node_dict):
                 if node_name == xml_root.nodeName:
                     node_dict[str(node_name)] = str(value)
                     return(value)
+
+
+
 class XmlListConfig(list):
     def __init__(self, aList):
         for element in aList:

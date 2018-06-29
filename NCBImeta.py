@@ -180,7 +180,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
     handle = Entrez.esearch(db=table.lower(),
                             term=search_term,
-                            retmax = 10)
+                            retmax = 20)
 
     # Read the record, count total number entries, create counter
     record = Entrez.read(handle)
@@ -219,17 +219,29 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
         #---------------If Assembly Isn't in Database, Add it------------#
         # Retrieve Assembly record using ID, read, store as dictionary
-        ID_handle = Entrez.esummary(db=table.lower(),id=ID)
-        ID_record = Entrez.read(ID_handle, validate=False)
-        try:
-            record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
-        except TypeError:
-            record_dict = ID_record[0]
+        if table.lower() != "nucleotide":
+            ID_handle = Entrez.esummary(db=table.lower(),id=ID)
+            ID_record = Entrez.read(ID_handle, validate=False)
+            try:
+                record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
+            except TypeError:
+                record_dict = ID_record[0]
+        else:
+            ID_handle = Entrez.efetch(db=table.lower(),id=ID, retmode='xml')
+            ID_record = Entrez.read(ID_handle, validate=False)
+            try:
+                record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
+            except TypeError:
+                record_dict = ID_record[0]
+
         flatten_record_dict = list(NCBImeta_Utilities.flatten_dict(record_dict))
+
         column_dict = {}
 
         # Add ID to the dictionary
         column_dict[table + "_id"] = ID
+
+
 
         # Iterate through each column to search for values
         for column in table_columns:
@@ -238,12 +250,45 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             column_value = ""
             column_index = 0
 
+            # Special rules for hard-coded Nucleotide  Fields
+            if "GBSeq_comment" in column.itervalues():
+                for row in flatten_record_dict:
+                    if row[0] == "GBSeq_comment":
+                        # Hard-coded field, also check for user custom column name
+                        for i_column in table_columns:
+                            if i_column.items()[0][1] == "GBSeq_comment":
+                                column_value = "'" + (row[1]).encode('utf-8').replace("'","") + "'"
+                                column_dict[i_column.items()[0][0]] = column_value
+
+                        split_comment = row[1].split(";")
+                        for item in split_comment:
+                            split_item = item.split("::")
+                            if len(split_item) < 2: continue
+                            split_key = split_item[0].lstrip(" ").rstrip(" ")
+                            split_value = split_item[1].lstrip(" ").rstrip(" ")
+                            for i_column in table_columns:
+                                if i_column.items()[0][1] == split_key:
+                                    column_value = "'" + split_value.encode('utf-8').replace("'","").replace(",","") + "'"
+                                    column_dict[i_column.items()[0][0]] = column_value
+
+            # Special hard-coded field for biosample
+            elif "NucleotideBioSample" in column.itervalues():
+                for row in record_dict:
+                    if row != "GBSeq_xrefs": continue
+                    for subrow in record_dict[row]:
+                        if subrow["GBXref_dbname"] != "BioSample": continue
+                        for i_column in table_columns:
+                            if i_column.items()[0][1] == "NucleotideBioSample":
+                                column_value = "'" + subrow["GBXref_id"].encode('utf-8').replace("'","") + "'"
+                                column_dict[i_column.items()[0][0]] = column_value
+
+
+
 
             #-------------------------------------------------------#
             # Attempt 1: Simple Dictionary Parse, taking first match
 
             for row in flatten_record_dict:
-                #print(row)
                 # For simple column types, as strings
                 if type(column_payload) == str and column_payload in row:
                     column_value = row[-1]
@@ -259,8 +304,9 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
             # If the value was found, skip the next section of XML parsing
             if column_value:
-                column_value = "'" + column_value.replace("'","") + "'"
+                column_value = "'" + column_value.encode('utf-8').replace("'","") + "'"
                 column_dict[column_name] = column_value
+
 
             #-------------------------------------------------------#
             # Attempt 2: XML Parse for node or attribute
@@ -271,7 +317,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 elif type(column_payload) == list:
                     result = [s for s in row if column_payload[0] in s and column_payload[1] in s ]
                 if not result: continue
-                result = result[0].strip()
+                result = result[0].encode('utf-8').strip()
                 if result[0] != "<" or result[-1] != ">": continue
                 #print(result)
                 # Just in case, wrap sampledata in a root node for XML formatting
@@ -304,7 +350,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
                 try:
                     column_value = attr_dict[attr_name]
-                    column_value = "'" + column_value.replace("'","") + "'"
+                    column_value = "'" + column_value.encode('utf-8').replace("'","") + "'"
                     column_dict[column_name] = column_value
                     break
                 except KeyError:
@@ -312,7 +358,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
                 try:
                     column_value = node_dict[node_name]
-                    column_value = "'" + column_value.replace("'","") + "'"
+                    column_value = "'" + column_value.encode('utf-8').replace("'","") + "'"
                     column_dict[column_name] = column_value
                 except KeyError:
                     None
@@ -332,6 +378,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         log_file.write("[" + str(now) + "]" +
                      "\t" + "New entry added with ID:" +
                      "\t" + ID + "." + "\n")
+        conn.commit()
 
 
     # CLEANUP

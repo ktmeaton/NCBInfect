@@ -1,4 +1,4 @@
-# This is the database schema for NCBI BioProject
+# This is the database schema for NCBI SRA
 # To customize, consult ???
 
 {"CreateDate" : "CreateDate"}

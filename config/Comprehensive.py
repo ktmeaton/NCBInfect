@@ -1,11 +1,12 @@
 OUTPUT_DIR = "../NCBImeta_ouput/"
 EMAIL = "ktmeaton@gmail.com"
 DATABASE = "yersinia_pestis_db.sqlite"
-TABLES = ["Assembly","BioSample", "BioProject", "SRA"]
+TABLES = ["Assembly","BioSample", "BioProject", "SRA", "Nucleotide"]
 SEARCH_TERMS = {"Assembly": "Yersinia pestis[Orgn]",
                 "BioProject": "Yersinia pestis[Orgn]",
                 "BioSample": "Yersinia pestis[Orgn]",
-                "SRA": "Yersinia pestis[Orgn]"}
+                "SRA": "Yersinia pestis[Orgn]",
+                "Nucleotide": "Yersinia pestis[Orgn] AND WGS_MASTER[KYWD]"}
 
 TABLE_COLUMNS = {
                 "Assembly": [
@@ -129,4 +130,57 @@ TABLE_COLUMNS = {
                               {"SampleAccession" : ["Sample", "acc"]},
                               {"SampleName" : ["Sample", "name"]},
                               {"RunAccession" : ["Run", "acc"]}
-                              ]   }
+                              ],
+                "Nucleotide": [
+                            {"BioSample": "NucleotideBioSample"},
+                            {"MoleculeType" : "GBSeq_moltype"},
+                            {"Comment" : "GBSeq_comment"},
+                            {"Strandedness" : "GBSeq_strandedness"},
+                            {"Definition" : "GBSeq_definition"},
+                            {"Organism" : 'GBSeq_organism'},
+                            {"Source" : 'GBSeq_source'},
+                            {"Accession" : 'GBSeq_primary-accession'},
+                            {"AccessionVersion" : 'GBSeq_accession-version'},
+                            {"Length" : 'GBSeq_length'},
+                            {"CreateDate" : "GBSeq_create-date"},
+                            {"UpdateDate" : "GBSeq_update-date"},
+                            {"Division" : "GBSeq_division"},
+                            {"Topology" : "GBSeq_topology"},
+                            {"Taxonomy" : "GBSeq_taxonomy"},
+                            {"BioProject" : "GBSeq_project"},
+                            {'AssemblyDate': 'Assembly Date'},
+                            {'AssemblyMethod': 'Assembly Method'},
+                            {'AssemblyName': 'Assembly Name'},
+                            {'GenomeRepresentation': 'Genome Representation'},
+                            {'ExpectedFinalVersion': 'Expected Final Version'},
+                            {'GenomeCoverage': 'Genome Coverage'},
+                            {'SequencingTechnology': 'Sequencing Technology'},
+                            {'AnnotationProvider': 'Annotation Provider'},
+                            {'AnnotationDate': 'Annotation Date'},
+                            {'AnnotationPipeline': 'Annotation Pipeline'},
+                            {'AnnotationMethod': 'Annotation Method'},
+                            {'AnnotationSoftwarerevision': 'Annotation Software revision'},
+                            {'FeaturesAnnotated': 'Features Annotated'},
+                            {'Genes': 'Genes (total)'},
+                            {'CDS': 'CDS (total)'},
+                            {'GenesCoding': 'Genes (coding)'},
+                            {'CDSCoding': 'CDS (coding)'},
+                            {'GenesRNA': 'Genes (RNA)'},
+                            {'rRNAs': 'rRNAs'},
+                            {'rRNAsComplete': 'complete rRNAs'},
+                            {'rRNAsPartial': 'partial rRNAs'},
+                            {'tRNAs': 'tRNAs'},
+                            {'ncRNAs': 'ncRNAs'},
+                            {'PseudoGenes': 'Pseudo Genes (total)'},
+                            {'PseudoGenesAmbResidues': 'Pseudo Genes (ambiguous residues)'},
+                            {'PseudoGenesFrameshifted': 'Pseudo Genes (frameshifted)'},
+                            {'PseudoGenesIncomplete': 'Pseudo Genes (incomplete)'},
+                            {'PseudoGenesInternalStop': 'Pseudo Genes (internal stop)'},
+                            {'PseudoGenesMultipleProblems': 'Pseudo Genes (multiple problems)'},
+                            {'CRISPRArrays': 'CRISPR Arrays'},
+                            {"Journal": ['GBSeq_references', 'GBReference_journal']},
+                            {"ReferenceTitle": ['GBSeq_references', u'GBReference_title']},
+                            {"FirstAccession" : ['GBAltSeqData_items', 'GBSeq_alt-seq', 'GBAltSeqItem_first-accn']},
+                            {"LastAccession" : ['GBAltSeqData_items', 'GBSeq_alt-seq', 'GBAltSeqItem_last-accn']},
+                            {"SeqDataName" : ['GBSeq_alt-seq', 'GBAltSeqData_name']}
+                            ]   }
