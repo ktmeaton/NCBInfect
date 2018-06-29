@@ -13,17 +13,19 @@
 {"SubmissionDate" : 'SubmissionDate'}
 {"ReleaseDate" : 'SeqReleaseDate'}
 {"WGSAccession" : 'WGS'}
-{"Chromosomes" : 'chromosome_count'}
-{"Replicons" : 'replicon_count'}
-{"NonChromosomalReplicons" : 'non_chromosome_replicon_count'}
-{"Contigs" : 'contig_count'}
-{"ContigN50" : 'contig_n50'}
-{"ContigL50" : 'contig_l50'}
-{"Scaffolds" : 'scaffold_count'}
-{"ScaffoldN50" : 'scaffold_n50'}
-{"ScaffoldL50" : 'scaffold_l50'}
-{"TotalLength" : 'total_length'}
-{"UngappedLength" : 'ungapped_length'}
+
+{"Chromosomes" : ["Stat", "chromosome_count", "category"]}
+{"Replicons" : ["Stat", "replicon_count", "category"]}
+{"NonChromosomalReplicons" : ["Stat", "non_chromosome_replicon_count", "category"]}
+{"ContigCount": ["Stat", "contig_count", "category"]}
+{"ContigN50" : ["Stat", "contig_n50", "category"]}
+{"ContigL50" : ["Stat", "contig_l50", "category"]}
+{"Scaffolds" : ["Stat", "scaffold_count", "category"]}
+{"ScaffoldN50" : ["Stat", "scaffold_n50", "category"]}
+{"ScaffoldL50" : ["Stat", "scaffold_l50", "category"]}
+{"TotalLength" : ["Stat", "total_length", "category"]}
+{"UngappedLength" : ["Stat", "ungapped_length", "category"]}
+
 {"RefSeqID" : 'RsUid'}
 {"GenbankID" : 'GbUid'}
 {"RefSeqCategory" : 'RefSeq_category'}

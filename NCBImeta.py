@@ -1,4 +1,4 @@
-#!/usr/bin env python
+#!/usr/bin env python -u
 """
 Created on Thurs Mar 08 2018
 
@@ -15,9 +15,10 @@ import sqlite3
 import os
 import sys
 import importlib
+import datetime
 from Bio import Entrez
 from xml.dom import minidom
-import xml.etree.cElementTree as ET
+#import xml.etree.cElementTree as ET
 
 src_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '') + "src"
 sys.path.append(src_dir)
@@ -25,6 +26,10 @@ sys.path.append(src_dir)
 import NCBImeta_Utilities
 import NCBImeta_Errors
 
+
+def flushprint(message):
+    print(message)
+    sys.stdout.flush()
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
@@ -66,6 +71,7 @@ flat_mode = args['flatMode']
 
 
 
+
 #------------------------------------------------------------------------------#
 #                              Argument Parsing                                #
 #------------------------------------------------------------------------------#
@@ -83,7 +89,8 @@ config_module_name = os.path.basename(config_path).split(".")[0]
 # Dynamic module loading
 CONFIG = importlib.import_module(config_module_name)
 
-print(
+
+flushprint(
 "\n" + "NCBImeta run with the following options: " + "\n" +
 "\t" + "Output Directory: " + CONFIG.OUTPUT_DIR + "\n" +
 "\t" + "Email: " + CONFIG.EMAIL + "\n" +
@@ -93,14 +100,14 @@ print(
 
 # Flat mode checking
 if flat_mode:
-    print("Flat mode was requested, organizational directories will not be used.")
+    flushprint("Flat mode was requested, organizational directories will not be used.")
     DB_DIR = os.path.join(output_dir, "")
     LOG_PATH = output_dir
 
 
 elif not flat_mode:
     # Create accessory directory (ex. log, data, database, etc.)
-    print("Flat mode was not requested, organization directories will be used.")
+    flushprint("Flat mode was not requested, organization directories will be used.")
     NCBImeta_Utilities.check_accessory_dir(output_dir)
     DB_DIR = os.path.join(output_dir, "", "database", "")
     LOG_PATH = os.path.join(output_dir, "", "log")
@@ -109,22 +116,22 @@ DB_PATH = os.path.join(DB_DIR, "", CONFIG.DATABASE)
 
 #------------------------- Database Connection---------------------------------#
 if not os.path.exists(DB_PATH):
-    print("\n" + "Creating database: " + DB_PATH)
+    flushprint("\n" + "Creating database: " + DB_PATH)
     conn = sqlite3.connect(DB_PATH)
     conn.commit()
-    print("\n" + "Connected to database: " + DB_PATH)
+    flushprint("\n" + "Connected to database: " + DB_PATH)
 
 elif os.path.exists(DB_PATH):
     conn = sqlite3.connect(DB_PATH)
     conn.commit()
-    print("\n" + "Connected to database: " + DB_PATH)
+    flushprint("\n" + "Connected to database: " + DB_PATH)
 
 #------------------------------------------------------------------------------#
 #                       Database Processing Function                           #
 #------------------------------------------------------------------------------#
 
 def UpdateDB(table, output_dir, database, email, search_term, table_columns, log_path, db_dir):
-    print("\nCreating/Updating the " + table + " table using the following parameters: " + "\n" +
+    flushprint("\nCreating/Updating the " + table + " table using the following parameters: " + "\n" +
     "\t" + "Database: " + "\t\t" + database + "\n" +
     "\t" + "Search Term:" + "\t" + "\t" + search_term + "\n" +
     "\t" + "Email: " + "\t\t\t" + email + "\n" +
@@ -173,7 +180,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
     handle = Entrez.esearch(db=table.lower(),
                             term=search_term,
-                            retmax = 1)
+                            retmax = 10)
 
     # Read the record, count total number entries, create counter
     record = Entrez.read(handle)
@@ -188,8 +195,8 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         #-------------------Progress Log and Entry Counter-------------------#
         # Increment entry counter and record progress to screen
         num_processed += 1
-        print("ID: " + ID)
-        print("Processing record: " +
+        flushprint("ID: " + ID)
+        flushprint("Processing record: " +
                str(num_processed) + \
                "/" + str(num_records))
 
@@ -231,6 +238,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             column_value = ""
             column_index = 0
 
+
             #-------------------------------------------------------#
             # Attempt 1: Simple Dictionary Parse, taking first match
 
@@ -262,8 +270,6 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
                 elif type(column_payload) == list:
                     result = [s for s in row if column_payload[0] in s and column_payload[1] in s ]
-
-
                 if not result: continue
                 result = result[0].strip()
                 if result[0] != "<" or result[-1] != ">": continue
@@ -272,7 +278,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 xml = "<Root>" + result + "</Root>"
                 # minidom doc object for xml manipulation and parsing
                 root = minidom.parseString(xml).documentElement
-                print(root.toprettyxml())
+                #print(root.toprettyxml())
                 # Names of nodes and attributes we are searching for
                 if type(column_payload) == str:
                     node_name = column_payload
@@ -280,19 +286,27 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
                 elif type(column_payload) == list:
                     node_name = column_payload[0]
-                    attr_name = column_payload[1]
+                    if len(column_payload) > 2:
+                        attr_name = column_payload[1:]
+                    else:
+                        attr_name = column_payload[1]
                 # Dictionaries store recovered nodes and attributes
                 node_dict = {}
                 attr_dict = {}
 
                 NCBImeta_Utilities.xml_find_node(root,node_name,node_dict)
                 NCBImeta_Utilities.xml_find_attr(root,node_name,attr_name,attr_dict)
-                print(node_dict)
-                print(attr_dict)
+                #print(node_dict)
+                #print(attr_dict)
+
+                if type(column_payload) == list:
+                    attr_name = column_payload[1]
+
                 try:
                     column_value = attr_dict[attr_name]
                     column_value = "'" + column_value.replace("'","") + "'"
                     column_dict[column_name] = column_value
+                    break
                 except KeyError:
                     None
 
@@ -302,10 +316,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                     column_dict[column_name] = column_value
                 except KeyError:
                     None
-
-                print(column_dict)
                 break
-
 
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
@@ -313,8 +324,14 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         #sql_dynamic_qmarks = "VALUES (" + ",".join(["?" for column in column_dict.keys()]) + ") "
         sql_dynamic_values = " VALUES (" + ",".join([column_dict[column] for column in column_dict.keys()]) + ")"
         sql_query = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_values
-        print(sql_query)
+        #print(sql_query)
         cur.execute(sql_query)
+
+        # Write to logfile
+        now = datetime.datetime.now()
+        log_file.write("[" + str(now) + "]" +
+                     "\t" + "New entry added with ID:" +
+                     "\t" + ID + "." + "\n")
 
 
     # CLEANUP
