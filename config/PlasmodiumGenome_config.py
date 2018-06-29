@@ -1,12 +1,11 @@
 OUTPUT_DIR = "../NCBImeta_ouput/"
 EMAIL = "ktmeaton@gmail.com"
-DATABASE = "yersinia_pestis_db.sqlite"
-TABLES = ["Assembly","BioSample", "BioProject", "SRA", "Nucleotide"]
-SEARCH_TERMS = {"Assembly": "Yersinia pestis[Orgn]",
-                "BioProject": "Yersinia pestis[Orgn] AND (bioproject assembly[Filter] OR bioproject sra[Filter])",
-                "BioSample": "Yersinia pestis[Orgn] AND (biosample assembly[Filter] OR biosample sra[Filter])",
-                "SRA": "Yersinia pestis[Orgn]",
-                "Nucleotide": "Yersinia pestis[Orgn] AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter]"}
+DATABASE = "plasmodium_falciparum_db.sqlite"
+TABLES = ["Assembly","BioSample", "BioProject", "Nucleotide"]
+SEARCH_TERMS = {"Assembly": "Plasmodium falciparum[Orgn]",
+                "BioProject": "Plasmodium falciparum[Orgn] AND (bioproject assembly[Filter])",
+                "BioSample": "Plasmodium falciparum[Orgn] AND (biosample assembly[Filter])",
+                "Nucleotide": "Plasmodium falciparum[Orgn] AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter]"}
 
 TABLE_COLUMNS = {
                 "Assembly": [
@@ -25,6 +24,7 @@ TABLE_COLUMNS = {
                             {"SubmissionDate" : 'SubmissionDate'},
                             {"ReleaseDate" : 'SeqReleaseDate'},
                             {"WGSAccession" : 'WGS'},
+                            {"Isolate" : "Isolate"},
                             {"Chromosomes" : ["Stat", "chromosome_count", "category"]},
                             {"Replicons" : ["Stat", "replicon_count", "category"]},
                             {"NonChromosomalReplicons" : ["Stat", "non_chromosome_replicon_count", "category"]},
@@ -60,6 +60,7 @@ TABLE_COLUMNS = {
                              {"Date": "Date"},
                              {"Organization": "Organization"},
                              {"Organism": "OrganismName"},
+                             {"OrganismAlt": ["Organism","taxonomy_name"]},
                              {"Strain": ["Attribute","strain","attribute_name"]},
                              {"CollectionDate": ["Attribute","collection_date","attribute_name"]},
                              {"GeographicLocation": ["Attribute","geo_loc_name","attribute_name"]},

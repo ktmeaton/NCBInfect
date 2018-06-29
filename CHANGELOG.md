@@ -6,9 +6,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
-## [0.3.0] - 2018-0308
+## [0.3.0] - 2018-0629
 ### Added
-- Automation mode with config.auto
+- Automation mode
+- Supported Tables: Assembly, BioProject, BioSample, Nucleotide, SRA
 
 ### Changed
 - Repository Rename: NCBInfect -> NCBImeta

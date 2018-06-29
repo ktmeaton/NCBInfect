@@ -13,7 +13,7 @@
 {"SubmissionDate" : 'SubmissionDate'}
 {"ReleaseDate" : 'SeqReleaseDate'}
 {"WGSAccession" : 'WGS'}
-
+{"Isolate" : "Isolate"}
 {"Chromosomes" : ["Stat", "chromosome_count", "category"]}
 {"Replicons" : ["Stat", "replicon_count", "category"]}
 {"NonChromosomalReplicons" : ["Stat", "non_chromosome_replicon_count", "category"]}

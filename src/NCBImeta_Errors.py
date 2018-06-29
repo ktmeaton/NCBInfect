@@ -26,6 +26,13 @@ class ErrorDBNotExists(Exception):
         print("\n\nDatabase does not exist.")
         print("User entered: --database" + repr(self.value))
 
+class ErrorOutputDirNotExists(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        print("\n\nOutput directory does not exist.")
+        print("User entered: --output" + repr(self.value))
+
 
 class ErrorAnnotFileNotExists(Exception):
     def __init__(self, value):

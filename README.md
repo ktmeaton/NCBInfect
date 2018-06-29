@@ -3,25 +3,31 @@ Creates an SQLite database of metadata from the NCBI database.
 
 ## Version
 
-Development - Version 0.3.0 (v0.3.0)  
-Stable - Version 0.2.1 (master)
+Development - Version 0.3.1 (v0.3.1)  
+Stable - Version v0.3.0 (master)
 
 ## Requirements
-Python3.4+
+Python3.4+ (??)   
 BioPython 1.70 (biopython)
-Beautiful Soup 4 (bs4)
 
 pip install --user biopython
-pip install --user bs4
 
 ## Installation
 
-git clone https://github.com/ktmeaton/NCBInfect.git   
+git clone https://github.com/ktmeaton/NCBImeta.git   
 
 Development:  
-git clone -b v0.3.0 https://github.com/ktmeaton/NCBInfect.git   
+git clone -b v0.3.1 https://github.com/ktmeaton/NCBImeta.git   
 
 ## Usage
+TODO  
+
+## Supported NCBI Tables  
+Assembly  
+BioProject  
+BioSample  
+Nucleotide  
+SRA  
 
 
 

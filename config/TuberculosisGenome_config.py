@@ -1,12 +1,12 @@
 OUTPUT_DIR = "../NCBImeta_ouput/"
 EMAIL = "ktmeaton@gmail.com"
-DATABASE = "yersinia_pestis_db.sqlite"
+DATABASE = "mycobacterium_tuberculosis_db.sqlite"
 TABLES = ["Assembly","BioSample", "BioProject", "SRA", "Nucleotide"]
-SEARCH_TERMS = {"Assembly": "Yersinia pestis[Orgn]",
-                "BioProject": "Yersinia pestis[Orgn] AND (bioproject assembly[Filter] OR bioproject sra[Filter])",
-                "BioSample": "Yersinia pestis[Orgn] AND (biosample assembly[Filter] OR biosample sra[Filter])",
-                "SRA": "Yersinia pestis[Orgn]",
-                "Nucleotide": "Yersinia pestis[Orgn] AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter]"}
+SEARCH_TERMS = {"Assembly": "Mycobacterium tuberculosis[Orgn]",
+                "BioProject": "Mycobacterium tuberculosis[Orgn] AND (bioproject assembly[Filter] OR bioproject sra[Filter])",
+                "BioSample": "Mycobacterium tuberculosis[Orgn] AND (biosample assembly[Filter] OR biosample sra[Filter])",
+                "SRA": "Mycobacterium tuberculosis[Orgn]",
+                "Nucleotide": "Mycobacterium tuberculosis[Orgn] AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter]"}
 
 TABLE_COLUMNS = {
                 "Assembly": [
