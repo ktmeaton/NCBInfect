@@ -1,13 +1,21 @@
 # This is the database schema for NCBI BioProject
 # To customize, consult ???
 
-{"ProjectTargetScope" : "Project_Target_Scope"}
-{"ProjectTargetCapture" : "Project_Target_Capture"}
-{"ProjectName" : "Project_Name"}
+{"BioProjectAccession" : "Project_Acc"}
+{"TargetScope" : "Project_Target_Scope"}
+{"TargetCapture" : "Project_Target_Capture"}
+{"TargetMaterial" : "Project_Target_Material"}
+{"Description" : "Project_Description"}
+{"MethodType" : "Project_MethodType"}
+{"Name" : "Project_Name"}
+{"Title" : "Project_Title"}
 {"OrganismLabel" : "Organism_Label"}
-{"ProjectType" : "Project_Type"}
-{"ProjectDataType" : "Project_Data_Type"}
-{"" : ""}
-{"" : ""}
-{"" : ""}
-{"" : ""}
+{"OrganismStrain" : "Organism_Strain"}
+{"Type" : "Project_Type"}
+{"DataType" : "Project_Data_Type"}
+{"Supergroup" : "Supergroup"}
+{"TaxonomicID" : "TaxId"}
+{"RegistrationDate" : "Registration_Date"}
+{"SequencingStatus" : "Sequencing_Status"}
+{"RelevanceMedical" : "Relevance_Medical"}
+{"SubmitterOrganization" : "Submitter_Organization"}

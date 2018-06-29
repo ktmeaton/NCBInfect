@@ -1,0 +1,946 @@
+
+NCBImeta run with the following options: 
+	Output Directory: ../NCBImeta_ouput/
+	Email: ktmeaton@gmail.com
+	User Database: yersinia_pestis_db.sqlite
+	Tables: ['SRA']
+	Search Terms: {'SRA': 'Yersinia pestis[Orgn]'}
+
+
+Flat mode was not requested, organization directories will be used.
+
+Creating database: ../NCBImeta_output\database\yersinia_pestis_db.sqlite
+
+Connected to database: ../NCBImeta_output\database\yersinia_pestis_db.sqlite
+
+Creating/Updating the SRA table using the following parameters: 
+	Database: 		yersinia_pestis_db.sqlite
+	Search Term:		Yersinia pestis[Orgn]
+	Email: 			ktmeaton@gmail.com
+	Output Directory: 	../NCBImeta_ouput/
+
+
+ID: 5458078
+Processing record: 1/617
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{'Title': 'PacBio RS sequencing'}
+{}
+{'CreateDate': "'2018/04/24'", 'UpdateDate': "'2018/04/24'", 'SRA_id': '5458078', 'Title': "'PacBio RS sequencing'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{'Summary': 'Statistics'}
+{}
+{'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'UpdateDate': "'2018/04/24'", 'SRA_id': '5458078', 'Title': "'PacBio RS sequencing'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{'Platform': 'PACBIO_SMRT'}
+{}
+{'Title': "'PacBio RS sequencing'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'SRA_id': '5458078'}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{'LIBRARY_NAME': '20954568'}
+{}
+{'Title': "'PacBio RS sequencing'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'SRA_id': '5458078'}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{'LIBRARY_STRATEGY': 'WGS'}
+{}
+{'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'SRA_id': '5458078'}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{'LIBRARY_SOURCE': 'GENOMIC'}
+{}
+{'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'SRA_id': '5458078'}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{'LIBRARY_SELECTION': 'RANDOM'}
+{}
+{'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'SRA_id': '5458078', 'LibrarySelection': "'RANDOM'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{'LIBRARY_LAYOUT': 'SINGLE'}
+{}
+{'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'LibraryLayout': "'SINGLE'", 'SRA_id': '5458078', 'LibrarySelection': "'RANDOM'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{'Bioproject': 'PRJEB6403'}
+{}
+{'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'BioProjectAccession': "'PRJEB6403'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'LibraryLayout': "'SINGLE'", 'SRA_id': '5458078', 'LibrarySelection': "'RANDOM'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{'Biosample': 'SAMEA104398216'}
+{}
+{'BioSampleAccession': "'SAMEA104398216'", 'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'BioProjectAccession': "'PRJEB6403'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'LibraryLayout': "'SINGLE'", 'SRA_id': '5458078', 'LibrarySelection': "'RANDOM'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'cluster_name': 'public'}
+{'BioSampleAccession': "'SAMEA104398216'", 'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'ClusterName': "'public'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'BioProjectAccession': "'PRJEB6403'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'LibraryLayout': "'SINGLE'", 'SRA_id': '5458078', 'LibrarySelection': "'RANDOM'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'total_bases': '2490104441'}
+{'BioSampleAccession': "'SAMEA104398216'", 'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'ClusterName': "'public'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'BioProjectAccession': "'PRJEB6403'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'LibraryLayout': "'SINGLE'", 'TotalBases': "'2490104441'", 'SRA_id': '5458078', 'LibrarySelection': "'RANDOM'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'total_spots': '163482'}
+{'BioSampleAccession': "'SAMEA104398216'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'ClusterName': "'public'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'BioProjectAccession': "'PRJEB6403'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'LibraryLayout': "'SINGLE'", 'TotalBases': "'2490104441'", 'SRA_id': '5458078', 'LibrarySelection': "'RANDOM'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'total_runs': '1'}
+{'TotalRuns': "'1'", 'BioSampleAccession': "'SAMEA104398216'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'ClusterName': "'public'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'BioProjectAccession': "'PRJEB6403'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'LibraryLayout': "'SINGLE'", 'TotalBases': "'2490104441'", 'SRA_id': '5458078', 'LibrarySelection': "'RANDOM'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'total_size': '8537699869'}
+{'TotalRuns': "'1'", 'BioSampleAccession': "'SAMEA104398216'", 'TotalSpots': "'163482'", 'TotalSize': "'8537699869'", 'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'ClusterName': "'public'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'BioProjectAccession': "'PRJEB6403'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'LibraryLayout': "'SINGLE'", 'TotalBases': "'2490104441'", 'SRA_id': '5458078', 'LibrarySelection': "'RANDOM'"}
+<Root>
+	<Run acc="ERR2532127" cluster_name="public" is_public="true" load_done="true" static_data_available="true" total_bases="2490104441" total_spots="163482"/>
+</Root>
+
+{}
+{'static_data_available': 'true'}
+{'TotalRuns': "'1'", 'BioSampleAccession': "'SAMEA104398216'", 'TotalSpots': "'163482'", 'TotalSize': "'8537699869'", 'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'ClusterName': "'public'", 'StaticDataAvailable': "'true'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'BioProjectAccession': "'PRJEB6403'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'LibraryLayout': "'SINGLE'", 'TotalBases': "'2490104441'", 'SRA_id': '5458078', 'LibrarySelection': "'RANDOM'"}
+<Root>
+	<Run acc="ERR2532127" cluster_name="public" is_public="true" load_done="true" static_data_available="true" total_bases="2490104441" total_spots="163482"/>
+</Root>
+
+{}
+{'is_public': 'true'}
+{'TotalRuns': "'1'", 'BioSampleAccession': "'SAMEA104398216'", 'TotalSpots': "'163482'", 'TotalSize': "'8537699869'", 'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'ClusterName': "'public'", 'StaticDataAvailable': "'true'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'BioProjectAccession': "'PRJEB6403'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'LibraryLayout': "'SINGLE'", 'IsPublic': "'true'", 'TotalBases': "'2490104441'", 'SRA_id': '5458078', 'LibrarySelection': "'RANDOM'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{'Platform': 'PACBIO_SMRT'}
+{'instrument_model': 'PacBio RS'}
+{'TotalRuns': "'1'", 'BioSampleAccession': "'SAMEA104398216'", 'TotalSpots': "'163482'", 'TotalSize': "'8537699869'", 'LibraryStrategy': "'WGS'", 'Title': "'PacBio RS sequencing'", 'ClusterName': "'public'", 'StaticDataAvailable': "'true'", 'CreateDate': "'2018/04/24'", 'LibraryName': "'20954568'", 'BioProjectAccession': "'PRJEB6403'", 'InstrumentModel': "'PACBIO_SMRT'", 'LibrarySource': "'GENOMIC'", 'Summary': "'Statistics'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'LibraryLayout': "'SINGLE'", 'IsPublic': "'true'", 'TotalBases': "'2490104441'", 'SRA_id': '5458078', 'LibrarySelection': "'RANDOM'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'acc': 'ERA1348695'}
+{'Title': "'PacBio RS sequencing'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'LibrarySelection': "'RANDOM'", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'BioSampleAccession': "'SAMEA104398216'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'InstrumentModel': "'PACBIO_SMRT'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'center_name': ''}
+{'Title': "'PacBio RS sequencing'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'LibrarySelection': "'RANDOM'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'BioSampleAccession': "'SAMEA104398216'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'InstrumentModel': "'PACBIO_SMRT'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'contact_name': 'European Nucleotide Archive'}
+{'Title': "'PacBio RS sequencing'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'BioSampleAccession': "'SAMEA104398216'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'InstrumentModel': "'PACBIO_SMRT'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'lab_name': 'European Nucleotide Archive'}
+{'LabName': "'European Nucleotide Archive'", 'Title': "'PacBio RS sequencing'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'BioSampleAccession': "'SAMEA104398216'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'InstrumentModel': "'PACBIO_SMRT'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'acc': 'ERX2550556'}
+{'LabName': "'European Nucleotide Archive'", 'Title': "'PacBio RS sequencing'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'BioSampleAccession': "'SAMEA104398216'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'InstrumentModel': "'PACBIO_SMRT'", 'ExperimentAccession': "'ERX2550556'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'name': 'PacBio RS sequencing'}
+{'LabName': "'European Nucleotide Archive'", 'Title': "'PacBio RS sequencing'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'ExperimentName': "'PacBio RS sequencing'", 'BioSampleAccession': "'SAMEA104398216'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'InstrumentModel': "'PACBIO_SMRT'", 'ExperimentAccession': "'ERX2550556'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'status': 'public'}
+{'LabName': "'European Nucleotide Archive'", 'Title': "'PacBio RS sequencing'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'ExperimentName': "'PacBio RS sequencing'", 'ExperimentStatus': "'public'", 'BioSampleAccession': "'SAMEA104398216'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'InstrumentModel': "'PACBIO_SMRT'", 'ExperimentAccession': "'ERX2550556'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'ver': '1'}
+{'LabName': "'European Nucleotide Archive'", 'Title': "'PacBio RS sequencing'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'ExperimentName': "'PacBio RS sequencing'", 'ExperimentStatus': "'public'", 'BioSampleAccession': "'SAMEA104398216'", 'ExperimentVersion': "'1'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'InstrumentModel': "'PACBIO_SMRT'", 'ExperimentAccession': "'ERX2550556'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'acc': 'ERP005928'}
+{'LabName': "'European Nucleotide Archive'", 'Title': "'PacBio RS sequencing'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'ExperimentName': "'PacBio RS sequencing'", 'ExperimentStatus': "'public'", 'BioSampleAccession': "'SAMEA104398216'", 'ExperimentVersion': "'1'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'StudyAcc': "'ERP005928'", 'InstrumentModel': "'PACBIO_SMRT'", 'ExperimentAccession': "'ERX2550556'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'name': 'NCTC_3000'}
+{'LabName': "'European Nucleotide Archive'", 'Title': "'PacBio RS sequencing'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'StudName': "'NCTC_3000'", 'ExperimentName': "'PacBio RS sequencing'", 'ExperimentStatus': "'public'", 'BioSampleAccession': "'SAMEA104398216'", 'ExperimentVersion': "'1'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'StudyAcc': "'ERP005928'", 'InstrumentModel': "'PACBIO_SMRT'", 'ExperimentAccession': "'ERX2550556'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'CommonName': 'Yersinia pestis'}
+{'LabName': "'European Nucleotide Archive'", 'Title': "'PacBio RS sequencing'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'OrganismName': "'Yersinia pestis'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'StudName': "'NCTC_3000'", 'ExperimentName': "'PacBio RS sequencing'", 'ExperimentStatus': "'public'", 'BioSampleAccession': "'SAMEA104398216'", 'ExperimentVersion': "'1'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'StudyAcc': "'ERP005928'", 'InstrumentModel': "'PACBIO_SMRT'", 'ExperimentAccession': "'ERX2550556'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'taxid': '632'}
+{'LabName': "'European Nucleotide Archive'", 'Title': "'PacBio RS sequencing'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'OrganismName': "'Yersinia pestis'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'OrganismTaxID': "'632'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'StudName': "'NCTC_3000'", 'ExperimentName': "'PacBio RS sequencing'", 'ExperimentStatus': "'public'", 'BioSampleAccession': "'SAMEA104398216'", 'ExperimentVersion': "'1'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'StudyAcc': "'ERP005928'", 'InstrumentModel': "'PACBIO_SMRT'", 'ExperimentAccession': "'ERX2550556'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'acc': 'ERS2016158'}
+{'LabName': "'European Nucleotide Archive'", 'Title': "'PacBio RS sequencing'", 'SampleAccession': "'ERS2016158'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'OrganismName': "'Yersinia pestis'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'OrganismTaxID': "'632'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'StudName': "'NCTC_3000'", 'ExperimentName': "'PacBio RS sequencing'", 'ExperimentStatus': "'public'", 'BioSampleAccession': "'SAMEA104398216'", 'ExperimentVersion': "'1'", 'ClusterName': "'public'", 'IsPublic': "'true'", 'StudyAcc': "'ERP005928'", 'InstrumentModel': "'PACBIO_SMRT'", 'ExperimentAccession': "'ERX2550556'"}
+<Root>
+	<Summary>
+		<Title>PacBio RS sequencing</Title>
+		<Platform instrument_model="PacBio RS">PACBIO_SMRT</Platform>
+		<Statistics cluster_name="public" load_done="true" total_bases="2490104441" total_runs="1" total_size="8537699869" total_spots="163482"/>
+	</Summary>
+	<Submitter acc="ERA1348695" center_name="" contact_name="European Nucleotide Archive" lab_name="European Nucleotide Archive"/>
+	<Experiment acc="ERX2550556" name="PacBio RS sequencing" status="public" ver="1"/>
+	<Study acc="ERP005928" name="NCTC_3000"/>
+	<Organism CommonName="Yersinia pestis" taxid="632"/>
+	<Sample acc="ERS2016158" name="Yersinia pestis"/>
+	<Instrument PACBIO_SMRT="PacBio RS"/>
+	<Library_descriptor>
+		<LIBRARY_NAME>20954568</LIBRARY_NAME>
+		<LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+		<LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+		<LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+		<LIBRARY_LAYOUT>
+			 
+			<SINGLE/>
+			 
+		</LIBRARY_LAYOUT>
+	</Library_descriptor>
+	<Bioproject>PRJEB6403</Bioproject>
+	<Biosample>SAMEA104398216</Biosample>
+</Root>
+
+{}
+{'name': 'Yersinia pestis'}
+{'LabName': "'European Nucleotide Archive'", 'Title': "'PacBio RS sequencing'", 'SampleAccession': "'ERS2016158'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'OrganismName': "'Yersinia pestis'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'OrganismTaxID': "'632'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'StudName': "'NCTC_3000'", 'ExperimentName': "'PacBio RS sequencing'", 'ExperimentStatus': "'public'", 'BioSampleAccession': "'SAMEA104398216'", 'ExperimentVersion': "'1'", 'ClusterName': "'public'", 'SampleName': "'Yersinia pestis'", 'IsPublic': "'true'", 'StudyAcc': "'ERP005928'", 'InstrumentModel': "'PACBIO_SMRT'", 'ExperimentAccession': "'ERX2550556'"}
+<Root>
+	<Run acc="ERR2532127" cluster_name="public" is_public="true" load_done="true" static_data_available="true" total_bases="2490104441" total_spots="163482"/>
+</Root>
+
+{}
+{'acc': 'ERR2532127'}
+{'LabName': "'European Nucleotide Archive'", 'Title': "'PacBio RS sequencing'", 'SampleAccession': "'ERS2016158'", 'BioProjectAccession': "'PRJEB6403'", 'Platform': "'PACBIO_SMRT'", 'UpdateDate': "'2018/04/24'", 'TotalRuns': "'1'", 'TotalSpots': "'163482'", 'LibraryStrategy': "'WGS'", 'LibrarySource': "'GENOMIC'", 'LibraryName': "'20954568'", 'StaticDataAvailable': "'true'", 'TotalBases': "'2490104441'", 'OrganismName': "'Yersinia pestis'", 'LibrarySelection': "'RANDOM'", 'ContactName': "'European Nucleotide Archive'", 'OrganismTaxID': "'632'", 'CenterName': "''", 'SRA_id': '5458078', 'SubmitterAccession': "'ERA1348695'", 'TotalSize': "'8537699869'", 'CreateDate': "'2018/04/24'", 'Summary': "'Statistics'", 'LibraryLayout': "'SINGLE'", 'RunAccession': "'ERR2532127'", 'StudName': "'NCTC_3000'", 'ExperimentName': "'PacBio RS sequencing'", 'ExperimentStatus': "'public'", 'BioSampleAccession': "'SAMEA104398216'", 'ExperimentVersion': "'1'", 'ClusterName': "'public'", 'SampleName': "'Yersinia pestis'", 'IsPublic': "'true'", 'StudyAcc': "'ERP005928'", 'InstrumentModel': "'PACBIO_SMRT'", 'ExperimentAccession': "'ERX2550556'"}
+INSERT INTO SRA (LabName,Title,SampleAccession,BioProjectAccession,Platform,UpdateDate,TotalRuns,TotalSpots,LibraryStrategy,LibrarySource,LibraryName,StaticDataAvailable,TotalBases,OrganismName,LibrarySelection,ContactName,OrganismTaxID,CenterName,SRA_id,SubmitterAccession,TotalSize,CreateDate,Summary,LibraryLayout,RunAccession,StudName,ExperimentName,ExperimentStatus,BioSampleAccession,ExperimentVersion,ClusterName,SampleName,IsPublic,StudyAcc,InstrumentModel,ExperimentAccession)  VALUES ('European Nucleotide Archive','PacBio RS sequencing','ERS2016158','PRJEB6403','PACBIO_SMRT','2018/04/24','1','163482','WGS','GENOMIC','20954568','true','2490104441','Yersinia pestis','RANDOM','European Nucleotide Archive','632','',5458078,'ERA1348695','8537699869','2018/04/24','Statistics','SINGLE','ERR2532127','NCTC_3000','PacBio RS sequencing','public','SAMEA104398216','1','public','Yersinia pestis','true','ERP005928','PACBIO_SMRT','ERX2550556')

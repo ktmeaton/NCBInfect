@@ -214,7 +214,10 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         # Retrieve Assembly record using ID, read, store as dictionary
         ID_handle = Entrez.esummary(db=table.lower(),id=ID)
         ID_record = Entrez.read(ID_handle, validate=False)
-        record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
+        try:
+            record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
+        except TypeError:
+            record_dict = ID_record[0]
         flatten_record_dict = list(NCBImeta_Utilities.flatten_dict(record_dict))
         column_dict = {}
 
@@ -232,7 +235,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             # Attempt 1: Simple Dictionary Parse, taking first match
 
             for row in flatten_record_dict:
-                print(row)
+                #print(row)
                 # For simple column types, as strings
                 if type(column_payload) == str and column_payload in row:
                     column_value = row[-1]
@@ -252,29 +255,57 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 column_dict[column_name] = column_value
 
             #-------------------------------------------------------#
-            # Attempt 2: XML Parse
+            # Attempt 2: XML Parse for node or attribute
             for row in flatten_record_dict:
-                if type(column_payload) == list: continue
-                result = [s for s in row if column_payload in s]
+                if type(column_payload) == str:
+                    result = [s for s in row if column_payload in s]
+
+                elif type(column_payload) == list:
+                    result = [s for s in row if column_payload[0] in s and column_payload[1] in s ]
+
+
                 if not result: continue
                 result = result[0].strip()
                 if result[0] != "<" or result[-1] != ">": continue
+                #print(result)
                 # Just in case, wrap sampledata in a root node for XML formatting
                 xml = "<Root>" + result + "</Root>"
                 # minidom doc object for xml manipulation and parsing
                 root = minidom.parseString(xml).documentElement
-                # Dictionary to store our recovered attributes and values
+                print(root.toprettyxml())
+                # Names of nodes and attributes we are searching for
+                if type(column_payload) == str:
+                    node_name = column_payload
+                    attr_name = column_payload
+
+                elif type(column_payload) == list:
+                    node_name = column_payload[0]
+                    attr_name = column_payload[1]
+                # Dictionaries store recovered nodes and attributes
+                node_dict = {}
                 attr_dict = {}
-                # Recursives descend through a dynamic xml
-                NCBImeta_Utilities.xml_find_rec(root,column_payload,attr_dict)
+
+                NCBImeta_Utilities.xml_find_node(root,node_name,node_dict)
+                NCBImeta_Utilities.xml_find_attr(root,node_name,attr_name,attr_dict)
+                print(node_dict)
+                print(attr_dict)
                 try:
-                    column_value = attr_dict[column_payload]
+                    column_value = attr_dict[attr_name]
                     column_value = "'" + column_value.replace("'","") + "'"
                     column_dict[column_name] = column_value
                 except KeyError:
                     None
 
+                try:
+                    column_value = node_dict[node_name]
+                    column_value = "'" + column_value.replace("'","") + "'"
+                    column_dict[column_name] = column_value
+                except KeyError:
+                    None
+
+                print(column_dict)
                 break
+
 
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("

@@ -46,6 +46,7 @@ TABLE_COLUMNS = {
                               ],
                 "BioSample": [
                               {"Accession" : "Accession"},
+                              {"BioSampleTitle" : "Title"},
                               {"TaxonomyID" : "Taxonomy"},
                               {"SRAAccession" : "SRA"},
                               {"Infraspecies" : "Infraspecies"},

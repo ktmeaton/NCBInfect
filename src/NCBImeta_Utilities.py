@@ -54,35 +54,66 @@ def flatten_dict(input_dict, pre=None):
         yield input_dict
 
 
-def xml_find_rec(xml_root, node_name, attr_dict):
+def xml_find_attr(xml_root, node_name, attr_name, attr_dict):
     if not xml_root.childNodes:
         # Pesky empty spaces in unicode strings
         if xml_root.nodeValue and xml_root.nodeValue.replace(" ",""):
             return(xml_root.nodeValue)
     else:
         for child_node in xml_root.childNodes:
-            value = xml_find_rec(child_node,node_name,attr_dict)
+            value = xml_find_attr(child_node,node_name,attr_name,attr_dict)
+            if child_node.attributes:
+                for item in child_node.attributes.items():
+                    if child_node.nodeName == node_name and item[0] == attr_name:
+                        attr_dict[attr_name] = str(item[1])
+
+def xml_find_node(xml_root, node_name, node_dict):
+    if not xml_root.childNodes:
+        # Pesky empty spaces in unicode strings
+        if xml_root.nodeValue and xml_root.nodeValue.replace(" ",""):
+            return(xml_root.nodeValue)
+    else:
+        for child_node in xml_root.childNodes:
+            value = xml_find_node(child_node,node_name,node_dict)
+            if node_name == xml_root.nodeName:
+                if value:
+                    node_dict[str(node_name)] = str(value)
+                elif child_node.nodeName != "#text":
+                    node_dict[str(node_name)] = str(child_node.nodeName)
+
+
+def xml_find_attr_bak(xml_root, node_name, attr_name, attr_dict):
+    if not xml_root.childNodes:
+        # Pesky empty spaces in unicode strings
+        if xml_root.nodeValue and xml_root.nodeValue.replace(" ",""):
+            return(xml_root.nodeValue)
+    else:
+        for child_node in xml_root.childNodes:
+            value = xml_find_attr(child_node,node_name,attr_name,attr_dict)
             if value:
                 for item in xml_root.attributes.items():
-                    if node_name in item:
-                        attr_dict[str(node_name)] = str(value)
+                    if attr_name in item:
+                        attr_dict[str(attr_name)] = str(value)
                         return(value)
+            elif child_node.attributes:
+                for item in child_node.attributes.items():
+                    print(item)
+                    if(attr_name == item[0]):
+                        attr_dict[str(attr_name)] = str(item[1])
 
-
-def xml_find_rec_bak2(xml_root, node_name, attr_dict):
-    if xml_root.childNodes:
-        for child_node in xml_root.childNodes:
-            print("Descend: " + xml_find_rec(child_node,node_name))
-        for key in xml_root.attributes.keys():
-            if xml_root.attributes[key].value == node_name:
-                print(xml_find_rec(xml_root.firstChild,node_name))
-                return(xml_find_rec(xml_root.firstChild,node_name))
-        #for child_node in xml_root.childNodes:
-        #    xml_find_rec(child_node,node_name)
+def xml_find_node_bak(xml_root, node_name, node_dict):
+    if not xml_root.childNodes:
+        # Pesky empty spaces in unicode strings
+        if xml_root.nodeValue and xml_root.nodeValue.replace(" ",""):
+            return(xml_root.nodeValue)
     else:
-        print("Bottom: " + xml_root.wholeText)
-        return(xml_root.wholeText)
-
+        for child_node in xml_root.childNodes:
+            value = xml_find_node(child_node,node_name,node_dict)
+            print(child_node, value)
+            if value:
+                if node_name == xml_root.nodeName:
+                    node_dict[str(node_name)] = str(value)
+                    return(value)
 
 class XmlListConfig(list):
     def __init__(self, aList):

@@ -188,6 +188,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         #-------------------Progress Log and Entry Counter-------------------#
         # Increment entry counter and record progress to screen
         num_processed += 1
+        print("ID: " + ID)
         print("Processing record: " +
                str(num_processed) + \
                "/" + str(num_records))
@@ -213,7 +214,10 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         # Retrieve Assembly record using ID, read, store as dictionary
         ID_handle = Entrez.esummary(db=table.lower(),id=ID)
         ID_record = Entrez.read(ID_handle, validate=False)
-        record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
+        try:
+            record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
+        except TypeError:
+            record_dict = ID_record[0]
         flatten_record_dict = list(NCBImeta_Utilities.flatten_dict(record_dict))
         column_dict = {}
 
@@ -231,6 +235,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             # Attempt 1: Simple Dictionary Parse, taking first match
 
             for row in flatten_record_dict:
+                #print(row)
                 # For simple column types, as strings
                 if type(column_payload) == str and column_payload in row:
                     column_value = row[-1]
@@ -238,26 +243,27 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
                 # For complex column types, as list
                 elif type(column_payload) == list:
-                    #print(column, column[column_index])
                     while column_payload[column_index] in row:
-                        #print(row)
-                        if column_index + 1 == len(column):
+                        if column_index + 1 == len(column_payload):
                             column_value = row[-1]
+                            break
                         column_index += 1
 
             # If the value was found, skip the next section of XML parsing
             if column_value:
                 column_value = "'" + column_value.replace("'","") + "'"
                 column_dict[column_name] = column_value
-                continue
 
             #-------------------------------------------------------#
-
-            # Attempt 2: XML Parse
-            print("Parsing XML for : " + column_payload)
+            # Attempt 2: XML Parse for node or attribute
             for row in flatten_record_dict:
-                print(row)
-                result = [s for s in row if column_payload in s]
+                if type(column_payload) == str:
+                    result = [s for s in row if column_payload in s]
+
+                elif type(column_payload) == list:
+                    result = [s for s in row if column_payload[0] in s and column_payload[1] in s ]
+
+
                 if not result: continue
                 result = result[0].strip()
                 if result[0] != "<" or result[-1] != ">": continue
@@ -266,16 +272,39 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 # minidom doc object for xml manipulation and parsing
                 root = minidom.parseString(xml).documentElement
                 #print(root.toprettyxml())
-                #quit()
-                # Dictionary to store our recovered attributes and values
+                # Names of nodes and attributes we are searching for
+                if type(column_payload) == str:
+                    node_name = column_payload
+                    attr_name = column_payload
+
+                elf type(column_payload) == list:
+                    node_name = column_payload[1]
+                    attr_name = column_payload[1]
+
+                # Dictionaries store recovered nodes and attributes
+                node_dict = {}
                 attr_dict = {}
-                # Recursives descend through a dynamic xml
-                print("HERE WE GO")
-                NCBImeta_Utilities.xml_find_rec(root,column_payload,attr_dict)
-                column_value = attr_dict[column_payload]
-                column_value = "'" + column_value.replace("'","") + "'"
-                column_dict[column_name] = column_value
+
+                NCBImeta_Utilities.xml_find_node(root,node_name,node_dict)
+                NCBImeta_Utilities.xml_find_attr(root,attr_name,attr_dict)
+                try:
+                    column_value = attr_dict[attr_name]
+                    column_value = "'" + column_value.replace("'","") + "'"
+                    column_dict[column_name] = column_value
+                except KeyError:
+                    None
+
+                try:
+                    column_value = node_dict[node_name]
+                    column_value = "'" + column_value.replace("'","") + "'"
+                    column_dict[column_name] = column_value
+                except KeyError:
+                    None
+
+                print(column_dict)
                 break
+
+
 
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
