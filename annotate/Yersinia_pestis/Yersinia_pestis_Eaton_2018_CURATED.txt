@@ -1,5 +1,0 @@
-bioproject_accession	strain	collection_date	host	geographic_location	alternative_strain	biovar
-PRJNA240082	Pestoides G	<1984		USSR (Estimated Southern Georgia/Eastern Armenia)	Y. pestis subsp. Causica	
-PRJNA240105	Pestoides B	<1984		"USSR (Estimated Russia, Altai Mountains)"	Y. pestis subsp. Altaica	
-PRJNA16700	Pestoides F	<1984	Microtus arvalis	USSR (Estimated: High mountainous Caucasus/Dagestan)	Y. pestis subsp. Caucasica	Microtus
-PRJNA30511	Pestoides A	<1984		"USSR (Estimated Russia, Altai Mountains)"	Y. pestis subsp. Altaica	

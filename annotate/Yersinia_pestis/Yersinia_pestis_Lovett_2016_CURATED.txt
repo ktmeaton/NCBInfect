@@ -1,2 +1,0 @@
-bioproject_accession	strain	collection_date	host	geographic_location
-PRJNA326509	Cadman	1965	Human	"Gallup, New Mexico, USA"

@@ -1,3 +1,0 @@
-bioproject_accession	strain	collection_date	host	geographic_location
-PRJEB11860	Algeria 3	2015	Soil	"Algeria, Chott el Hodna"
-PRJEB15052	Algeria3	2015	Soil	"Algeria, Chott el Hodna"
