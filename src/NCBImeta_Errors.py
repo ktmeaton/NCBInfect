@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Jan 30 15:45:34 2016
+NCBI Metadata Database Errors
 
 @author: Katherine Eaton
 """

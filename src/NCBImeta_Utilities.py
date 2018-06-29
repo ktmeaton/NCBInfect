@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jan 21 22:10:08 2016
+NCBI Metadata Database Utility Functions
 
 @author: Katherine Eaton
 """

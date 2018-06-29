@@ -1,7 +1,5 @@
 """
-Created on Thursday June 08 2017
-
-NCBI Genome Database Annotator
+NCBI Metadata Database Annotator
 
 @author: Katherine Eaton
 """
