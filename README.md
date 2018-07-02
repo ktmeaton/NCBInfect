@@ -80,6 +80,10 @@ DB Browser for SQLite: https://sqlitebrowser.org/
 
 See CHANGELOG.md.
 
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.    
+
 ## Credits
 
 author: Katherine Eaton (ktmeaton@gmail.com)
