@@ -24,7 +24,7 @@ Release - Version v0.3.1 (master)
 
 ## Installation
 
-Release  
+Release:  
 ```
 git clone https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta  
