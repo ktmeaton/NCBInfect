@@ -6,8 +6,8 @@
 # NCBImeta
 Creates a SQLite database of metadata from the NCBI database.  
 
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_screenshot.png" alt="NCBImeta_screenshot" width="500px"/>
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_snapshot.jpg" alt="NCBImeta_snapshot" width="500px"/>
+<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_screenshot.png" alt="NCBImeta_screenshot" width="450px"/>
+<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_snapshot.jpg" alt="NCBImeta_snapshot" width="450px"/>
 
  
 ## Python Requirements
