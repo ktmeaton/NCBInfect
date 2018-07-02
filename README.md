@@ -6,9 +6,11 @@ Creates an SQLite database of metadata from the NCBI database.
 Development - Version 0.3.2 (v0.3.2)  
 Stable - Version v0.3.1 (master)
 
-## Requirements
+## Python Requirements
+Module SQLite3 (sqlite3)
 Python3.4+ (??)   
 BioPython 1.70 (biopython)
+
 
 pip install --user biopython
 
