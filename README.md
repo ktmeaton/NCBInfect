@@ -52,6 +52,8 @@ Note that the first column of your annotation file MUST be a column that is uniq
 ```
 python src/NCBImeta_Export.py --database example/my_organism_db.sqlite --outputdir example/
 ```
+
+Example output of the command-line interface:  
 <img src="https://github.com/ktmeaton/NCBImeta/blob/master/NCBImeta_CLI.JPG" alt="NCBImeta_CLI" width="1000px"/> 
 
 
@@ -62,10 +64,11 @@ BioSample
 Nucleotide  
 SRA  
 
+Subset of the Assembly table:      
 <img src="https://github.com/ktmeaton/NCBImeta/blob/master/NCBImeta_DB.jpg" alt="NCBImeta_DB" width="1000px"/> 
 
 ## Up-Coming Features
-PubMed Table 
+PubMed Table    
 Any requested tables or metadata :)  
 
 ## Suggested Accessory Programs
