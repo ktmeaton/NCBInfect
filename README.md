@@ -1,5 +1,5 @@
 [![apm](https://img.shields.io/apm/l/vim-mode.svg)](https://github.com/ktmeaton/NCBImeta/LICENSE)
-[![release](http://github-release-version.herokuapp.com/github/allure-framework/allure-core/release.svg?style=flat)](https://github.com/allure-framework/allure-core/releases/latest)
+[![release](http://github-release-version.herokuapp.com/github/allure-framework/allure-core/release.svg?style=flat)](https://github.com/ktmeaton/NCBImeta/releases/latest)
 
 # NCBImeta
 Creates a SQLite database of metadata from the NCBI database.  
