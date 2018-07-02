@@ -67,6 +67,11 @@ SRA
 ## Example database output (a subset of the Assembly table)      
 <img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_DB.jpg" alt="NCBImeta_DB" width="1000px"/> 
 
+## Usage
+To customize the search terms and database to your needs, please read through config/README_config.txt and schema/README_schema.txt.
+These two files provide instructions on writing configuration files and customizing metadata.
+
+
 ## Up-Coming Features
 PubMed Table    
 Any requested tables or metadata :)  
