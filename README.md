@@ -1,7 +1,6 @@
 [![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://GitHub.com/Naereen/StrapDown.js/releases/)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https:https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
 
 # NCBImeta
 Creates a SQLite database of metadata from the NCBI database.  
@@ -80,3 +79,7 @@ Merging a development branch into master:
         (resolve any merge conflicts if there are any)  
         git checkout master  
         git merge --no-ff development (there won't be any conflicts now)  
+        
+## About
+
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
