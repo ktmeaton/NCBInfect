@@ -14,16 +14,16 @@ Development - Version 0.3.2 (v0.3.2)
 Stable - Version v0.3.1 (master)
 
 ## Python Requirements
-Module SQLite3 (sqlite3 in Python3+, pysqlite in Python2.7+)     
-BioPython 1.70 (biopython)  
 Python2.7+, Python3.4+  
+SQLite3 (sqlite3 in Python3.4+, pysqlite in Python2.7+)     
+BioPython 1.70    
 
 ```
 pip install --user biopython 
 ```
 
 ## Installation
-Stable:  
+ 
 ```
 git clone https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta  
