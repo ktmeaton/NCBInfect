@@ -1,4 +1,3 @@
-[![release](http://github-release-version.herokuapp.com/github/ktmeaton/NCBImeta/release.svg?style=flat)](https://github.com/ktmeaton/NCBImeta/releases/latest)
 [![GitHub license](https://img.shields.io/github/license/ktmeaton/NCBImeta)
 
 # NCBImeta
