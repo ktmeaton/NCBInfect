@@ -41,7 +41,7 @@ It does not need to end in "".sqlite", but you may find that helpful as your com
 
 ## 4) TABLES
 Type "list" containing comma separated "str" elements:    
-        TABLES = ["Assembly","BioSample"]    
+        ```TABLES = ["Assembly","BioSample"]```    
 
 This list contains the names of all tables you want to search in. Note that these must match exactly to SEARCH TERMS and TABLE COLUMNS. 
 
