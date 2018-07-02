@@ -7,7 +7,6 @@
 # NCBImeta
 Creates a SQLite database of metadata from the NCBI database.  
 
-https://ktmeaton.github.io/NCBImeta/  
 
 ## Version
 
@@ -23,14 +22,16 @@ Python2.7+ (Minimum requirement unverified)
 pip install --user biopython
 
 ## Installation
-
+Stable:  
+```
 git clone https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta  
-
-Development:  
+```
+Development: 
+```
 git clone -b v0.3.1 https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta  
-
+```
 ## Usage
 
 ### Run the program, creating accessory directories 'log' and 'database'
