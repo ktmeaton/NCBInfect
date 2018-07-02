@@ -1,5 +1,5 @@
-[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://GitHub.com/ktmeaton/NCBImeta/releases/)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ktmeaton/NCBImeta/graphs/commit-activity)[![GitHub license](https://img.shields.io/github/license/ktmeaton/NCBImeta)
+[![release](http://github-release-version.herokuapp.com/github/ktmeaton/NCBImeta/release.svg?style=flat)](https://github.com/ktmeaton/NCBImeta/releases/latest)
+[![GitHub license](https://img.shields.io/github/license/ktmeaton/NCBImeta)
 
 # NCBImeta
 Creates a SQLite database of metadata from the NCBI database.  
