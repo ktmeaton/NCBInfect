@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/Licence-Apache%202.0-blue.svg)](./LICENSE)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/ktmeaton/NCBImeta/LICENSE)
 
 # NCBImeta
 Creates a SQLite database of metadata from the NCBI database.  
