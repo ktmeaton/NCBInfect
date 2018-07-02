@@ -10,51 +10,57 @@ id="QANK00000000.1"
 format="fasta"#or genbank
 handle=urllib.urlopen{"https://www.ncbi.nlm.nih.gov/Traces/wgs/wgsviewer.cgi?dump=%s&format=%s"%{id:format}}
 
-
-{"MoleculeType" : "GBSeq_moltype"}
-{"Comment" : "GBSeq_comment"}
-{"Strandedness" : "GBSeq_strandedness"}
-{"Definition" : "GBSeq_definition"}
-{"Organism" : 'GBSeq_organism'}
-{"Source" : 'GBSeq_source'}
+# Accession Numbers and ID
 {"Accession" : 'GBSeq_primary-accession'}
 {"AccessionVersion" : 'GBSeq_accession-version'}
-{"Length" : 'GBSeq_length'}
-{"CreateDate" : "GBSeq_create-date"}
-{"UpdateDate" : "GBSeq_update-date"}
-{"Division" : "GBSeq_division"}
-{"Topology" : "GBSeq_topology"}
-{"Taxonomy" : "GBSeq_taxonomy"}
-{"BioProject" : "GBSeq_project"}
-
 # This one is hard-coded implementation
 {"BioSample": "NucleotideBioSample"}
+{"BioProject" : "GBSeq_project"}
+{"FirstAccession" : ['GBAltSeqData_items', 'GBSeq_alt-seq', 'GBAltSeqItem_first-accn']}
+{"LastAccession" : ['GBAltSeqData_items', 'GBSeq_alt-seq', 'GBAltSeqItem_last-accn']}
+
+# Taxonomy Information
+{"Organism" : 'GBSeq_organism'}
+{"Taxonomy" : "GBSeq_taxonomy"}
+
+# Nucleotide Information
+{"Definition" : "GBSeq_definition"}
+{"Division" : "GBSeq_division"}
+{"Journal": ['GBSeq_references', 'GBReference_journal']}
+{"Length" : 'GBSeq_length'}
+{"MoleculeType" : "GBSeq_moltype"}
+{"ReferenceTitle": ['GBSeq_references', u'GBReference_title']}
+{"SeqDataName" : ['GBSeq_alt-seq', 'GBAltSeqData_name']}
+{"Source" : 'GBSeq_source'}
+{"Strandedness" : "GBSeq_strandedness"}
+{"Topology" : "GBSeq_topology"}
+
+
+# Dates
+{"CreateDate" : "GBSeq_create-date"}
+{"UpdateDate" : "GBSeq_update-date"}
 
 
 # To use the following: you must enable GBSeq_comment
 {"Comment" : "GBSeq_comment"}
+{'AnnotationDate': 'Annotation Date'}
+{'AnnotationMethod': 'Annotation Method'}
+{'AnnotationPipeline': 'Annotation Pipeline'}
+{'AnnotationProvider': 'Annotation Provider'}
+{'AnnotationSoftwarerevision': 'Annotation Software revision'}
 {'AssemblyDate': 'Assembly Date'}
 {'AssemblyMethod': 'Assembly Method'}
 {'AssemblyName': 'Assembly Name'}
-{'GenomeRepresentation': 'Genome Representation'}
+{'CDS': 'CDS (total)'}
+{'CDSCoding': 'CDS (coding)'}
+{'CRISPRArrays': 'CRISPR Arrays'}
 {'ExpectedFinalVersion': 'Expected Final Version'}
-{'GenomeCoverage': 'Genome Coverage'}
-{'SequencingTechnology': 'Sequencing Technology'}
-{'AnnotationProvider': 'Annotation Provider'}
-{'AnnotationDate': 'Annotation Date'}
-{'AnnotationPipeline': 'Annotation Pipeline'}
-{'AnnotationMethod': 'Annotation Method'}
-{'AnnotationSoftwarerevision': 'Annotation Software revision'}
 {'FeaturesAnnotated': 'Features Annotated'}
 {'Genes': 'Genes (total)'}
-{'CDS': 'CDS (total)'}
 {'GenesCoding': 'Genes (coding)'}
-{'CDSCoding': 'CDS (coding)'}
 {'GenesRNA': 'Genes (RNA)'}
-{'rRNAs': 'rRNAs'}
-{'rRNAsComplete': 'complete rRNAs'}
-{'rRNAsPartial': 'partial rRNAs'}
-{'tRNAs': 'tRNAs'}
+{'GenomeCoverage': 'Genome Coverage'}
+{'GenomeRepresentation': 'Genome Representation'}
 {'ncRNAs': 'ncRNAs'}
 {'PseudoGenes': 'Pseudo Genes (total)'}
 {'PseudoGenesAmbResidues': 'Pseudo Genes (ambiguous residues)'}
@@ -62,24 +68,8 @@ handle=urllib.urlopen{"https://www.ncbi.nlm.nih.gov/Traces/wgs/wgsviewer.cgi?dum
 {'PseudoGenesIncomplete': 'Pseudo Genes (incomplete)'}
 {'PseudoGenesInternalStop': 'Pseudo Genes (internal stop)'}
 {'PseudoGenesMultipleProblems': 'Pseudo Genes (multiple problems)'}
-{'CRISPRArrays': 'CRISPR Arrays'}
-
-
-
-
-# Special values for which there is not a unique attribute/node name
-{"Journal": ['GBSeq_references', 'GBReference_journal']}
-{"ReferenceTitle": ['GBSeq_references', u'GBReference_title']}
-{"FirstAccession" : ['GBAltSeqData_items', 'GBSeq_alt-seq', 'GBAltSeqItem_first-accn']}
-{"LastAccession" : ['GBAltSeqData_items', 'GBSeq_alt-seq', 'GBAltSeqItem_last-accn']}
-{"SeqDataName" : ['GBSeq_alt-seq', 'GBAltSeqData_name']}
-
-
-
-
-
-
-# Download WGS contigs
-id="JSUE03030586.1"
-format="fasta"#or genbank
-handle=urllib.urlopen{"https://www.ncbi.nlm.nih.gov/Traces/wgs/wgsviewer.cgi?dump=%s&format=%s"%{id:format}}
+{'rRNAs': 'rRNAs'}
+{'rRNAsComplete': 'complete rRNAs'}
+{'rRNAsPartial': 'partial rRNAs'}
+{'SequencingTechnology': 'Sequencing Technology'}
+{'tRNAs': 'tRNAs'}

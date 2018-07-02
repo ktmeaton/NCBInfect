@@ -5,33 +5,12 @@ NCBI Metadata Database Errors
 @author: Katherine Eaton
 """
 
-class ErrorInvalidMode(Exception):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        print("\n\nMode must be one of \'Create\', \'Update\', or \'Delete\'")
-        print("User entered: --mode " + repr(self.value))
-
-class ErrorDBExists(Exception):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        print("\n\nDatabase must not already exist.")
-        print("User entered: --database" + repr(self.value))
-
-class ErrorDBNotExists(Exception):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        print("\n\nDatabase does not exist.")
-        print("User entered: --database" + repr(self.value))
-
 class ErrorOutputDirNotExists(Exception):
     def __init__(self, value):
         self.value = value
     def __str__(self):
         print("\n\nOutput directory does not exist.")
-        print("User entered: --output" + repr(self.value))
+        print("User entered: " + repr(self.value))
 
 
 class ErrorAnnotFileNotExists(Exception):
@@ -41,12 +20,6 @@ class ErrorAnnotFileNotExists(Exception):
         print("\n\nFile does not exist.")
         print("User entered: --annotfile" + repr(self.value))
 
-class ErrorAccessionNotInDB(Exception):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        print("\n\nFThe accession number does not exist in the database.")
-        print("Unknown accession number found: " + repr(self.value))
 
 class ErrorTableNotInDB(Exception):
     def __init__(self, value):

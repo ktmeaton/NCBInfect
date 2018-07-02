@@ -1,37 +1,51 @@
 # This is the database schema for NCBI SRA
 # To customize, consult ???
 
-{"CreateDate" : "CreateDate"}
-{"UpdateDate" : "UpdateDate"}
-{"Title" : "Title"}
-{"Platform" : "Platform"}
-{"LibraryName" : "LIBRARY_NAME"}
-{"LibraryStrategy" : "LIBRARY_STRATEGY"}
-{"LibrarySource" : "LIBRARY_SOURCE"}
-{"LibrarySelection" : "LIBRARY_SELECTION"}
-{"LibraryLayout" : "LIBRARY_LAYOUT"}
+# Accession Numbers and ID
 {"BioProjectAccession" : "Bioproject"}
 {"BioSampleAccession" : "Biosample"}
-{"ClusterName" : ["Statistics", "cluster_name"]}
-{"TotalBases" : ["Statistics", "total_bases"]}
-{"TotalSpots" : ["Statistics", "total_spots"]}
-{"TotalRuns" : ["Statistics", "total_runs"]}
-{"TotalSize" : ["Statistics", "total_size"]}
-{"StaticDataAvailable" : ["Run", "static_data_available"]}
-{"IsPublic" : ["Run", "is_public"]}
-{"InstrumentModel" : ["Platform", "instrument_model"]}
-{"SubmitterAccession" : ["Submitter", "acc"]}
-{"CenterName" : ["Submitter", "center_name"]}
-{"ContactName" : ["Submitter", "contact_name"]}
-{"LabName" : ["Submitter", "lab_name"]}
 {"ExperimentAccession" : ["Experiment", "acc"]}
+{"RunAccession" : ["Run", "acc"]}
+{"SampleAccession" : ["Sample", "acc"]}
+
+# SRA Description
 {"ExperimentName" : ["Experiment", "name"]}
 {"ExperimentStatus" : ["Experiment", "status"]}
 {"ExperimentVersion" : ["Experiment", "ver"]}
+{"IsPublic" : ["Run", "is_public"]}
+{"SampleName" : ["Sample", "name"]}
+{"StaticDataAvailable" : ["Run", "static_data_available"]}
 {"StudyAcc" : ["Study", "acc"]}
 {"StudName" : ["Study", "name"]}
+{"Title" : "Title"}
+
+# Taxonomy
 {"OrganismName" : ["Organism", "CommonName"]}
 {"OrganismTaxID" : ["Organism", "taxid"]}
-{"SampleAccession" : ["Sample", "acc"]}
-{"SampleName" : ["Sample", "name"]}
-{"RunAccession" : ["Run", "acc"]}
+
+
+# SRA Attributes
+{"ClusterName" : ["Statistics", "cluster_name"]}
+
+{"InstrumentModel" : ["Platform", "instrument_model"]}
+{"LibraryName" : "LIBRARY_NAME"}
+{"LibraryLayout" : "LIBRARY_LAYOUT"}
+{"LibrarySelection" : "LIBRARY_SELECTION"}
+{"LibrarySource" : "LIBRARY_SOURCE"}
+{"LibraryStrategy" : "LIBRARY_STRATEGY"}
+{"Platform" : "Platform"}
+{"TotalBases" : ["Statistics", "total_bases"]}
+{"TotalSize" : ["Statistics", "total_size"]}
+{"TotalSpots" : ["Statistics", "total_spots"]}
+{"TotalRuns" : ["Statistics", "total_runs"]}
+
+
+# Dates
+{"CreateDate" : "CreateDate"}
+{"UpdateDate" : "UpdateDate"}
+
+# Submitter
+{"CenterName" : ["Submitter", "center_name"]}
+{"ContactName" : ["Submitter", "contact_name"]}
+{"LabName" : ["Submitter", "lab_name"]}
+{"SubmitterAccession" : ["Submitter", "acc"]}
