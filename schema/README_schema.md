@@ -10,7 +10,7 @@ This is a python dictionary (associative array, hash, etc.) with the left side o
 
 The left side (key) will be the name of the column in the final table and can be changed to whatever the user desires. However, please avoid putting spaces in your column names.    
 
-The right side is a keyword specific to the biopython API and should not be altered. It's format takes several options.    
+The right side is a keyword specific to the biopython API and should not be altered. Its format takes several options (1-4).    
 
 ## 1) Retrieving a simple node value with biopython from the metadata xml.
 
