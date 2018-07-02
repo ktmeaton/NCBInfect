@@ -1,3 +1,6 @@
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+made-with-python
+
 # NCBImeta
 Creates a SQLite database of metadata from the NCBI database.  
 
