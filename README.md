@@ -61,6 +61,10 @@ BioSample
 Nucleotide  
 SRA  
 
+## Up-Coming Features
+PubMed Table 
+Any requested tables or metadata :)  
+
 ## Suggested Accessory Programs
 ### Database Browser
 DB Browser for SQLite: https://sqlitebrowser.org/  
@@ -87,7 +91,5 @@ Merging a development branch into master:
         (resolve any merge conflicts if there are any)  
         git checkout master  
         git merge --no-ff development (there won't be any conflicts now)  
-
-## About
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
