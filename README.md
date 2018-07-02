@@ -6,7 +6,7 @@
 # NCBImeta
 Creates a SQLite database of metadata from the NCBI database.  
 
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_screenshot.png" alt="NCBImeta_screenshot" width="200px"/>
+<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_screenshot.png" alt="NCBImeta_screenshot" width="400px"/>
 
 ![image2](https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_snapshot.jpg)
 
