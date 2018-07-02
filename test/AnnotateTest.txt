@@ -1,3 +1,0 @@
-Accession	LatLon	Lat
-SAMN07176226	Test	TestLat
-SAMN07176225	Test2	TestLat2
