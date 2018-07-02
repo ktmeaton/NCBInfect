@@ -17,15 +17,10 @@ if sys.version_info.major == 3:
 
 
 def check_accessory_dir(output_dir):
-    OS_SEP = os_check()
-    output_dir = output_dir + OS_SEP
-    if not os.path.exists(output_dir + OS_SEP + "log"):
-        os.makedirs(output_dir + OS_SEP + "log")
-    if not os.path.exists(output_dir + OS_SEP + "database"):
-        os.makedirs(output_dir + OS_SEP + "database")
-    #if not os.path.exists(output_dir + OS_SEP + "annotate"):
-    #    os.makedirs(output_dir + OS_SEP + "annotate")
-    #return 0
+    if not os.path.exists(os.path.join(output_dir,"log")):
+        os.makedirs(os.path.join(output_dir,"log"))
+    if not os.path.exists(os.path.join(output_dir,"database")):
+        os.makedirs(os.path.join(output_dir,"database"))
 
 def table_exists(db_cur, table_name):
     query = "SELECT name FROM sqlite_master WHERE type='table' AND name='{}'".format(table_name)
