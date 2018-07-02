@@ -8,11 +8,6 @@
 Creates a SQLite database of metadata from the NCBI database.  
 
 
-## Version
-
-Development - Version 0.3.2 (v0.3.2)  
-Stable - Version v0.3.1 (master)
-
 ## Python Requirements
 Python2.7+, Python3.4+  
 SQLite3 (sqlite3 in Python3.4+, pysqlite in Python2.7+)     
@@ -22,8 +17,14 @@ BioPython 1.70
 pip install --user biopython 
 ```
 
+## Version
+
+Development - Version 0.3.2 (v0.3.2)  
+Release - Version v0.3.1 (master)
+
 ## Installation
- 
+
+Release  
 ```
 git clone https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta  
@@ -33,7 +34,7 @@ Development:
 git clone -b v0.3.1 https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta  
 ```
-## Usage
+## Quick Start Example
 
 ### Run the program
 ```
