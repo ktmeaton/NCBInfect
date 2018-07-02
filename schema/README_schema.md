@@ -1,27 +1,22 @@
-The schema files are designed to act as menus for users to select desired metadata to retrieve.
-Lines from the schema can be copy and pasted into the configuration file, into the dictionary
-of their respective table.
+# Metadata Selection from NCBI Schema
 
-The schema is of the following format:
+The schema files are designed to act as a text 'menu' for users to select desired metadata to retrieve. Lines from the schema can be copy and pasted into the configuration file, into the dictionary of their respective table.    
 
-{"AssemblyAccession" : "AssemblyAccession"}
+The schema is of the following format:    
 
-This is a python dictionary (associative array, hash, etc.) with the left side of
-the colon as the key, and the right side as the value.
+    {"AssemblyAccession" : "AssemblyAccession"}    
 
-The left side (key) will be the name of the column in the final table and can
-be changed to whatever the user desires. However, please avoid putting spaces
-in your column names.
+This is a python dictionary (associative array, hash, etc.) with the left side of the colon as the key, and the right side as the value.    
 
-The right side is a keyword specific to the biopython API and should not be altered.
-It's format takes several options.
+The left side (key) will be the name of the column in the final table and can be changed to whatever the user desires. However, please avoid putting spaces in your column names.    
 
-#---------------------------------------------------------#
+The right side is a keyword specific to the biopython API and should not be altered. It's format takes several options.    
 
-1) Retrieving a simple node value with biopython from the metadata xml.
+## 1) Retrieving a simple node value with biopython from the metadata xml.
 
-# User selects
-{"AssemblyAccession" : "AssemblyAccession"}
+User selects:
+
+    {"AssemblyAccession" : "AssemblyAccession"}
 
 # XML from NCBI
 <AssemblyAccession> GCA_003086155.1 </AssemblyAccession>
