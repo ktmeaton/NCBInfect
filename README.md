@@ -1,5 +1,5 @@
 
-[![GitHub license](https://img.shields.io/github/license/ktmeaton/NCBImeta.svg?style=plastic?&olor=blue)](https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/ktmeaton/NCBImeta.svg?style=plastic?&color=blue)](https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
 
 
 # NCBImeta
