@@ -2,12 +2,12 @@
 # http://www.storybench.org/geocode-csv-addresses-r/
 
 # Requires ggmap version 2.7 (custom Google API Key)
-#register_google(key = 'AIzaSyAqtJ3uHrXes8rSwUqPp-_1MiP4M50s6Vc')
+#register_google(key = 'MYAPIKEYGOESHERE')
 
 #load up the ggmap library
 library(ggmap)
 
-api_key <- 'AIzaSyAqtJ3uHrXes8rSwUqPp-_1MiP4M50s6Vc'
+api_key <- 'MYAPIKEYGOESHERE'
 
 
 # Select the file from the file chooser
