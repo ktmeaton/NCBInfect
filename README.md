@@ -1,6 +1,6 @@
 [![GitHub (pre-)release](https://img.shields.io/badge/Release-v0.3.1-red.svg)](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.3.1)
 [![GitHub license](https://img.shields.io/github/license/ktmeaton/NCBImeta.svg?style=flat)](https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
-
+[![GitHub issues](https://img.shields.io/github/issues/ktmeaton/NCBImeta.svg)]
 
 
 
