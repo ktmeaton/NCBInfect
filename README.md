@@ -3,8 +3,8 @@ Creates an SQLite database of metadata from the NCBI database.
 
 ## Version
 
-Development - Version 0.3.1 (v0.3.1)  
-Stable - Version v0.3.0 (master)
+Development - Version 0.3.2 (v0.3.2)  
+Stable - Version v0.3.1 (master)
 
 ## Requirements
 Python3.4+ (??)   
