@@ -3,28 +3,25 @@
 The configuration files contain all the options required to run the NCBImeta program.
 They consist of 6 variables:
 
-OUTPUT_DIR
-EMAIL
-DATABASE
-TABLES
-SEARCH_TERMS
-TABLE_COLUMNS
+OUTPUT_DIR    
+EMAIL    
+DATABASE    
+TABLES    
+SEARCH_TERMS    
+TABLE_COLUMNS    
 
-The names of these variables should not be altered in any way. Just their assigned value.
+The names of these variables should not be altered in any way. Just their assigned value.    
 
-The configuration file can be named anything, as long as it ends in ".py" and
-doesn't have any other periods in the name.
+The configuration file can be named anything, as long as it ends in ".py" and doesn't have any other periods in the name.
 
 ## 1) OUTPUT_DIR
-Type "str", example:
+Type "str", example:    
+    
+      OUTPUT_DIR = "../NCBImeta_ouput/"    
+    
+Can be a relative or absolute path. Note that when using a relative path, it will be relative from wherever you are EXECUTING the program (not necessarily from where the config file is located).    
 
-      OUTPUT_DIR = "../NCBImeta_ouput/"
-
-Can be a relative or absolute path. Note that when using a relative path, it will be
-relative from wherever you are EXECUTING the program (not necessarily from where the config
-file is located).
-
-This directory must exist, otherwise the program will exit with an error status.
+This directory must exist, otherwise the program will exit with an error status.    
 
 ## 2) EMAIL
 Type "str", example:
