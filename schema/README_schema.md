@@ -100,7 +100,7 @@ Note that it must be IN ORDER, but can skip intermediate values (ex. node <Biopr
 
 ## 5) Customizing Schema
 
-To figure out the xml criteria for your search query, search for the first instance of "toprettyxml" in src/NCBImeta.py and uncomment this line (delete the '#' at the start of the line). When NCBImeta.py is run now, it will print out the xml for each record. It is recommended to pipe this output to a file:    
+To puzzle out additional xml criteria for your search query, search for the first instance of "toprettyxml" in src/NCBImeta.py and uncomment this line (delete the '#' at the start of the line). When NCBImeta.py is run now, it will print out the xml for each record. It is recommended to pipe this output to a file:    
 
     python src/NCBImeta.py --config example/config.py > config_xml_output.txt    
 
