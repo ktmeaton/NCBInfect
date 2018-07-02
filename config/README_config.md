@@ -1,3 +1,5 @@
+# Configuration Instructions
+
 The configuration files contain all the options required to run the NCBImeta program.
 They consist of 6 variables:
 
@@ -13,7 +15,7 @@ The names of these variables should not be altered in any way. Just their assign
 The configuration file can be named anything, as long as it ends in ".py" and
 doesn't have any other periods in the name.
 
-1) OUTPUT_DIR
+## 1) OUTPUT_DIR
 Type "str", example:
 
       OUTPUT_DIR = "../NCBImeta_ouput/"
@@ -24,14 +26,14 @@ file is located).
 
 This directory must exist, otherwise the program will exit with an error status.
 
-2) EMAIL
+## 2) EMAIL
 Type "str", example:
 
       EMAIL = "myemailname@domain.com"
 
 This must be a valid email address for using biopython/NCBI's API.
 
-3) DATABASE
+## 3) DATABASE
 Type "str", example:
 
         DATABASE = "my_organism_db.sqlite"
@@ -44,14 +46,14 @@ and it will simply be stored in your selected output directory.
 It does not need to end in "".sqlite", but you may find that helpful as your computer will
 associate that with an appropriate viewer application.
 
-4) TABLES
+## 4) TABLES
 Type "list" containing comma separated "str" elements:
         TABLES = ["Assembly","BioSample"]
 
 This list contains the names of all tables you want to search in. Note that these
 must match exactly to SEARCH TERMS and TABLE COLUMNS.
 
-5) SEARCH_TERMS
+## 5) SEARCH_TERMS
 Type "dict" containing comma separated key value pairs of type "str", example:
 
         SEARCH_TERMS = {"Assembly": "Yersinia pestis[Orgn]",
@@ -67,7 +69,7 @@ Note that these must match exactly to TABLES and TABLE COLUMNS.
 This can be changed locally in your program by searching for the first instance of
 "retmax" in the NCBImeta.py source file (src/NCBImeta.py). ***
 
-5) TABLE_COLUMNS
+## 5) TABLE_COLUMNS
 Type "dict" containing comma separated key value pairs. The key is always of
 type "str", the value always of type "list" of "str", example:
 
