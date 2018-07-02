@@ -15,12 +15,27 @@ pip install --user biopython
 ## Installation
 
 git clone https://github.com/ktmeaton/NCBImeta.git   
+cd NCBImeta  
 
 Development:  
 git clone -b v0.3.1 https://github.com/ktmeaton/NCBImeta.git   
+cd NCBImeta  
 
 ## Usage
-TODO  
+### Run the program, creating accessory directories 'log' and 'database'
+python src/NCBImeta.py --config config/NCBImeta_config.py
+
+### Annotate the database with a curated tab-separated text file of metadata
+python src/NCBImeta_Annotate.py \  
+        --database my_organism_db.sqlite \
+        --annotfile my_organism_annot.txt \
+        --table Nucleotide
+
+### Export the database to tab-separated text files by table.
+python src/NCBImeta_Export.py \
+        --database my_organism_db.sqlite \
+        --outputdir NCBImeta_output
+
 
 ## Supported NCBI Tables  
 Assembly  
@@ -29,7 +44,9 @@ BioSample
 Nucleotide  
 SRA  
 
-
+## Suggested Accessory Programs
+### Database Browser
+DB Browser for SQLite: https://sqlitebrowser.org/  
 
 ## Contributing
 

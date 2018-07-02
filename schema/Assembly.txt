@@ -1,44 +1,55 @@
+
+# Accession Numbers and ID
 {"AssemblyAccession" : "AssemblyAccession"}
-{"AssemblyName" : "AssemblyName"}
-{"Organism" : 'Organism'}
-{"AssemblyStatus" : 'AssemblyStatus'}
-{"AssemblyType" : 'AssemblyType'}
-{"SubmitterOrganization" : 'SubmitterOrganization'}
-{"TaxonomicID" : 'Taxid'}
-{"SpeciesTaxonomicID" : 'SpeciesTaxid'}
-{"SpeciesName" : 'SpeciesName'}
 {"BioSampleAccession" : 'BioSampleAccn'}
 {"BioSampleID" : 'BioSampleId'}
-{"AssemblyCoverage" : 'Coverage'}
-{"SubmissionDate" : 'SubmissionDate'}
-{"ReleaseDate" : 'SeqReleaseDate'}
+{"GenbankBioprojectAccession" : ["GB_BioProjects","BioprojectAccn"]}
+{"GenbankID" : 'GbUid'}
+{"RefseqBioprojectAccession" : ["RS_BioProjects","BioprojectAccn"]}
+{"RefSeqCategory" : 'RefSeq_category'}
+{"RefSeqID" : 'RsUid'}
 {"WGSAccession" : 'WGS'}
+
+# Taxonomy Information
+{"Infraspecies" : ["InfraspeciesList","Biosource","Sub_value"]}
 {"Isolate" : "Isolate"}
+{"Organism" : 'Organism'}
+{"SpeciesTaxonomicID" : 'SpeciesTaxid'}
+{"SpeciesName" : 'SpeciesName'}
+{"TaxonomicID" : 'Taxid'}
+
+
+# Assembly Description
+{"AssemblyName" : "AssemblyName"}
+{"AssemblyStatus" : 'AssemblyStatus'}
+{"AssemblyType" : 'AssemblyType'}
+
+# Assembly Statistics
+{"AssemblyCoverage" : 'Coverage'}
 {"Chromosomes" : ["Stat", "chromosome_count", "category"]}
-{"Replicons" : ["Stat", "replicon_count", "category"]}
-{"NonChromosomalReplicons" : ["Stat", "non_chromosome_replicon_count", "category"]}
 {"ContigCount": ["Stat", "contig_count", "category"]}
 {"ContigN50" : ["Stat", "contig_n50", "category"]}
 {"ContigL50" : ["Stat", "contig_l50", "category"]}
+{"NonChromosomalReplicons" : ["Stat", "non_chromosome_replicon_count", "category"]}
+{"Replicons" : ["Stat", "replicon_count", "category"]}
 {"Scaffolds" : ["Stat", "scaffold_count", "category"]}
 {"ScaffoldN50" : ["Stat", "scaffold_n50", "category"]}
 {"ScaffoldL50" : ["Stat", "scaffold_l50", "category"]}
 {"TotalLength" : ["Stat", "total_length", "category"]}
 {"UngappedLength" : ["Stat", "ungapped_length", "category"]}
 
-{"RefSeqID" : 'RsUid'}
-{"GenbankID" : 'GbUid'}
-{"RefSeqCategory" : 'RefSeq_category'}
+# Submitter Information
+{"SubmitterOrganization" : 'SubmitterOrganization'}
 
+# Dates
+{"SubmissionDate" : 'SubmissionDate'}
+{"ReleaseDate" : 'SeqReleaseDate'}
+
+# FTP Links
+{"FTPAssemblyReport" : 'FtpPath_Assembly_rpt'}
 {"FTPGenbank" : 'FtpPath_GenBank'}
 {"FTPRefSeq" : 'FtpPath_RefSeq'}
-{"FTPAssemblyReport" : 'FtpPath_Assembly_rpt'}
 {"FTPStatsReport" : 'FtpPath_Stats_rpt'}
-
-# Special values for which there is not a unique attribute/node name
-{"GenbankBioprojectAccession" : ["GB_BioProjects","BioprojectAccn"]}
-{"RefseqBioprojectAccession" : ["RS_BioProjects","BioprojectAccn"]}
-{"Infraspecies" : ["InfraspeciesList","Biosource","Sub_value"]}
 
 # TO-DO
 'scaffold_count' should be sub-divided into 'all','placed','unplaced','unlocalized'

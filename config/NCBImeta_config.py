@@ -1,23 +1,20 @@
-OUTPUT_DIR = "../NCBImeta_ouput/"
-EMAIL = "ktmeaton@gmail.com"
-DATABASE = "yersinia_pestis_db.sqlite"
+OUTPUT_DIR = "..\\NCBImeta_output"
+EMAIL = "myemailname@domain.com"
+DATABASE = "my_organism_db.sqlite"
 TABLES = ["Assembly","BioSample"]
 SEARCH_TERMS = {"Assembly": "Yersinia pestis[Orgn]",
-                "BioSample": "Yersinia pestis[Orgn]"}
+                "BioSample": "Yersinia pestis[Orgn] AND biosample assembly[Filter]"}
 
-TABLE_COLUMNS = {"Assembly": ["AssemblyAccession",
-                              "Organism",
-                              "AssemblyStatus",
-                              "SubmitterOrganization",
-                              "Taxid",
-                              "BioSampleAccn",
-                              "Coverage",
-                              "SubmissionDate",
-                              "SeqReleaseDate",
-                              "WGS",
-                              ["GB_BioProjects","BioprojectAccn"],
-                              ["RS_BioProjects","BioprojectAccn"],
-                              "chromosome_count",
-                              "contig_count",
-                              ["InfraspeciesList","Biosource","Sub_value"]],
-                 "BioSample": ["Accession"]}
+TABLE_COLUMNS = {
+   "Assembly" : [
+                {"AssemblyAccession" : "AssemblyAccession"},
+                {"BioSampleAccession" : 'BioSampleAccn'},
+                {"Organism" : 'Organism'}
+                ],
+  "BioSample" : [
+                {"Accession": "Accession"},
+                {"BioProject": ["Link","label"]},
+                {"SRAAccession": ["Id","SRA","db"]},
+                {"BioSampleTitle": "Title"}
+                ]
+                }

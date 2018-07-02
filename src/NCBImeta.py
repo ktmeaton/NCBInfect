@@ -42,12 +42,6 @@ parser = argparse.ArgumentParser(description='Description of NCBImeta.',
 # Argument groups for the program
 mandatory_parser = parser.add_argument_group('mandatory')
 
-mandatory_parser.add_argument('--outputdir',
-                    help = 'Output directory.',
-                    action = 'store',
-                    dest = 'outputDir',
-                    required = True)
-
 parser.add_argument('--config',
                     help = 'Path to configuration file "NCBImeta_config.py".',
                     action = 'store',
@@ -65,7 +59,6 @@ parser.add_argument('--flat',
 args = vars(parser.parse_args())
 
 config_path = args['configPath']
-output_dir = args['outputDir']
 flat_mode = args['flatMode']
 
 
@@ -76,14 +69,9 @@ flat_mode = args['flatMode']
 #------------------------------------------------------------------------------#
 
 
-# Check if output dir exists
-if not os.path.exists(output_dir):
-    raise ErrorOutputDirNotExists(output_dir)
-
-
 # Check if config.py file exists
 if not os.path.exists(config_path):
-    raise ErrorConfigFileNotExists(config_path)
+    raise NCBImeta_Errors.ErrorConfigFileNotExists(config_path)
 
 # Add the directory containing config.py to the system path for import
 sys.path.append(os.path.dirname(config_path))
@@ -103,19 +91,23 @@ flushprint(
 "\t" + "Tables: " + str(CONFIG.TABLES) + "\n" +
 "\t" + "Search Terms: " + str(CONFIG.SEARCH_TERMS) + "\n\n")
 
+# Check if output dir exists
+if not os.path.exists(CONFIG.OUTPUT_DIR):
+    raise NCBImeta_Errors.ErrorOutputDirNotExists(CONFIG.OUTPUT_DIR)
+
 # Flat mode checking
 if flat_mode:
     flushprint("Flat mode was requested, organizational directories will not be used.")
-    DB_DIR = os.path.join(output_dir, "")
-    LOG_PATH = output_dir
+    DB_DIR = os.path.join(CONFIG.OUTPUT_DIR, "")
+    LOG_PATH = CONFIG.OUTPUT_DIR
 
 
 elif not flat_mode:
     # Create accessory directory (ex. log, data, database, etc.)
     flushprint("Flat mode was not requested, organization directories will be used.")
-    NCBImeta_Utilities.check_accessory_dir(output_dir)
-    DB_DIR = os.path.join(output_dir, "", "database", "")
-    LOG_PATH = os.path.join(output_dir, "", "log")
+    NCBImeta_Utilities.check_accessory_dir(CONFIG.OUTPUT_DIR)
+    DB_DIR = os.path.join(CONFIG.OUTPUT_DIR, "", "database", "")
+    LOG_PATH = os.path.join(CONFIG.OUTPUT_DIR, "", "log")
 
 DB_PATH = os.path.join(DB_DIR, "", CONFIG.DATABASE)
 
@@ -185,7 +177,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
     handle = Entrez.esearch(db=table.lower(),
                             term=search_term,
-                            retmax = 1)
+                            retmax = 9999999)
 
     # Read the record, count total number entries, create counter
     record = Entrez.read(handle)
@@ -294,7 +286,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             # Attempt 1: Simple Dictionary Parse, taking first match
 
             for row in flatten_record_dict:
-                print(row)
+                #print(row)
                 # For simple column types, as strings
                 if type(column_payload) == str and column_payload in row:
                     column_value = row[-1]
@@ -335,7 +327,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                     xml = "<Root>" + result.encode("utf-8") + "</Root>"
                     root = minidom.parseString(xml).documentElement
 
-                print(root.toprettyxml())
+                #print(root.toprettyxml())
                 # Names of nodes and attributes we are searching for
                 if type(column_payload) == str:
                     node_name = column_payload
@@ -406,4 +398,6 @@ for table in CONFIG.TABLES:
     EMAIL = CONFIG.EMAIL
     SEARCH_TERM = CONFIG.SEARCH_TERMS[table]
     TABLE_COLUMNS = CONFIG.TABLE_COLUMNS[table]
+
+
     UpdateDB(table, OUTPUT_DIR, DATABASE, EMAIL, SEARCH_TERM, TABLE_COLUMNS, LOG_PATH, DB_DIR)

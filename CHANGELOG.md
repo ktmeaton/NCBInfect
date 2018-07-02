@@ -6,6 +6,14 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
+## [0.3.1] - 2018-0702
+### Added  
+- README files for config and schema
+- Usage in main README
+
+### Changed
+- Alphabetized schema entries
+
 ## [0.3.0] - 2018-0629
 ### Added
 - Automation mode
@@ -37,7 +45,8 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 https://github.com/ktmeaton/NCBImeta
 
-[Unreleased]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.1...HEAD
+[0.3.0]:https://github.com/ktmeaton/NCBImeta/compare/0.3.0...v0.3.1
 [0.3.0]:https://github.com/ktmeaton/NCBImeta/compare/0.2.1...v0.3.0
 [0.2.1]:https://github.com/ktmeaton/NCBImeta/compare/0.2.0...v0.2.1
 [0.2.0]:https://github.com/ktmeaton/NCBImeta/compare/0.1.2...v0.2.0
