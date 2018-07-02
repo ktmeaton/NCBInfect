@@ -34,20 +34,25 @@ cd NCBImeta
 ```
 ## Usage
 
-### Run the program, creating accessory directories 'log' and 'database'
-python src/NCBImeta.py --config example/config.py --flat
+### Run the program
+```
+python src/NCBImeta.py --config example/config.py
+```
 
 ### Annotate the database with a curated tab-separated text file of metadata
+```
 python src/NCBImeta_Annotate.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot.txt --table BioSample
+```
 
 Note that the first column of your annotation file MUST be a column that is unique to
 each record. An Accession number or ID is highly recommended.
 
 ### Export the database to tab-separated text files by table.
+```
 python src/NCBImeta_Export.py --database example/my_organism_db.sqlite --outputdir example/
+```
 
-
-## Supported NCBI Tables  
+## Currently Supported NCBI Tables  
 Assembly  
 BioProject  
 BioSample  
@@ -74,11 +79,7 @@ See CHANGELOG.md.
 
 author: Katherine Eaton (ktmeaton@gmail.com)
 
-## License
-
-TODO: Write license
-
-## Helpful commands  
+## Helpful Development Commands  
 Merging a development branch into master:  
         (on branch development)$ git merge master  
         (resolve any merge conflicts if there are any)  
