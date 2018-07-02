@@ -68,7 +68,7 @@ SRA
 <img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_DB.jpg" alt="NCBImeta_DB" width="1000px"/> 
 
 ## Usage
-To customize the search terms and database to your needs, please read through config/README_config.txt and schema/README_schema.txt.
+To customize the search terms and database to your needs, please read through config/README_config.md and schema/README_schema.md.
 These two files provide instructions on writing configuration files and customizing metadata.
 
 
