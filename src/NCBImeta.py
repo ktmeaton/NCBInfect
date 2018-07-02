@@ -273,7 +273,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                                     column_dict[i_column.items()[0][0]] = column_value
 
             # Special hard-coded field for biosample
-        elif "NucleotideBioSample" in column.items():
+            elif "NucleotideBioSample" in column.items():
                 for row in record_dict:
                     if row != "GBSeq_xrefs": continue
                     for subrow in record_dict[row]:
