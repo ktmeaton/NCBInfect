@@ -46,7 +46,7 @@ python src/NCBImeta.py --config example/config.py
 python src/NCBImeta_Annotate.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot.txt --table BioSample
 ```
 
-Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also match exactly the names of your columsn in the database.
+Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also exactly match the names of your columns in the database.
 
 ### Export the database to tab-separated text files by table.
 ```
