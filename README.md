@@ -16,10 +16,11 @@ Stable - Version v0.3.1 (master)
 ## Python Requirements
 Module SQLite3 (sqlite3 in Python3+, pysqlite in Python2.7+)     
 BioPython 1.70 (biopython)  
-Python2.7+ (Minimum requirement unverified)    
+Python2.7+, Python3.4+  
 
-
-pip install --user biopython
+```
+pip install --user biopython 
+```
 
 ## Installation
 Stable:  
