@@ -1,4 +1,5 @@
 [![apm](https://img.shields.io/apm/l/vim-mode.svg)](https://github.com/ktmeaton/NCBImeta/LICENSE)
+[![GitHub (pre-)release](https://img.shields.io/github/release/qubyte/rubidium/all.svg)]https://github.com/ktmeaton/NCBImeta/releases)
 
 # NCBImeta
 Creates a SQLite database of metadata from the NCBI database.  
