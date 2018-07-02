@@ -32,16 +32,18 @@ git clone -b v0.3.1 https://github.com/ktmeaton/NCBImeta.git
 cd NCBImeta  
 
 ## Usage
-mkdir output
 
 ### Run the program, creating accessory directories 'log' and 'database'
-python src/NCBImeta.py --config config/NCBImeta_config.py
+python src/NCBImeta.py --config example/config.py --flat
 
 ### Annotate the database with a curated tab-separated text file of metadata
-python src/NCBImeta_Annotate.py --database my_organism_db.sqlite --annotfile my_organism_annot.txt --table Nucleotide
+python src/NCBImeta_Annotate.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot.txt --table BioSample
+
+Note that the first column of your annotation file MUST be a column that is unique to
+each record. An Accession number or ID is highly recommended.
 
 ### Export the database to tab-separated text files by table.
-python src/NCBImeta_Export.py --database my_organism_db.sqlite --outputdir NCBImeta_output
+python src/NCBImeta_Export.py --database example/my_organism_db.sqlite --outputdir example/
 
 
 ## Supported NCBI Tables  
@@ -81,7 +83,7 @@ Merging a development branch into master:
         (resolve any merge conflicts if there are any)  
         git checkout master  
         git merge --no-ff development (there won't be any conflicts now)  
-        
+
 ## About
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)

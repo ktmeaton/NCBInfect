@@ -16,17 +16,6 @@ if sys.version_info.major == 3:
     unicode = str
 
 
-def os_check():
-    ''' Return OS Separator'''
-    if 'linux' in _platform:
-        return "/"
-    elif 'cygwin' in _platform:
-        return "/"
-    elif "win" in _platform:
-        return "\\"
-    else:
-        return "/"
-
 def check_accessory_dir(output_dir):
     OS_SEP = os_check()
     output_dir = output_dir + OS_SEP

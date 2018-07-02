@@ -8,8 +8,13 @@ import argparse
 import sqlite3
 import os
 import sys
+import io
 
 from NCBImeta_Errors import *
+
+# Deal with unicode function rename in version 3
+if sys.version_info.major == 3:
+    unicode = str
 
 def flushprint(message):
     print(message)
@@ -91,7 +96,7 @@ for table in table_list:
     # Retrieve and write the header
     header = ""
     for column in table_col_names:
-        header += column + "\t"
+        header += unicode(column) + "\t"
     header = header.rstrip("\t") + "\n"
     table_file.write(header)
 
@@ -100,9 +105,9 @@ for table in table_list:
     for row in cur.execute(query):
         line = ""
         for cell in row:
-            line += str(cell) + "\t"
+            line += unicode(cell) + "\t"
         line = line.rstrip("\t")  + "\n"
-        table_file.write(line)
+        table_file.write(line.encode('utf-8'))
 
     # Close table file
     table_file.close()

@@ -11,8 +11,12 @@ import os
 import sys
 
 import NCBImeta_Errors
-from NCBImeta_Utilities import os_check,table_exists
+from NCBImeta_Utilities import table_exists
 
+# Deal with unicode function rename in version 3
+if sys.version_info.major == 3:
+    unicode = str
+    
 def flushprint(message):
     print(message)
     sys.stdout.flush()

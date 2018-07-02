@@ -328,7 +328,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 try:
                     root = minidom.parseString(xml).documentElement
                 except UnicodeEncodeError:
-                    xml = "<Root>" + result.encode("utf-8") + "</Root>"
+                    xml = "<Root>" + unicode(result) + "</Root>"
                     root = minidom.parseString(xml).documentElement
 
                 #print(root.toprettyxml())

@@ -8,9 +8,9 @@ NCBI Metadata Database Errors
 class ErrorOutputDirNotExists(Exception):
     def __init__(self, value):
         self.value = value
-    def __str__(self):
+    #def __str__(self):
         print("\n\nOutput directory does not exist.")
-        print("User entered: " + repr(self.value))
+        print("User entered: " + self.value)
 
 
 class ErrorAnnotFileNotExists(Exception):
@@ -18,7 +18,7 @@ class ErrorAnnotFileNotExists(Exception):
         self.value = value
     def __str__(self):
         print("\n\nFile does not exist.")
-        print("User entered: --annotfile" + repr(self.value))
+        print("User entered: --annotfile" + self.value)
 
 
 class ErrorTableNotInDB(Exception):
@@ -26,25 +26,25 @@ class ErrorTableNotInDB(Exception):
         self.value = value
     def __str__(self):
         print("\n\nThe table does not exist in the database.")
-        print("Unknown table found: " + repr(self.value))
+        print("Unknown table found: " + self.value)
 
 class ErrorEntryNotInDB(Exception):
     def __init__(self, value):
         self.value = value
     def __str__(self):
         print("\n\nThe entry does not exist in the database.")
-        print("Unknown entry found: " + repr(self.value))
+        print("Unknown entry found: " + self.value)
 
 class ErrorEntryMultipleMatches(Exception):
     def __init__(self, value):
         self.value = value
     def __str__(self):
         print("\n\nThe entry has multiple matches in the database.")
-        print("Multiple matches for entry: " + repr(self.value))
+        print("Multiple matches for entry: " + self.value)
 
 class ErrorConfigFileNotExists(Exception):
     def __init__(self, value):
         self.value = value
     def __str__(self):
-        print("\n\nConfig.py does not exist in the specified location.")
-        print("Location specified: " + repr(self.value))
+        print("\n\nConfig file does not exist in the specified location.")
+        print("Location specified: " + self.value)
