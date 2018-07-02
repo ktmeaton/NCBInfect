@@ -18,27 +18,30 @@ User selects:
 
     {"AssemblyAccession" : "AssemblyAccession"}
 
-# XML from NCBI
-<AssemblyAccession> GCA_003086155.1 </AssemblyAccession>
+XML from NCBI:
 
-Retrieves Accession Number "GCA_003086155.1" and stores it under column "AssemblyAccession".
+    <AssemblyAccession> GCA_003086155.1 </AssemblyAccession>
 
-#---------------------------------------------------------#
+Retrieves Accession Number "GCA_003086155.1" and stores it under column "AssemblyAccession".    
 
-2) Retrieving an attribute value (not a node value)
 
-# User selects
-{"ExperimentAccession" : ["Experiment", "acc"]}
+## 2) Retrieving an attribute value (not a node value)
 
-# XML from NCBI
-<EXPERIMENT alias="EXT00317997" accession="SRX4321294">
+User selects:
+    
+    {"ExperimentAccession" : ["Experiment", "acc"]}
+
+XML from NCBI:    
+
+    <EXPERIMENT alias="EXT00317997" accession="SRX4321294">
 
 Retrieves accession "SRX4321294" and stores it under "ExperimentAccession"
 The value in this case, is a list of 2 elements:
 
-["Experiment", "acc"]
+    ["Experiment", "acc"]
 The first value ("Experiment"), is the name of the node.
-The second value ("acc") is the attribute value to target.
+The second value ("acc") is the attribute value to target.    
+
 ** Note that the attribute value name does not match the attribute name
 provided by NCBI. The biopython API occasionally renames attributes.
 
