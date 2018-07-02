@@ -31,7 +31,7 @@ cd NCBImeta
 ```
 Development: 
 ```
-git clone -b v0.3.1 https://github.com/ktmeaton/NCBImeta.git   
+git clone -b v0.3.2 https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta  
 ```
 ## Quick Start Example
