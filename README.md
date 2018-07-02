@@ -1,5 +1,5 @@
 # NCBImeta
-Creates an SQLite database of metadata from the NCBI database.  
+Creates a SQLite database of metadata from the NCBI database.  
 
 https://ktmeaton.github.io/NCBImeta/  
 
