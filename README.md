@@ -26,15 +26,10 @@ cd NCBImeta
 python src/NCBImeta.py --config config/NCBImeta_config.py
 
 ### Annotate the database with a curated tab-separated text file of metadata
-python src/NCBImeta_Annotate.py \  
-        --database my_organism_db.sqlite \
-        --annotfile my_organism_annot.txt \
-        --table Nucleotide
+python src/NCBImeta_Annotate.py --database my_organism_db.sqlite --annotfile my_organism_annot.txt --table Nucleotide
 
 ### Export the database to tab-separated text files by table.
-python src/NCBImeta_Export.py \
-        --database my_organism_db.sqlite \
-        --outputdir NCBImeta_output
+python src/NCBImeta_Export.py --database my_organism_db.sqlite --outputdir NCBImeta_output
 
 
 ## Supported NCBI Tables  
@@ -70,7 +65,7 @@ TODO: Write license
 
 ## Helpful commands  
 Merging a development branch into master:  
-    (on branch development)$ git merge master  
-    (resolve any merge conflicts if there are any)  
-    git checkout master  
-    git merge --no-ff development (there won't be any conflicts now)  
+        (on branch development)$ git merge master  
+        (resolve any merge conflicts if there are any)  
+        git checkout master  
+        git merge --no-ff development (there won't be any conflicts now)  
