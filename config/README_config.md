@@ -17,7 +17,7 @@ The configuration file can be named anything, as long as it ends in ".py" and do
 ## 1) OUTPUT_DIR
 Type "str", example:    
     
-      ```OUTPUT_DIR = "../NCBImeta_ouput/"```  
+      OUTPUT_DIR = "../NCBImeta_ouput/"  
     
 Can be a relative or absolute path. Note that when using a relative path, it will be relative from wherever you are EXECUTING the program (not necessarily from where the config file is located).    
 
@@ -40,7 +40,8 @@ This will be the name of your created database and should not be a path. By defa
 It does not need to end in "".sqlite", but you may find that helpful as your computer will associate that with an appropriate viewer application.    
 
 ## 4) TABLES
-Type "list" containing comma separated "str" elements:    
+Type "list" containing comma separated "str" elements:   
+
         TABLES = ["Assembly","BioSample"]
 
 This list contains the names of all tables you want to search in. Note that these must match exactly to SEARCH TERMS and TABLE COLUMNS. 
@@ -62,13 +63,13 @@ Note that these must match exactly to TABLES and TABLE COLUMNS.
 ## 5) TABLE_COLUMNS
 Type "dict" containing comma separated key value pairs. The key is always of type "str", the value always of type "list" of "str", example:    
 
-TABLE_COLUMNS = {
-   "Assembly" : [
+    TABLE_COLUMNS = {
+       "Assembly" : [
                 {"AssemblyAccession" : "AssemblyAccession"},
                 {"BioSampleAccession" : 'BioSampleAccn'},
                 {"Organism" : 'Organism'}
                 ],
-  "BioSample" : [
+      "BioSample" : [
                 {"Accession": "Accession"},
                 {"BioProject": ["Link","label"]},
                 {"SRAAccession": ["Id","SRA","db"]},
