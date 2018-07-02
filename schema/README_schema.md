@@ -97,3 +97,11 @@ The value in this case, is a list of 2 elements:
 
 This can be built from any number of elements, and provides a directional path to follow to find a node.    
 Note that it must be IN ORDER, but can skip intermediate values (ex. node <Bioproj> is missing from the list). This has not been extensively tested yet.    
+
+## 5) Customizing Schema
+
+To figure out the xml criteria for your search query, search for the first instance of "toprettyxml" in src/NCBImeta.py and uncomment this line (delete the '#' at the start of the line). When NCBImeta.py is run now, it will print out the xml for each record. It is recommended to pipe this output to a file:    
+
+    python src/NCBImeta.py --config example/config.py > config_xml_output.txt    
+
+Sometimes, metadata is not stored in an xml structure, but rather a flattened dictionary. To print out the dictionary for your search term, search for the first instance of "Attempt 1" in src/NCBImeta.py. 2 code lines below is the line '#print(row)'. Uncomment this to print out the metdata that is stored in a dictionary rather than an xml structure. These attributes can be accessed using Option 1 or Option 4 in this schema readme file.
