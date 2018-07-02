@@ -1,1 +1,5 @@
 theme: jekyll-theme-architect
+
+# SITE CONFIGURATION
+baseurl: ""
+url: "https://ktmeaton.github.io/NCBImeta/"
