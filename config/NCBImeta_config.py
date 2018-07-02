@@ -1,4 +1,4 @@
-OUTPUT_DIR = "..\\NCBImeta_output"
+OUTPUT_DIR = "output"
 EMAIL = "myemailname@domain.com"
 DATABASE = "my_organism_db.sqlite"
 TABLES = ["Assembly","BioSample"]

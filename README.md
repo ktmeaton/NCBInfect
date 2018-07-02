@@ -9,7 +9,7 @@ Stable - Version v0.3.1 (master)
 ## Python Requirements
 Module SQLite3 (sqlite3 in Python3+, pysqlite in Python2.7+)     
 BioPython 1.70 (biopython)  
-Python3.4+ (Minimum requirement unverified)    
+Python2.7+ (Minimum requirement unverified)    
 
 
 pip install --user biopython
@@ -24,6 +24,8 @@ git clone -b v0.3.1 https://github.com/ktmeaton/NCBImeta.git
 cd NCBImeta  
 
 ## Usage
+mkdir output
+
 ### Run the program, creating accessory directories 'log' and 'database'
 python src/NCBImeta.py --config config/NCBImeta_config.py
 

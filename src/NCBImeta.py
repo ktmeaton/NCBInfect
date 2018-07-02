@@ -22,6 +22,10 @@ from xml.dom import minidom
 src_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '') + "src"
 sys.path.append(src_dir)
 
+# Deal with unicode function rename in version 3
+if sys.version_info.major == 3:
+    unicode = str
+
 import NCBImeta_Utilities
 import NCBImeta_Errors
 
@@ -164,7 +168,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     table + "_id TEXT")
 
     for column_name_dict in table_columns:
-        column_name = column_name_dict.keys()[0]
+        column_name = list(column_name_dict.keys())[0]
         # By default, every user-specified column is type TEXT
         sql_query += ", " + column_name + " TEXT"
     sql_query += ")"
@@ -242,13 +246,13 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
         # Iterate through each column to search for values
         for column in table_columns:
-            column_name = column.keys()[0]
-            column_payload = column.values()[0]
+            column_name = list(column.keys())[0]
+            column_payload = list(column.values())[0]
             column_value = ""
             column_index = 0
 
             # Special rules for hard-coded Nucleotide  Fields
-            if "GBSeq_comment" in column.itervalues():
+            if "GBSeq_comment" in column.items():
                 for row in flatten_record_dict:
                     if row[0] == "GBSeq_comment":
                         # Hard-coded field, also check for user custom column name
@@ -269,7 +273,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                                     column_dict[i_column.items()[0][0]] = column_value
 
             # Special hard-coded field for biosample
-            elif "NucleotideBioSample" in column.itervalues():
+        elif "NucleotideBioSample" in column.items():
                 for row in record_dict:
                     if row != "GBSeq_xrefs": continue
                     for subrow in record_dict[row]:
