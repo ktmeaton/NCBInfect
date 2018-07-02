@@ -5,10 +5,6 @@
 
 # NCBImeta
 Creates a SQLite database of metadata from the NCBI database. 
-
-
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/NCBImeta_CLI.JPG" alt="NCBImeta_CLI" width="1000px"/> 
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/NCBImeta_DB.jpg" alt="NCBImeta_DB" width="1000px"/> 
  
  
 ## Python Requirements
@@ -56,6 +52,8 @@ Note that the first column of your annotation file MUST be a column that is uniq
 ```
 python src/NCBImeta_Export.py --database example/my_organism_db.sqlite --outputdir example/
 ```
+<img src="https://github.com/ktmeaton/NCBImeta/blob/master/NCBImeta_CLI.JPG" alt="NCBImeta_CLI" width="1000px"/> 
+
 
 ## Currently Supported NCBI Tables  
 Assembly  
@@ -63,6 +61,8 @@ BioProject
 BioSample  
 Nucleotide  
 SRA  
+
+<img src="https://github.com/ktmeaton/NCBImeta/blob/master/NCBImeta_DB.jpg" alt="NCBImeta_DB" width="1000px"/> 
 
 ## Up-Coming Features
 PubMed Table 
