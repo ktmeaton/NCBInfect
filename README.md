@@ -65,7 +65,7 @@ Nucleotide
 SRA  
 
 ## Example database output (a subset of the Assembly table)      
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_DB.gif" alt="NCBImeta_DB" width="1000px"/> 
+<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_DB_small.gif" alt="NCBImeta_DB" width="1000px"/> 
 
 ## Usage
 To customize the search terms and database to your needs, please read through config/README_config.md and schema/README_schema.md.
