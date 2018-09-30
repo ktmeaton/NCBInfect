@@ -54,7 +54,7 @@ python src/NCBImeta_Export.py --database example/my_organism_db.sqlite --outputd
 ```
 
 ## Example output of the command-line interface:  
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_CLI.JPG" alt="NCBImeta_CLI" width="1000px"/> 
+<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_CLI.gif" alt="NCBImeta_CLI" width="1000px"/> 
 
 
 ## Currently Supported NCBI Tables  
@@ -65,7 +65,7 @@ Nucleotide
 SRA  
 
 ## Example database output (a subset of the Assembly table)      
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_DB.jpg" alt="NCBImeta_DB" width="1000px"/> 
+<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_DB.gif" alt="NCBImeta_DB" width="1000px"/> 
 
 ## Usage
 To customize the search terms and database to your needs, please read through config/README_config.md and schema/README_schema.md.
