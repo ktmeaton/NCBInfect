@@ -4,7 +4,7 @@
 
 
 # NCBImeta
-Creates a SQLite database of metadata from the NCBI database. 
+Query and create a database of NCBI metadata (includes SRA). 
  
  
 ## Python Requirements
