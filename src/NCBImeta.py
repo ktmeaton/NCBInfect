@@ -14,6 +14,7 @@ import argparse
 import sqlite3
 import os
 import sys
+import time
 import importlib
 import datetime
 from Bio import Entrez
@@ -217,7 +218,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         The ID should not exists in the table UNLESS the record was fully parsed.
         ie. The database does not get updated until the end of each record.
         '''
-
+        time.sleep(1)
         #---------------If Assembly Isn't in Database, Add it------------#
         # Retrieve Assembly record using ID, read, store as dictionary
         if table.lower() != "nucleotide":
