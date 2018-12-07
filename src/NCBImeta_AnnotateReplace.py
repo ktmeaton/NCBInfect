@@ -25,7 +25,7 @@ def flushprint(message):
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-parser = argparse.ArgumentParser(description=("NCBInfect Annotation Tool"),
+parser = argparse.ArgumentParser(description=("NCBInfect Annotation Tool - Replaces database fields with values in curated annotation file."),
                                  add_help=True)
 
 mandatory = parser.add_argument_group('mandatory')
@@ -145,12 +145,14 @@ while annot_line:
     fetch_records = cur.fetchall()
 
     if not fetch_records:
-        flushprint("Entry not in DB: " + line_strain)
-        raise NCBImeta_Errors.ErrorEntryNotInDB(line_strain)
+        flushprint("Entry not in DB: " + line_strain + ". No annotation is added.")
+        #raise NCBImeta_Errors.ErrorEntryNotInDB(line_strain)
+        continue
 
     elif len(fetch_records) > 1:
-        flushprint("Multiple Matches in DB: " + line_strain)
-        raise NCBImeta_Errors.ErrorEntryMultipleMatches(line_strain)
+        flushprint("Multiple Matches in DB: " + line_strain + ". No annotation is added.")
+        #raise NCBImeta_Errors.ErrorEntryMultipleMatches(line_strain)
+        continue
 
 
     # This section allows for dynamic variable creation and column modification

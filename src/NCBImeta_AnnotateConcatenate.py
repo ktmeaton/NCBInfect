@@ -25,7 +25,7 @@ def flushprint(message):
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-parser = argparse.ArgumentParser(description=("NCBInfect Annotation Tool"),
+parser = argparse.ArgumentParser(description=("NCBInfect Annotation Tool - Concatenates database fields with values in curated annotation file using separator :::"),
                                  add_help=True)
 
 mandatory = parser.add_argument_group('mandatory')
@@ -57,6 +57,7 @@ args = vars(parser.parse_args())
 db_name = args['dbName']
 db_table = args['dbTable']
 annot_file_name = args['annotFile']
+db_value_sep = ":::"
 
 
 #-----------------------------------------------------------------------#
@@ -104,6 +105,7 @@ annot_dict = {}
 # Read header columns into list
 header_columns_list = annot_file.readline().split("\t")
 header_dict = {}
+header_db_dict = {}
 
 for i,header in enumerate(header_columns_list):
     header_dict[i] = header
@@ -144,13 +146,35 @@ while annot_line:
     cur.execute(query)
     fetch_records = cur.fetchall()
 
+    # Check if the record could be found in the database
     if not fetch_records:
-        flushprint("Entry not in DB: " + line_strain)
-        raise NCBImeta_Errors.ErrorEntryNotInDB(line_strain)
+        flushprint("Entry not in DB: " + line_strain + ". No annotation is added.")
+        #raise NCBImeta_Errors.ErrorEntryNotInDB(line_strain)
+        continue
 
+    # Check if there were multiple hits in the database
     elif len(fetch_records) > 1:
-        flushprint("Multiple Matches in DB: " + line_strain)
-        raise NCBImeta_Errors.ErrorEntryMultipleMatches(line_strain)
+        flushprint("Multiple Matches in DB: " + line_strain + ". No annotation is added.")
+        #raise NCBImeta_Errors.ErrorEntryMultipleMatches(line_strain)
+        continue
+
+    # Retrieve the original database value for that cell
+    for header in line_dict:
+        header_query = "SELECT {0} FROM {1} WHERE {2}={3}".format(header,
+                                                        db_table,
+                                                        unique_header,
+                                                        "'" + unique_element + "'")
+
+        cur.execute(header_query)
+        db_value = cur.fetchall()[0]
+
+        # Check if it's a tuple (mostly lat and lon)
+        if type(db_value) == tuple:
+            db_value = "".join(db_value)
+        # If the annotation file has a different value, concatenate db value with it
+        if db_value != line_dict[header]:
+            line_dict[header] = db_value + db_value_sep + line_dict[value]
+
 
 
     # This section allows for dynamic variable creation and column modification
