@@ -16,7 +16,7 @@
 # Description
 {"BioSampleTitle": "Title"}
 {"SampleName": ["Id","Sample name","db_label"]}
-{"SampleType": ["Attribute","sample_type","attribute_name"]}
+{"SampleType": ["Attribute","sample_type","harmonized_name"]}
 {"Package": "Package"}
 
 
@@ -25,22 +25,22 @@
 {"Infraspecies": "Infraspecies"}
 {"Organism": "OrganismName"}
 {"OrganismAlt": ["Organism","taxonomy_name"]}
-{"SubSpecies": ["Attribute","sub_species","attribute_name"]}
-{"Strain": ["Attribute","strain","attribute_name"]}
+{"SubSpecies": ["Attribute","sub_species","harmonized_name"]}
+{"Strain": ["Attribute","strain","harmonized_name"]}
 {"TaxonomyID": "Taxonomy"}
 
 # Sample Attributes
 # To customize, consult https://www.ncbi.nlm.nih.gov/biosample/docs/attributes/
-{"Biovar": ["Attribute","biovar","attribute_name"]}
-{"CollectionDate": ["Attribute","collection_date","attribute_name"]}
-{"GeographicLocation": ["Attribute","geo_loc_name","attribute_name"]}
-{"Host": ["Attribute","host","attribute_name"]}
-{"HostDisease" : ["Attribute", "host_disease", "attribute_name"]}
-{"IsolateNameAlias": ["Attribute","isolate-name-alias","attribute_name"]}
-{"IsolationSource": ["Attribute","isolation_source","attribute_name"]}
-{"Lat" : ["Attribute", "latitude", "attribute_name"]}
-{"LatLon" : ["Attribute", "lat_lon", "attribute_name"]}
-{"Lon" : ["Attribute", "longitude", "attribute_name"]}
+{"Biovar": ["Attribute","biovar","harmonized_name"]}
+{"CollectionDate": ["Attribute","collection_date","harmonized_name"]}
+{"GeographicLocation": ["Attribute","geo_loc_name","harmonized_name"]}
+{"Host": ["Attribute","host","harmonized_name"]}
+{"HostDisease" : ["Attribute", "host_disease", "harmonized_name"]}
+{"IsolateNameAlias": ["Attribute","isolate_name_alias","harmonized_name"]}
+{"IsolationSource": ["Attribute","isolation_source","harmonized_name"]}
+{"Lat" : ["Attribute", "latitude", "harmonized_name"]}
+{"LatLon" : ["Attribute", "lat_lon", "harmonized_name"]}
+{"Lon" : ["Attribute", "longitude", "harmonized_name"]}
 
 
 # Dates
