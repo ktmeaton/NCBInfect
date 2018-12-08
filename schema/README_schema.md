@@ -9,6 +9,7 @@ The schema is of the following format:
 This is a python dictionary (associative array, hash, etc.) with the left side of the colon as the key, and the right side as the value.    
 
 The left side (key) will be the name of the column in the final table and can be changed to whatever the user desires. However, please avoid putting spaces in your column names.    
+(Note: It is highly recommended to keep the default column names the author has provided. These ensure clarity of which database the information comes from. In addition, the default column names are all unique allowing for any combination of full-joins or partial-joins of tables)
 
 The right side is a keyword specific to the biopython API and should not be altered. Its format takes several options (1-4).    
 
@@ -29,13 +30,13 @@ Retrieves Accession Number "GCA_003086155.1" and stores it under column "Assembl
 
 User selects:
     
-    {"ExperimentAccession" : ["Experiment", "acc"]}
+    {"SRAExperimentAccession" : ["Experiment", "acc"]}
 
 XML from NCBI:    
 
     <EXPERIMENT alias="EXT00317997" accession="SRX4321294">
 
-Retrieves accession "SRX4321294" and stores it under "ExperimentAccession"    
+Retrieves accession "SRX4321294" and stores it under "SRAExperimentAccession"    
 The value in this case, is a list of 2 elements:    
 
     ["Experiment", "acc"]
@@ -50,14 +51,14 @@ provided by NCBI. The biopython API occasionally renames attributes.
 
 User selects:
 
-    {"CollectionDate": ["Attribute","collection_date","attribute_name"]}
+    {"BioSampleCollectionDate": ["Attribute","collection_date","harmonized_name"]}
 
 XML from NCBI:
     
     <Attribute display_name="collection date" harmonized_name="collection_date" attribute_name="collection date"> 2006 </Attribute>
     <Attribute display_name="host taxonomy ID" harmonized_name="host_taxid" attribute_name="host taxid"> 10090 </Attribute>
 
-Retrieves collection date 2006 and stores it under "CollectionDate".     
+Retrieves collection date 2006 and stores it under "BioSampleCollectionDate".     
 The value in this case, is a list of 3 elements:    
 
     ["Attribute","collection_date","attribute_name"]    
@@ -70,7 +71,7 @@ The third value ("attribute name") is the attribute type to target.
 
 User selects:    
 
-    {"GenbankBioprojectAccession" : ["GB_BioProjects","BioprojectAccn"]}
+    {"AssemblyGenbankBioprojectAccession" : ["GB_BioProjects","BioprojectAccn"]}
 
 XML from NCBI:    
 In the following example, note how the node "BioprojectAccn" is not a unique name, as there is both a GenBank and RefSeq Bioproject Accession.    
@@ -90,7 +91,7 @@ In the following example, note how the node "BioprojectAccn" is not a unique nam
     </Bioproj>
     </RS_BioProjects>
 
-Retrieves accession number "PRJNA31257" and stores it under "GenbankBioprojectAccession".    
+Retrieves accession number "PRJNA31257" and stores it under "AssemblyGenbankBioprojectAccession".    
 The value in this case, is a list of 2 elements:    
 
     ["GB_BioProjects","BioprojectAccn"]

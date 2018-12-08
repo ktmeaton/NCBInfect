@@ -21,7 +21,7 @@ Type "str", example:
     
 Can be a relative or absolute path. Note that when using a relative path, it will be relative from wherever you are EXECUTING the program (not necessarily from where the config file is located).    
 
-This directory must exist, otherwise the program will exit with an error status.    
+This directory MUST exist, otherwise the program will exit with an error status.    
 
 ## 2) EMAIL
 Type "str", example:    
@@ -66,13 +66,13 @@ Type "dict" containing comma separated key value pairs. The key is always of typ
     TABLE_COLUMNS = {
        "Assembly" : [
                 {"AssemblyAccession" : "AssemblyAccession"},
-                {"BioSampleAccession" : 'BioSampleAccn'},
-                {"Organism" : 'Organism'}
+                {"AssemblyBioSampleAccession" : 'BioSampleAccn'},
+                {"AssemblyOrganism" : 'Organism'}
                 ],
       "BioSample" : [
-                {"Accession": "Accession"},
-                {"BioProject": ["Link","label"]},
-                {"SRAAccession": ["Id","SRA","db"]},
+                {"BioSampleAccession": "Accession"},
+                {"BioSampleBioProjectAccession": ["Link","label"]},
+                {"BioSampleSRAAccession": ["Id","SRA","db"]},
                 {"BioSampleTitle": "Title"}
                 ]
                 }

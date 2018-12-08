@@ -25,7 +25,7 @@ def flushprint(message):
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-parser = argparse.ArgumentParser(description=("NCBInfect Annotation Tool - Replaces database fields with values in curated annotation file."),
+parser = argparse.ArgumentParser(description=("NCBImeta Annotation Tool - Replaces database fields with values in curated annotation file."),
                                  add_help=True)
 
 mandatory = parser.add_argument_group('mandatory')
@@ -145,13 +145,15 @@ while annot_line:
     fetch_records = cur.fetchall()
 
     if not fetch_records:
-        flushprint("Entry not in DB: " + line_strain + ". No annotation is added.")
+        flushprint("Entry not in DB: " + unique_element + ". No annotation is added.")
         #raise NCBImeta_Errors.ErrorEntryNotInDB(line_strain)
+        annot_line = annot_file.readline()
         continue
 
     elif len(fetch_records) > 1:
-        flushprint("Multiple Matches in DB: " + line_strain + ". No annotation is added.")
+        flushprint("Multiple Matches in DB: " + unique_element + ". No annotation is added.")
         #raise NCBImeta_Errors.ErrorEntryMultipleMatches(line_strain)
+        annot_line = annot_file.readline()
         continue
 
 

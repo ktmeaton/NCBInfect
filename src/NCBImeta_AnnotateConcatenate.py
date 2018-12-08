@@ -25,7 +25,7 @@ def flushprint(message):
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-parser = argparse.ArgumentParser(description=("NCBInfect Annotation Tool - Concatenates database fields with values in curated annotation file using separator :::"),
+parser = argparse.ArgumentParser(description=("NCBImeta Annotation Tool - Concatenates database fields with values in curated annotation file using separator ;"),
                                  add_help=True)
 
 mandatory = parser.add_argument_group('mandatory')
@@ -57,7 +57,7 @@ args = vars(parser.parse_args())
 db_name = args['dbName']
 db_table = args['dbTable']
 annot_file_name = args['annotFile']
-db_value_sep = ":::"
+db_value_sep = ";"
 
 
 #-----------------------------------------------------------------------#
@@ -148,14 +148,16 @@ while annot_line:
 
     # Check if the record could be found in the database
     if not fetch_records:
-        flushprint("Entry not in DB: " + line_strain + ". No annotation is added.")
+        flushprint("Entry not in DB: " + unique_element + ". No annotation is added.")
         #raise NCBImeta_Errors.ErrorEntryNotInDB(line_strain)
+        annot_line = annot_file.readline()
         continue
 
     # Check if there were multiple hits in the database
     elif len(fetch_records) > 1:
-        flushprint("Multiple Matches in DB: " + line_strain + ". No annotation is added.")
+        flushprint("Multiple Matches in DB: " + unique_element + ". No annotation is added.")
         #raise NCBImeta_Errors.ErrorEntryMultipleMatches(line_strain)
+        annot_line = annot_file.readline()
         continue
 
     # Retrieve the original database value for that cell
