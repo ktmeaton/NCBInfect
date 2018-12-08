@@ -18,7 +18,7 @@ pip install --user biopython
 
 ## Version
 
-Development - Version 0.3.2 (v0.3.2)  
+Development - Version 0.3.1 (v0.3.1)  
 Release - Version v0.3.1 (master)
 
 
@@ -31,14 +31,14 @@ cd NCBImeta
 ```
 Development: 
 ```
-git clone -b v0.3.2 https://github.com/ktmeaton/NCBImeta.git   
+git clone -b v0.3.1 https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta  
 ```
 ## Quick Start Example
 
 ### Run the program
 ```
-python src/NCBImeta.py --config example/config.py
+python src/NCBImeta.py --flat --config example/config.py
 ```
 
 ### Annotate the database with a curated tab-separated text file of metadata
@@ -73,6 +73,9 @@ These two files provide instructions on writing configuration files and customiz
 
 
 ## Up-Coming Features
+Joining all tables into one super-database.
+Database join with EnteroBase metadata.   
+
 PubMed Table    
 Any requested tables or metadata :)  
 

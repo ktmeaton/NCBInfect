@@ -1,4 +1,4 @@
-OUTPUT_DIR = "output"
+OUTPUT_DIR = "example"
 EMAIL = "myemailname@domain.com"
 DATABASE = "my_organism_db.sqlite"
 TABLES = ["Assembly","BioSample", "BioProject", "SRA"]
