@@ -131,10 +131,9 @@ for table in db_accessory_list:
        db_col_names.append(header)
 
 # Prepare the columns for the final join table
-seen_col = []
 dupl_col_names = set([col for col in db_col_names if db_col_names.count(col) > 1])
-print(dupl_col_names)
-quit()
+if len(dupl_col_names) > 0:
+    raise NCBImeta_Errors.ErrorColumnsNotUnique(dupl_col_names)
 
 
 #-----------------------------------------------------------------------#
@@ -155,12 +154,45 @@ cur.execute(sql_query)
 cur.execute('''SELECT * FROM {}'''.format(db_anchor))
 fetch_records = cur.fetchall()
 
+for record in fetch_records:
+    # Reinitialize the container to hold the master table values
+    master_column_dict = {}
+    for col in db_col_names: master_column_dict[col] = "NULL"
 
+    # Store the anchor table values
+    for i in range(0,len(record)):
+        # Skip id
+        if anchor_col_names[i] == "id": continue
+        if record[i] is None: 
+            record_val = "NULL"
+        else: 
+            record_val = "'" + str(record[i]) + "'"
+        master_column_dict[anchor_col_names[i]] =  record_val
+
+    # Find the first unique column and its headers
+    unique_val = master_column_dict[unique_header_list[0]]
+
+    # Check if this record already exists in the master join table
+    sql_query = ("SELECT EXISTS(SELECT " + unique_header_list[0] + " FROM " +
+                 db_final + " WHERE " + unique_header_list[0] + "=" + 
+                 unique_val + ")" )
+
+    cur.execute(sql_query)
+
+    # 0 if not found, 1 if found
+    record_exists = cur.fetchone()[0]
+    if record_exists: continue
+
+    # Add values to new join table
+    sql_dynamic_table = "INSERT INTO " + db_final + " ("
+    sql_dynamic_vars = ",".join([column for column in master_column_dict.keys()]) + ")"
+    sql_dynamic_values = " VALUES (" + ",".join([master_column_dict[column] for column in master_column_dict.keys()]) + ")"
+    sql_query = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_values
+    print(sql_query)
+    cur.execute(sql_query)
 
 # Save changes
 conn.commit()
-
-quit()
 
 #-----------------------------------------------------------------------#
 #                              Join Tables                              #
@@ -172,9 +204,9 @@ cur.execute(query)
 fetch_records = cur.fetchall()
 
 for unique_values in fetch_records:
-    # Initialize a dictionary to store the new values
+    # Re-initialize a dictionary to store the new values
     master_column_dict = {}
-    for col in db_col_names: master_column_dict[col] = ""
+    for col in db_col_names: master_column_dict[col] = "'None'"
 
     unique_values = list(unique_values)
     if None in unique_values: unique_values.remove(None)
