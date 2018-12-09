@@ -180,6 +180,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     #                          Entrex Search                                #
     #-----------------------------------------------------------------------#
 
+    time.sleep(0.5)
     handle = Entrez.esearch(db=table.lower(),
                             term=search_term,
                             retmax = 9999999)
@@ -201,6 +202,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         flushprint("Processing record: " +
                str(num_processed) + \
                "/" + str(num_records))
+
 
         #------------Check if Record Already Exists in Database------------#
 
@@ -253,7 +255,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             column_index = 0
 
             # Special rules for hard-coded Nucleotide  Fields
-            if "GBSeq_comment" in column.items():
+            if "GBSeq_comment" in column.items()[0]:
                 for row in flatten_record_dict:
                     if row[0] == "GBSeq_comment":
                         # Hard-coded field, also check for user custom column name
@@ -274,7 +276,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                                     column_dict[i_column.items()[0][0]] = column_value
 
             # Special hard-coded field for biosample
-            elif "NucleotideBioSample" in column.items():
+            elif "NucleotideBioSample" in column.items()[0]:
                 for row in record_dict:
                     if row != "GBSeq_xrefs": continue
                     for subrow in record_dict[row]:
@@ -373,6 +375,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                     break
 
         #print(column_dict)
+        #quit()
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
         sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "

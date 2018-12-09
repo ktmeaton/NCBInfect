@@ -116,6 +116,7 @@ for table in db_accessory_list:
 # get list of column names in anchor table
 cur.execute('''SELECT * FROM {}'''.format(db_anchor))
 db_col_names = [description[0] for description in cur.description if description[0] != "id"]
+anchor_col_names = [description[0] for description in cur.description]
 
 # Check to make sure the unique header is present in the anchor table
 for unique_header in unique_header_list:
@@ -131,11 +132,9 @@ for table in db_accessory_list:
 
 # Prepare the columns for the final join table
 seen_col = []
-master_col_names = []
-for col in db_col_names:
-    if col not in seen_col:
-        seen_col.append(col)
-        master_col_names.append(col)
+dupl_col_names = set([col for col in db_col_names if db_col_names.count(col) > 1])
+print(dupl_col_names)
+quit()
 
 
 #-----------------------------------------------------------------------#
@@ -147,13 +146,21 @@ sql_query = ("Create TABLE IF NOT EXISTS " + db_final +
         " (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " + 
         db_final + "_id TEXT")
 
-for column_name in master_col_names:
+for column_name in db_col_names:
     sql_query += ", " + column_name + " TEXT"
 sql_query += ")"
-
 cur.execute(sql_query)
+
+# Populate new join table with anchor table values
+cur.execute('''SELECT * FROM {}'''.format(db_anchor))
+fetch_records = cur.fetchall()
+
+
+
+# Save changes
 conn.commit()
 
+quit()
 
 #-----------------------------------------------------------------------#
 #                              Join Tables                              #
@@ -167,18 +174,21 @@ fetch_records = cur.fetchall()
 for unique_values in fetch_records:
     # Initialize a dictionary to store the new values
     master_column_dict = {}
-    for col in master_col_names: master_column_dict[col] = ""
+    for col in db_col_names: master_column_dict[col] = ""
 
     unique_values = list(unique_values)
     if None in unique_values: unique_values.remove(None)
+
     # search for this value in each accessory table
     for table in db_accessory_list:
         # Get list of each column
         cur.execute(''' SELECT * FROM {}'''.format(table))
         table_col_names = [description[0] for description in cur.description]
-        # Iterate through each column in the table
+
+        # Initialize matching variables
         match_found=False
         match_column = ""
+        # Iterate through each possible unique values (or until match is found)
         for uniq_val in unique_values:
             # Deal with unicode
             if type(uniq_val) == int: val=str(uniq_val)
@@ -215,6 +225,10 @@ for unique_values in fetch_records:
             match_records = cur.fetchall()
             record_dict = {}
 
+            
+
+
+            # If a single record is found
             if len(match_records) == 1:
                 match_records = list(match_records[0])
                 for i in range(0,len(table_col_names)):
