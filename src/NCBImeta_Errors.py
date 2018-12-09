@@ -48,3 +48,10 @@ class ErrorConfigFileNotExists(Exception):
     def __str__(self):
         print("\n\nConfig file does not exist in the specified location.")
         print("Location specified: " + self.value)
+
+class ErrorColumnsNotUnique(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        print("\n\nThe following columns are not unique in the database:")
+        print(self.value)

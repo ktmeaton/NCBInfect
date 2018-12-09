@@ -180,7 +180,6 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     #                          Entrex Search                                #
     #-----------------------------------------------------------------------#
 
-    time.sleep(0.5)
     handle = Entrez.esearch(db=table.lower(),
                             term=search_term,
                             retmax = 9999999)
