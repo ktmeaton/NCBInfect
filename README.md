@@ -8,7 +8,7 @@ Query and create a database of NCBI metadata (includes SRA).
  
  
 ## Python Requirements
-Python2.7+, Python3.4+  
+Python2.7+ or Python3.4+  
 SQLite3 (sqlite3 in Python3.4+, pysqlite in Python2.7+)     
 BioPython 1.70    
 
