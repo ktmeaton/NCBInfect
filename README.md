@@ -18,9 +18,8 @@ pip install --user biopython
 
 ## Version
 
-Development - Version 0.3.1 (v0.3.1)  
 Release - Version v0.3.1 (master)
-
+Development - Version 0.3.2 (dev)  
 
 ## Installation
 
@@ -31,7 +30,7 @@ cd NCBImeta
 ```
 Development: 
 ```
-git clone -b v0.3.1 https://github.com/ktmeaton/NCBImeta.git   
+git clone -b dev https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta  
 ```
 ## Quick Start Example
