@@ -19,7 +19,7 @@ pip install --user biopython
 ## Version
 
 Release - Version v0.3.1 (master)  
-(2019-06-14 Current no dev branch)  
+(2019-06-14 Currently no dev branch)  
 Development - Version 0.3.2 (dev)  
 
 ## Installation
@@ -30,7 +30,7 @@ git clone https://github.com/ktmeaton/NCBImeta.git
 cd NCBImeta  
 ```   
 Development:  
-(2019-06-14 Current no dev branch)  
+(2019-06-14 Currently no dev branch)  
 ```
 git clone -b dev https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta  
@@ -74,7 +74,8 @@ These two files provide instructions on writing configuration files and customiz
 
 
 ## Up-Coming Features
-Joining all tables into one super-database.
+Consider switching from minidom to lxml for XPath and XLST functionality.  
+Joining all tables into one super-database.  
 Database join with EnteroBase metadata.   
 
 PubMed Table    
