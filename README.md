@@ -19,7 +19,6 @@ pip install --user biopython
 ## Version
 
 Release - Version v0.3.1 (master)  
-(2019-06-14 Currently no dev branch)  
 Development - Version 0.3.2 (dev)  
 
 ## Installation
@@ -30,7 +29,6 @@ git clone https://github.com/ktmeaton/NCBImeta.git
 cd NCBImeta  
 ```   
 Development:  
-(2019-06-14 Currently no dev branch)  
 ```
 git clone -b dev https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta  
