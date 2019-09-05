@@ -51,8 +51,8 @@ handle=urllib.urlopen{"https://www.ncbi.nlm.nih.gov/Traces/wgs/wgsviewer.cgi?dum
 {'AssemblyDate': 'Assembly Date'}
 {'AssemblyMethod': 'Assembly Method'}
 {'AssemblyName': 'Assembly Name'}
-{'CDS': 'CDSs (total)'}
-{'CDSCoding': 'CDSs (coding)'}
+{'CDS': 'CDS (total)'}
+{'CDSCoding': 'CDS (coding)'}
 {'CRISPRArrays': 'CRISPR Arrays'}
 {'ExpectedFinalVersion': 'Expected Final Version'}
 {'FeaturesAnnotated': 'Features Annotated'}
