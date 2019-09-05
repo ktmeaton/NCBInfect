@@ -257,7 +257,7 @@ for record in fetch_records:
             if match_found:
                 query=('''SELECT * FROM {0} WHERE {1}={2}'''.format(table, 
                                                                 match_column, 
-                                                                "'" + match_val +"'"))
+                                                                "'" + match_val.decode('utf-8') + "'"))
                 cur.execute(query)
                 match_records = cur.fetchall()
                 record_dict = {}
@@ -273,7 +273,7 @@ for record in fetch_records:
                             else: tmp_record_list.append(record[i].encode('utf-8'))
                         if len(tmp_record_list) > 1:
                             # Check if all values are identical
-                            dupl_values = set([val for val in tmp_record_list if tmp_record_list.count(val) == len(tmp_record_list)])
+                            dupl_values = set([val.decode('utf-8') for val in tmp_record_list if tmp_record_list.count(val) == len(tmp_record_list)])
                             if len(dupl_values) == 1: 
                                 match_records_concat[i] = list(dupl_values)[0]
                             else: match_records_concat[i] = db_value_sep.join(tmp_record_list)
