@@ -257,9 +257,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             # Special rules for hard-coded Nucleotide  Fields
             if "GBSeq_comment" in column.values():
                 for row in flatten_record_dict:
-                    print(row)
                     if row[0] == "GBSeq_comment":
-                        print("FOUND IT")
                         # Hard-coded field, also check for user custom column name
                         for i_column in table_columns:
                             #if i_column.items()[0][1] == "GBSeq_comment":
@@ -279,15 +277,16 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                                     column_dict[list(i_column.items())[0][0]] = column_value
 
             # Special hard-coded field for biosample
-            elif "NucleotideBioSample" in column.items():
+            elif "NucleotideBioSample" in column.values():
                 for row in record_dict:
+                    print(row)
                     if row != "GBSeq_xrefs": continue
                     for subrow in record_dict[row]:
                         if subrow["GBXref_dbname"] != "BioSample": continue
                         for i_column in table_columns:
-                            if i_column.items()[0][1] == "NucleotideBioSample":
+                            if list(i_column.items())[0][1] == "NucleotideBioSample":
                                 column_value = "'" + subrow["GBXref_id"].replace("'","") + "'"
-                                column_dict[i_column.items()[0][0]] = column_value
+                                column_dict[list(i_column.items())[0][0]] = column_value
 
 
             #-------------------------------------------------------#
