@@ -8,8 +8,7 @@ Query and create a database of NCBI metadata (includes SRA).
  
  
 ## Python Requirements
-Python2.7+ or Python3.4+  
-SQLite3 (sqlite3 in Python3.4+, pysqlite in Python2.7+)     
+Python3.4+  
 BioPython 1.70    
 
 ```
@@ -18,8 +17,8 @@ pip install --user biopython
 
 ## Version
 
-Release - Version v0.3.1 (master)  
-Development - Version 0.3.2 (dev)  
+Release - Version v0.3.2 (master)  
+Development - Version 0.3.3 (dev)  
 
 ## Installation
 
@@ -105,9 +104,9 @@ author: Katherine Eaton (ktmeaton@gmail.com)
 
 ## Helpful Development Commands  
 Merging a development branch into master:  
-        (on branch development)$ git merge master  
+        (on branch development) `git merge master`
         (resolve any merge conflicts if there are any)  
-        git checkout master  
-        git merge --no-ff development (there won't be any conflicts now)  
+        `git checkout master`  
+        `git merge --no-ff development` (there won't be any conflicts now)  
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)

@@ -6,6 +6,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
+## [0.3.2] = 2019-0905
+### Changed
+- Python2 no longer support, Python3 is now mandatory.
+- Improved Nucleotide Table annotation parsing
+- Fixed missing BioSampleAccession from the Nucleotide Table
+
 ## [0.3.1] - 2018-0702
 ### Added  
 - README files for config and schema
@@ -45,10 +51,4 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 https://github.com/ktmeaton/NCBImeta
 
-[Unreleased]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.1...HEAD
-[0.3.0]:https://github.com/ktmeaton/NCBImeta/compare/v0.3.0...v0.3.1
-[0.3.0]:https://github.com/ktmeaton/NCBImeta/compare/v0.2.1...v0.3.0
-[0.2.1]:https://github.com/ktmeaton/NCBImeta/compare/v0.2.0...v0.2.1
-[0.2.0]:https://github.com/ktmeaton/NCBImeta/compare/v0.1.2...v0.2.0
-[0.1.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.1.1...v0.1.2
-[0.1.1]: https://github.com/ktmeaton/NCBImeta/compare/1.1...v0.1.1
+[Unreleased]: https://github.com/ktmeaton/NCBImeta/compare/dev...HEAD
