@@ -270,10 +270,11 @@ for record in fetch_records:
                         for record in match_records:
                             if record[i] is None or record[i] == "": continue
                             elif type(record[i]) == int: tmp_record_list.append(str(record[i]))
-                            else: tmp_record_list.append(record[i].encode('utf-8'))
+                            else:
+                                tmp_record_list.append(record[i])
                         if len(tmp_record_list) > 1:
                             # Check if all values are identical
-                            dupl_values = set([val.decode('utf-8') for val in tmp_record_list if tmp_record_list.count(val) == len(tmp_record_list)])
+                            dupl_values = set([val for val in tmp_record_list if tmp_record_list.count(val) == len(tmp_record_list)])
                             if len(dupl_values) == 1: 
                                 match_records_concat[i] = list(dupl_values)[0]
                             else: match_records_concat[i] = db_value_sep.join(tmp_record_list)
