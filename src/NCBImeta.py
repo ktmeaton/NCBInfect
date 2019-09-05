@@ -238,6 +238,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 record_dict = ID_record[0]
 
         flatten_record_dict = list(NCBImeta_Utilities.flatten_dict(record_dict))
+        for element in flatten_record_dict: print(element)
 
         column_dict = {}
 
@@ -254,14 +255,17 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             column_index = 0
 
             # Special rules for hard-coded Nucleotide  Fields
-            if "GBseq_comment" in column.items():
+            if "GBSeq_comment" in column.values():
                 for row in flatten_record_dict:
+                    print(row)
                     if row[0] == "GBSeq_comment":
+                        print("FOUND IT")
                         # Hard-coded field, also check for user custom column name
                         for i_column in table_columns:
-                            if i_column.items()[0][1] == "GBSeq_comment":
+                            #if i_column.items()[0][1] == "GBSeq_comment":
+                            if "GBSeq_comment" in i_column.values():
                                 column_value = "'" + row[1].replace("'","") + "'"
-                                column_dict[i_column.items()[0][0]] = column_value
+                                column_dict[list(i_column.items())[0][0]] = column_value
 
                         split_comment = row[1].split(";")
                         for item in split_comment:
@@ -270,9 +274,9 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                             split_key = split_item[0].lstrip(" ").rstrip(" ")
                             split_value = split_item[1].lstrip(" ").rstrip(" ")
                             for i_column in table_columns:
-                                if i_column.items()[0][1] == split_key:
+                                if list(i_column.items())[0][1] == split_key:
                                     column_value = "'" + split_value.replace("'","").replace(",","") + "'"
-                                    column_dict[i_column.items()[0][0]] = column_value
+                                    column_dict[list(i_column.items())[0][0]] = column_value
 
             # Special hard-coded field for biosample
             elif "NucleotideBioSample" in column.items():
@@ -284,8 +288,6 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                             if i_column.items()[0][1] == "NucleotideBioSample":
                                 column_value = "'" + subrow["GBXref_id"].replace("'","") + "'"
                                 column_dict[i_column.items()[0][0]] = column_value
-
-
 
 
             #-------------------------------------------------------#
