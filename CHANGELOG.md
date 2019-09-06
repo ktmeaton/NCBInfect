@@ -7,10 +7,15 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [Unreleased]
 
 ## [0.3.2] = 2019-0905
+### Added
+- Command example in README.md for creating a master join table of BioSample, BioProject, Assemble, SRA, and Nucleotide tables.
+- Three new annotation files for the example.
+
 ### Changed
 - Python2 no longer support, Python3 is now mandatory.
 - Improved Nucleotide Table annotation parsing
 - Fixed missing BioSampleAccession from the Nucleotide Table
+- Fixed incorrect directory paths in README.md example commands.
 
 ## [0.3.1] - 2018-0702
 ### Added  
