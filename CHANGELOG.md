@@ -6,6 +6,9 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
+## [0.3.3] - 2019-0905
+
+
 ## [0.3.2] = 2019-0905
 ### Added
 - Command example in README.md for creating a master join table of BioSample, BioProject, Assemble, SRA, and Nucleotide tables.
