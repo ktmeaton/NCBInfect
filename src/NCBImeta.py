@@ -17,6 +17,7 @@ import sys
 import time
 import importlib
 import datetime
+import Bio
 from Bio import Entrez
 from xml.dom import minidom
 
@@ -188,7 +189,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     record = Entrez.read(handle)
     num_records = int(record['Count'])
     num_processed = 0
-
+   
     #-----------------------------------------------------------------------#
     #                          Iterate Through ID List                      #
     #-----------------------------------------------------------------------#
@@ -237,6 +238,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             except TypeError:
                 record_dict = ID_record[0]
 
+        print(record_dict)
         flatten_record_dict = list(NCBImeta_Utilities.flatten_dict(record_dict))
 
         column_dict = {}
@@ -298,7 +300,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             # Attempt 1: Simple Dictionary Parse, taking first match
 
             for row in flatten_record_dict:
-                print(row)
+                #print(row)
                 # For simple column types, as strings
                 if type(column_payload) == str and column_payload in row:
                     column_value = row[-1]
@@ -312,11 +314,23 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                             break
                         column_index += 1
 
-            # If the value was found, skip the next section of XML parsing
+            # If the value was found, skip(?) the next section of XML parsing
             if column_value:
                 column_value = "'" + column_value.replace("'","") + "'"
                 column_dict[column_name] = column_value
-
+	
+	    # Briefly try to parse the original record dict
+	    # This was for pubmed author lists originally
+            else:
+                try:
+                    column_value = record_dict[column_payload]
+                    # If list, convert to semicolon separated string		   
+                    if isinstance(column_value,Bio.Entrez.Parser.ListElement):
+                        column_value = '; '.join(str(e) for e in column_value)		    
+                    column_value = "'" + column_value.replace("'","") + "'"
+                    column_dict[column_name] = column_value
+                except KeyError:
+                    column_value = ""
 
             #-------------------------------------------------------#
             # Attempt 2: XML Parse for node or attribute
