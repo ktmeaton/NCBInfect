@@ -298,7 +298,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             # Attempt 1: Simple Dictionary Parse, taking first match
 
             for row in flatten_record_dict:
-                #print(row)
+                print(row)
                 # For simple column types, as strings
                 if type(column_payload) == str and column_payload in row:
                     column_value = row[-1]
@@ -322,7 +322,8 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             # Attempt 2: XML Parse for node or attribute
             for row in flatten_record_dict:
                 if type(column_payload) == str:
-                    result = [s for s in row if column_payload in s]
+                    # Pubmed records can have an int value (has abstract = 0 or 1)
+                    result = [str(s) for s in row if column_payload in str(s)]
 
                 elif type(column_payload) == list:
                     result = [s for s in row if column_payload[0] in s and column_payload[1] in s ]
