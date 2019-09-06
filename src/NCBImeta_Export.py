@@ -107,7 +107,8 @@ for table in table_list:
         for cell in row:
             line += unicode(cell) + "\t"
         line = line.rstrip("\t")  + "\n"
-        table_file.write(line.encode('utf-8'))
+        table_file.write(line)
+        #table_file.write(line.encode('utf-8'))
 
     # Close table file
     table_file.close()
