@@ -1,5 +1,5 @@
 # This is the database schema for NCBI Nucleotide
-# To customize consult ???
+# To customize consult README_schema.md
 
 # Keyword Tips
 # Only the WGS Master Record:

@@ -1,3 +1,5 @@
+# This is the database schema for NCBI Assembly
+# To customize, consult README_schema.md
 
 # Accession Numbers and ID
 {"AssemblyAccession" : "AssemblyAccession"}
