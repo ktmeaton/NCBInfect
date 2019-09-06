@@ -55,3 +55,10 @@ class ErrorColumnsNotUnique(Exception):
     def __str__(self):
         print("\n\nThe following columns are not unique in the database:")
         print(self.value)
+
+class ErrorDBNotExists(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        print("\n\nDatabase does not exist.")
+        print(self.value)

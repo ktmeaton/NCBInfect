@@ -39,17 +39,29 @@ cd NCBImeta
 python src/NCBImeta.py --flat --config example/config.py
 ```
 
-### Annotate the database with a curated tab-separated text file of metadata
+### Annotate the database with curated tab-separated text files of metadata
 ```
-python src/NCBImeta_Annotate.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot.txt --table BioSample
+python src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_1.txt --table BioSample
+python src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_2.txt --table BioSample
+python src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_3.txt --table BioSample
 ```
 
 Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also exactly match the names of your columns in the database.
+
+### Join NCBI tables into a unified master table  
+```
+python src/NCBImeta_Join.py --database example/my_organism_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
+```  
 
 ### Export the database to tab-separated text files by table.
 ```
 python src/NCBImeta_Export.py --database example/my_organism_db.sqlite --outputdir example/
 ```
+
+### Explore!
+Explore your database text files using a spreadsheet viewer (Microsoft Excel, Google Sheets, etc.)  
+Browse your SQLite database using DB Browser for SQLite (see below for program links)   
+
 
 ## Example output of the command-line interface:  
 <img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_CLI.gif" alt="NCBImeta_CLI" width="700px"/> 
@@ -72,8 +84,7 @@ These two files provide instructions on writing configuration files and customiz
 
 ## Up-Coming Features
 Consider switching from minidom to lxml for XPath and XLST functionality.  
-Joining all tables into one super-database.  
-Database join with EnteroBase metadata.   
+Database join with EnteroBase metadata?  
 
 PubMed Table    
 Any requested tables or metadata :)  
