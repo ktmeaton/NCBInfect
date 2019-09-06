@@ -73,6 +73,7 @@ BioProject
 BioSample  
 Nucleotide  
 SRA  
+Pubmed
 
 ## Example database output (a subset of the Assembly table)      
 <img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_DB_small.gif" alt="NCBImeta_DB" width="700px"/> 
@@ -86,7 +87,6 @@ These two files provide instructions on writing configuration files and customiz
 - Release packaging with conda.    
 - Consider switching from minidom to lxml for XPath and XLST functionality.  
 - Database join with EnteroBase metadata?  
-- PubMed Table    
 - Any requested tables or metadata :)  
 
 ## Suggested Accessory Programs
