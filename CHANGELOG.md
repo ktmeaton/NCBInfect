@@ -7,6 +7,8 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [Unreleased]
 
 ## [0.3.3] - 2019-0905
+### Added
+- Pubmed Table support
 
 
 ## [0.3.2] = 2019-0905
