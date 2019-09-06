@@ -238,7 +238,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             except TypeError:
                 record_dict = ID_record[0]
 
-        print(record_dict)
+        #print(record_dict)
         flatten_record_dict = list(NCBImeta_Utilities.flatten_dict(record_dict))
 
         column_dict = {}
@@ -318,10 +318,11 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             if column_value:
                 column_value = "'" + column_value.replace("'","") + "'"
                 column_dict[column_name] = column_value
+		#continue?
 	
 	    # Briefly try to parse the original record dict
 	    # This was for pubmed author lists originally
-            else:
+            elif type(column_payload) != list:
                 try:
                     column_value = record_dict[column_payload]
                     # If list, convert to semicolon separated string		   
