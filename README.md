@@ -17,8 +17,8 @@ pip install --user biopython
 
 ## Version
 
-Release - Version v0.3.2 (master)  
-Development - Version 0.3.3 (dev)  
+Release - Version v0.3.3 (master)  
+Development - Version 0.3.4 (dev)  
 
 ## Installation
 
@@ -115,7 +115,7 @@ author: Katherine Eaton (ktmeaton@gmail.com)
 
 ## Helpful Development Commands  
 Merging a development branch into master:  
-        (on branch development) `git merge master`
+        (on branch development) `git merge origin/master`
         (resolve any merge conflicts if there are any)  
         `git checkout master`  
         `git merge --no-ff development` (there won't be any conflicts now)  
