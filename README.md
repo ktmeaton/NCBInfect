@@ -36,26 +36,26 @@ cd NCBImeta
 
 ### Run the program
 ```
-python src/NCBImeta.py --flat --config example/config.py
+python3 src/NCBImeta.py --flat --config example/config.py
 ```
 
 ### Annotate the database with curated tab-separated text files of metadata
 ```
-python src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_1.txt --table BioSample
-python src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_2.txt --table BioSample
-python src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_3.txt --table BioSample
+python3 src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_1.txt --table BioSample
+python3 src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_2.txt --table BioSample
+python3 src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_3.txt --table BioSample
 ```
 
 Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also exactly match the names of your columns in the database.
 
 ### Join NCBI tables into a unified master table  
 ```
-python src/NCBImeta_Join.py --database example/my_organism_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
+python3 src/NCBImeta_Join.py --database example/my_organism_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
 ```  
 
 ### Export the database to tab-separated text files by table.
 ```
-python src/NCBImeta_Export.py --database example/my_organism_db.sqlite --outputdir example/
+python3 src/NCBImeta_Export.py --database example/my_organism_db.sqlite --outputdir example/
 ```
 
 ### Explore!
@@ -73,6 +73,7 @@ BioProject
 BioSample  
 Nucleotide  
 SRA  
+Pubmed
 
 ## Example database output (a subset of the Assembly table)      
 <img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_DB_small.gif" alt="NCBImeta_DB" width="700px"/> 
@@ -83,11 +84,10 @@ These two files provide instructions on writing configuration files and customiz
 
 
 ## Up-Coming Features
-Consider switching from minidom to lxml for XPath and XLST functionality.  
-Database join with EnteroBase metadata?  
-
-PubMed Table    
-Any requested tables or metadata :)  
+- Release packaging with conda.    
+- Consider switching from minidom to lxml for XPath and XLST functionality.  
+- Database join with EnteroBase metadata?  
+- Any requested tables or metadata :)  
 
 ## Suggested Accessory Programs
 ### Database Browser

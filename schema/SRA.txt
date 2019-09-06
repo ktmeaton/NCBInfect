@@ -1,5 +1,9 @@
 # This is the database schema for NCBI SRA
-# To customize, consult ???
+# To customize, consult README_schema.md
+
+# Keyword Tips
+# Only genome sequencing projects:
+     (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]
 
 # Accession Numbers and ID
 {"BioProjectAccession" : "Bioproject"}
