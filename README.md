@@ -84,6 +84,7 @@ These two files provide instructions on writing configuration files and customiz
 
 
 ## Up-Coming Features
+- Implement config file as yaml!
 - Release packaging with conda.    
 - Consider switching from minidom to lxml for XPath and XLST functionality.  
 - Database join with EnteroBase metadata?  
