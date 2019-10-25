@@ -249,6 +249,10 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                         print("HTTP Error " + str(error.code) + ": " + str(error.reason))
                         print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(Entrez.max_tries))
                         print("Retrying record fetching.")
+
+            if fetch_attempts == Entrez.max_tries and not ID_handle_retrieved:
+                raise ErrorMaxFetchAttemptsExceeded(ID)
+
             # If successfully fetched, move onto reading the record
             ID_record = Entrez.read(ID_handle, validate=False)
             try:
