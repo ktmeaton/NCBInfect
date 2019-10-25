@@ -144,6 +144,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
     Entrez.email = email
     Entrez.sleep_between_tries = 3
+    Entrez.max_tries = 3
 
     #---------------------------------------------------------------------------#
     #                                File Setup                                 #
@@ -229,19 +230,24 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         if table.lower() != "nucleotide":
             # Use the esummary function to return a record summary, but wrapped in HTTP error checking
             ID_handle_retrieved = False
-            while not ID_handle_retrieved:
+            fetch_attempts = 0
+            while not ID_handle_retrieved and fetch_attempts < Entrez.max_tries:
                 try:
                     ID_handle = Entrez.esummary(db=table.lower(),id=ID)
                     ID_handle_retrieved = True
                 except urllib.error.HTTPError as error:
                     # Error code 429: Too Many Requests
-                    if error.code == "429":
+                    if error.code == 429:
+                        fetch_attempts += 1
                         print("HTTP Error " + str(error.code) + ": " + str(error.reason))
+                        print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(Entrez.max_tries))
                         print("Sleeping for " + str(Entrez.sleep_between_tries) + " seconds before retrying.")
                         time.sleep(Entrez.sleep_between_tries)
                     # General Error Code, non specific
                     else:
+                        fetch_attempts += 1
                         print("HTTP Error " + str(error.code) + ": " + str(error.reason))
+                        print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(Entrez.max_tries))
                         print("Retrying record fetching.")
             # If successfully fetched, move onto reading the record
             ID_record = Entrez.read(ID_handle, validate=False)
