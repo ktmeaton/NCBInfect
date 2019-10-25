@@ -134,15 +134,17 @@ elif os.path.exists(DB_PATH):
 #                       Database Processing Function                           #
 #------------------------------------------------------------------------------#
 
-def UpdateDB(table, output_dir, database, email, search_term, table_columns, log_path, db_dir):
+def UpdateDB(table, output_dir, database, email, search_term, table_columns, log_path, db_dir, api_key):
     flushprint("\nCreating/Updating the " + table + " table using the following parameters: " + "\n" +
     "\t" + "Database: " + "\t\t" + database + "\n" +
     "\t" + "Search Term:" + "\t" + "\t" + search_term + "\n" +
     "\t" + "Email: " + "\t\t\t" + email + "\n" +
+    "\t" + "API Key: " + "\t\t\t" + api_key + "\n" + 
     "\t" + "Output Directory: "     + "\t" + output_dir + "\n\n")
 
 
     Entrez.email = email
+    Entrez.api_key = api_key
     Entrez.sleep_between_tries = 3
     Entrez.max_tries = 3
 
@@ -457,6 +459,7 @@ for table in CONFIG.TABLES:
     EMAIL = CONFIG.EMAIL
     SEARCH_TERM = CONFIG.SEARCH_TERMS[table]
     TABLE_COLUMNS = CONFIG.TABLE_COLUMNS[table]
+    API_KEY = CONFIG.API_KEY
 
 
-    UpdateDB(table, OUTPUT_DIR, DATABASE, EMAIL, SEARCH_TERM, TABLE_COLUMNS, LOG_PATH, DB_DIR)
+    UpdateDB(table, OUTPUT_DIR, DATABASE, EMAIL, SEARCH_TERM, TABLE_COLUMNS, LOG_PATH, DB_DIR, API_KEY)

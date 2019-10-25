@@ -1,8 +1,9 @@
 OUTPUT_DIR = "example"
 EMAIL = "myemailname@domain.com"
+API_KEY = ""
 DATABASE = "my_organism_db.sqlite"
 TABLES = ["Assembly","BioSample", "BioProject", "SRA"]
-SEARCH_TERMS = {"Assembly": "(plague OR pestis OR Yersinia pestis)",
+SEARCH_TERMS = {"Assembly": "(plague or pestis or Yersinia pestis)",
                 "BioProject": "(plague OR pestis OR Yersinia pestis) AND (bioproject assembly[Filter] OR bioproject sra[Filter])",
                 "BioSample": "(plague OR pestis OR Yersinia pestis) AND (biosample assembly[Filter] OR biosample sra[Filter])",
                 "SRA": "(plague OR pestis OR Yersinia pestis) AND (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]",
