@@ -134,7 +134,7 @@ elif os.path.exists(DB_PATH):
 #                       Database Processing Function                           #
 #------------------------------------------------------------------------------#
 
-def UpdateDB(table, output_dir, database, email, search_term, table_columns, log_path, db_dir, api_key):
+def UpdateDB(table, output_dir, database, email, search_term, table_columns, log_path, db_dir, api_key, force_pause_seconds):
     flushprint("\nCreating/Updating the " + table + " table using the following parameters: " + "\n" +
     "\t" + "Database: " + "\t\t" + database + "\n" +
     "\t" + "Search Term:" + "\t" + "\t" + search_term + "\n" +
@@ -145,7 +145,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
     Entrez.email = email
     Entrez.api_key = api_key
-    Entrez.sleep_between_tries = 3
+    Entrez.sleep_between_tries = 1
     Entrez.max_tries = 3
 
     #---------------------------------------------------------------------------#
@@ -226,7 +226,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         ie. The database does not get updated until the end of each record.
         '''
         # This is the sleep command before implementing the HTTPerror catching in next section
-        #time.sleep(0.5)
+        time.sleep(force_pause_seconds)
         #---------------If Assembly Isn't in Database, Add it------------#
         # Retrieve Assembly record using ID, read, store as dictionary
         if table.lower() != "nucleotide":
@@ -460,6 +460,7 @@ for table in CONFIG.TABLES:
     SEARCH_TERM = CONFIG.SEARCH_TERMS[table]
     TABLE_COLUMNS = CONFIG.TABLE_COLUMNS[table]
     API_KEY = CONFIG.API_KEY
+    FORCE_PAUSE_SECONDS = CONFIG.FORCE_PAUSE_SECONDS
 
 
-    UpdateDB(table, OUTPUT_DIR, DATABASE, EMAIL, SEARCH_TERM, TABLE_COLUMNS, LOG_PATH, DB_DIR, API_KEY)
+    UpdateDB(table, OUTPUT_DIR, DATABASE, EMAIL, SEARCH_TERM, TABLE_COLUMNS, LOG_PATH, DB_DIR, API_KEY, FORCE_PAUSE_SECONDS)

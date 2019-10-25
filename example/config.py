@@ -1,6 +1,7 @@
 OUTPUT_DIR = "example"
 EMAIL = "myemailname@domain.com"
 API_KEY = ""
+FORCE_PAUSE_SECONDS = 0
 DATABASE = "my_organism_db.sqlite"
 TABLES = ["Assembly","BioSample", "BioProject", "SRA"]
 SEARCH_TERMS = {"Assembly": "(plague or pestis or Yersinia pestis)",
