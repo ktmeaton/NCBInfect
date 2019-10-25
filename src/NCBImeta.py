@@ -1,4 +1,4 @@
-#!/usr/bin env python -u
+#!/usr/bin env python3
 """
 Created on Thurs Mar 08 2018
 
@@ -20,6 +20,7 @@ import datetime
 import Bio
 from Bio import Entrez
 from xml.dom import minidom
+import urllib.error    # HTTP Error Catching
 
 src_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '') + "src"
 sys.path.append(src_dir)
@@ -142,6 +143,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
 
     Entrez.email = email
+    Entrez.sleep_between_tries = 3
 
     #---------------------------------------------------------------------------#
     #                                File Setup                                 #
@@ -220,11 +222,28 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         The ID should not exists in the table UNLESS the record was fully parsed.
         ie. The database does not get updated until the end of each record.
         '''
-        time.sleep(0.5)
+        # This is the sleep command before implementing the HTTPerror catching in next section
+        #time.sleep(0.5)
         #---------------If Assembly Isn't in Database, Add it------------#
         # Retrieve Assembly record using ID, read, store as dictionary
         if table.lower() != "nucleotide":
-            ID_handle = Entrez.esummary(db=table.lower(),id=ID)
+            # Use the esummary function to return a record summary, but wrapped in HTTP error checking
+            ID_handle_retrieved = False
+            while not ID_handle_retrieved:
+                try:
+                    ID_handle = Entrez.esummary(db=table.lower(),id=ID)
+                    ID_handle_retrieved = True
+                except urllib.error.HTTPError as error:
+                    # Error code 429: Too Many Requests
+                    if error.code == "429":
+                        print("HTTP Error " + str(error.code) + ": " + str(error.reason))
+                        print("Sleeping for " + str(Entrez.sleep_between_tries) + " seconds before retrying.")
+                        time.sleep(Entrez.sleep_between_tries)
+                    # General Error Code, non specific
+                    else:
+                        print("HTTP Error " + str(error.code) + ": " + str(error.reason))
+                        print("Retrying record fetching.")
+            # If successfully fetched, move onto reading the record
             ID_record = Entrez.read(ID_handle, validate=False)
             try:
                 record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
