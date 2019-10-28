@@ -328,6 +328,13 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             column_payload = list(column.values())[0]
             column_value = ""
             column_index = 0
+            
+            # Check and see if column is special multi/hierarchical type
+            # AssemblyGenbankBioprojectAccession : GB_BioProjects, BioprojectAccn
+            split_column_payload = column_payload.split(", ")
+            # if the split was successful, the payload should be a list
+            if len(split_column_payload) > 1:
+                column_payload = split_column_payload
 
             # Special rules for hard-coded Nucleotide  Fields
             if "GBSeq_comment" in column.values():
