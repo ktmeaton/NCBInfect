@@ -1,9 +1,9 @@
 OUTPUT_DIR = "output"
-EMAIL = "ktmeaton@gmail.com"
-API_KEY = "b2174fc1bf4bb642a599e0cb239005a08b08"
-FORCE_PAUSE_SECONDS = 0.5
-DATABASE = "Pseudomonas aeruginosa_db.sqlite"
-TABLES = ["Assembly","BioSample", "BioProject", "SRA", "Pubmed"]
+EMAIL = "myemailname@domain.com"
+API_KEY = ""
+FORCE_PAUSE_SECONDS = 0
+DATABASE = "pseudomonas_aeruginosa_db.sqlite"
+TABLES = ["Assembly","BioSample", "BioProject", "SRA", "Nucleotide", "Pubmed"]
 SEARCH_TERMS = {"Assembly": "(Pseudomonas aeruginosa[Organism])",
                 "BioProject": "(Pseudomonas aeruginosa[Organism]) AND (bioproject assembly[Filter] OR bioproject sra[Filter])",
                 "BioSample": "(Pseudomonas aeruginosa[Organism]) AND (biosample assembly[Filter] OR biosample sra[Filter])",

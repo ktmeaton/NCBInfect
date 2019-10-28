@@ -3,12 +3,14 @@ EMAIL = "myemailname@domain.com"
 API_KEY = ""
 FORCE_PAUSE_SECONDS = 0
 DATABASE = "my_organism_db.sqlite"
-TABLES = ["Assembly","BioSample", "BioProject", "SRA"]
+TABLES = ["Assembly","BioSample", "BioProject", "SRA", "Nucleotide", "PubMed"]
 SEARCH_TERMS = {"Assembly": "(plague OR pestis OR Yersinia pestis)",
                 "BioProject": "(plague OR pestis OR Yersinia pestis) AND (bioproject assembly[Filter] OR bioproject sra[Filter])",
                 "BioSample": "(plague OR pestis OR Yersinia pestis) AND (biosample assembly[Filter] OR biosample sra[Filter])",
                 "SRA": "(plague OR pestis OR Yersinia pestis) AND (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]",
-                "Nucleotide": "(plague OR pestis OR Yersinia pestis) AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter]"}
+                "Nucleotide": "(plague OR pestis OR Yersinia pestis) AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter]",
+                "Pubmed": "(Yersinia pestis[Organism]) AND (pubmed assembly[Filter] OR pubmed sra[Filter])"}
+
 
 TABLE_COLUMNS = {
    "Assembly" : [
