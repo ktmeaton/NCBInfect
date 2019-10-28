@@ -2,7 +2,7 @@
 OUTPUT_DIR : example
 EMAIL : myemailname@domain.com
 API_KEY : 
-FORCE_PAUSE_SECONDS : 0.5
+FORCE_PAUSE_SECONDS : 0
 DATABASE : my_organism_db.sqlite
 
 # NCBI Tables to Query
@@ -25,17 +25,18 @@ SEARCH_TERMS :
 
 # Columns of the database (ie. metadata fields to retrieve)
 TABLE_COLUMNS :
+
   - Assembly : 
     - AssemblyAccession : AssemblyAccession
     - AssemblyBioSampleAccession : BioSampleAccn
     - AssemblyBioSampleID : BioSampleId
-    - AssemblyGenbankBioprojectAccession : GB_BioProjectsBioprojectAccn
+    - AssemblyGenbankBioprojectAccession : GB_BioProjects, BioprojectAccn
     - AssemblyGenbankID : GbUid
-    - AssemblyRefseqBioprojectAccession : RS_BioProjectsBioprojectAccn
+    - AssemblyRefseqBioprojectAccession : RS_BioProjects, BioprojectAccn
     - AssemblyRefSeqCategory : RefSeq_category
     - AssemblyRefSeqID : RsUid
     - AssemblyWGSAccession : WGS
-    - AssemblyInfraspecies : InfraspeciesListBiosourceSub_value
+    - AssemblyInfraspecies : InfraspeciesList, Biosource, Sub_value
     - AssemblyIsolate : Isolate
     - AssemblyOrganism : Organism
     - AssemblySpeciesTaxonomicID : SpeciesTaxid
@@ -45,17 +46,17 @@ TABLE_COLUMNS :
     - AssemblyStatus : AssemblyStatus
     - AssemblyType : AssemblyType
     - AssemblyCoverage : Coverage
-    - AssemblyChromosomes : Stat chromosome_count category
-    - AssemblyContigCount: Stat contig_count category
-    - AssemblyContigN50 : Stat contig_n50 category
-    - AssemblyContigL50 : Stat contig_l50 category
-    - AssemblyNonChromosomalReplicons : Stat non_chromosome_replicon_count category
-    - AssemblyReplicons : Stat replicon_count category
-    - AssemblyScaffolds : Stat scaffold_count category
-    - AssemblyScaffoldN50 : Stat scaffold_n50 category
-    - AssemblyScaffoldL50 : Stat scaffold_l50 category
-    - AssemblyTotalLength : Stat total_length category
-    - AssemblyUngappedLength : Stat ungapped_length category
+    - AssemblyChromosomes : Stat, chromosome_count, category
+    - AssemblyContigCount: Stat, contig_count, category
+    - AssemblyContigN50 : Stat, contig_n50, category
+    - AssemblyContigL50 : Stat, contig_l50, category
+    - AssemblyNonChromosomalReplicons : Stat, non_chromosome_replicon_count, category
+    - AssemblyReplicons : Stat, replicon_count, category
+    - AssemblyScaffolds : Stat, scaffold_count, category
+    - AssemblyScaffoldN50 : Stat, scaffold_n50, category
+    - AssemblyScaffoldL50 : Stat, scaffold_l50, category
+    - AssemblyTotalLength : Stat, total_length, category
+    - AssemblyUngappedLength : Stat, ungapped_length, category
     - AssemblySubmitterOrganization : SubmitterOrganization
     - AssemblySubmissionDate : SubmissionDate
     - AssemblyReleaseDate : SeqReleaseDate
@@ -64,36 +65,38 @@ TABLE_COLUMNS :
     - AssemblyFTPRefSeq : FtpPath_RefSeq
     - AssemblyFTPStatsReport : FtpPath_Stats_rpt
     - AssemblyComment : NullValue             
+
   - BioSample : 
     - BioSampleAccession: Accession
     - BioSampleAccessionSecondary: NullValue
-    - BioSampleBioProjectAccession: Linklabel
-    - BioSampleSRAAccession: IdSRAdb
+    - BioSampleBioProjectAccession: Link, label
+    - BioSampleSRAAccession: Id, SRA, db
     - BioSampleTitle: Title
-    - BioSampleName: IdSample namedb_label
-    - BioSampleType: Attributesample_typeharmonized_name
+    - BioSampleName: Id, Sample name, db_label
+    - BioSampleType: Attribute, sample_type, harmonized_name
     - BioSamplePackage: Package
     - BioSampleInfraspecies: Infraspecies
     - BioSampleOrganism: OrganismName
-    - BioSampleOrganismAlt: Organismtaxonomy_name
-    - BioSampleSubSpecies: Attributesub_speciesharmonized_name
-    - BioSampleStrain: Attributestrainharmonized_name
+    - BioSampleOrganismAlt: Organism, taxonomy_name
+    - BioSampleSubSpecies: Attribute, sub_species, harmonized_name
+    - BioSampleStrain: Attribute, strain, harmonized_name
     - BioSampleTaxonomyID: Taxonomy
-    - BioSampleBiovar: Attributebiovarharmonized_name
-    - BioSampleCollectionDate: Attributecollection_dateharmonized_name
-    - BioSampleGeographicLocation: Attributegeo_loc_nameharmonized_name
-    - BioSampleHost: Attributehostharmonized_name
-    - BioSampleHostDisease : Attribute host_disease harmonized_name
-    - BioSampleIsolateNameAlias: Attributeisolate_name_aliasharmonized_name
-    - BioSampleIsolationSource: Attributeisolation_sourceharmonized_name
-    - BioSampleLat : Attribute latitude harmonized_name
-    - BioSampleLatLon : Attribute lat_lon harmonized_name
-    - BioSampleLon : Attribute longitude harmonized_name
+    - BioSampleBiovar: Attribute, biovar, harmonized_name
+    - BioSampleCollectionDate: Attribute, collection_date, harmonized_name
+    - BioSampleGeographicLocation: Attribute, geo_loc_name, harmonized_name
+    - BioSampleHost: Attribute, host, harmonized_name
+    - BioSampleHostDisease : Attribute, host_disease, harmonized_name
+    - BioSampleIsolateNameAlias: Attribute, isolate_name_alias, harmonized_name
+    - BioSampleIsolationSource: Attribute, isolation_source, harmonized_name
+    - BioSampleLat : Attribute, latitude, harmonized_name
+    - BioSampleLatLon : Attribute, lat_lon, harmonized_name
+    - BioSampleLon : Attribute, longitude, harmonized_name
     - BioSampleDate: Date
     - BioSampleModificationDate: ModificationDate
     - BioSamplePublicationDate: PublicationDate
     - BioSampleOrganization: Organization
     - BioSampleComment : NullValue
+
   - BioProject : 
     - BioProjectAccession : Project_Acc
     - BioProjectDataType : Project_Data_Type
@@ -120,13 +123,13 @@ TABLE_COLUMNS :
     - NucleotideAccessionVersion : GBSeq_accession-version
     - NucleotideBioSampleAccession: NucleotideBioSample
     - NucleotideBioProjectAccession : GBSeq_project
-    - NucleotideFirstAccession : GBAltSeqData_items GBSeq_alt-seq GBAltSeqItem_first-accn
-    - NucleotideLastAccession : GBAltSeqData_items GBSeq_alt-seq GBAltSeqItem_last-accn
+    - NucleotideFirstAccession : GBAltSeqData_items, GBSeq_alt-seq, GBAltSeqItem_first-accn
+    - NucleotideLastAccession : GBAltSeqData_items, GBSeq_alt-seq, GBAltSeqItem_last-accn
     - NucleotideOrganism : GBSeq_organism
     - NucleotideTaxonomy : GBSeq_taxonomy
     - NucleotideDefinition : GBSeq_definition
     - NucleotideDivision : GBSeq_division
-    - NucleotideJournal: GBSeq_references GBReference_journal
+    - NucleotideJournal: GBSeq_references, GBReference_journal
     - NucleotideLength : GBSeq_length
     - NucleotideMoleculeType : GBSeq_moltype
     - NucleotideReferenceTitle: GBSeq_references uGBReference_title
@@ -172,38 +175,38 @@ TABLE_COLUMNS :
   - SRA : 
     - SRABioProjectAccession : Bioproject
     - SRABioSampleAccession : Biosample
-    - SRAExperimentAccession : Experiment acc
-    - SRARunAccession : Run acc
-    - SRASampleAccession : Sample acc
-    - SRAExperimentName : Experiment name
-    - SRAExperimentStatus : Experiment status
-    - SRAExperimentVersion : Experiment ver
-    - SRAIsPublic : Run is_public
-    - SRASampleName : Sample name
-    - SRAStaticDataAvailable : Run static_data_available
-    - SRAStudyAcc : Study acc
-    - SRAStudName : Study name
+    - SRAExperimentAccession : Experiment, acc
+    - SRARunAccession : Run, acc
+    - SRASampleAccession : Sample, acc
+    - SRAExperimentName : Experiment, name
+    - SRAExperimentStatus : Experiment, status
+    - SRAExperimentVersion : Experiment, ver
+    - SRAIsPublic : Run, is_public
+    - SRASampleName : Sample, name
+    - SRAStaticDataAvailable : Run, static_data_available
+    - SRAStudyAcc : Study, acc
+    - SRAStudName : Study, name
     - SRATitle : Title
-    - SRAOrganismName : Organism CommonName
-    - SRAOrganismTaxID : Organism taxid
-    - SRAClusterName : Statistics cluster_name
-    - SRAInstrumentModel : Platform instrument_model
+    - SRAOrganismName : Organism, CommonName
+    - SRAOrganismTaxID : Organism, taxid
+    - SRAClusterName : Statistics, cluster_name
+    - SRAInstrumentModel : Platform, instrument_model
     - SRALibraryName : LIBRARY_NAME
     - SRALibraryLayout : LIBRARY_LAYOUT
     - SRALibrarySelection : LIBRARY_SELECTION
     - SRALibrarySource : LIBRARY_SOURCE
     - SRALibraryStrategy : LIBRARY_STRATEGY
     - SRAPlatform : Platform
-    - SRATotalBases : Statistics total_bases
-    - SRATotalSize : Statistics total_size
-    - SRATotalSpots : Statistics total_spots
-    - SRATotalRuns : Statistics total_runs
+    - SRATotalBases : Statistics, total_bases
+    - SRATotalSize : Statistics, total_size
+    - SRATotalSpots : Statistics, total_spots
+    - SRATotalRuns : Statistics, total_runs
     - SRACreateDate : CreateDate
     - SRAUpdateDate : UpdateDate
-    - SRACenterName : Submitter center_name
-    - SRAContactName : Submitter contact_name
-    - SRALabName : Submitter lab_name
-    - SRASubmitterAccession : Submitter acc
+    - SRACenterName : Submitter, center_name
+    - SRAContactName : Submitter, contact_name
+    - SRALabName : Submitter, lab_name
+    - SRASubmitterAccession : Submitter, acc
     - SRAComment : NullValue
 
 
