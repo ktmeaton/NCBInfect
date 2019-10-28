@@ -21,6 +21,7 @@ import Bio
 from Bio import Entrez
 from xml.dom import minidom
 import urllib.error    # HTTP Error Catching
+import yaml            # YAML config file parsing
 
 src_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '') + "src"
 sys.path.append(src_dir)
@@ -42,7 +43,7 @@ def flushprint(message):
 #-----------------------------------------------------------------------#
 
 # To Be Done: Full Description
-parser = argparse.ArgumentParser(description='Description of NCBImeta.',
+parser = argparse.ArgumentParser(description='NCBImeta: Query and create a database of NCBI metadata (includes SRA).',
                                  add_help=True)
 
 
@@ -50,7 +51,7 @@ parser = argparse.ArgumentParser(description='Description of NCBImeta.',
 mandatory_parser = parser.add_argument_group('mandatory')
 
 parser.add_argument('--config',
-                    help = 'Path to configuration file "NCBImeta_config.py".',
+                    help = 'Path to configuration file "config.yaml".',
                     action = 'store',
                     dest = 'configPath',
                     required = True)
@@ -83,40 +84,82 @@ if not os.path.exists(config_path):
 # Add the directory containing config.py to the system path for import
 sys.path.append(os.path.dirname(config_path))
 
-# Get the module name for import
-config_module_name = os.path.basename(config_path).split(".")[0]
-
-# Dynamic module loading
-CONFIG = importlib.import_module(config_module_name)
-
+# YAML switch in v0.3.5
+with open(config_path) as config_file:
+    config_data = yaml.load(config_file, Loader=yaml.FullLoader) 
+    
+# Retrieve configuration file values and error catching
+#--- Output Directory ---#
+try:
+    CONFIG_OUTPUT_DIR = config_data["OUTPUT_DIR"] 
+except KeyError:
+    raise NCBImeta_Errors.ErrorConfigParameter("OUTPUT_DIR")
+#--- User Email ---#
+try:
+    CONFIG_EMAIL = config_data["EMAIL"]
+except KeyError:
+    raise NCBImeta_Errors.ErrorConfigParameter("EMAIL")
+#--- User API Key ---#
+try:
+    CONFIG_API_KEY = config_data["API_KEY"]
+except KeyError:
+    raise NCBImeta_Errors.ErrorConfigParameter("API_KEY")
+#--- Force pausing in between record fetching ---#
+try:
+    CONFIG_FORCE_PAUSE_SECONDS = config_data["FORCE_PAUSE_SECONDS"]
+except KeyError:
+    raise NCBImeta_Errors.ErrorConfigParameter("FORCE_PAUSE_SECONDS")
+#--- Database file name---#
+try:
+    CONFIG_DATABASE = config_data["DATABASE"]
+except KeyError:
+    raise NCBImeta_Errors.ErrorConfigParameter("DATABASE")
+#--- NCBI Tables to Search (list) ---#
+try:
+    CONFIG_TABLES = config_data["TABLES"]
+except KeyError:
+    raise NCBImeta_Errors.ErrorConfigParameter("TABLES")
+#--- Search terms for each table (dict) ---#
+try:
+    CONFIG_SEARCH_TERMS = config_data["SEARCH_TERMS"]
+except KeyError:
+    raise NCBImeta_Errors.ErrorConfigParameter("SEARCH_TERMS")
+#--- Table Columns/Metadata to retrieve (list of dict)---#
+try:
+    CONFIG_TABLE_COLUMNS = config_data["TABLE_COLUMNS"]
+except KeyError:
+    raise NCBImeta_Errors.ErrorConfigParameter("TABLE_COLUMNS")
 
 flushprint(
-"\n" + "NCBImeta run with the following options: " + "\n" +
-"\t" + "Output Directory: " + CONFIG.OUTPUT_DIR + "\n" +
-"\t" + "Email: " + CONFIG.EMAIL + "\n" +
-"\t" + "User Database: " + str(CONFIG.DATABASE) + "\n" +
-"\t" + "Tables: " + str(CONFIG.TABLES) + "\n" +
-"\t" + "Search Terms: " + str(CONFIG.SEARCH_TERMS) + "\n\n")
+"\n" + "NCBImeta was run with the following options: " + "\n" +
+"\t" + "Output Directory: " + str(CONFIG_OUTPUT_DIR) + "\n" +
+"\t" + "Email: " + str(CONFIG_EMAIL) + "\n" +
+"\t" + "User Database: " + str(CONFIG_DATABASE) + "\n" +
+"\t" + "Tables: " + str(CONFIG_TABLES) + "\n" + 
+"\t" + "Search Terms: ")
+for table_search_term in CONFIG_SEARCH_TERMS:
+    flushprint("\t\t" + str(table_search_term))
+flushprint("\n")
 
 # Check if output dir exists
-if not os.path.exists(CONFIG.OUTPUT_DIR):
-    raise NCBImeta_Errors.ErrorOutputDirNotExists(CONFIG.OUTPUT_DIR)
+if not os.path.exists(CONFIG_OUTPUT_DIR):
+    raise NCBImeta_Errors.ErrorOutputDirNotExists(CONFIG_OUTPUT_DIR)
 
 # Flat mode checking
 if flat_mode:
     flushprint("Flat mode was requested, organizational directories will not be used.")
-    DB_DIR = os.path.join(CONFIG.OUTPUT_DIR, "")
-    LOG_PATH = CONFIG.OUTPUT_DIR
+    DB_DIR = os.path.join(CONFIG_OUTPUT_DIR, "")
+    LOG_PATH = CONFIG_OUTPUT_DIR
 
 
 elif not flat_mode:
     # Create accessory directory (ex. log, data, database, etc.)
     flushprint("Flat mode was not requested, organization directories will be used.")
-    NCBImeta_Utilities.check_accessory_dir(CONFIG.OUTPUT_DIR)
-    DB_DIR = os.path.join(CONFIG.OUTPUT_DIR, "", "database", "")
-    LOG_PATH = os.path.join(CONFIG.OUTPUT_DIR, "", "log")
+    NCBImeta_Utilities.check_accessory_dir(CONFIG_OUTPUT_DIR)
+    DB_DIR = os.path.join(CONFIG_OUTPUT_DIR, "", "database", "")
+    LOG_PATH = os.path.join(CONFIG_OUTPUT_DIR, "", "log")
 
-DB_PATH = os.path.join(DB_DIR, "", CONFIG.DATABASE)
+DB_PATH = os.path.join(DB_DIR, "", CONFIG_DATABASE)
 
 #------------------------- Database Connection---------------------------------#
 if not os.path.exists(DB_PATH):
@@ -140,7 +183,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     "\t" + "Search Term:" + "\t" + "\t" + search_term + "\n" +
     "\t" + "Email: " + "\t\t\t" + email + "\n" +
     "\t" + "API Key: " + "\t\t\t" + api_key + "\n" + 
-    "\t" + "Output Directory: "     + "\t" + output_dir + "\n\n")
+    "\t" + "Output Directory: " + "\t" + output_dir + "\n\n")
 
 
     Entrez.email = email
@@ -452,15 +495,25 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
 
 #------------------------Iterate Through Tables--------------------------------#
-
-for table in CONFIG.TABLES:
-    OUTPUT_DIR = CONFIG.OUTPUT_DIR
-    DATABASE = CONFIG.DATABASE
-    EMAIL = CONFIG.EMAIL
-    SEARCH_TERM = CONFIG.SEARCH_TERMS[table]
-    TABLE_COLUMNS = CONFIG.TABLE_COLUMNS[table]
-    API_KEY = CONFIG.API_KEY
-    FORCE_PAUSE_SECONDS = CONFIG.FORCE_PAUSE_SECONDS
-
+for table in CONFIG_TABLES:
+    OUTPUT_DIR = CONFIG_OUTPUT_DIR
+    DATABASE = CONFIG_DATABASE
+    EMAIL = CONFIG_EMAIL
+    # Since API can be empty, force it to empty string for printing
+    API_KEY = CONFIG_API_KEY
+    if not API_KEY: API_KEY = ""
+    FORCE_PAUSE_SECONDS = CONFIG_FORCE_PAUSE_SECONDS
+    # Config search terms, match table to table name
+    for index,search_term_table in enumerate(CONFIG_SEARCH_TERMS):
+        table_name = list(search_term_table)[0]
+        if table_name == table:
+            break
+    SEARCH_TERM = CONFIG_SEARCH_TERMS[index][table]
+    # Table columns, match table to table name
+    for index,table_column_dict in enumerate(CONFIG_TABLE_COLUMNS):
+        table_name = list(table_column_dict)[0]
+        if table_name == table:
+            break
+    TABLE_COLUMNS = CONFIG_TABLE_COLUMNS[index][table]
 
     UpdateDB(table, OUTPUT_DIR, DATABASE, EMAIL, SEARCH_TERM, TABLE_COLUMNS, LOG_PATH, DB_DIR, API_KEY, FORCE_PAUSE_SECONDS)
