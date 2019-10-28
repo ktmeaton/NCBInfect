@@ -15,84 +15,74 @@ The names of these variables should not be altered in any way. Just their assign
 The configuration file can be named anything, as long as it ends in ".py" and doesn't have any other periods in the name.
 
 ## 1) OUTPUT_DIR
-Type "str", example:    
     
-      OUTPUT_DIR = "../NCBImeta_ouput/"  
+  OUTPUT_DIR : ../NCBImeta_ouput/  
     
 Can be a relative or absolute path. Note that when using a relative path, it will be relative from wherever you are EXECUTING the program (not necessarily from where the config file is located).    
 
 This directory MUST exist, otherwise the program will exit with an error status.    
 
 ## 2) EMAIL
-Type "str", example:    
 
-      EMAIL = "myemailname@domain.com"    
+  EMAIL : myemailname@domain.com    
 
 This must be a valid email address for using biopython/NCBI's API.    
 
 ## 3) API_KEY
-Type "str", example:
 
-      API_KEY = "a6526gs1h4l3t324th5htl234tlhlt234435"
+  API_KEY : a6526gs1h4l3t324th5htl234tlhlt234435
 
 This must be a valid API key as issued to your account through NCBI.
 
 ## 4) FORCE_PAUSE_SECONDS:
-Type "float", example:
 
-      FORCE_PAUSE_SECONDS = 0.5
+  FORCE_PAUSE_SECONDS : 0.5
 
 The amount of time (in seconds) that the program should forcibly sleep (wait) in between record fetching.
 
 ## 5) DATABASE
-Type "str", example:    
 
-        DATABASE = "my_organism_db.sqlite"    
+  DATABASE : my_organism_db.sqlite    
 
 This will be the name of your created database and should not be a path. By default, a "database" directory will be created in your output directory to store this file. If you choose the --flat option at runtime, the database directory will not be created, and it will simply be stored in your selected output directory.    
 
 It does not need to end in "".sqlite", but you may find that helpful as your computer will associate that with an appropriate viewer application.    
 
 ## 6) TABLES
-Type "list" containing comma separated "str" elements:   
 
-        TABLES = ["Assembly","BioSample"]
+  TABLES :
+    - Assembly
+    - BioSample
 
-This list contains the names of all tables you want to search in. Note that these must match exactly to SEARCH TERMS and TABLE COLUMNS. 
+A line-separated list (beginning with dashes) containing the names of all tables you want to search in. Note that these must match exactly to SEARCH TERMS and TABLE COLUMNS. 
 
 ## 7) SEARCH_TERMS
-Type "dict" containing comma separated key value pairs of type "str", example:    
 
-        SEARCH_TERMS = {"Assembly": "Yersinia pestis[Orgn]",    
-                        "BioSample": "Yersinia pestis[Orgn]"}    
+  SEARCH_TERMS : 
+    - Assembly : Yersinia pestis[Orgn]
+    - BioSample : Yersinia pestis[Orgn] and 2017[Publication Date]
 
 This list contains the names of all tables and corresponding ENTREZ search queries.    
 Building an appropriate search query is sometimes the most difficult part.    
 Test your queries in the web browser first before committing.    
 
-Note that these must match exactly to TABLES and TABLE COLUMNS.    
+Note that the table names must match exactly to TABLES and TABLE COLUMNS.    
 
 *** Note that record retrieval is currently limited to 9999999 records per table. This can be changed locally in your program by searching for the first instance of "retmax" in the NCBImeta.py source file (src/NCBImeta.py). ***    
 
 ## 8) TABLE_COLUMNS
-Type "dict" containing comma separated key value pairs. The key is always of type "str", the value always of type "list" of "str", example:    
 
-    TABLE_COLUMNS = {
-       "Assembly" : [
-                {"AssemblyAccession" : "AssemblyAccession"},
-                {"AssemblyBioSampleAccession" : 'BioSampleAccn'},
-                {"AssemblyOrganism" : 'Organism'}
-                ],
-      "BioSample" : [
-                {"BioSampleAccession": "Accession"},
-                {"BioSampleBioProjectAccession": ["Link","label"]},
-                {"BioSampleSRAAccession": ["Id","SRA","db"]},
-                {"BioSampleTitle": "Title"}
-                ]
-                }
+  TABLE_COLUMNS :
+    - Assembly :
+      - AssemblyAccession : AssemblyAccession
+      - AssemblyBioSampleAccession : BioSampleAccn
+      - AssemblyOrganism : Organism
+    - BioSample :
+      - BioSampleAccession : Accession
+      - BioSampleBioProjectAccession : Link, label
+      - BioSampleSRAAccession: Id, SRA, db
+      - BioSampleTitle: Title
                 
-This dictionary contains metadata elements selected from the schema files (schema/). They should be copy-pasted, with a comma-separating each. Line breaks are added after each element just for readability.    
+This contains metadata elements selected from the schema files (schema/). They should be copy-pasted from the appropriate schema file if adding additional lines.   
 
-Note that these must match exactly to SEARCH TERMS and TABLES.    
-
-** Tips, don't put a comma after the final element in each list (ie. in each square-bracket separated list).
+Note that the Table Names must match exactly to SEARCH TERMS and TABLES.    
