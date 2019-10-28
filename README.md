@@ -37,9 +37,9 @@ cd NCBImeta
 
 ### Run the program
 ```
-python3 src/NCBImeta.py --flat --config example/config.py
+python3 src/NCBImeta.py --flat --config example/config.yaml
 ```
-If HTTP 429 errors (Too Many Requests) are frequently raised, increase the parameter FORCE_PAUSE_SECONDS in example/config.py from 0 to 0.5 or 1. The rate at which you can fetch records from NCBI's servers will vary slightly by user (IP address).  
+If HTTP 429 errors (Too Many Requests) are frequently raised, increase the parameter FORCE_PAUSE_SECONDS in example/config.yaml from 0 to 0.5 or 1. The rate at which you can fetch records from NCBI's servers will vary slightly by user (IP address).  
 
 ### Annotate the database with curated tab-separated text files of metadata
 ```
