@@ -6,7 +6,24 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
-## [0.3.3] - 2019-0905
+## [0.3.5] - 2019-1028
+### Added
+- requirements.txt for pip install dependencies
+- PyYAML is now a required module for yaml config file loading
+
+### Changed
+- Configuration files now implemented in YAML format
+- Source file (NCBImeta.py) and documentaiton changes to reflect
+
+### Removed
+- Configuration Files: Comprehensive_config.py,  pseudomonas_aeruginosa.py
+
+## [0.3.4] - 2019-1028
+### Added
+- HTTP Error catching
+- Bug fixes for HTTP Error 429	
+
+## [0.3.3] - 2019-0912
 ### Added
 - Pubmed Table support
 
