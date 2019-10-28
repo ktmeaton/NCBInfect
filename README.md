@@ -17,8 +17,8 @@ pip install --user biopython
 
 ## Version
 
-Release - Version v0.3.3 (master)  
-Development - Version 0.3.4 (dev)  
+Release - Version v0.3.4 (master)  
+Development - Version 0.3.5 (dev)  
 
 ## Installation
 
@@ -38,6 +38,7 @@ cd NCBImeta
 ```
 python3 src/NCBImeta.py --flat --config example/config.py
 ```
+If HTTP 429 errors (Too Many Requests) are frequently raised, increase the parameter FORCE_PAUSE_SECONDS in example/config.py from 0 to 0.5 or 1. The rate at which you can fetch records from NCBI's servers will vary slightly by user (IP address).  
 
 ### Annotate the database with curated tab-separated text files of metadata
 ```
@@ -46,7 +47,9 @@ python3 src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite
 python3 src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_3.txt --table BioSample
 ```
 
-Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also exactly match the names of your columns in the database.
+Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also exactly match the names of your columns in the database.  
+
+NCBImeta_AnnotateReplace.py, as the name implies, replaces the existing annotation with the data in your custom metadata file. If you would like to retain the original metadata from NCBI, and simply concatenate (append) your custom metadata, instead use the NCBImeta_AnnotateConcatenate.py script.  
 
 ### Join NCBI tables into a unified master table  
 ```

@@ -62,3 +62,10 @@ class ErrorDBNotExists(Exception):
     def __str__(self):
         print("\n\nDatabase does not exist.")
         print(self.value)
+
+class ErrorMaxFetchAttemptsExceeded(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        print("\n\nThe Maximum number of fetch attempts was exceeded for ID:")
+        print(self.value)

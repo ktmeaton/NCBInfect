@@ -2,15 +2,14 @@ OUTPUT_DIR = "output"
 EMAIL = "myemailname@domain.com"
 API_KEY = ""
 FORCE_PAUSE_SECONDS = 0
-DATABASE = "my_organism_db.sqlite"
-TABLES = ["Assembly","BioSample", "BioProject", "SRA", "Nucleotide", "PubMed"]
-SEARCH_TERMS = {"Assembly": "(plague OR pestis OR Yersinia pestis)",
-                "BioProject": "(plague OR pestis OR Yersinia pestis) AND (bioproject assembly[Filter] OR bioproject sra[Filter])",
-                "BioSample": "(plague OR pestis OR Yersinia pestis) AND (biosample assembly[Filter] OR biosample sra[Filter])",
-                "SRA": "(plague OR pestis OR Yersinia pestis) AND (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]",
-                "Nucleotide": "(plague OR pestis OR Yersinia pestis) AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter]",
-                "Pubmed": "(Yersinia pestis[Organism]) AND (pubmed assembly[Filter] OR pubmed sra[Filter])"}
-
+DATABASE = "pseudomonas_aeruginosa_db.sqlite"
+TABLES = ["Assembly","BioSample", "BioProject", "SRA", "Nucleotide", "Pubmed"]
+SEARCH_TERMS = {"Assembly": "(Pseudomonas aeruginosa[Organism])",
+                "BioProject": "(Pseudomonas aeruginosa[Organism]) AND (bioproject assembly[Filter] OR bioproject sra[Filter])",
+                "BioSample": "(Pseudomonas aeruginosa[Organism]) AND (biosample assembly[Filter] OR biosample sra[Filter])",
+                "SRA": "(Pseudomonas aeruginosa[Organism]) AND (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]",
+                "Nucleotide": "(Pseudomonas aeruginosa[Organism]) AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter]",
+                "Pubmed": "(Pseudomonas aeruginosa[Organism]) AND (pubmed assembly[Filter] OR pubmed sra[Filter])"}
 
 TABLE_COLUMNS = {
    "Assembly" : [
@@ -195,5 +194,21 @@ TABLE_COLUMNS = {
                 {"SRALabName" : ["Submitter", "lab_name"]},
                 {"SRASubmitterAccession" : ["Submitter", "acc"]},
                 {'SRAComment' : 'NullValue'}
-                ]
+                ],
+        "Pubmed" : [
+		{"PubmedPublishDate" : "PubDate"},
+		{"PubmedEPublishDate" : "EPubDate"},
+		{"PubmedSource" : "Source"},
+		{"PubmedFullSource" : "FullJournalName"},
+		{"PubmedAuthorList" : "AuthorList"},
+		{"PubmedTitle": "Title"},
+		{"PubmedVolume" : "Volume"},
+		{"PubmedIssue" : "Issue"},
+		{"PubmedPages" : "Pages"},
+		{"PubmedDOI" : "DOI"},
+		{"PubmedPubStatus" : "PubStatus"},
+  		{"PubmedRecordStatus" : "RecordStatus"},
+		{"PubmedLangList" : "LangList"},
+		{"PubmedTypeList" : "PubTypeList"}
+		]
                 }

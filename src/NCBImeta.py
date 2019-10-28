@@ -1,4 +1,4 @@
-#!/usr/bin env python -u
+#!/usr/bin env python3
 """
 Created on Thurs Mar 08 2018
 
@@ -20,6 +20,7 @@ import datetime
 import Bio
 from Bio import Entrez
 from xml.dom import minidom
+import urllib.error    # HTTP Error Catching
 
 src_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '') + "src"
 sys.path.append(src_dir)
@@ -133,15 +134,19 @@ elif os.path.exists(DB_PATH):
 #                       Database Processing Function                           #
 #------------------------------------------------------------------------------#
 
-def UpdateDB(table, output_dir, database, email, search_term, table_columns, log_path, db_dir):
+def UpdateDB(table, output_dir, database, email, search_term, table_columns, log_path, db_dir, api_key, force_pause_seconds):
     flushprint("\nCreating/Updating the " + table + " table using the following parameters: " + "\n" +
     "\t" + "Database: " + "\t\t" + database + "\n" +
     "\t" + "Search Term:" + "\t" + "\t" + search_term + "\n" +
     "\t" + "Email: " + "\t\t\t" + email + "\n" +
+    "\t" + "API Key: " + "\t\t\t" + api_key + "\n" + 
     "\t" + "Output Directory: "     + "\t" + output_dir + "\n\n")
 
 
     Entrez.email = email
+    Entrez.api_key = api_key
+    Entrez.sleep_between_tries = 1
+    Entrez.max_tries = 3
 
     #---------------------------------------------------------------------------#
     #                                File Setup                                 #
@@ -220,11 +225,37 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         The ID should not exists in the table UNLESS the record was fully parsed.
         ie. The database does not get updated until the end of each record.
         '''
-        time.sleep(0.5)
+        # This is the sleep command before implementing the HTTPerror catching in next section
+        time.sleep(force_pause_seconds)
         #---------------If Assembly Isn't in Database, Add it------------#
         # Retrieve Assembly record using ID, read, store as dictionary
         if table.lower() != "nucleotide":
-            ID_handle = Entrez.esummary(db=table.lower(),id=ID)
+            # Use the esummary function to return a record summary, but wrapped in HTTP error checking
+            ID_handle_retrieved = False
+            fetch_attempts = 0
+            while not ID_handle_retrieved and fetch_attempts < Entrez.max_tries:
+                try:
+                    ID_handle = Entrez.esummary(db=table.lower(),id=ID)
+                    ID_handle_retrieved = True
+                except urllib.error.HTTPError as error:
+                    # Error code 429: Too Many Requests
+                    if error.code == 429:
+                        fetch_attempts += 1
+                        print("HTTP Error " + str(error.code) + ": " + str(error.reason))
+                        print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(Entrez.max_tries))
+                        print("Sleeping for " + str(Entrez.sleep_between_tries) + " seconds before retrying.")
+                        time.sleep(Entrez.sleep_between_tries)
+                    # General Error Code, non specific
+                    else:
+                        fetch_attempts += 1
+                        print("HTTP Error " + str(error.code) + ": " + str(error.reason))
+                        print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(Entrez.max_tries))
+                        print("Retrying record fetching.")
+
+            if fetch_attempts == Entrez.max_tries and not ID_handle_retrieved:
+                raise ErrorMaxFetchAttemptsExceeded(ID)
+
+            # If successfully fetched, move onto reading the record
             ID_record = Entrez.read(ID_handle, validate=False)
             try:
                 record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
@@ -428,6 +459,8 @@ for table in CONFIG.TABLES:
     EMAIL = CONFIG.EMAIL
     SEARCH_TERM = CONFIG.SEARCH_TERMS[table]
     TABLE_COLUMNS = CONFIG.TABLE_COLUMNS[table]
+    API_KEY = CONFIG.API_KEY
+    FORCE_PAUSE_SECONDS = CONFIG.FORCE_PAUSE_SECONDS
 
 
-    UpdateDB(table, OUTPUT_DIR, DATABASE, EMAIL, SEARCH_TERM, TABLE_COLUMNS, LOG_PATH, DB_DIR)
+    UpdateDB(table, OUTPUT_DIR, DATABASE, EMAIL, SEARCH_TERM, TABLE_COLUMNS, LOG_PATH, DB_DIR, API_KEY, FORCE_PAUSE_SECONDS)

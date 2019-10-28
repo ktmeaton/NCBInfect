@@ -30,7 +30,21 @@ Type "str", example:
 
 This must be a valid email address for using biopython/NCBI's API.    
 
-## 3) DATABASE
+## 3) API_KEY
+Type "str", example:
+
+      API_KEY = "a6526gs1h4l3t324th5htl234tlhlt234435"
+
+This must be a valid API key as issued to your account through NCBI.
+
+## 4) FORCE_PAUSE_SECONDS:
+Type "float", example:
+
+      FORCE_PAUSE_SECONDS = 0.5
+
+The amount of time (in seconds) that the program should forcibly sleep (wait) in between record fetching.
+
+## 5) DATABASE
 Type "str", example:    
 
         DATABASE = "my_organism_db.sqlite"    
@@ -39,14 +53,14 @@ This will be the name of your created database and should not be a path. By defa
 
 It does not need to end in "".sqlite", but you may find that helpful as your computer will associate that with an appropriate viewer application.    
 
-## 4) TABLES
+## 6) TABLES
 Type "list" containing comma separated "str" elements:   
 
         TABLES = ["Assembly","BioSample"]
 
 This list contains the names of all tables you want to search in. Note that these must match exactly to SEARCH TERMS and TABLE COLUMNS. 
 
-## 5) SEARCH_TERMS
+## 7) SEARCH_TERMS
 Type "dict" containing comma separated key value pairs of type "str", example:    
 
         SEARCH_TERMS = {"Assembly": "Yersinia pestis[Orgn]",    
@@ -60,7 +74,7 @@ Note that these must match exactly to TABLES and TABLE COLUMNS.
 
 *** Note that record retrieval is currently limited to 9999999 records per table. This can be changed locally in your program by searching for the first instance of "retmax" in the NCBImeta.py source file (src/NCBImeta.py). ***    
 
-## 5) TABLE_COLUMNS
+## 8) TABLE_COLUMNS
 Type "dict" containing comma separated key value pairs. The key is always of type "str", the value always of type "list" of "str", example:    
 
     TABLE_COLUMNS = {
