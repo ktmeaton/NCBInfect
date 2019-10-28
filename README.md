@@ -17,8 +17,8 @@ pip install --user biopython
 
 ## Version
 
-Release - Version v0.3.3 (master)  
-Development - Version 0.3.4 (dev)  
+Release - Version v0.3.4 (master)  
+Development - Version 0.3.5 (dev)  
 
 ## Installation
 
@@ -38,6 +38,7 @@ cd NCBImeta
 ```
 python3 src/NCBImeta.py --flat --config example/config.py
 ```
+If HTTP 429 errors (Too Many Requests) are frequently raised, increase the parameter FORCE_PAUSE_SECONDS in example/config.py from 0 to 0.5 or 1. The rate at which you can fetch records from NCBI's servers will vary slightly by user (IP address).  
 
 ### Annotate the database with curated tab-separated text files of metadata
 ```
