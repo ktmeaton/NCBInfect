@@ -9,10 +9,11 @@ Query and create a database of NCBI metadata (includes SRA).
  
 ## Python Requirements
 Python3.4+  
-BioPython 1.70    
+BioPython (1.70)    
+PyYAML (5.1.2)
 
 ```
-pip install --user biopython 
+pip install --user -r requirements.txt 
 ```
 
 ## Version
