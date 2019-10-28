@@ -47,7 +47,9 @@ python3 src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite
 python3 src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_3.txt --table BioSample
 ```
 
-Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also exactly match the names of your columns in the database.
+Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also exactly match the names of your columns in the database.  
+
+NCBImeta_AnnotateReplace.py, as the name implies, replaces the existing annotation with the data in your custom metadata file. If you would like to retain the original metadata from NCBI, and simply concatenate (append) your custom metadata, instead use the NCBImeta_AnnotateConcatenate.py script.  
 
 ### Join NCBI tables into a unified master table  
 ```
