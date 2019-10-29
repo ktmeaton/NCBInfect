@@ -19,7 +19,7 @@ pip install --user -r requirements.txt
 ## Version
 
 Release - Version v0.3.4 (master)  
-Development - Version 0.3.5 (dev)  
+Development - Version 0.4.0 (dev)  
 
 ## Installation
 

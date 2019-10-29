@@ -6,10 +6,11 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
-## [0.3.5] - 2019-1028
+## [0.4.0] - 2019-1028
 ### Added
 - requirements.txt for pip install dependencies
 - PyYAML is now a required module for yaml config file loading
+- HTTP 429 Error catching for efetch
 
 ### Changed
 - Configuration files now implemented in YAML format
