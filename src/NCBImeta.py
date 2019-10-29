@@ -305,7 +305,31 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             except TypeError:
                 record_dict = ID_record[0]
         else:
-            ID_handle = Entrez.efetch(db=table.lower(),id=ID, retmode='xml')
+            # Use the esummary function to return a record summary, but wrapped in HTTP error checking 
+            ID_handle_retrieved = False
+            fetch_attempts = 0
+            while not ID_handle_retrieved and fetch_attempts < Entrez.max_tries:
+                try:
+                    ID_handle = Entrez.efetch(db=table.lower(),id=ID, retmode='xml')
+                    ID_handle_retrieved = True
+                except urllib.error.HTTPError as error:
+                    # Error code 429: Too Many Requests
+                    if error.code == 429:
+                        fetch_attempts += 1
+                        print("HTTP Error " + str(error.code) + ": " + str(error.reason))
+                        print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(Entrez.max_tries))
+                        print("Sleeping for " + str(Entrez.sleep_between_tries) + " seconds before retrying.")
+                        time.sleep(Entrez.sleep_between_tries)
+                    # General Error Code, non specific
+                    else:
+                        fetch_attempts += 1
+                        print("HTTP Error " + str(error.code) + ": " + str(error.reason))
+                        print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(Entrez.max_tries))
+                        print("Retrying record fetching.")
+
+            if fetch_attempts == Entrez.max_tries and not ID_handle_retrieved:
+                raise ErrorMaxFetchAttemptsExceeded(ID)
+
             ID_record = Entrez.read(ID_handle, validate=False)
             try:
                 record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
