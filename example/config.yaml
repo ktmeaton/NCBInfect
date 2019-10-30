@@ -16,12 +16,12 @@ TABLES :
 
 # Query Terms to Use
 SEARCH_TERMS :
-  - Assembly : (plague or pestis or Yersinia pestis) AND (2017[Date - Sequences Release]:3000[Date - Sequences Release])
-  - BioProject : (plague OR pestis OR Yersinia pestis) AND (bioproject assembly[Filter] OR bioproject sra[Filter]) AND (2017[Registration Date]:3000[Registration Date])
-  - BioSample: (plague OR pestis OR Yersinia pestis) AND (biosample assembly[Filter] OR biosample sra[Filter]) AND (2017[Publication Date]:3000[Publication Date])
-  - SRA : ((plague OR pestis OR Yersinia pestis) AND (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]) AND (2017[Publication Date]:3000[Publication Date])
-  - Nucleotide : (plague OR pestis OR Yersinia pestis) AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter] AND (2017[Publication Date]:3000[Publication Date])
-  - Pubmed : (Yersinia pestis) AND (pubmed assembly[Filter] OR pubmed sra[Filter]) AND (2017[Date - Create]:3000[Date - Create])
+  - Assembly : (Pseudomonas aeruginosa[Organism]) AND (2019[Date - Sequences Release]:3000[Date - Sequences Release])
+  - BioProject : (Pseudomonas aeruginosa[Organism]) AND (bioproject assembly[Filter] OR bioproject sra[Filter]) AND (2019[Registration Date]:3000[Registration Date])
+  - BioSample: (Pseudomonas aeruginosa[Organism]) AND (biosample assembly[Filter] OR biosample sra[Filter]) AND (2019[Publication Date]:3000[Publication Date])
+  - SRA : ((Pseudomonas aeruginosa[Organism]) AND (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]) AND (2019[Publication Date]:3000[Publication Date])
+  - Nucleotide : (Pseudomonas aeruginosa[Organism]) AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter] AND (2019[Publication Date]:3000[Publication Date])
+  - Pubmed : (Pseudomonas aeruginosa) AND (pubmed assembly[Filter] OR pubmed sra[Filter]) AND (2019[Date - Create]:3000[Date - Create])
 
 # Columns of the database (ie. metadata fields to retrieve)
 TABLE_COLUMNS :
