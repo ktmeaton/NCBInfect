@@ -15,9 +15,9 @@ The names of these variables should not be altered in any way. Just their assign
 The configuration file can be named anything, as long as it ends in ".py" and doesn't have any other periods in the name.
 
 ## 1) OUTPUT_DIR
-    
+
   OUTPUT_DIR : ../NCBImeta_ouput/  
-    
+
 Can be a relative or absolute path. Note that when using a relative path, it will be relative from wherever you are EXECUTING the program (not necessarily from where the config file is located).    
 
 This directory MUST exist, otherwise the program will exit with an error status.    
@@ -54,11 +54,11 @@ It does not need to end in "".sqlite", but you may find that helpful as your com
     - Assembly
     - BioSample
 
-A line-separated list (beginning with dashes) containing the names of all tables you want to search in. Note that these must match exactly to SEARCH TERMS and TABLE COLUMNS. 
+A line-separated list (beginning with dashes) containing the names of all tables you want to search in. Note that these must match exactly to SEARCH TERMS and TABLE COLUMNS.
 
 ## 7) SEARCH_TERMS
 
-  SEARCH_TERMS : 
+  SEARCH_TERMS :
     - Assembly : Yersinia pestis[Orgn]
     - BioSample : Yersinia pestis[Orgn] and 2017[Publication Date]
 
@@ -82,7 +82,7 @@ Note that the table names must match exactly to TABLES and TABLE COLUMNS.
       - BioSampleBioProjectAccession : Link, label
       - BioSampleSRAAccession: Id, SRA, db
       - BioSampleTitle: Title
-                
-This contains metadata elements selected from the schema files (schema/). They should be copy-pasted from the appropriate schema file if adding additional lines.   
+
+This contains metadata elements selected from the schema files (schema/). They should be copy-pasted from the appropriate schema file if adding additional lines. The whitespace (number of sapces/indendentation) is very important in this file! When copying and pasting, don't delete spaces before the dash.
 
 Note that the Table Names must match exactly to SEARCH TERMS and TABLES.    
