@@ -70,6 +70,13 @@ class ErrorMaxFetchAttemptsExceeded(Exception):
         print("\n\nThe Maximum number of fetch attempts was exceeded for ID:")
         print(self.value)
 
+class ErrorMaxReadAttemptsExceeded(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        print("\n\nThe Maximum number of read attempts was exceeded for table:")
+        print(self.value)
+
 class ErrorConfigParameter(Exception):
     def __init__(self, value):
         self.value = value
