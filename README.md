@@ -79,7 +79,7 @@ Pubmed
 ## Documentation
 To get started with customizing the search terms, database, and metadata fields, please read:
 1. [Config File README](config/README_config.md)
-2. [Scheme File README](schema/README_schema.md)
+2. [Schema File README](schema/README_schema.md)
 
 
 ## Up-Coming Features  
@@ -92,7 +92,7 @@ DB Browser for SQLite: https://sqlitebrowser.org/
 
 ## Credits
 
-author: [Katherine Eaton](https://github.com/ktmeaton) ktmeaton@gmail.com  
+author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)  
 
 ## Contributing
 
