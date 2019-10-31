@@ -49,7 +49,7 @@ parser = argparse.ArgumentParser(description='NCBImeta: Query and create a datab
 mandatory_parser = parser.add_argument_group('mandatory')
 
 parser.add_argument('--config',
-                    help = 'Path to configuration file "config.yaml".',
+                    help = 'Path to yaml configuration file (ex. config.yaml).',
                     action = 'store',
                     dest = 'configPath',
                     required = True)
@@ -84,12 +84,12 @@ sys.path.append(os.path.dirname(config_path))
 
 # YAML switch in v0.3.5
 with open(config_path) as config_file:
-    config_data = yaml.load(config_file, Loader=yaml.FullLoader) 
-    
+    config_data = yaml.load(config_file, Loader=yaml.FullLoader)
+
 # Retrieve configuration file values and error catching
 #--- Output Directory ---#
 try:
-    CONFIG_OUTPUT_DIR = config_data["OUTPUT_DIR"] 
+    CONFIG_OUTPUT_DIR = config_data["OUTPUT_DIR"]
 except KeyError:
     raise NCBImeta_Errors.ErrorConfigParameter("OUTPUT_DIR")
 #--- User Email ---#
@@ -133,7 +133,7 @@ flushprint(
 "\t" + "Output Directory: " + str(CONFIG_OUTPUT_DIR) + "\n" +
 "\t" + "Email: " + str(CONFIG_EMAIL) + "\n" +
 "\t" + "User Database: " + str(CONFIG_DATABASE) + "\n" +
-"\t" + "Tables: " + str(CONFIG_TABLES) + "\n" + 
+"\t" + "Tables: " + str(CONFIG_TABLES) + "\n" +
 "\t" + "Search Terms: ")
 for table_search_term in CONFIG_SEARCH_TERMS:
     flushprint("\t\t" + str(table_search_term))
@@ -173,7 +173,7 @@ elif os.path.exists(DB_PATH):
 
 #------------------------------------------------------------------------------#
 #                             HTTP Error Catching                              #
-#------------------------------------------------------------------------------#                              
+#------------------------------------------------------------------------------#
 
 def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
     '''
@@ -215,7 +215,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     "\t" + "Database: " + "\t\t" + database + "\n" +
     "\t" + "Search Term:" + "\t" + "\t" + search_term + "\n" +
     "\t" + "Email: " + "\t\t\t" + email + "\n" +
-    "\t" + "API Key: " + "\t\t\t" + api_key + "\n" + 
+    "\t" + "API Key: " + "\t\t\t" + api_key + "\n" +
     "\t" + "Output Directory: " + "\t" + output_dir + "\n\n")
 
 
@@ -261,7 +261,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     #-----------------------------------------------------------------------#
     #                          Entrez Search                                #
     #-----------------------------------------------------------------------#
-    
+
     handle = Entrez.esearch(db=table.lower(),
                             term=search_term,
                             retmax = 9999999)
@@ -285,7 +285,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
     num_records = int(record['Count'])
     num_processed = 0
-   
+
     #-----------------------------------------------------------------------#
     #                          Iterate Through ID List                      #
     #-----------------------------------------------------------------------#
@@ -332,7 +332,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             except TypeError:
                 record_dict = ID_record[0]
         else:
-            # Use the esummary function to return a record summary, but wrapped in HTTP error checking 
+            # Use the esummary function to return a record summary, but wrapped in HTTP error checking
             kwargs = {"db": table.lower(), "id":ID, "retmode":"xml"}
             ID_handle = HTTPErrorCatch(Entrez.efetch, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
 
@@ -358,7 +358,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             column_payload = list(column.values())[0]
             column_value = ""
             column_index = 0
-            
+
             # Check and see if column is special multi/hierarchical type
             # AssemblyGenbankBioprojectAccession : GB_BioProjects, BioprojectAccn
             split_column_payload = column_payload.split(", ")
@@ -384,14 +384,14 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                             split_value = split_item[1].lstrip(" ").rstrip(" ")
                             # Accomodate all the inconsistently named fields
                             for i_column in table_columns:
-                                cur_column = list(i_column.items())[0][1]			  
-                                if (cur_column == split_key or 
+                                cur_column = list(i_column.items())[0][1]
+                                if (cur_column == split_key or
                                   (cur_column == "CDS (total)" and split_key == "CDSs (total)") or
 				  (cur_column == "CDS (total)" and split_key == "CDS") or
                                   (cur_column == "CDS (coding)" and split_key == "CDS (with protein)") or
 				  (cur_column == "CDS (coding)" and split_key == "CDSs (with protein)") or
                                   (cur_column == "Genes (total)" and split_key == "Genes") or
-                                  (cur_column == "Pseudo Genes (total)" and split_key == "Pseudo Genes")):				  
+                                  (cur_column == "Pseudo Genes (total)" and split_key == "Pseudo Genes")):
                                     column_value = "'" + split_value.replace("'","").replace(",","") + "'"
                                     column_dict[list(i_column.items())[0][0]] = column_value
 
@@ -430,15 +430,15 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 column_value = "'" + column_value.replace("'","") + "'"
                 column_dict[column_name] = column_value
 		#continue?
-	
+
 	    # Briefly try to parse the original record dict
 	    # This was for pubmed author lists originally
             elif type(column_payload) != list:
                 try:
                     column_value = record_dict[column_payload]
-                    # If list, convert to semicolon separated string		   
+                    # If list, convert to semicolon separated string
                     if isinstance(column_value,Bio.Entrez.Parser.ListElement):
-                        column_value = '; '.join(str(e) for e in column_value)		    
+                        column_value = '; '.join(str(e) for e in column_value)
                     column_value = "'" + column_value.replace("'","") + "'"
                     column_dict[column_name] = column_value
                 except KeyError:
