@@ -37,15 +37,13 @@ cd NCBImeta
 
 ### Run the program
 ```
-python3 src/NCBImeta.py --flat --config example/config.yaml
+src/NCBImeta.py --flat --config example/config.yaml
 ```
-If HTTP 429 errors (Too Many Requests) are frequently raised, increase the parameter FORCE_PAUSE_SECONDS in example/config.yaml from 0 to 0.5 or 1. The rate at which you can fetch records from NCBI's servers will vary slightly by user (IP address).  
 
 ### Annotate the database with curated tab-separated text files of metadata
 ```
-python3 src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_1.txt --table BioSample
-python3 src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_2.txt --table BioSample
-python3 src/NCBImeta_AnnotateReplace.py --database example/my_organism_db.sqlite --annotfile example/my_organism_annot_3.txt --table BioSample
+src/NCBImeta_AnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot_1.txt --table BioSample
+src/NCBImeta_AnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot_2.txt --table BioSample
 ```
 
 Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also exactly match the names of your columns in the database.  
@@ -54,12 +52,12 @@ NCBImeta_AnnotateReplace.py, as the name implies, replaces the existing annotati
 
 ### Join NCBI tables into a unified master table  
 ```
-python3 src/NCBImeta_Join.py --database example/my_organism_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
+src/NCBImeta_Join.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide Pubmed" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
 ```  
 
 ### Export the database to tab-separated text files by table.
 ```
-python3 src/NCBImeta_Export.py --database example/my_organism_db.sqlite --outputdir example/
+src/NCBImeta_Export.py --database example/yersinia_pestis_db.sqlite --outputdir example/
 ```
 
 ### Explore!
