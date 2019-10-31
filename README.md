@@ -1,4 +1,4 @@
-[![GitHub (pre-)release](https://img.shields.io/badge/Release-v0.3.4-red.svg)](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.3.4)
+[![GitHub (pre-)release](https://img.shields.io/badge/Release-v0.4.0-red.svg)](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.0)
 [![GitHub license](https://img.shields.io/dub/l/vibe-d.svg?style=flat)](https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/ktmeaton/NCBImeta.svg)](https://github.com/ktmeaton/NCBImeta/issues)
 
@@ -16,8 +16,8 @@ pip install --user -r requirements.txt
 
 ## Version
 
-Release - [Version v0.3.4](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.3.4) (master)  
-Development - Version 0.4.0 (dev)  
+Release - [Version v0.4.0](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.0) (master)  
+Development - Version 0.4.1 (dev)  
 
 ## Installation
 
@@ -107,9 +107,9 @@ author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)
 
 ## Helpful Development Commands  
 Merging a development branch into master:  
-        (on branch development) `git merge origin/master`
+        (on branch dev) `git merge origin/master`
         (resolve any merge conflicts if there are any)  
         `git checkout master`  
-        `git merge --no-ff development` (there won't be any conflicts now)  
+        `git merge --no-ff dev` (there won't be any conflicts now)  
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
