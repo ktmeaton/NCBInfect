@@ -164,6 +164,7 @@ while annot_line:
                                                     sql_dynamic_vars,
                                                     unique_header,
                                                     "'" + unique_element + "'")
+    print("Entry " + unique_element + " found in db. " + sql_dynamic_query)
     cur.execute(sql_dynamic_query)
 
     # Read in the next line
