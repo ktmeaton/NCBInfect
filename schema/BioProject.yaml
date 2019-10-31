@@ -1,0 +1,43 @@
+# This is the database schema for NCBI BioProject
+# To customize, consult README_schema.md
+
+# Keyword Tips
+# Only records used by SRA:
+#        bioproject sra[filter]
+# Only records used by Assembly:
+#        bioproject assembly[Filter]
+
+
+# Accession Numbers and ID
+    - BioProjectAccession : Project_Acc
+
+# Project Information
+    - BioProjectAccession : Project_Acc
+    - BioProjectDataType : Project_Data_Type
+    - BioProjectDescription : Project_Description
+    - BioProjectMethodType : Project_MethodType
+    - BioProjectName : Project_Name
+    - BioProjectTargetCapture : Project_Target_Capture
+    - BioProjectTargetMaterial : Project_Target_Material
+    - BioProjectTargetScope : Project_Target_Scope
+    - BioProjectTitle : Project_Title
+    - BioProjectType : Project_Type
+
+# Taxonomy Information
+    - BioProjectOrganismLabel : Organism_Label
+    - BioProjectOrganismStrain : Organism_Strain
+    - BioProjectSupergroup : Supergroup
+    - BioProjectTaxonomicID : TaxId
+
+# Dates
+    - BioProjectRegistrationDate : Registration_Date
+
+# Misc
+    - BioProjectRelevanceMedical : Relevance_Medical
+    - BioProjectSequencingStatus : Sequencing_Status
+
+# Submitter Information
+    - BioProjectSubmitterOrganization : Submitter_Organization
+
+# Empty field for user comments about record
+    - BioProjectComment : NullValue

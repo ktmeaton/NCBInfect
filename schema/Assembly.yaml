@@ -1,0 +1,59 @@
+# This is the database schema for NCBI Assembly
+# To customize, consult README_schema.md
+
+# Accession Numbers and ID
+    - AssemblyAccession : AssemblyAccession
+    - AssemblyBioSampleAccession : BioSampleAccn
+    - AssemblyBioSampleID : BioSampleId
+    - AssemblyGenbankBioprojectAccession : GB_BioProjects, BioprojectAccn
+    - AssemblyGenbankID : GbUid
+    - AssemblyRefseqBioprojectAccession : RS_BioProjects, BioprojectAccn
+    - AssemblyRefSeqCategory : RefSeq_category
+    - AssemblyRefSeqID : RsUid
+    - AssemblyWGSAccession : WGS
+
+# Taxonomy Information
+    - AssemblyInfraspecies : InfraspeciesList, Biosource, Sub_value
+    - AssemblyIsolate : Isolate
+    - AssemblyOrganism : Organism
+    - AssemblySpeciesTaxonomicID : SpeciesTaxid
+    - AssemblySpeciesName : SpeciesName
+    - AssemblyTaxonomicID : Taxid
+
+# Assembly Description
+    - AssemblyName : AssemblyName
+    - AssemblyStatus : AssemblyStatus
+    - AssemblyType : AssemblyType
+
+# Assembly Statistics
+    - AssemblyCoverage : Coverage
+    - AssemblyChromosomes : Stat, chromosome_count, category
+    - AssemblyContigCount: Stat, contig_count, category
+    - AssemblyContigN50 : Stat, contig_n50, category
+    - AssemblyContigL50 : Stat, contig_l50, category
+    - AssemblyNonChromosomalReplicons : Stat, non_chromosome_replicon_count, category
+    - AssemblyReplicons : Stat, replicon_count, category
+    - AssemblyScaffolds : Stat, scaffold_count, category
+    - AssemblyScaffoldN50 : Stat, scaffold_n50, category
+    - AssemblyScaffoldL50 : Stat, scaffold_l50, category
+    - AssemblyTotalLength : Stat, total_length, category
+    - AssemblyUngappedLength : Stat, ungapped_length, category
+
+# Submitter Information
+    - AssemblySubmitterOrganization : SubmitterOrganization
+
+# Dates
+    - AssemblySubmissionDate : SubmissionDate
+    - AssemblyReleaseDate : SeqReleaseDate
+
+# FTP Links
+    - AssemblyFTPAssemblyReport : FtpPath_Assembly_rpt
+    - AssemblyFTPGenbank : FtpPath_GenBank
+    - AssemblyFTPRefSeq : FtpPath_RefSeq
+    - AssemblyFTPStatsReport : FtpPath_Stats_rpt
+
+# Empty field for user comments about record
+    - AssemblyComment : NullValue
+
+# TO-DO
+# 'scaffold_count' should be sub-divided into 'all','placed','unplaced','unlocalized'
