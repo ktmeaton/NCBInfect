@@ -26,7 +26,7 @@ def flushprint(message):
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-parser = argparse.ArgumentParser(description=("NCBImeta Annotation Tool - Concatenates database fields with values in curated annotation file using separator ;"),
+parser = argparse.ArgumentParser(description=("NCBImeta Annotation Tool - Concatenates database fields with values in curated annotation file using a semi-colon separator."),
                                  add_help=True)
 
 mandatory = parser.add_argument_group('mandatory')
