@@ -50,11 +50,12 @@ provided by NCBI. The biopython API occasionally renames attributes.
 
 ## 3) Retrieving a simple node value by specifying an associated attribute.
 
-User selects:  
+User selects:
 
-  - BioSampleCollectionDate: Attribute, collection_date, harmonized_name
+    - BioSampleCollectionDate : Attribute, collection_date, harmonized_name
 
-XML from NCBI:  
+XML from NCBI:    
+
 
     <Attribute display_name="collection date" harmonized_name="collection_date" attribute_name="collection date"> 2006 </Attribute>  
     <Attribute display_name="host taxonomy ID" harmonized_name="host_taxid" attribute_name="host taxid"> 10090 </Attribute>    
