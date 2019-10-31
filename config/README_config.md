@@ -23,15 +23,15 @@ Can be a relative or absolute path. Note that when using a relative path, it wil
 This directory MUST exist, otherwise the program will exit with an error status.    
 
 ## 2) EMAIL
-
-  EMAIL : myemailname@domain.com    
-
+```
+  EMAIL : myemailname@domain.com
+```
 This must be a valid email address for using biopython/NCBI's API.    
 
 ## 3) API_KEY
-
+```
   API_KEY : a6526gs1h4l3t324th5htl234tlhlt234435
-
+```
 This must be a valid API key as issued to your account through NCBI.
 
 ## 4) FORCE_PAUSE_SECONDS:
@@ -50,9 +50,9 @@ It does not need to end in "".sqlite", but you may find that helpful as your com
 
 ## 6) TABLES
 
-  TABLES :
-    - Assembly
-    - BioSample
+  TABLES :  
+    - Assembly  
+    - BioSample  
 
 A line-separated list (beginning with dashes) containing the names of all tables you want to search in. Note that these must match exactly to SEARCH TERMS and TABLE COLUMNS.
 
