@@ -52,7 +52,7 @@ provided by NCBI. The biopython API occasionally renames attributes.
 
 User selects:  
 
-  - BioSampleCollectionDate: Attribute, collection_date, harmonized_name  
+  - BioSampleCollectionDate: Attribute, collection_date, harmonized_name
 
 XML from NCBI:  
 
@@ -70,7 +70,7 @@ The first value ("Attribute"), is the name of the node.
 The second value ("collection date") is the attribute value to target.    
 The third value ("attribute name") is the attribute type to target.    
 
-## 4) Retrieving a simple node value that does not have a unique name or unique attributes.
+## 4) Retrieving simple node values that don't have a unique names or attributes.
 
 User selects:    
 
