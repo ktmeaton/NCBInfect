@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 NCBI Metadata Database Annotator
 

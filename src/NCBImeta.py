@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 """
-Created on Thurs Mar 08 2018
-
 @author: Katherine Eaton
 
 "NCBImeta Main Program"
