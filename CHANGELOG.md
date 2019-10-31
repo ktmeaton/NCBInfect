@@ -6,7 +6,34 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
-## [0.3.3] - 2019-0905
+## [0.4.0] - 2019-1031
+### Added
+- requirements.txt for pip install dependencies
+- PyYAML is now a required module for yaml config file loading
+- HTTP 429 Error catching for efetch
+- Database Read Runtime Error catching for Entrez.read(handle) for Issue: #2
+- yaml schema metadata files for all 6 tables
+
+### Changed
+- Configuration files now implemented in YAML format
+- Source file (NCBImeta.py) and documentation changes to reflect
+- Minimal Working Example (MWE) back to plague for quicker execution
+- Schema documentation to explain yaml format changes
+- README section reorganize
+- renamed the annot file and restricted records to 2019-2020.
+
+### Removed
+- Configuration Files: Comprehensive_config.py,  pseudomonas_aeruginosa.py, config.py
+- All 6 schema txt files: (ex. schema/Assembly.txt)
+- scripts folder with very deprecated R code for plotting
+- excessive annotation files 2 and 3.
+
+## [0.3.4] - 2019-1028
+### Added
+- HTTP Error catching
+- Bug fixes for HTTP Error 429
+
+## [0.3.3] - 2019-0912
 ### Added
 - Pubmed Table support
 
@@ -17,7 +44,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Three new annotation files for the example.
 
 ### Changed
-- Python2 no longer support, Python3 is now mandatory.
+- Python2 no longer supported, Python3 is now mandatory.
 - Improved Nucleotide Table annotation parsing
 - Fixed missing BioSampleAccession from the Nucleotide Table
 - Fixed incorrect directory paths in README.md example commands.

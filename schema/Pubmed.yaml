@@ -1,0 +1,33 @@
+# This is the database schema for NCBI Pubmed
+# To customize, consult README_schema.md
+
+# Keyword Tips
+# Only records used by SRA:
+#        pubmed sra[filter]
+# Only records used by Assembly:
+#        pubmed assembly[Filter]
+
+# Dates
+    - PubmedPublishDate : PubDate
+    - PubmedEPublishDate : EPubDate
+
+# Journal
+    - PubmedPublishDate : PubDate
+    - PubmedEPublishDate : EPubDate
+    - PubmedSource : Source
+    - PubmedFullSource : FullJournalName
+    - PubmedAuthorList : AuthorList
+    - PubmedTitle : Title
+    - PubmedVolume : Volume
+    - PubmedIssue : Issue
+    - PubmedPages : Pages
+    - PubmedDOI : DOI
+    - PubmedPubStatus : PubStatus
+
+# Misc
+    - PubmedRecordStatus : RecordStatus
+    - PubmedLangList : LangList
+    - PubmedTypeList : PubTypeList
+
+# Empty field for user comments about record
+    - PubmedComment : NullValue

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 NCBI Metadata Database Annotator
 
@@ -16,7 +17,7 @@ from NCBImeta_Utilities import table_exists
 # Deal with unicode function rename in version 3
 if sys.version_info.major == 3:
     unicode = str
-    
+
 def flushprint(message):
     print(message)
     sys.stdout.flush()
@@ -25,7 +26,7 @@ def flushprint(message):
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-parser = argparse.ArgumentParser(description=("NCBImeta Annotation Tool - Concatenates database fields with values in curated annotation file using separator ;"),
+parser = argparse.ArgumentParser(description=("NCBImeta Annotation Tool - Concatenates database fields with values in curated annotation file using a semi-colon separator."),
                                  add_help=True)
 
 mandatory = parser.add_argument_group('mandatory')
@@ -174,10 +175,11 @@ while annot_line:
         if type(db_value) == tuple:
             db_value = "".join(db_value)
         # If the annotation file has a different value, concatenate db value with it
-        if db_value != line_dict[header]:
-            line_dict[header] = db_value + db_value_sep + line_dict[value]
+        #if db_value != line_dict[header]:
+        #    line_dict[header] = db_value + db_value_sep + line_dict[value]
 
-
+        # Concatenate db value to it (regardless of whether it's the same)
+        line_dict[header] = db_value + db_value_sep + line_dict[header]
 
     # This section allows for dynamic variable creation and column modification
     sql_dynamic_vars = ",".join([header + "=" + "'" + line_dict[header] + "'" for header in line_dict.keys()])
@@ -185,6 +187,7 @@ while annot_line:
                                                     sql_dynamic_vars,
                                                     unique_header,
                                                     "'" + unique_element + "'")
+    print("Entry " + unique_element + " found in db. " + sql_dynamic_query)
     cur.execute(sql_dynamic_query)
 
     # Read in the next line

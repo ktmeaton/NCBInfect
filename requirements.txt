@@ -1,0 +1,2 @@
+biopython==1.70
+PyYAML==5.1.2

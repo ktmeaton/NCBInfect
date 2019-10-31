@@ -1,0 +1,76 @@
+# This is the database schema for NCBI Nucleotide
+# To customize, consult README_schema.md
+
+# Keyword Tips
+# Only the WGS Master Record:
+#         WGS_MASTER[KYWD]
+
+# Downloading Tips in python (ex. WGS Contigs)
+# id="QANK00000000.1"
+# format="fasta"#or genbank
+# handle=urllib.urlopen{"https://www.ncbi.nlm.nih.gov/Traces/wgs/wgsviewer.cgi?dump=%s&format=%s"%{id:format}}
+
+# Accession Numbers and ID
+    - NucleotideAccession : GBSeq_primary-accession
+    - NucleotideAccessionVersion : GBSeq_accession-version
+    - NucleotideBioSampleAccession: NucleotideBioSample
+    - NucleotideBioProjectAccession : GBSeq_project
+    - NucleotideFirstAccession : GBAltSeqData_items, GBSeq_alt-seq, GBAltSeqItem_first-accn
+    - NucleotideLastAccession : GBAltSeqData_items, GBSeq_alt-seq, GBAltSeqItem_last-accn
+
+# Taxonomy Information
+    - NucleotideOrganism : GBSeq_organism
+    - NucleotideTaxonomy : GBSeq_taxonomy
+
+# Nucleotide Information
+    - NucleotideDefinition : GBSeq_definition
+    - NucleotideDivision : GBSeq_division
+    - NucleotideJournal: GBSeq_references, GBReference_journal
+    - NucleotideLength : GBSeq_length
+    - NucleotideMoleculeType : GBSeq_moltype
+    - NucleotideReferenceTitle: GBSeq_references uGBReference_title
+    - NucleotideSeqDataName : GBSeq_alt-seq GBAltSeqData_name
+    - NucleotideSource : GBSeq_source
+    - NucleotideStrandedness : GBSeq_strandedness
+    - NucleotideTopology : GBSeq_topology
+
+# Dates
+    - NucleotideCreateDate : GBSeq_create-date
+    - NucleotideUpdateDate : GBSeq_update-date
+
+# Genomic Annotations
+    - NucleotideGenBankComment : GBSeq_comment
+# To use the following: you must include the previous GBSeq_comment
+    - NucleotideAnnotationDate: Annotation Date
+    - NucleotideAnnotationMethod: Annotation Method
+    - NucleotideAnnotationPipeline: Annotation Pipeline
+    - NucleotideAnnotationProvider: Annotation Provider
+    - NucleotideAnnotationSoftwarerevision: Annotation Software revision
+    - NucleotideAssemblyDate: Assembly Date
+    - NucleotideAssemblyMethod: Assembly Method
+    - NucleotideAssemblyName: Assembly Name
+    - NucleotidetCDS: CDS (total)
+    - NucleotidetCDSCoding: CDS (coding)
+    - NucleotidetCRISPRArrays: CRISPR Arrays
+    - NucleotidetExpectedFinalVersion: Expected Final Version
+    - NucleotidetFeaturesAnnotated: Features Annotated
+    - NucleotidetGenes: Genes (total)
+    - NucleotidetGenesCoding: Genes (coding)
+    - NucleotidetGenesRNA: Genes (RNA)
+    - NucleotidetGenomeCoverage: Genome Coverage
+    - NucleotidetGenomeRepresentation: Genome Representation
+    - NucleotidetncRNAs: ncRNAs
+    - NucleotidetPseudoGenes: Pseudo Genes (total)
+    - NucleotidetPseudoGenesAmbResidues: Pseudo Genes (ambiguous residues)
+    - NucleotidetPseudoGenesFrameshifted: Pseudo Genes (frameshifted)
+    - NucleotidetPseudoGenesIncomplete: Pseudo Genes (incomplete)
+    - NucleotidetPseudoGenesInternalStop: Pseudo Genes (internal stop)
+    - NucleotidetPseudoGenesMultipleProblems: Pseudo Genes (multiple problems)
+    - NucleotidetrRNAs: rRNAs
+    - NucleotidetrRNAsComplete: complete rRNAs
+    - NucleotidetrRNAsPartial: partial rRNAs
+    - NucleotideSequencingTechnology: Sequencing Technology
+    - NucleotidetRNAs: tRNAs
+
+# Empty field for user comments about record
+    - NucleotideComment : NullValue

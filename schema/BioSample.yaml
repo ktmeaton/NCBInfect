@@ -1,0 +1,53 @@
+# This is the database schema for NCBI BioSample
+# To customize, consult README_schema.md
+
+# Keyword Tips
+# Only records used by SRA:
+#        biosample sra[filter]
+# Only records used by Assembly:
+#        biosample assembly[Filter]
+
+# Accession Numbers and ID
+    - BioSampleAccession: Accession
+    - BioSampleAccessionSecondary: NullValue
+    - BioSampleBioProjectAccession: Link, label
+
+# Description
+    - BioSampleTitle: Title
+    - BioSampleName: Id, Sample name, db_label
+    - BioSampleType: Attribute, sample_type, harmonized_name
+    - BioSamplePackage: Package
+
+# Taxonomy Information
+    - BioSampleInfraspecies: Infraspecies
+    - BioSampleOrganism: OrganismName
+    - BioSampleOrganismAlt: Organism, taxonomy_name
+    - BioSampleSubSpecies: Attribute, sub_species, harmonized_name
+    - BioSampleStrain: Attribute, strain, harmonized_name
+    - BioSampleTaxonomyID: Taxonomy
+
+# Sample attributes
+# To customize, consult https://www.ncbi.nlm.nih.gov/biosample/docs/attributes/
+# BioSampleLat and BioSampleLon may not be supported anymore (2019-1031)
+    - BioSampleBiovar: Attribute, biovar, harmonized_name
+    - BioSampleCollectionDate: Attribute, collection_date, harmonized_name
+    - BioSampleGeographicLocation: Attribute, geo_loc_name, harmonized_name
+    - BioSampleHost: Attribute, host, harmonized_name
+    - BioSampleHostDisease : Attribute, host_disease, harmonized_name
+    - BioSampleIsolateNameAlias: Attribute, isolate_name_alias, harmonized_name
+    - BioSampleIsolationSource: Attribute, isolation_source, harmonized_name
+    - BioSampleLatLon : Attribute, lat_lon, harmonized_name
+    - BioSampleLat : Attribute, latitude, harmonized_name
+    - BioSampleLon : Attribute, longitude, harmonized_name
+
+# Dates
+    - BioSampleDate: Date
+    - BioSampleModificationDate: ModificationDate
+    - BioSamplePublicationDate: PublicationDate
+
+# Submitter Information
+    - BioSampleOrganization: Organization
+
+
+# Empty field for user comments about record
+    - BioSampleComment : NullValue

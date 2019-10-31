@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 NCBI Metadata Database Annotator
 
@@ -24,7 +25,7 @@ def flushprint(message):
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-parser = argparse.ArgumentParser(description=("NCBInfect Annotation Tool"),
+parser = argparse.ArgumentParser(description=("NCBInfect Database Export Tool"),
                                  add_help=True)
 
 mandatory = parser.add_argument_group('mandatory')
