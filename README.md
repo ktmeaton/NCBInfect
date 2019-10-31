@@ -53,11 +53,14 @@ src/NCBImeta_AnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite
 ```
 src/NCBImeta_Join.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
 ```  
+The rows of the output "Master" table will be from the anchor table "BioSample", with additional columns added in from the accessory tables "BioProject", "Assembly", "SRA", and "Nucleotide". Unique accession numbers for BioSample (both primary and secondary) and BioProject allow this join to be unambiguous.
+
 
 ### Export the database to tab-separated text files by table.
 ```
 src/NCBImeta_Export.py --database example/yersinia_pestis_db.sqlite --outputdir example/
 ```
+Each table within the database will be exported to its own tab-separated .txt file in the specified output directory.
 
 ### Explore!
 1. Explore your database text files using a spreadsheet viewer (Microsoft Excel, Google Sheets, etc.)  
