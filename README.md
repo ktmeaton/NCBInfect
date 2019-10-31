@@ -34,6 +34,10 @@ cd NCBImeta
 src/NCBImeta.py --flat --config example/config.yaml
 ```
 
+Example output of the command-line interface (v0.3.4):  
+<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_CLI.gif" alt="NCBImeta_CLI" width="700px"/>
+
+
 ### Annotate the database with curated tab-separated text files of metadata
 ```
 src/NCBImeta_AnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
@@ -60,10 +64,8 @@ src/NCBImeta_Export.py --database example/yersinia_pestis_db.sqlite --outputdir 
 2. Browse your SQLite database using DB Browser for SQLite (see below for program links)  
 3. Use the columns with FTP links to download your data of interest.
 
-
-## Example output of the command-line interface (v0.3.4):  
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_CLI.gif" alt="NCBImeta_CLI" width="700px"/>
-
+Example database output (a subset of the Assembly table)      
+<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_DB_small.gif" alt="NCBImeta_DB" width="700px"/>
 
 ## Currently Supported NCBI Tables  
 Assembly  
@@ -73,8 +75,6 @@ Nucleotide
 SRA  
 Pubmed
 
-## Example database output (a subset of the Assembly table)      
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_DB_small.gif" alt="NCBImeta_DB" width="700px"/>
 
 ## Documentation
 To get started with customizing the search terms, database, and metadata fields, please read:
