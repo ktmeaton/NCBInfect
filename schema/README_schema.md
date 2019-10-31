@@ -1,23 +1,24 @@
 # Metadata Selection from NCBI Schema
 
-The schema files are designed to act as a text 'menu' for users to select desired metadata to retrieve. Lines from the schema can be copy and pasted into the configuration file, into the dictionary of their respective table.    
+The schema files are designed to act as a text 'menu' for users to select desired metadata to retrieve. Lines from the schema can be copy and pasted into the "TABLE_COLUMNS" section of a configuration file (config.yaml). Consult the comprehensive file example/config.yaml for a template.
 
 The schema is of the following format:    
 
-    {"AssemblyAccession" : "AssemblyAccession"}    
+    - BioSampleOrganism: OrganismName
 
-This is a python dictionary (associative array, hash, etc.) with the left side of the colon as the key, and the right side as the value.    
+The left side (key) will be the name of the column in the final table and can be changed to whatever the user desires. However, please avoid putting spaces in your column names.  The right side is a keyword specific to the biopython API and should not be altered.
 
-The left side (key) will be the name of the column in the final table and can be changed to whatever the user desires. However, please avoid putting spaces in your column names.    
-(Note: It is highly recommended to keep the default column names the author has provided. These ensure clarity of which database the information comes from. In addition, the default column names are all unique allowing for any combination of full-joins or partial-joins of tables)
+(Note: It is highly recommended to keep the default column names the author has provided. These ensure clarity of which database the information comes from. In addition, the default column names are all unique allowing for any combination of full-joins or partial-joins of tables)  
 
-The right side is a keyword specific to the biopython API and should not be altered. Its format takes several options (1-4).    
+The whitespace (number of spaces) before the dash is important to keep intact when copying and pasting to your configuration file. Please do not delete spaces before the dash, as the line must remain properly indented.  
+
+The following sections should only be read if you want to gain a deeper understanding of the XML parsing method, or if you want to experiment with adding new metadata fields from NCBI that have not been implemented yet by the author.
 
 ## 1) Retrieving a simple node value with biopython from the metadata xml.
 
 User selects:
 
-    {"AssemblyAccession" : "AssemblyAccession"}
+    - AssemblyAccession : AssemblyAccession
 
 XML from NCBI:
 
@@ -29,8 +30,8 @@ Retrieves Accession Number "GCA_003086155.1" and stores it under column "Assembl
 ## 2) Retrieving an attribute value (not a node value)
 
 User selects:
-    
-    {"SRAExperimentAccession" : ["Experiment", "acc"]}
+
+    - SRAExperimentAccession : Experiment, acc
 
 XML from NCBI:    
 
@@ -39,8 +40,8 @@ XML from NCBI:
 Retrieves accession "SRX4321294" and stores it under "SRAExperimentAccession"    
 The value in this case, is a list of 2 elements:    
 
-    ["Experiment", "acc"]
-    
+    Experiment, acc
+
 The first value ("Experiment"), is the name of the node.
 The second value ("acc") is the attribute value to target.    
 
@@ -49,20 +50,22 @@ provided by NCBI. The biopython API occasionally renames attributes.
 
 ## 3) Retrieving a simple node value by specifying an associated attribute.
 
-User selects:
+User selects:  
 
-    {"BioSampleCollectionDate": ["Attribute","collection_date","harmonized_name"]}
+  - BioSampleCollectionDate: Attribute, collection_date, harmonized_name  
 
-XML from NCBI:
-    
-    <Attribute display_name="collection date" harmonized_name="collection_date" attribute_name="collection date"> 2006 </Attribute>
-    <Attribute display_name="host taxonomy ID" harmonized_name="host_taxid" attribute_name="host taxid"> 10090 </Attribute>
+XML from NCBI:  
 
-Retrieves collection date 2006 and stores it under "BioSampleCollectionDate".     
-The value in this case, is a list of 3 elements:    
+    <Attribute display_name="collection date" harmonized_name="collection_date" attribute_name="collection date"> 2006 </Attribute>  
+    <Attribute display_name="host taxonomy ID" harmonized_name="host_taxid" attribute_name="host taxid"> 10090 </Attribute>    
 
-    ["Attribute","collection_date","attribute_name"]    
-    
+Retrieves collection date "2006 "and stores it under "BioSampleCollectionDate".  
+The host taxid line is not mistakenly processed instead.
+
+The value in this case, is a list of 3 elements:      
+
+    Attribute, collection_date, attribute_name  
+
 The first value ("Attribute"), is the name of the node.    
 The second value ("collection date") is the attribute value to target.    
 The third value ("attribute name") is the attribute type to target.    
@@ -71,7 +74,7 @@ The third value ("attribute name") is the attribute type to target.
 
 User selects:    
 
-    {"AssemblyGenbankBioprojectAccession" : ["GB_BioProjects","BioprojectAccn"]}
+    - AssemblyGenbankBioprojectAccession : GB_BioProjects, BioprojectAccn
 
 XML from NCBI:    
 In the following example, note how the node "BioprojectAccn" is not a unique name, as there is both a GenBank and RefSeq Bioproject Accession.    
@@ -83,7 +86,7 @@ In the following example, note how the node "BioprojectAccn" is not a unique nam
       </Bioproj>
     </GB_BioProjects>
 
-   
+
     <RS_BioProjects>
       <Bioproj>
         <BioprojectAccn>PRJNA168</BioprojectAccn>
@@ -94,7 +97,7 @@ In the following example, note how the node "BioprojectAccn" is not a unique nam
 Retrieves accession number "PRJNA31257" and stores it under "AssemblyGenbankBioprojectAccession".    
 The value in this case, is a list of 2 elements:    
 
-    ["GB_BioProjects","BioprojectAccn"]
+    GB_BioProjects, BioprojectAccn  
 
 This can be built from any number of elements, and provides a directional path to follow to find a node.    
 Note that it must be IN ORDER, but can skip intermediate values (ex. node <Bioproj> is missing from the list). This has not been extensively tested yet.    
@@ -103,6 +106,6 @@ Note that it must be IN ORDER, but can skip intermediate values (ex. node <Biopr
 
 To puzzle out additional xml criteria for your search query, search for the first instance of "toprettyxml" in src/NCBImeta.py and uncomment this line (delete the '#' at the start of the line). When NCBImeta.py is run now, it will print out the xml for each record. It is recommended to pipe this output to a file:    
 
-    python src/NCBImeta.py --config example/config.py > config_xml_output.txt    
+    src/NCBImeta.py --config example/config.py > config_xml_output.txt    
 
-Sometimes, metadata is not stored in an xml structure, but rather a flattened dictionary. To print out the dictionary for your search term, search for the first instance of "Attempt 1" in src/NCBImeta.py. 2 code lines below is the line '#print(row)'. Uncomment this to print out the metdata that is stored in a dictionary rather than an xml structure. These attributes can be accessed using Option 1 or Option 4 in this schema readme file.
+Sometimes, metadata is not stored in an xml structure, but rather a flattened dictionary. To print out the dictionary for your search term, search for the first instance of "Attempt 1" in src/NCBImeta.py. Three code lines below is the line '#print(row)'. Uncomment this to print out the metadata that is stored in a dictionary rather than an xml structure. These attributes can be accessed using Option 1 or Option 4 in this schema readme file.
