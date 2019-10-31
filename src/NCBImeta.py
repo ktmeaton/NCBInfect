@@ -1,4 +1,4 @@
-#!/usr/bin env python3
+#!/usr/bin/env python3
 """
 Created on Thurs Mar 08 2018
 
