@@ -19,11 +19,14 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Source file (NCBImeta.py) and documentation changes to reflect
 - Minimal Working Example (MWE) back to plague for quicker execution
 - Schema documentation to explain yaml format changes
+- README section reorganize
+- renamed the annot file and restricted records to 2019-2020.
 
 ### Removed
 - Configuration Files: Comprehensive_config.py,  pseudomonas_aeruginosa.py, config.py
 - All 6 schema txt files: (ex. schema/Assembly.txt)
 - scripts folder with very deprecated R code for plotting
+- excessive annotation files 2 and 3.
 
 ## [0.3.4] - 2019-1028
 ### Added
