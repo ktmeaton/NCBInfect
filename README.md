@@ -16,7 +16,7 @@ pip install --user -r requirements.txt
 
 ## Version
 
-Release - [Version v0.3.4]((https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.0) (master)  
+Release - [Version v0.3.4](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.0) (master)  
 Development - Version 0.4.0 (dev)  
 
 ## Installation
