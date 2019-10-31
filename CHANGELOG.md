@@ -11,7 +11,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - requirements.txt for pip install dependencies
 - PyYAML is now a required module for yaml config file loading
 - HTTP 429 Error catching for efetch
-- Database Read Runtime Error catching for Entrez.read(handle)
+- Database Read Runtime Error catching for Entrez.read(handle) for Issue: #2
 
 ### Changed
 - Configuration files now implemented in YAML format
