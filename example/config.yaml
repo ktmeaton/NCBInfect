@@ -3,7 +3,7 @@ OUTPUT_DIR : example
 EMAIL : myemailname@domain.com
 API_KEY : 
 FORCE_PAUSE_SECONDS : 1
-DATABASE : pseudomonas_aeruginosa_db.sqlite
+DATABASE : yersinia_pestis_db.sqlite
 
 # NCBI Tables to Query
 TABLES :
@@ -16,12 +16,12 @@ TABLES :
 
 # Query Terms to Use
 SEARCH_TERMS :
-  - Assembly : (Pseudomonas aeruginosa[Organism]) AND (2019[Date - Sequences Release]:3000[Date - Sequences Release])
-  - BioProject : (Pseudomonas aeruginosa[Organism]) AND (bioproject assembly[Filter] OR bioproject sra[Filter]) AND (2019[Registration Date]:3000[Registration Date])
-  - BioSample: (Pseudomonas aeruginosa[Organism]) AND (biosample assembly[Filter] OR biosample sra[Filter]) AND (2019[Publication Date]:3000[Publication Date])
-  - SRA : ((Pseudomonas aeruginosa[Organism]) AND (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]) AND (2019[Publication Date]:3000[Publication Date])
-  - Nucleotide : (Pseudomonas aeruginosa[Organism]) AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter] AND (2019[Publication Date]:3000[Publication Date])
-  - Pubmed : (Pseudomonas aeruginosa) AND (pubmed assembly[Filter] OR pubmed sra[Filter]) AND (2019[Date - Create]:3000[Date - Create])
+  - Assembly : (Yersinia pestis[Organism]) AND (2019[Date - Sequences Release]:2020[Date - Sequences Release])
+  - BioProject : (Yersinia pestis[Organism]) AND (bioproject assembly[Filter] OR bioproject sra[Filter]) AND (2019[Registration Date]:2020[Registration Date])
+  - BioSample: (Yersinia pestis[Organism]) AND (biosample assembly[Filter] OR biosample sra[Filter]) AND (2019[Publication Date]:2020[Publication Date])
+  - SRA : ((Yersinia pestis[Organism]) AND (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]) AND (2019[Publication Date]:2020[Publication Date])
+  - Nucleotide : (Yersinia pestis[Organism]) AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter] AND (2019[Publication Date]:2020[Publication Date])
+  - Pubmed : (Yersinia pestis) AND (pubmed assembly[Filter] OR pubmed sra[Filter]) AND (2019[Date - Create]:2020[Date - Create])
 
 # Columns of the database (ie. metadata fields to retrieve)
 TABLE_COLUMNS :
