@@ -8,6 +8,16 @@ python:
   # PyPy versions
   - "pypy3"  # currently Python 3.6.1,  PyPy 7.1.1-beta0
 
+# branches blocklist
+branches:
+  except:
+    - master
+
+# branches safelist
+branches:
+  only:
+    - dev
+
 # command to install dependencies
 install:
   - pip install -r requirements.txt
