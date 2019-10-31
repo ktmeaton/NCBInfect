@@ -11,13 +11,15 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - requirements.txt for pip install dependencies
 - PyYAML is now a required module for yaml config file loading
 - HTTP 429 Error catching for efetch
+- Database Read Runtime Error catching for Entrez.read(handle)
 
 ### Changed
 - Configuration files now implemented in YAML format
 - Source file (NCBImeta.py) and documentaiton changes to reflect
+- Minimal Working Example (MWE) back to plague for quicker execution
 
 ### Removed
-- Configuration Files: Comprehensive_config.py,  pseudomonas_aeruginosa.py
+- Configuration Files: Comprehensive_config.py,  pseudomonas_aeruginosa.py, config.py
 
 ## [0.3.4] - 2019-1028
 ### Added
@@ -35,7 +37,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Three new annotation files for the example.
 
 ### Changed
-- Python2 no longer support, Python3 is now mandatory.
+- Python2 no longer supported, Python3 is now mandatory.
 - Improved Nucleotide Table annotation parsing
 - Fixed missing BioSampleAccession from the Nucleotide Table
 - Fixed incorrect directory paths in README.md example commands.
