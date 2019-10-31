@@ -1,7 +1,7 @@
 # User Configuration Variables
 OUTPUT_DIR : example
 EMAIL : myemailname@domain.com
-API_KEY : 
+API_KEY :
 FORCE_PAUSE_SECONDS : 1
 DATABASE : yersinia_pestis_db.sqlite
 
@@ -26,7 +26,7 @@ SEARCH_TERMS :
 # Columns of the database (ie. metadata fields to retrieve)
 TABLE_COLUMNS :
 
-  - Assembly : 
+  - Assembly :
     - AssemblyAccession : AssemblyAccession
     - AssemblyBioSampleAccession : BioSampleAccn
     - AssemblyBioSampleID : BioSampleId
@@ -64,9 +64,9 @@ TABLE_COLUMNS :
     - AssemblyFTPGenbank : FtpPath_GenBank
     - AssemblyFTPRefSeq : FtpPath_RefSeq
     - AssemblyFTPStatsReport : FtpPath_Stats_rpt
-    - AssemblyComment : NullValue             
+    - AssemblyComment : NullValue
 
-  - BioSample : 
+  - BioSample :
     - BioSampleAccession: Accession
     - BioSampleAccessionSecondary: NullValue
     - BioSampleBioProjectAccession: Link, label
@@ -97,7 +97,7 @@ TABLE_COLUMNS :
     - BioSampleOrganization: Organization
     - BioSampleComment : NullValue
 
-  - BioProject : 
+  - BioProject :
     - BioProjectAccession : Project_Acc
     - BioProjectDataType : Project_Data_Type
     - BioProjectDescription : Project_Description
@@ -117,8 +117,8 @@ TABLE_COLUMNS :
     - BioProjectSequencingStatus : Sequencing_Status
     - BioProjectSubmitterOrganization : Submitter_Organization
     - BioProjectComment : NullValue
-                
-  - Nucleotide : 
+
+  - Nucleotide :
     - NucleotideAccession : GBSeq_primary-accession
     - NucleotideAccessionVersion : GBSeq_accession-version
     - NucleotideBioSampleAccession: NucleotideBioSample
@@ -171,8 +171,8 @@ TABLE_COLUMNS :
     - NucleotideSequencingTechnology: Sequencing Technology
     - NucleotidetRNAs: tRNAs
     - NucleotideComment : NullValue
-                
-  - SRA : 
+
+  - SRA :
     - SRABioProjectAccession : Bioproject
     - SRABioSampleAccession : Biosample
     - SRAExperimentAccession : Experiment, acc
@@ -209,7 +209,6 @@ TABLE_COLUMNS :
     - SRASubmitterAccession : Submitter, acc
     - SRAComment : NullValue
 
-
   - Pubmed :
     - PubmedPublishDate : PubDate
     - PubmedEPublishDate : EPubDate
@@ -225,6 +224,4 @@ TABLE_COLUMNS :
     - PubmedRecordStatus : RecordStatus
     - PubmedLangList : LangList
     - PubmedTypeList : PubTypeList
-
-                
-                
+    - PubmedComment : NullValue
