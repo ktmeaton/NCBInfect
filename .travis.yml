@@ -1,0 +1,25 @@
+language: python    # this works for Linux but is an error on macOS or Windows
+python:
+  - "3.4"
+  - "3.5"
+  - "3.6"      # current default Python on Travis CI
+  - "3.7"
+  - "3.8"
+  # PyPy versions
+  - "pypy3"  # currently Python 3.6.1,  PyPy 7.1.1-beta0
+
+# command to install dependencies
+install:
+  - pip install --user -r requirements.txt
+
+# command to run tests
+script:
+  # Fetch records
+  - src/NCBImeta.py --flat --config example/config.yaml
+  # Database Annotation
+  - src/NCBImeta_AnnotateReplace.py --d atabase example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
+  - src/NCBImeta_AnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
+  # Database table join
+  - src/NCBImeta_Join.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
+  # Database export
+  - src/NCBImeta_Export.py --database example/yersinia_pestis_db.sqlite --outputdir example/
