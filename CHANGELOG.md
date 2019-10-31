@@ -6,25 +6,29 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
-## [0.4.0] - 2019-1028
+## [0.4.0] - 2019-1031
 ### Added
 - requirements.txt for pip install dependencies
 - PyYAML is now a required module for yaml config file loading
 - HTTP 429 Error catching for efetch
 - Database Read Runtime Error catching for Entrez.read(handle) for Issue: #2
+- yaml schema metadata files for all 6 tables
 
 ### Changed
 - Configuration files now implemented in YAML format
-- Source file (NCBImeta.py) and documentaiton changes to reflect
+- Source file (NCBImeta.py) and documentation changes to reflect
 - Minimal Working Example (MWE) back to plague for quicker execution
+- Schema documentation to explain yaml format changes
 
 ### Removed
 - Configuration Files: Comprehensive_config.py,  pseudomonas_aeruginosa.py, config.py
+- All 6 schema txt files: (ex. schema/Assembly.txt)
+- scripts folder with very deprecated R code for plotting
 
 ## [0.3.4] - 2019-1028
 ### Added
 - HTTP Error catching
-- Bug fixes for HTTP Error 429	
+- Bug fixes for HTTP Error 429
 
 ## [0.3.3] - 2019-0912
 ### Added
