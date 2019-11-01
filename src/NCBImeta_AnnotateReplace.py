@@ -17,7 +17,7 @@ from NCBImeta_Utilities import table_exists
 # Deal with unicode function rename in version 3
 if sys.version_info.major == 3:
     unicode = str
-    
+
 def flushprint(message):
     print(message)
     sys.stdout.flush()
@@ -145,12 +145,14 @@ while annot_line:
     cur.execute(query)
     fetch_records = cur.fetchall()
 
+    # Check if the record could be found in the database
     if not fetch_records:
         flushprint("Entry not in DB: " + unique_element + ". No annotation is added.")
         #raise NCBImeta_Errors.ErrorEntryNotInDB(line_strain)
         annot_line = annot_file.readline()
         continue
 
+    # Check if there were multiple hits in the database
     elif len(fetch_records) > 1:
         flushprint("Multiple Matches in DB: " + unique_element + ". No annotation is added.")
         #raise NCBImeta_Errors.ErrorEntryMultipleMatches(line_strain)

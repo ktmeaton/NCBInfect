@@ -173,13 +173,16 @@ while annot_line:
 
         # Check if it's a tuple (mostly lat and lon)
         if type(db_value) == tuple:
-            db_value = "".join(db_value)
-        # If the annotation file has a different value, concatenate db value with it
-        #if db_value != line_dict[header]:
-        #    line_dict[header] = db_value + db_value_sep + line_dict[value]
+            # If it's not just an empty tuple (None,)
+            if db_value[0]:
+                db_value = "".join(db_value)
+            else: db_value = ""
 
-        # Concatenate db value to it (regardless of whether it's the same)
-        line_dict[header] = db_value + db_value_sep + line_dict[header]
+        # If the database cell is non-empty concatenate custom Metadata
+        # by db_value_sep (;)
+        if db_value:
+            line_dict[header] = db_value + db_value_sep + line_dict[header]
+
 
     # This section allows for dynamic variable creation and column modification
     sql_dynamic_vars = ",".join([header + "=" + "'" + line_dict[header] + "'" for header in line_dict.keys()])
