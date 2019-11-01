@@ -12,7 +12,7 @@ Query and create a database of NCBI metadata (includes SRA).
 Python3, BioPython, PyYAML, NumPy
 
 ```
-pip install --user -r requirements.txt
+pip3 install --user -r requirements.txt
 ```
 
 ## Version
