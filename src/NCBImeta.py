@@ -180,7 +180,7 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
     Return result of http_method and check if HTTP Error is generated
     '''
     # Use the esummary function to return a record summary, but wrapped in HTTP error checking
-    print(http_metthod)
+    print(http_method)
     print(**kwargs)
     ID_handle_retrieved = False
     fetch_attempts = 0
