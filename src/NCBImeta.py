@@ -186,6 +186,7 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
         try:
             ID_handle = http_method(**kwargs)
             ID_handle_retrieved = True
+        # HTTP Errors
         except urllib.error.HTTPError as error:
             # Error code 429: Too Many Requests
             if error.code == 429:
@@ -200,9 +201,10 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
                 print("HTTP Error " + str(error.code) + ": " + str(error.reason))
                 print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
                 print("Retrying record fetching.")
+        # URL Errors
         except urllib.error.URLError as error:
             fetch_attempts += 1
-            print("URL Error " + str(error.code) + ": " + str(error.reason))
+            print("URL Error: " + str(error.reason))
             print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
             print("Retrying record fetching.")
 
