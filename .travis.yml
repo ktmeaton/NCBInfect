@@ -1,33 +1,35 @@
 # Travis-CI Configuration File
+# macOS xcode9.4 = Python 3.6.5
+# macOS xcode10.2 = Python 3.7.3
+# macOS xcode11.2 = Python 3.7.4?
+
 language: python    # this works for Linux but is an error on macOS or Windows
 jobs:
   include:
     - name: "Python 3.7.4 on Xenial Linux"
       python: 3.7.4           # this works for Linux but is ignored on macOS or Windows
-      before_install:
-        - python --version
 
     - name: "Python 3.7.4 on macOS"
       os: osx
       osx_image: xcode11.2  # Python 3.7.4 running on macOS 10.14.4
       language: shell       # 'language: python' is an error on Travis CI macOS
-      before_install:
-        - python --version
 
     - name: "Python 3.7.4 on Windows"
       os: windows           # Windows 10.0.17134 N/A Build 17134
       language: shell       # 'language: python' is an error on Travis CI Windows
       before_install:
         - choco install python --version 3.7.4
-        - python --version
-        - python -m pip install --upgrade pip
+        - python -m pip install --upgrade pip  # is this special syntax that has to occur first?
       env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
+      script:
+        - python3 src/NCBImeta.py --flat --config example/config.yaml
 
 # command to install dependencies
 install:
-  - pip3 install --upgrade pip  # all three OSes agree about 'pip3'
-  - pip3 install codecov
-  - pip install -r requirements.txt
+  - python3 --version
+  - pip3 install --upgrade pip       # all three OSes agree about 'pip3'
+  - pip3 install codecov             # generate codecov stats and upload
+  - pip install -r requirements.txt  # install repo specific modules
 
 
 # branches blocklist
@@ -51,6 +53,3 @@ script:
   - src/NCBImeta_Join.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
   # Database export
   - src/NCBImeta_Export.py --database example/yersinia_pestis_db.sqlite --outputdir example/
-
-after_success:
-  - codecov # submit coverage
