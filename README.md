@@ -1,6 +1,7 @@
 [![GitHub (pre-)release](https://img.shields.io/badge/Release-v0.4.0-red.svg)](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.0)
 [![GitHub license](https://img.shields.io/dub/l/vibe-d.svg?style=flat)](https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/ktmeaton/NCBImeta.svg)](https://github.com/ktmeaton/NCBImeta/issues)
+[![Build Status](https://travis-ci.org/ktmeaton/NCBImeta.svg?branch=dev)](https://travis-ci.org/ktmeaton/NCBImeta)
 
 
 # NCBImeta
