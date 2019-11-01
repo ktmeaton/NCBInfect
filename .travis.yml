@@ -14,7 +14,7 @@ jobs:
       os: osx
       osx_image: xcode11.2  # Python 3.7.4 running on macOS 10.14.4
       language: shell       # 'language: python' is an error on Travis CI macOS
-      
+
 #-----------------------------------------------------------------------------#
 #                                    LINUX                                    #
 #-----------------------------------------------------------------------------#
@@ -26,7 +26,7 @@ jobs:
       python: 3.6
     - name: "Python 3.7.4 on Xenial Linux"
       python: 3.7.4        # this works for Linux but is ignored on macOS or Windows
-    - name: "Python 3.7 on Xenial Linux"
+    - name: "Python 3.8 on Xenial Linux"
       python: 3.8
 
 

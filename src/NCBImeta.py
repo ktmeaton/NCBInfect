@@ -323,6 +323,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         if table.lower() != "nucleotide":
             # Use the esummary function to return a record summary, but wrapped in HTTP error checking
             kwargs = {"db":table.lower(), "id":ID}
+            # Possible urllib error occuring in the next line for unknown reasons
             ID_handle = HTTPErrorCatch(Entrez.esummary, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
 
             # If successfully fetched, move onto reading the record
