@@ -1,49 +1,38 @@
 # Travis-CI Configuration File
-# macOS xcode9.4 = Python 3.6.5
-# macOS xcode10.2 = Python 3.7.3
-# macOS xcode11.2 = Python 3.7.4?
 
 language: python    # this works for Linux but is an error on macOS or Windows
 jobs:
   include:
+#-----------------------------------------------------------------------------#
+#                                    LINUX                                    #
+#-----------------------------------------------------------------------------#
     - name: "Python 3.7.4 on Xenial Linux"
-      python: 3.7.4           # this works for Linux but is ignored on macOS or Windows
+      python: 3.7.4        # this works for Linux but is ignored on macOS or Windows
 
+#-----------------------------------------------------------------------------#
+#                                    MACOS                                    #
+#-----------------------------------------------------------------------------#
+# macOS xcode9.4 = Python 3.6.5
+# macOS xcode10.2 = Python 3.7.3
+# macOS xcode11.2 = Python 3.7.4?
     - name: "Python 3.7.4 on macOS"
       os: osx
       osx_image: xcode11.2  # Python 3.7.4 running on macOS 10.14.4
       language: shell       # 'language: python' is an error on Travis CI macOS
 
-    - name: "Python 3.7.4 on Windows"
-      os: windows           # Windows 10.0.17134 N/A Build 17134
-      language: shell       # 'language: python' is an error on Travis CI Windows
-      before_install:
-        - choco install python --version 3.7.4
-        - python -m pip install --upgrade pip  # is this special syntax that has to occur first?
-      env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
+before_install:
+  - python3 --version
 
 # command to install dependencies
 install:
-  - python3 --version
-  - pip3 install --upgrade pip       # all three OSes agree about 'pip3'
-  - pip3 install codecov             # generate codecov stats and upload
+  - pip install --upgrade pip       # all three OSes agree about 'pip3'
   - pip install -r requirements.txt  # install repo specific modules
 
-
-# branches blocklist
-branches:
-  except:
-    - master
-
-# branches safelist
-branches:
-  only:
-    - dev
 
 # command to run tests
 script:
   # Fetch records
-  - python3 src/NCBImeta.py --flat --config example/config.yaml
+  - src/NCBImeta.py --flat --config example/config.yaml
   # Database Annotation
   - src/NCBImeta_AnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
   - src/NCBImeta_AnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample

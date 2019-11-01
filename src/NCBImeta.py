@@ -274,7 +274,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             record = Entrez.read(handle)
             read_succeed = True
         except RuntimeError:
-            fetch_attempts += 1
+            read_attempts += 1
             print("Runtime Error encountered. Sleeping for " + str(Entrez.sleep_between_tries) + " seconds before retrying.")
             time.sleep(Entrez.sleep_between_tries)
 
