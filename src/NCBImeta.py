@@ -180,6 +180,8 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
     Return result of http_method and check if HTTP Error is generated
     '''
     # Use the esummary function to return a record summary, but wrapped in HTTP error checking
+    print(http_metthod)
+    print(**kwargs)
     ID_handle_retrieved = False
     fetch_attempts = 0
     while not ID_handle_retrieved and fetch_attempts < max_fetch_attempts:
@@ -200,6 +202,11 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
                 print("HTTP Error " + str(error.code) + ": " + str(error.reason))
                 print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
                 print("Retrying record fetching.")
+        except urllib.error.URLError as error:
+            fetch_attempts += 1
+            print("URL Error " + str(error.code) + ": " + str(error.reason))
+            print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
+            print("Retrying record fetching.")
 
         if fetch_attempts == max_fetch_attempts and not ID_handle_retrieved:
             raise ErrorMaxFetchAttemptsExceeded(ID)
