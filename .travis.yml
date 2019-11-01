@@ -21,8 +21,6 @@ jobs:
         - choco install python --version 3.7.4
         - python -m pip install --upgrade pip  # is this special syntax that has to occur first?
       env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
-      script:
-        - python3 src/NCBImeta.py --flat --config example/config.yaml
 
 # command to install dependencies
 install:
@@ -45,7 +43,7 @@ branches:
 # command to run tests
 script:
   # Fetch records
-  - src/NCBImeta.py --flat --config example/config.yaml
+  - python3 src/NCBImeta.py --flat --config example/config.yaml
   # Database Annotation
   - src/NCBImeta_AnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
   - src/NCBImeta_AnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
