@@ -268,15 +268,13 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     #-----------------------------------------------------------------------#
     #                          Entrez Search                                #
     #-----------------------------------------------------------------------#
-
-    handle = Entrez.esearch(db=table.lower(),
-                            term=search_term,
-                            retmax = 9999999)
-
     # Read the record, check for run time errors but only a few times
     read_succeed = False
     read_attempts = 0
     while not read_succeed and read_attempts < Entrez.max_tries:
+        handle = Entrez.esearch(db=table.lower(),
+                            term=search_term,
+                            retmax = 9999999)
         try:
             record = Entrez.read(handle)
             read_succeed = True
