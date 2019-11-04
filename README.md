@@ -15,7 +15,7 @@ Python3, BioPython, PyYAML, NumPy
 ```
 pip3 install --user -r requirements.txt
 ```
-NCBImeta is supported on Linux and macOS. 
+NCBImeta is supported on Linux and macOS.  
 [Check all Python versions and OS with verified build status](https://travis-ci.org/ktmeaton/NCBImeta)
 
 ## Version
