@@ -67,7 +67,7 @@ Each table within the database will be exported to its own tab-separated .txt fi
 
 ### Explore!
 1. Explore your database text files using a spreadsheet viewer (Microsoft Excel, Google Sheets, etc.)  
-2. Browse your SQLite database using DB Browser for SQLite (see below for program links)  
+2. Browse your SQLite database using DB Browser for SQLite (https://sqlitebrowser.org/)  
 3. Use the columns with FTP links to download your data files of interest.
 
 Example database output (a subset of the Assembly table)      
@@ -88,19 +88,11 @@ To get started with customizing the search terms, database, and metadata fields,
 2. [Schema File README](schema/README_schema.md)
 
 
-## Up-Coming Features  
-- Identify a Pubmed field to improve table joins.
-- Any additional requested tables or metadata :)  
-
-## Accessory Programs
-### Database Browser
-DB Browser for SQLite: https://sqlitebrowser.org/  
-
-
 ## Issues, Questions, and Suggestions
 
 Please submit your questions, suggestions, and bug reports to the
 [Issue Tracker](https://github.com/ktmeaton/NCBImeta/issues)
+
 
 ## Contributing
 
@@ -109,6 +101,7 @@ Please submit your questions, suggestions, and bug reports to the
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request!
+
 
 ## Credits
 
