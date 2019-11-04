@@ -20,8 +20,8 @@ pip3 install --user -r requirements.txt
 
 ## Version
 
-Release - [Version v0.4.0](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.0) (master)  
-Development - Version 0.4.1 (dev)  
+Release - [Version 0.4.0](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.0) (master)  
+Development - [Version 0.4.1](https://github.com/ktmeaton/NCBImeta/tree/dev) (dev)  
 
 ## Installation
 
@@ -89,16 +89,18 @@ To get started with customizing the search terms, database, and metadata fields,
 
 
 ## Up-Coming Features  
-- Identify a Pubmed field that will allow this table to be joined.
-- Any requested tables or metadata :)  
+- Identify a Pubmed field to improve table joins.
+- Any additional requested tables or metadata :)  
 
-## Suggested Accessory Programs
+## Accessory Programs
 ### Database Browser
 DB Browser for SQLite: https://sqlitebrowser.org/  
 
-## Credits
 
-author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)  
+## Issues, Questions, and Suggestions
+
+Please submit your questions, suggestions, and bug reports to the
+[Issue Tracker](https://github.com/ktmeaton/NCBImeta/issues)
 
 ## Contributing
 
@@ -107,6 +109,10 @@ author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request!
+
+## Credits
+
+Author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)  
 
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
