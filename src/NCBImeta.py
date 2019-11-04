@@ -41,7 +41,7 @@ def flushprint(message):
 #-----------------------------------------------------------------------#
 
 # To Be Done: Full Description
-parser = argparse.ArgumentParser(description='NCBImeta: Query and create a database of NCBI metadata (includes SRA).',
+parser = argparse.ArgumentParser(description='NCBImeta: Efficient and comprehensive metadata acquisition from the NCBI databases.',
                                  add_help=True)
 
 

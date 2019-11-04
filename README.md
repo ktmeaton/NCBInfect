@@ -5,10 +5,13 @@
 
 
 # NCBImeta
-Query and create a database of NCBI metadata (includes SRA).
+Efficient and comprehensive metadata acquisition from the NCBI databases.  
+
+NCBImeta is a Python application that retrieves and organizes metadata from the National Centre for Biotechnology Information (NCBI). While the NCBI web browser experience allows filtered searches, the output does not facilitate inter-record comparison or bulk record retrieval. NCBImeta tackles this issue by creating a local database of NCBI metadata constructed by user-defined search criteria and customizable metadata columns. The output of NCBImeta, optionally a SQLite database or text files, can then be used by computational biologists for applications such as record filtering, project discovery, sample interpretation, or meta-analyses of published work.
 
 
-## Python Requirements
+
+## Requirements
 Python3, BioPython, PyYAML, NumPy
 
 ```
@@ -22,7 +25,6 @@ Development - Version 0.4.1 (dev)
 
 ## Installation
 
-Release:  
 ```
 git clone https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta  
@@ -39,7 +41,7 @@ Example output of the command-line interface (v0.3.4):
 <img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_CLI.gif" alt="NCBImeta_CLI" width="700px"/>
 
 
-### Annotate the database with curated tab-separated text files of metadata
+### Annotate the database with tab-separated text files of metadata
 ```
 src/NCBImeta_AnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
 ```
@@ -66,7 +68,7 @@ Each table within the database will be exported to its own tab-separated .txt fi
 ### Explore!
 1. Explore your database text files using a spreadsheet viewer (Microsoft Excel, Google Sheets, etc.)  
 2. Browse your SQLite database using DB Browser for SQLite (see below for program links)  
-3. Use the columns with FTP links to download your data of interest.
+3. Use the columns with FTP links to download your data files of interest.
 
 Example database output (a subset of the Assembly table)      
 <img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImeta_DB_small.gif" alt="NCBImeta_DB" width="700px"/>
@@ -104,13 +106,7 @@ author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)
 2. Create your feature branch: `git checkout -b my-new-feature`
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+5. Submit a pull request!
 
-## Helpful Development Commands  
-Merging a development branch into master:  
-        (on branch dev) `git merge origin/master`
-        (resolve any merge conflicts if there are any)  
-        `git checkout master`  
-        `git merge --no-ff dev` (there won't be any conflicts now)  
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
