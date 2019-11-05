@@ -8,6 +8,15 @@
 NCBImeta is a Python application that retrieves and organizes metadata from the National Centre for Biotechnology Information (NCBI). While the NCBI web browser experience allows filtered searches, the output does not facilitate inter-record comparison or bulk record retrieval. NCBImeta tackles this issue by creating a local database of NCBI metadata constructed by user-defined search criteria and customizable metadata columns. The output of NCBImeta, optionally a SQLite database or text files, can then be used by computational biologists for applications such as record filtering, project discovery, sample interpretation, or meta-analyses of published work.
 
 
+## Installation
+
+```
+git clone https://github.com/ktmeaton/NCBImeta.git   
+cd NCBImeta  
+```   
+Or download the latest release as a zip/tar archive:  [Version 0.4.0](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.0)   
+
+
 ## Requirements
 NCBImeta is written in Python 3 and supported on Linux and macOS.  
 Python 3 dependencies include BioPython, PyYAML, and NumPy which can be installed with:
@@ -16,26 +25,16 @@ pip3 install --user -r requirements.txt
 ```
 [Check all Python versions and OS with verified build status](https://travis-ci.org/ktmeaton/NCBImeta)
 
-## Version
-
-Release - [Version 0.4.0](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.0) (master)  
-Development - [Version 0.4.1](https://github.com/ktmeaton/NCBImeta/tree/dev) (dev)  
-
-## Installation
-
-```
-git clone https://github.com/ktmeaton/NCBImeta.git   
-cd NCBImeta  
-```   
 
 ## Quick Start Example
 
 ### Run the program
+Download genomic metadata pertaining to the plague pathogen *Yersinia pestis*.
 ```
 src/NCBImeta.py --flat --config example/config.yaml
 ```
 
-Example output of the command-line interface (v0.3.4):  
+Example output of the command-line interface (v0.4.0):  
 <img src="images/NCBImeta_CLI.gif" alt="NCBImeta_CLI" width="700px"/>
 
 
@@ -46,13 +45,13 @@ src/NCBImeta_AnnotateReplace.py --database example/yersinia_pestis_db.sqlite --a
 
 Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also exactly match the names of your columns in the database.  
 
-NCBImeta_AnnotateReplace.py, as the name implies, replaces the existing annotation with the data in your custom metadata file. If you would like to retain the original metadata from NCBI, and simply concatenate (append) your custom metadata (separated by a semi-colon), instead use the NCBImeta_AnnotateConcatenate.py script.  
+```NCBImeta_AnnotateReplace.py```, as the name implies, replaces the existing annotation with the data in your custom metadata file. Alternatively, the script ```NCBImeta_AnnotateConcatenate.py``` will concatenate your custom metadata with the pre-existing value in the database cell (separated by a semi-colon).
 ```
 src/NCBImeta_AnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
 ```
 ### Join NCBI tables into a unified master table  
 ```
-src/NCBImeta_Join.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
+src/NCBImeta_Join.py --database example/yersinia_pestis_db.sqlite --final Master --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
 ```  
 The rows of the output "Master" table will be from the anchor table "BioSample", with additional columns added in from the accessory tables "BioProject", "Assembly", "SRA", and "Nucleotide". Unique accession numbers for BioSample (both primary and secondary) and BioProject allow this join to be unambiguous.
 
