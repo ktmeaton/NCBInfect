@@ -41,7 +41,7 @@ def flushprint(message):
 #-----------------------------------------------------------------------#
 
 # To Be Done: Full Description
-parser = argparse.ArgumentParser(description='NCBImeta: Query and create a database of NCBI metadata (includes SRA).',
+parser = argparse.ArgumentParser(description='NCBImeta: Efficient and comprehensive metadata acquisition from the NCBI databases.',
                                  add_help=True)
 
 
@@ -186,6 +186,7 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
         try:
             ID_handle = http_method(**kwargs)
             ID_handle_retrieved = True
+        # HTTP Errors
         except urllib.error.HTTPError as error:
             # Error code 429: Too Many Requests
             if error.code == 429:
@@ -200,6 +201,12 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
                 print("HTTP Error " + str(error.code) + ": " + str(error.reason))
                 print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
                 print("Retrying record fetching.")
+        # URL Errors
+        except urllib.error.URLError as error:
+            fetch_attempts += 1
+            print("URL Error: " + str(error.reason))
+            print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
+            print("Retrying record fetching.")
 
         if fetch_attempts == max_fetch_attempts and not ID_handle_retrieved:
             raise ErrorMaxFetchAttemptsExceeded(ID)
@@ -261,20 +268,18 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     #-----------------------------------------------------------------------#
     #                          Entrez Search                                #
     #-----------------------------------------------------------------------#
-
-    handle = Entrez.esearch(db=table.lower(),
-                            term=search_term,
-                            retmax = 9999999)
-
     # Read the record, check for run time errors but only a few times
     read_succeed = False
     read_attempts = 0
     while not read_succeed and read_attempts < Entrez.max_tries:
+        handle = Entrez.esearch(db=table.lower(),
+                            term=search_term,
+                            retmax = 9999999)
         try:
             record = Entrez.read(handle)
             read_succeed = True
         except RuntimeError:
-            fetch_attempts += 1
+            read_attempts += 1
             print("Runtime Error encountered. Sleeping for " + str(Entrez.sleep_between_tries) + " seconds before retrying.")
             time.sleep(Entrez.sleep_between_tries)
 
@@ -323,6 +328,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         if table.lower() != "nucleotide":
             # Use the esummary function to return a record summary, but wrapped in HTTP error checking
             kwargs = {"db":table.lower(), "id":ID}
+            # Possible urllib error occuring in the next line for unknown reasons
             ID_handle = HTTPErrorCatch(Entrez.esummary, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
 
             # If successfully fetched, move onto reading the record

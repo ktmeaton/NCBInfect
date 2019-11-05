@@ -6,7 +6,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
-## [0.4.0] - 2019-1031
+## [v0.4.1] - 2019-1031
+
+### Changed
+- Execute permissions (git update-index --add --chmod=+x src/*.py)
+
+## [v0.4.0] - 2019-1031
 ### Added
 - requirements.txt for pip install dependencies
 - PyYAML is now a required module for yaml config file loading
@@ -28,17 +33,17 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - scripts folder with very deprecated R code for plotting
 - excessive annotation files 2 and 3.
 
-## [0.3.4] - 2019-1028
+## [v0.3.4] - 2019-1028
 ### Added
 - HTTP Error catching
 - Bug fixes for HTTP Error 429
 
-## [0.3.3] - 2019-0912
+## [v0.3.3] - 2019-0912
 ### Added
 - Pubmed Table support
 
 
-## [0.3.2] = 2019-0905
+## [v0.3.2] = 2019-0905
 ### Added
 - Command example in README.md for creating a master join table of BioSample, BioProject, Assemble, SRA, and Nucleotide tables.
 - Three new annotation files for the example.
@@ -49,7 +54,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Fixed missing BioSampleAccession from the Nucleotide Table
 - Fixed incorrect directory paths in README.md example commands.
 
-## [0.3.1] - 2018-0702
+## [v0.3.1] - 2018-0702
 ### Added  
 - README files for config and schema
 - Usage in main README
@@ -57,7 +62,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ### Changed
 - Alphabetized schema entries
 
-## [0.3.0] - 2018-0629
+## [v0.3.0] - 2018-0629
 ### Added
 - Automation mode
 - Supported Tables: Assembly, BioProject, BioSample, Nucleotide, SRA
@@ -65,20 +70,20 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ### Changed
 - Repository Rename: NCBInfect -> NCBImeta
 
-## [0.2.1] - 2018-0308
+## [v0.2.1] - 2018-0308
 
 ### Changed
 - Fully Functional
 
-## [0.2.0] - 2018-0122
+## [v0.2.0] - 2018-0122
 ### Changed
 - Repository Rename: GenomeCollector -> NCBInfect
 
-## [0.1.2] - 2017-0920
+## [v0.1.2] - 2017-0920
 ### Added
 - Bugfixes
 
-## [0.1.1] - 2017-0919
+## [v0.1.1] - 2017-0919
 ### Added
 - SRA Table
 
