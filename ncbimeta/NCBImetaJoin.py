@@ -11,8 +11,8 @@ import datetime
 import os
 import sys
 
-import NCBImeta_Errors
-from NCBImeta_Utilities import table_exists
+from ncbimeta import NCBImetaErrors
+from NCBImetaUtilities import table_exists
 
 # Deal with unicode function rename in version 3
 if sys.version_info.major == 3:
@@ -67,6 +67,11 @@ mandatory.add_argument('--unique',
                     dest = 'dbUnique',
                     required=True)
 
+parser.add_argument('--version',
+                    action='version',
+                    version='%(prog)s v0.4.2')
+
+
 args = vars(parser.parse_args())
 
 db_name = args['dbName']
@@ -92,7 +97,7 @@ if os.path.exists(db_name):
     conn = sqlite3.connect(db_name)
     flushprint('\nOpening database: ' + db_name + "\n")
 else:
-    raise NCBImeta_Errors.ErrorDBNotExists(db_name)
+    raise NCBImetaErrors.ErrorDBNotExists(db_name)
 
 # no errors were raised, safe to connect to db
 cur = conn.cursor()
@@ -102,10 +107,10 @@ cur = conn.cursor()
 #---------------------------Check Tables---------------------------------#
 
 if not table_exists(cur, db_anchor):
-    raise NCBImeta_Errors.ErrorTableNotInDB(db_anchor)
+    raise NCBImetaErrors.ErrorTableNotInDB(db_anchor)
 for table in db_accessory_list:
     if not table_exists(cur, table):
-        raise NCBImeta_Errors.ErrorTableNotInDB(table)
+        raise NCBImetaErrors.ErrorTableNotInDB(table)
 
 
 
@@ -124,7 +129,7 @@ anchor_col_names = [description[0] for description in cur.description]
 for unique_header in unique_header_list:
     if unique_header not in db_col_names:
         flushprint("Column not in DB: " + unique_header + ".")
-        raise NCBImeta_Errors.ErrorEntryNotInDB(unique_header)
+        raise NCBImetaErrors.ErrorEntryNotInDB(unique_header)
 
 # get list of column names in accessory tables
 for table in db_accessory_list:
@@ -135,7 +140,7 @@ for table in db_accessory_list:
 # Prepare the columns for the final join table
 dupl_col_names = set([col for col in db_col_names if db_col_names.count(col) > 1])
 if len(dupl_col_names) > 0:
-    raise NCBImeta_Errors.ErrorColumnsNotUnique(dupl_col_names)
+    raise NCBImetaErrors.ErrorColumnsNotUnique(dupl_col_names)
 
 
 #-----------------------------------------------------------------------#

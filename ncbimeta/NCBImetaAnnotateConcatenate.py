@@ -11,8 +11,8 @@ import datetime
 import os
 import sys
 
-import NCBImeta_Errors
-from NCBImeta_Utilities import table_exists
+from ncbimeta import NCBImetaErrors
+from NCBImetaUtilities import table_exists
 
 # Deal with unicode function rename in version 3
 if sys.version_info.major == 3:
@@ -53,6 +53,11 @@ mandatory.add_argument('--annotfile',
                     dest = 'annotFile',
                     required=True)
 
+parser.add_argument('--version',
+                    action='version',
+                    version='%(prog)s v0.4.2')
+
+
 args = vars(parser.parse_args())
 
 db_name = args['dbName']
@@ -72,10 +77,10 @@ if os.path.exists(db_name):
     conn = sqlite3.connect(db_name)
     flushprint('\nOpening database: ' + db_name)
 else:
-    raise NCBImeta_Errors.ErrorDBNotExists(db_name)
+    raise NCBImetaErrors.ErrorDBNotExists(db_name)
 
 if not os.path.exists(annot_file_name):
-    raise NCBImeta_Errors.ErrorAnnotFileNotExists(annot_file_name)
+    raise NCBImetaErrors.ErrorAnnotFileNotExists(annot_file_name)
 
 # no errors were raised, safe to connect to db
 cur = conn.cursor()
@@ -83,7 +88,7 @@ cur = conn.cursor()
 #---------------------------Check Table---------------------------------#
 
 if not table_exists(cur, db_table):
-    raise NCBImeta_Errors.ErrorTableNotInDB(db_table)
+    raise NCBImetaErrors.ErrorTableNotInDB(db_table)
 
 
 
@@ -150,14 +155,14 @@ while annot_line:
     # Check if the record could be found in the database
     if not fetch_records:
         flushprint("Entry not in DB: " + unique_element + ". No annotation is added.")
-        #raise NCBImeta_Errors.ErrorEntryNotInDB(line_strain)
+        #raise NCBImetaErrors.ErrorEntryNotInDB(line_strain)
         annot_line = annot_file.readline()
         continue
 
     # Check if there were multiple hits in the database
     elif len(fetch_records) > 1:
         flushprint("Multiple Matches in DB: " + unique_element + ". No annotation is added.")
-        #raise NCBImeta_Errors.ErrorEntryMultipleMatches(line_strain)
+        #raise NCBImetaErrors.ErrorEntryMultipleMatches(line_strain)
         annot_line = annot_file.readline()
         continue
 
