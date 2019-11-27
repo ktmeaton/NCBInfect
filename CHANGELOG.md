@@ -8,8 +8,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [v0.4.2] - 2019-1127
 
+### Added
+- setup.py for installation from PyPI and source
+
 ### Changed
 - Rename all files containing "NCBImeta_" to "NCBImeta", correct all references
+- Change src/ directory to ncbimeta/ directory
 
 ## [v0.4.1] - 2019-1127
 
