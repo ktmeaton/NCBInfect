@@ -5,6 +5,8 @@
 
 
 # NCBImeta
+Efficient and comprehensive metadata acquisition from the NCBI databases (includes SRA).  
+
 NCBImeta is a Python application that retrieves and organizes metadata from the National Centre for Biotechnology Information (NCBI). While the NCBI web browser experience allows filtered searches, the output does not facilitate inter-record comparison or bulk record retrieval. NCBImeta tackles this issue by creating a local database of NCBI metadata constructed by user-defined search criteria and customizable metadata columns. The output of NCBImeta, optionally a SQLite database or text files, can then be used by computational biologists for applications such as record filtering, project discovery, sample interpretation, or meta-analyses of published work.
 
 ## Installation From PyPI
