@@ -17,7 +17,7 @@ setuptools.setup(
    author_email='ktmeaton@gmail.com',
    url="https://github.com/ktmeaton/NCBImeta",
    #packages=setuptools.find_packages(),
-   packages=['src'],
+   packages=['ncbimeta'],
    classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License"
