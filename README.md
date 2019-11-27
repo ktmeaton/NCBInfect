@@ -1,4 +1,4 @@
-[![GitHub (pre-)release](https://img.shields.io/badge/Release-v0.4.1-red.svg)](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.1)
+[![GitHub (pre-)release](https://img.shields.io/badge/Release-v0.4.2-red.svg)](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.2)
 [![GitHub license](https://img.shields.io/dub/l/vibe-d.svg?style=flat)](https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/ktmeaton/NCBImeta.svg)](https://github.com/ktmeaton/NCBImeta/issues)
 [![Build Status](https://travis-ci.org/ktmeaton/NCBImeta.svg?branch=master)](https://travis-ci.org/ktmeaton/NCBImeta)
@@ -21,7 +21,7 @@ cd NCBImeta
 python setup.py install
 NCBImeta.py --version
 ```   
-Or download the latest release as a zip/tar archive:  [Version 0.4.1](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.1)  
+Or download the latest release as a zip/tar archive:  [Version 0.4.2](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.2)  
 Proceed with Installation from Source instructions.  
 
 
