@@ -6,6 +6,11 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
+## [v0.4.2] - 2019-1127
+
+### Changed
+- Rename all files containing "NCBImeta_" to "NCBImeta", correct all references
+
 ## [v0.4.1] - 2019-1127
 
 ### Changed

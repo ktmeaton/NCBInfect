@@ -11,7 +11,7 @@ import os
 import sys
 import io
 
-from NCBImeta_Errors import *
+from NCBImetaErrors import *
 
 # Deal with unicode function rename in version 3
 if sys.version_info.major == 3:
@@ -42,6 +42,11 @@ mandatory.add_argument('--outputdir',
                     action = 'store',
                     dest = 'outputDir',
                     required = True)
+
+parser.add_argument('--version',
+                    action='version',
+                    version='%(prog)s v0.4.2')
+
 
 args = vars(parser.parse_args())
 

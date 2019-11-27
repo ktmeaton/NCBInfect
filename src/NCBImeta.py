@@ -28,8 +28,8 @@ sys.path.append(src_dir)
 if sys.version_info.major == 3:
     unicode = str
 
-import NCBImeta_Utilities
-import NCBImeta_Errors
+import NCBImetaUtilities
+import NCBImetaErrors
 
 
 def flushprint(message):
@@ -59,6 +59,10 @@ parser.add_argument('--flat',
                     action = 'store_true',
                     dest = 'flatMode')
 
+parser.add_argument('--version', 
+                    action='version', 
+                    version='%(prog)s v0.4.2')
+
 
 
 # Retrieve user parameters
@@ -77,7 +81,7 @@ flat_mode = args['flatMode']
 
 # Check if config.py file exists
 if not os.path.exists(config_path):
-    raise NCBImeta_Errors.ErrorConfigFileNotExists(config_path)
+    raise NCBImetaErrors.ErrorConfigFileNotExists(config_path)
 
 # Add the directory containing config.py to the system path for import
 sys.path.append(os.path.dirname(config_path))
@@ -91,42 +95,42 @@ with open(config_path) as config_file:
 try:
     CONFIG_OUTPUT_DIR = config_data["OUTPUT_DIR"]
 except KeyError:
-    raise NCBImeta_Errors.ErrorConfigParameter("OUTPUT_DIR")
+    raise NCBImetaErrors.ErrorConfigParameter("OUTPUT_DIR")
 #--- User Email ---#
 try:
     CONFIG_EMAIL = config_data["EMAIL"]
 except KeyError:
-    raise NCBImeta_Errors.ErrorConfigParameter("EMAIL")
+    raise NCBImetaErrors.ErrorConfigParameter("EMAIL")
 #--- User API Key ---#
 try:
     CONFIG_API_KEY = config_data["API_KEY"]
 except KeyError:
-    raise NCBImeta_Errors.ErrorConfigParameter("API_KEY")
+    raise NCBImetaErrors.ErrorConfigParameter("API_KEY")
 #--- Force pausing in between record fetching ---#
 try:
     CONFIG_FORCE_PAUSE_SECONDS = config_data["FORCE_PAUSE_SECONDS"]
 except KeyError:
-    raise NCBImeta_Errors.ErrorConfigParameter("FORCE_PAUSE_SECONDS")
+    raise NCBImetaErrors.ErrorConfigParameter("FORCE_PAUSE_SECONDS")
 #--- Database file name---#
 try:
     CONFIG_DATABASE = config_data["DATABASE"]
 except KeyError:
-    raise NCBImeta_Errors.ErrorConfigParameter("DATABASE")
+    raise NCBImetaErrors.ErrorConfigParameter("DATABASE")
 #--- NCBI Tables to Search (list) ---#
 try:
     CONFIG_TABLES = config_data["TABLES"]
 except KeyError:
-    raise NCBImeta_Errors.ErrorConfigParameter("TABLES")
+    raise NCBImetaErrors.ErrorConfigParameter("TABLES")
 #--- Search terms for each table (dict) ---#
 try:
     CONFIG_SEARCH_TERMS = config_data["SEARCH_TERMS"]
 except KeyError:
-    raise NCBImeta_Errors.ErrorConfigParameter("SEARCH_TERMS")
+    raise NCBImetaErrors.ErrorConfigParameter("SEARCH_TERMS")
 #--- Table Columns/Metadata to retrieve (list of dict)---#
 try:
     CONFIG_TABLE_COLUMNS = config_data["TABLE_COLUMNS"]
 except KeyError:
-    raise NCBImeta_Errors.ErrorConfigParameter("TABLE_COLUMNS")
+    raise NCBImetaErrors.ErrorConfigParameter("TABLE_COLUMNS")
 
 flushprint(
 "\n" + "NCBImeta was run with the following options: " + "\n" +
@@ -141,7 +145,7 @@ flushprint("\n")
 
 # Check if output dir exists
 if not os.path.exists(CONFIG_OUTPUT_DIR):
-    raise NCBImeta_Errors.ErrorOutputDirNotExists(CONFIG_OUTPUT_DIR)
+    raise NCBImetaErrors.ErrorOutputDirNotExists(CONFIG_OUTPUT_DIR)
 
 # Flat mode checking
 if flat_mode:
@@ -153,7 +157,7 @@ if flat_mode:
 elif not flat_mode:
     # Create accessory directory (ex. log, data, database, etc.)
     flushprint("Flat mode was not requested, organization directories will be used.")
-    NCBImeta_Utilities.check_accessory_dir(CONFIG_OUTPUT_DIR)
+    NCBImetaUtilities.check_accessory_dir(CONFIG_OUTPUT_DIR)
     DB_DIR = os.path.join(CONFIG_OUTPUT_DIR, "", "database", "")
     LOG_PATH = os.path.join(CONFIG_OUTPUT_DIR, "", "log")
 
@@ -349,7 +353,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 record_dict = ID_record[0]
 
         #print(record_dict)
-        flatten_record_dict = list(NCBImeta_Utilities.flatten_dict(record_dict))
+        flatten_record_dict = list(NCBImetaUtilities.flatten_dict(record_dict))
 
         column_dict = {}
 
@@ -489,8 +493,8 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 node_dict = {}
                 attr_dict = {}
 
-                NCBImeta_Utilities.xml_find_node(root,node_name,node_dict)
-                NCBImeta_Utilities.xml_find_attr(root,node_name,attr_name,attr_dict)
+                NCBImetaUtilities.xml_find_node(root,node_name,node_dict)
+                NCBImetaUtilities.xml_find_attr(root,node_name,attr_name,attr_dict)
                 #print(node_dict)
                 #print(attr_dict)
 
