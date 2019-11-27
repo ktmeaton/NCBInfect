@@ -9,10 +9,9 @@ Efficient and comprehensive metadata acquisition from the NCBI databases (includ
 
 NCBImeta is a Python application that retrieves and organizes metadata from the National Centre for Biotechnology Information (NCBI). While the NCBI web browser experience allows filtered searches, the output does not facilitate inter-record comparison or bulk record retrieval. NCBImeta tackles this issue by creating a local database of NCBI metadata constructed by user-defined search criteria and customizable metadata columns. The output of NCBImeta, optionally a SQLite database or text files, can then be used by computational biologists for applications such as record filtering, project discovery, sample interpretation, or meta-analyses of published work.
 
-## Installation From PyPI
+## Installation (Recommended)
 ```
 pip install ncbimeta
-NCBImeta.py --version
 ```
 
 ## Installation From Source
@@ -21,18 +20,17 @@ NCBImeta.py --version
 git clone https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta
 python setup.py install
-NCBImeta.py --version
 ```   
-Or download the latest release as a zip/tar archive:  [Version 0.4.2](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.2)  
-Proceed with Installation from Source instructions.  
+
+Test that the installation was successful:
+```
+NCBImeta.py --version
+```
 
 
 ## Requirements
 NCBImeta is written in Python 3 and supported on Linux and macOS.  
-Python 3 dependencies include BioPython, PyYAML, and NumPy which can be installed with:
-```
-pip3 install --user -r requirements.txt
-```
+Python 3 dependencies include BioPython, PyYAML, and NumPy which are downloaded through the default installation.  
 [Check all Python versions and OS with verified build status](https://travis-ci.org/ktmeaton/NCBImeta)
 
 
