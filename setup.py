@@ -16,17 +16,17 @@ setuptools.setup(
    author='Katherine Eaton',
    author_email='ktmeaton@gmail.com',
    url="https://github.com/ktmeaton/NCBImeta",
-   packages=setuptools.find_packages(),
+   #packages=setuptools.find_packages(),
+   packages=['src'],
    classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License"
    ],
-   install_requires=require_list, #external packages as dependencies
-   scripts=[
-      'src/NCBImeta.py',
-      'src/NCBImetaExport.py',
-      'src/NCBImetaJoin.py',
-      'src/NCBImetaAnnotateReplace.py',
-      'src/NCBImetaAnnotateConcatenate.py'
-   ]
+   install_requires=require_list #external packages as dependencies
+#   scripts=[
+#      'src/NCBImeta.py',
+#      'src/NCBImetaExport.py',
+#      'src/NCBImetaJoin.py',
+#      'src/NCBImetaAnnotateReplace.py',
+#      'src/NCBImetaAnnotateConcatenate.py']
 )
