@@ -1,13 +1,13 @@
 # Travis-CI Configuration File
 
-language: python    # this works for Linux but is an error on macOS or Windows
-jobs:
-  include:
-
 # Whitelist
 branches:
   only:
     - master
+    
+language: python    # this works for Linux but is an error on macOS or Windows
+jobs:
+  include:
 #-----------------------------------------------------------------------------#
 #                                    MACOS                                    #
 #-----------------------------------------------------------------------------#
