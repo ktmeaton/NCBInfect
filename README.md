@@ -11,7 +11,7 @@ NCBImeta is a Python application that retrieves and organizes metadata from the 
 
 ## Installation (Recommended)
 ```
-pip install ncbimeta
+pip install NCBImeta
 ```
 
 ## Installation From Source
