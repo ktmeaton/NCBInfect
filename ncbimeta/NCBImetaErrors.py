@@ -83,4 +83,3 @@ class ErrorConfigParameter(Exception):
     def __str__(self):
         print("\n\nA parameter name and/or value in the configuration file is set incorrectly:")
         print(self.value)
-

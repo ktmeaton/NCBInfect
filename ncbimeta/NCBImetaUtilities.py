@@ -199,6 +199,8 @@ class XmlListConfig(list):
 
 class XmlDictConfig(dict):
     '''
+    Original Author: Duncan McGregor
+    Orignal URL: https://code.activestate.com/recipes/410469-xml-as-dictionary/
     Example usage:
 
     >>> tree = ElementTree.parse('your_file.xml')
