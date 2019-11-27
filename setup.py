@@ -16,7 +16,7 @@ setuptools.setup(
    long_description_content_type='text/markdown',
    author='Katherine Eaton',
    author_email='ktmeaton@gmail.com',
-   url='https://ktmeaton.github.io/NCBImeta/'',
+   url='https://ktmeaton.github.io/NCBImeta/',
    #packages=setuptools.find_packages(),
    packages=['ncbimeta'],
    classifiers=[
