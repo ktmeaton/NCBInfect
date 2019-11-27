@@ -3,6 +3,9 @@ import setuptools
 with open("README.md", 'r') as f:
     long_description = f.read()
 
+with open("requirements.txt", 'r') as r:
+    require_list = r.read().strip().split("\n")
+
 setuptools.setup(
    name='NCBImeta',
    version='0.4.1',
@@ -18,7 +21,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License"
    ],
-   install_requires=['biopython==1.74', 'PyYAML==5.1.2', 'numpy==1.16.4'], #external packages as dependencies
+   install_requires=require_list, #external packages as dependencies
    scripts=[
       'src/NCBImeta.py',
       'src/NCBImetaExport.py',
