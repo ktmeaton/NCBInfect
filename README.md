@@ -37,6 +37,13 @@ Python 3 dependencies include BioPython, PyYAML, and NumPy which are downloaded 
 
 ## Quick Start Example
 
+### Access the quick start config file
+Download the NCBImeta github repository to get access to the example configuration files:
+```
+git clone https://github.com/ktmeaton/NCBImeta.git   
+cd NCBImeta
+```
+
 ### Run the program
 Download genomic metadata pertaining to the plague pathogen *Yersinia pestis*.
 ```
