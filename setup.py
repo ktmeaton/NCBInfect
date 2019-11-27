@@ -13,9 +13,10 @@ setuptools.setup(
    python_requires='>=3',
    license="MIT",
    long_description=long_description,
+   long_description_content_type='text/markdown'
    author='Katherine Eaton',
    author_email='ktmeaton@gmail.com',
-   url="https://github.com/ktmeaton/NCBImeta",
+   url='https://ktmeaton.github.io/NCBImeta/'',
    #packages=setuptools.find_packages(),
    packages=['ncbimeta'],
    classifiers=[
