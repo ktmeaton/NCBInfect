@@ -46,7 +46,7 @@ The amount of time (in seconds) that the program should forcibly sleep (wait) in
 ```
 This will be the name of your created database and should not be a path. By default, a "database" directory will be created in your output directory to store this file. If you choose the --flat option at runtime, the database directory will not be created, and it will simply be stored in your selected output directory.    
 
-It does not need to end in "".sqlite", but you may find that helpful as your computer will associate that with an appropriate viewer application.    
+It does not need to end in ".sqlite", but you may find that helpful as your computer will associate that with an appropriate viewer application.    
 
 ## 6) TABLES
 ```
