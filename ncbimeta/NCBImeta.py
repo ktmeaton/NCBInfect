@@ -28,8 +28,8 @@ sys.path.append(src_dir)
 if sys.version_info.major == 3:
     unicode = str
 
-import NCBImetaUtilities
-import NCBImetaErrors
+from ncbimeta import NCBImetaUtilities
+from ncbimeta import NCBImetaErrors
 
 
 def flushprint(message):

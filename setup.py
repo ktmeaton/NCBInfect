@@ -22,11 +22,11 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License"
    ],
-   install_requires=require_list #external packages as dependencies
-#   scripts=[
-#      'src/NCBImeta.py',
-#      'src/NCBImetaExport.py',
-#      'src/NCBImetaJoin.py',
-#      'src/NCBImetaAnnotateReplace.py',
-#      'src/NCBImetaAnnotateConcatenate.py']
+   install_requires=require_list, #external packages as dependencies
+   scripts=[
+      'ncbimeta/NCBImeta.py',
+      'ncbimeta/NCBImetaExport.py',
+      'ncbimeta/NCBImetaJoin.py',
+      'ncbimeta/NCBImetaAnnotateReplace.py',
+      'ncbimeta/NCBImetaAnnotateConcatenate.py']
 )

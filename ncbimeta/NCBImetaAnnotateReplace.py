@@ -11,7 +11,7 @@ import datetime
 import os
 import sys
 
-import NCBImetaErrors
+from ncbimeta import NCBImetaErrors
 from NCBImetaUtilities import table_exists
 
 # Deal with unicode function rename in version 3
