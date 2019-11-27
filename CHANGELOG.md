@@ -6,10 +6,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
-## [v0.4.1] - 2019-1031
+## [v0.4.1] - 2019-1127
 
 ### Changed
 - Execute permissions (git update-index --add --chmod=+x src/*.py)
+- Bugfix for esearch, more HTTP Error catching
+- Travis CI Integration (Linux, MacOSX)
 
 ## [v0.4.0] - 2019-1031
 ### Added

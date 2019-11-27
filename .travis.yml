@@ -4,6 +4,11 @@ language: python    # this works for Linux but is an error on macOS or Windows
 jobs:
   include:
 
+# safelist
+branches:
+    only:
+        - master
+
 #-----------------------------------------------------------------------------#
 #                                    MACOS                                    #
 #-----------------------------------------------------------------------------#
