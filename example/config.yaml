@@ -148,28 +148,28 @@ TABLE_COLUMNS :
     - NucleotideAssemblyDate: Assembly Date
     - NucleotideAssemblyMethod: Assembly Method
     - NucleotideAssemblyName: Assembly Name
-    - NucleotidetCDS: CDS (total)
-    - NucleotidetCDSCoding: CDS (coding)
-    - NucleotidetCRISPRArrays: CRISPR Arrays
-    - NucleotidetExpectedFinalVersion: Expected Final Version
-    - NucleotidetFeaturesAnnotated: Features Annotated
-    - NucleotidetGenes: Genes (total)
-    - NucleotidetGenesCoding: Genes (coding)
-    - NucleotidetGenesRNA: Genes (RNA)
-    - NucleotidetGenomeCoverage: Genome Coverage
-    - NucleotidetGenomeRepresentation: Genome Representation
-    - NucleotidetncRNAs: ncRNAs
-    - NucleotidetPseudoGenes: Pseudo Genes (total)
-    - NucleotidetPseudoGenesAmbResidues: Pseudo Genes (ambiguous residues)
-    - NucleotidetPseudoGenesFrameshifted: Pseudo Genes (frameshifted)
-    - NucleotidetPseudoGenesIncomplete: Pseudo Genes (incomplete)
-    - NucleotidetPseudoGenesInternalStop: Pseudo Genes (internal stop)
-    - NucleotidetPseudoGenesMultipleProblems: Pseudo Genes (multiple problems)
-    - NucleotidetrRNAs: rRNAs
-    - NucleotidetrRNAsComplete: complete rRNAs
-    - NucleotidetrRNAsPartial: partial rRNAs
+    - NucleotideCDS: CDS (total)
+    - NucleotideCDSCoding: CDS (coding)
+    - NucleotideCRISPRArrays: CRISPR Arrays
+    - NucleotideExpectedFinalVersion: Expected Final Version
+    - NucleotideFeaturesAnnotated: Features Annotated
+    - NucleotideGenes: Genes (total)
+    - NucleotideGenesCoding: Genes (coding)
+    - NucleotideGenesRNA: Genes (RNA)
+    - NucleotideGenomeCoverage: Genome Coverage
+    - NucleotideGenomeRepresentation: Genome Representation
+    - NucleotidencRNAs: ncRNAs
+    - NucleotidePseudoGenes: Pseudo Genes (total)
+    - NucleotidePseudoGenesAmbResidues: Pseudo Genes (ambiguous residues)
+    - NucleotidePseudoGenesFrameshifted: Pseudo Genes (frameshifted)
+    - NucleotidePseudoGenesIncomplete: Pseudo Genes (incomplete)
+    - NucleotidePseudoGenesInternalStop: Pseudo Genes (internal stop)
+    - NucleotidePseudoGenesMultipleProblems: Pseudo Genes (multiple problems)
+    - NucleotiderRNAs: rRNAs
+    - NucleotiderRNAsComplete: complete rRNAs
+    - NucleotiderRNAsPartial: partial rRNAs
     - NucleotideSequencingTechnology: Sequencing Technology
-    - NucleotidetRNAs: tRNAs
+    - NucleotideRNAs: tRNAs
     - NucleotideComment : NullValue
 
   - SRA :
