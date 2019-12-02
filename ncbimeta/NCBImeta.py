@@ -370,16 +370,16 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         except TypeError:
             record_dict = ID_record[0]
 
-
         #print(record_dict)
         flatten_record_dict = list(NCBImetaUtilities.flatten_dict(record_dict))
-
         column_dict = {}
 
         # Add ID to the dictionary
         column_dict[table + "_id"] = ID
 
-
+        #----------------------------------------------------------------------#
+        #                         NCBI Record Parsing                          #
+        #----------------------------------------------------------------------#
 
         # Iterate through each column to search for values
         for column in table_columns:
@@ -395,7 +395,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             if len(split_column_payload) > 1:
                 column_payload = split_column_payload
 
-            # Special rules for hard-coded Nucleotide  Fields
+            # Special rules for hard-coded Nucleotide Fields (ex. GBSeq_comment)
             if "GBSeq_comment" in column.values():
                 for row in flatten_record_dict:
                     if row[0] == "GBSeq_comment":
@@ -414,8 +414,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                             # Accomodate all the inconsistently named fields
                             for i_column in table_columns:
                                 cur_column = list(i_column.items())[0][1]
-                                if (cur_column == split_key or
-                                  (cur_column == "CDS (total)" and split_key == "CDSs (total)") or
+                                if (cur_column == split_key or (cur_column == "CDS (total)" and split_key == "CDSs (total)") or
 				  (cur_column == "CDS (total)" and split_key == "CDS") or
                                   (cur_column == "CDS (coding)" and split_key == "CDS (with protein)") or
 				  (cur_column == "CDS (coding)" and split_key == "CDSs (with protein)") or
@@ -458,7 +457,6 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             if column_value:
                 column_value = "'" + column_value.replace("'","") + "'"
                 column_dict[column_name] = column_value
-		#continue?
 
 	    # Briefly try to parse the original record dict
 	    # This was for pubmed author lists originally
@@ -536,7 +534,6 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                     break
 
         #print(column_dict)
-        #quit()
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
         sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "
@@ -559,8 +556,9 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     cur.close()
     log_file.close()
 
-
-#------------------------Iterate Through Tables--------------------------------#
+#------------------------------------------------------------------------------#
+#                     Iterate Through Tables in Config File                    #
+#------------------------------------------------------------------------------#
 for table in CONFIG_TABLES:
     OUTPUT_DIR = CONFIG_OUTPUT_DIR
     DATABASE = CONFIG_DATABASE
@@ -582,4 +580,5 @@ for table in CONFIG_TABLES:
             break
     TABLE_COLUMNS = CONFIG_TABLE_COLUMNS[index][table]
 
+    # Call the main database updating function
     UpdateDB(table, OUTPUT_DIR, DATABASE, EMAIL, SEARCH_TERM, TABLE_COLUMNS, LOG_PATH, DB_DIR, API_KEY, FORCE_PAUSE_SECONDS)
