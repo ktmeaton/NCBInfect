@@ -147,7 +147,7 @@ while annot_line:
     # Check if the record could be found in the database
     if not fetch_records:
         print("Entry not in DB: " + unique_element + ". No annotation is added.", flush = True)
-        #raise NCBImetaErrors.ErrorEntryNotInDB(line_strain)
+        #raise NCBImetaErrors.ErrorEntryNotInDB(unique_element)
         annot_line = annot_file.readline()
         continue
 
