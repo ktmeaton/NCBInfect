@@ -67,12 +67,9 @@ config_path = args['configPath']
 flat_mode = args['flatMode']
 
 
-
-
 #------------------------------------------------------------------------------#
 #                              Argument Parsing                                #
 #------------------------------------------------------------------------------#
-
 
 # Check if configuration file exists
 if not os.path.exists(config_path):
@@ -225,6 +222,13 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
 #------------------------------------------------------------------------------#
 
 def UpdateDB(table, output_dir, database, email, search_term, table_columns, log_path, db_dir, api_key, force_pause_seconds):
+    '''
+    Update the contents of a local sqlite database using records retrieved from NCBI as configured by the user.
+
+    Parameters:
+    table (str):
+
+    '''
     print("\nCreating/Updating the " + table + " table using the following parameters: " + "\n" +
     "\t" + "Database: " + "\t\t" + database + "\n" +
     "\t" + "Search Term:" + "\t" + "\t" + search_term + "\n" +
@@ -467,7 +471,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 elif type(column_payload) == list:
                     result = [s for s in row if column_payload[0] in s and column_payload[1] in s ]
                 if not result: continue
-                result = unicode(result[0].strip())
+                result = str(result[0].strip())
                 if result[0] != "<" or result[-1] != ">": continue
 
                 # Just in case, wrap sampledata in a root node for XML formatting
@@ -476,7 +480,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 try:
                     root = minidom.parseString(xml).documentElement
                 except UnicodeEncodeError:
-                    #xml = "<Root>" + unicode(result) + "</Root>"
+                    #xml = "<Root>" + str(result) + "</Root>"
                     xml = "<Root>" + result.encode('utf-8') + "</Root>"
                     root = minidom.parseString(xml).documentElement
 
