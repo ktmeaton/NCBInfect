@@ -1,26 +1,21 @@
 #!/usr/bin/env python3
 """
-NCBI Metadata Database Annotator
+NCBI Metadata Database Annotator (Concatenation)
 
 @author: Katherine Eaton
 """
 
-import argparse
-import sqlite3
-import datetime
-import os
-import sys
+#-----------------------------------------------------------------------#
+#                            Argument Parsing                           #
+#-----------------------------------------------------------------------#
 
-from ncbimeta import NCBImetaErrors
-from ncbimeta.NCBImetaUtilities import table_exists
+import argparse                         # Command-line argument parsing
+import sqlite3                          # Database storage and queries
+import datetime                         # Get date and time for logfile
+import os                               # Filepath operations
 
-# Deal with unicode function rename in version 3
-if sys.version_info.major == 3:
-    unicode = str
-
-def flushprint(message):
-    print(message)
-    sys.stdout.flush()
+from ncbimeta import NCBImetaErrors     # NCBImeta Error Classes
+from ncbimeta.NCBImetaUtilities import table_exists  # Check if table exists
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
@@ -75,7 +70,7 @@ db_value_sep = ";"
 
 if os.path.exists(db_name):
     conn = sqlite3.connect(db_name)
-    flushprint('\nOpening database: ' + db_name)
+    print('\nOpening database: ' + db_name, flush = True)
 else:
     raise NCBImetaErrors.ErrorDBNotExists(db_name)
 
@@ -91,12 +86,9 @@ if not table_exists(cur, db_table):
     raise NCBImetaErrors.ErrorTableNotInDB(db_table)
 
 
-
-
 #-----------------------------------------------------------------------#
 #                                File Setup                             #
 #-----------------------------------------------------------------------#
-
 
 # get list of column names in Table
 cur.execute('''SELECT * FROM {}'''.format(db_table))
@@ -154,14 +146,14 @@ while annot_line:
 
     # Check if the record could be found in the database
     if not fetch_records:
-        flushprint("Entry not in DB: " + unique_element + ". No annotation is added.")
+        print("Entry not in DB: " + unique_element + ". No annotation is added.", flush = True)
         #raise NCBImetaErrors.ErrorEntryNotInDB(line_strain)
         annot_line = annot_file.readline()
         continue
 
     # Check if there were multiple hits in the database
     elif len(fetch_records) > 1:
-        flushprint("Multiple Matches in DB: " + unique_element + ". No annotation is added.")
+        print("Multiple Matches in DB: " + unique_element + ". No annotation is added.", flush = True)
         #raise NCBImetaErrors.ErrorEntryMultipleMatches(line_strain)
         annot_line = annot_file.readline()
         continue
@@ -201,17 +193,11 @@ while annot_line:
     # Read in the next line
     annot_line = annot_file.readline()
 
-
-
-
-
-
-
 #-----------------------------------------------------------------------#
 #                                    Cleanup                            #
 #-----------------------------------------------------------------------#
 # Commit changes
 conn.commit()
-flushprint("Closing database: " + db_name)
+print("Closing database: " + db_name, flush = True)
 cur.close()
 annot_file.close()
