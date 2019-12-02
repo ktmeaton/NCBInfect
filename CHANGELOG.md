@@ -6,6 +6,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
+### Changed
+- Reuploaded truncated gif files
+- Typo Nucleotidet fixed in example config.yaml
+
 ## [v0.4.2] - 2019-1127
 
 ### Added
