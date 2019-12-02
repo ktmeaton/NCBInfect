@@ -14,7 +14,6 @@ if __name__ != "__main__": quit()
 import argparse                         # Command-line argument parsing
 import sqlite3                          # Database storage and queries
 import os                               # Filepath operations
-#import sys
 import time                             # Allow sleeping of processes
 import datetime                         # Get date and time for logfile
 import Bio                              # Biopython NCBI API
@@ -25,11 +24,6 @@ import yaml                             # YAML config file parsing
 
 from ncbimeta import NCBImetaUtilities  # NCBImeta helper functions
 from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
-
-# Deal with unicode function rename in version 3
-# Note* This was a hold over from being a Python2 app
-#if sys.version_info.major == 3:
-#    unicode = str
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
@@ -74,10 +68,6 @@ flat_mode = args['flatMode']
 # Check if configuration file exists
 if not os.path.exists(config_path):
     raise NCBImetaErrors.ErrorConfigFileNotExists(config_path)
-
-# Add the directory containing the configration file to the system path for import
-# Now that this is no longer a python file for importing, should no longer be necessary
-# sys.path.append(os.path.dirname(config_path))
 
 # YAML switch in v0.3.5
 with open(config_path) as config_file:
