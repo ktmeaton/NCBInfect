@@ -36,7 +36,7 @@ from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
 #-----------------------------------------------------------------------#
 
 # To Be Done: Full Description
-parser = argparse.ArgumentParser(description='NCBImeta: Efficient and comprehensive metadata acquisition from the NCBI databases.',
+parser = argparse.ArgumentParser(description='NCBImeta: Efficient and comprehensive metadata retrieval from the NCBI databases.',
                                  add_help=True)
 
 
@@ -44,7 +44,7 @@ parser = argparse.ArgumentParser(description='NCBImeta: Efficient and comprehens
 mandatory_parser = parser.add_argument_group('mandatory')
 
 parser.add_argument('--config',
-                    help = 'Path to yaml configuration file (ex. config.yaml).',
+                    help = 'Path to the yaml configuration file (ex. config.yaml).',
                     action = 'store',
                     dest = 'configPath',
                     required = True)
@@ -74,12 +74,13 @@ flat_mode = args['flatMode']
 #------------------------------------------------------------------------------#
 
 
-# Check if config.py file exists
+# Check if configuration file exists
 if not os.path.exists(config_path):
     raise NCBImetaErrors.ErrorConfigFileNotExists(config_path)
 
-# Add the directory containing config.py to the system path for import
-sys.path.append(os.path.dirname(config_path))
+# Add the directory containing the configration file to the system path for import
+# Now that this is no longer a python file for importing, should no longer be necessary
+# sys.path.append(os.path.dirname(config_path))
 
 # YAML switch in v0.3.5
 with open(config_path) as config_file:
@@ -176,9 +177,15 @@ elif os.path.exists(DB_PATH):
 
 def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
     '''
-    Return result of http_method and check if HTTP Error is generated
+    Return result of http_method and check if an HTTP Error is generated
+
+    Parameters:
+    http_method (function): An http record-fetching or searching method
+    max_fetch_attempts (int): Maximum number of tries for fetching a record_dict
+    sleep_time (float): Number of seconds to wait in between fetch read_attempts
+    kwargs(dict): keyword arguments for the http_method function
     '''
-    # Use the esummary function to return a record summary, but wrapped in HTTP error checking
+    # Attemp the http_method function, wrapped in HTTP error checking
     ID_handle_retrieved = False
     fetch_attempts = 0
     while not ID_handle_retrieved and fetch_attempts < max_fetch_attempts:
@@ -207,6 +214,7 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
             print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
             print("Retrying record fetching.")
 
+        # If the maximum number of fetch attempts has been exceeded
         if fetch_attempts == max_fetch_attempts and not ID_handle_retrieved:
             raise ErrorMaxFetchAttemptsExceeded(ID)
 
