@@ -8,6 +8,7 @@
 # This program should only be called from the command-line
 if __name__ != "__main__": quit()
 
+#
 import argparse
 import sqlite3
 import os
@@ -133,10 +134,10 @@ print(
 "\t" + "Email: " + str(CONFIG_EMAIL) + "\n" +
 "\t" + "User Database: " + str(CONFIG_DATABASE) + "\n" +
 "\t" + "Tables: " + str(CONFIG_TABLES) + "\n" +
-"\t" + "Search Terms: ", flush = true)
+"\t" + "Search Terms: ", flush = True)
 for table_search_term in CONFIG_SEARCH_TERMS:
-    print("\t\t" + str(table_search_term), flush = true)
-print("\n", flush = true)
+    print("\t\t" + str(table_search_term), flush = True)
+print("\n", flush = True)
 
 # Check if output dir exists
 if not os.path.exists(CONFIG_OUTPUT_DIR):
@@ -144,14 +145,14 @@ if not os.path.exists(CONFIG_OUTPUT_DIR):
 
 # Flat mode checking
 if flat_mode:
-    print("Flat mode was requested, organizational directories will not be used.", flush = true)
+    print("Flat mode was requested, organizational directories will not be used.", flush = True)
     DB_DIR = os.path.join(CONFIG_OUTPUT_DIR, "")
     LOG_PATH = CONFIG_OUTPUT_DIR
 
 
 elif not flat_mode:
     # Create accessory directory (ex. log, data, database, etc.)
-    print("Flat mode was not requested, organization directories will be used.", flush = true)
+    print("Flat mode was not requested, organization directories will be used.", flush = True)
     NCBImetaUtilities.check_accessory_dir(CONFIG_OUTPUT_DIR)
     DB_DIR = os.path.join(CONFIG_OUTPUT_DIR, "", "database", "")
     LOG_PATH = os.path.join(CONFIG_OUTPUT_DIR, "", "log")
@@ -160,15 +161,15 @@ DB_PATH = os.path.join(DB_DIR, "", CONFIG_DATABASE)
 
 #------------------------- Database Connection---------------------------------#
 if not os.path.exists(DB_PATH):
-    print("\n" + "Creating database: " + DB_PATH, flush = true)
+    print("\n" + "Creating database: " + DB_PATH, flush = True)
     conn = sqlite3.connect(DB_PATH)
     conn.commit()
-    print("\n" + "Connected to database: " + DB_PATH, flush = true)
+    print("\n" + "Connected to database: " + DB_PATH, flush = True)
 
 elif os.path.exists(DB_PATH):
     conn = sqlite3.connect(DB_PATH)
     conn.commit()
-    print("\n" + "Connected to database: " + DB_PATH, flush = true)
+    print("\n" + "Connected to database: " + DB_PATH, flush = True)
 
 #------------------------------------------------------------------------------#
 #                             HTTP Error Catching                              #
@@ -222,7 +223,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     "\t" + "Search Term:" + "\t" + "\t" + search_term + "\n" +
     "\t" + "Email: " + "\t\t\t" + email + "\n" +
     "\t" + "API Key: " + "\t\t\t" + api_key + "\n" +
-    "\t" + "Output Directory: " + "\t" + output_dir + "\n\n", flush = true)
+    "\t" + "Output Directory: " + "\t" + output_dir + "\n\n", flush = True)
 
 
     Entrez.email = email
@@ -298,10 +299,10 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         #-------------------Progress Log and Entry Counter-------------------#
         # Increment entry counter and record progress to screen
         num_processed += 1
-        print("ID: " + ID, flush = true)
+        print("ID: " + ID, flush = True)
         print("Processing record: " +
                str(num_processed) + \
-               "/" + str(num_records), flush = true)
+               "/" + str(num_records), flush = True)
 
 
         #------------Check if Record Already Exists in Database------------#
