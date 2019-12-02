@@ -8,29 +8,28 @@
 # This program should only be called from the command-line
 if __name__ != "__main__": quit()
 
-#
-import argparse
-import sqlite3
-import os
-import sys
-import time
-import importlib
-import datetime
-import Bio
-from Bio import Entrez
-from xml.dom import minidom
-import urllib.error    # HTTP Error Catching
-import yaml            # YAML config file parsing
+#-----------------------------------------------------------------------#
+#                         Modules and Packages                          #
+#-----------------------------------------------------------------------#
+import argparse                         # Command-line argument parsing
+import sqlite3                          # Database storage and queries
+import os                               # Filepath operations
+#import sys
+import time                             # Allow sleeping of processes
+import datetime                         # Get date and time for logfile
+import Bio                              # Biopython NCBI API
+from Bio import Entrez                  # Entrez queries (NCBI)
+from xml.dom import minidom             # XML Processing
+import urllib.error                     # HTTP Error Catching
+import yaml                             # YAML config file parsing
 
-src_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '') + "src"
-sys.path.append(src_dir)
+from ncbimeta import NCBImetaUtilities  # NCBImeta helper functions
+from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
 
 # Deal with unicode function rename in version 3
-if sys.version_info.major == 3:
-    unicode = str
-
-from ncbimeta import NCBImetaUtilities
-from ncbimeta import NCBImetaErrors
+# Note* This was a hold over from being a Python2 app
+#if sys.version_info.major == 3:
+#    unicode = str
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
