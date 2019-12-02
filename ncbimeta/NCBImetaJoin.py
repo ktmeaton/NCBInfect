@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NCBI Metadata Database Annotator
+NCBImeta Join Tool - Joins accessory tables to an anchor table.
 
 @author: Katherine Eaton
 """
@@ -79,8 +79,6 @@ unique_header_str = args['dbUnique']
 unique_header_list = unique_header_str.split(" ")
 db_value_sep = ";"
 
-
-
 #-----------------------------------------------------------------------#
 #                           Argument Checking                           #
 #-----------------------------------------------------------------------#
@@ -97,8 +95,6 @@ else:
 # no errors were raised, safe to connect to db
 cur = conn.cursor()
 
-
-
 #---------------------------Check Tables---------------------------------#
 
 if not table_exists(cur, db_anchor):
@@ -107,13 +103,9 @@ for table in db_accessory_list:
     if not table_exists(cur, table):
         raise NCBImetaErrors.ErrorTableNotInDB(table)
 
-
-
-
 #-----------------------------------------------------------------------#
 #                                File Setup                             #
 #-----------------------------------------------------------------------#
-
 
 # get list of column names in anchor table
 cur.execute('''SELECT * FROM {}'''.format(db_anchor))
@@ -137,7 +129,6 @@ dupl_col_names = set([col for col in db_col_names if db_col_names.count(col) > 1
 if len(dupl_col_names) > 0:
     raise NCBImetaErrors.ErrorColumnsNotUnique(dupl_col_names)
 
-
 #-----------------------------------------------------------------------#
 #                              Init Join Table                          #
 #-----------------------------------------------------------------------#
@@ -150,7 +141,6 @@ for column_name in db_col_names:
     sql_query += ", " + column_name + " TEXT"
 sql_query += ")"
 cur.execute(sql_query)
-
 
 #-----------------------------------------------------------------------#
 #                              Join Tables                              #
@@ -310,11 +300,6 @@ for record in fetch_records:
         cur.execute(sql_query)
         # Save Changes
         conn.commit()
-
-
-
-
-
 
 #-----------------------------------------------------------------------#
 #                                    Cleanup                            #
