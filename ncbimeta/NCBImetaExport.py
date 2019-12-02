@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
 """
-NCBI Metadata Database Annotator
+NCBImeta Export Tool - Export SQLite database to tabular text files.
 
 @author: Katherine Eaton
 """
-
-import argparse
-import sqlite3
-import os
-import io
-
-from ncbimeta.NCBImetaErrors import *
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-parser = argparse.ArgumentParser(description=("NCBInfect Database Export Tool"),
+import argparse                         # Command-line argument parsing
+import sqlite3                          # Database storage and queries
+import os                               # Filepath operations
+
+from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
+
+#-----------------------------------------------------------------------#
+#                            Argument Parsing                           #
+#-----------------------------------------------------------------------#
+
+parser = argparse.ArgumentParser(description=("NCBImeta Export Tool - Export SQLite database to tabular text files."),
                                  add_help=True)
 
 mandatory = parser.add_argument_group('mandatory')
