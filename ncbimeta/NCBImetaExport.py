@@ -8,18 +8,9 @@ NCBI Metadata Database Annotator
 import argparse
 import sqlite3
 import os
-import sys
 import io
 
 from ncbimeta.NCBImetaErrors import *
-
-# Deal with unicode function rename in version 3
-if sys.version_info.major == 3:
-    unicode = str
-
-def flushprint(message):
-    print(message)
-    sys.stdout.flush()
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
@@ -62,7 +53,7 @@ output_dir = args['outputDir']
 # Check if database exists
 if os.path.exists(db_name):
     conn = sqlite3.connect(db_name)
-    flushprint('\nOpening database: ' + db_name)
+    print('\nOpening database: ' + db_name, flush = True)
 else:
     raise ErrorDBNotExists(db_name)
 
@@ -123,5 +114,5 @@ for table in table_list:
 #                                    Cleanup                            #
 #-----------------------------------------------------------------------#
 
-flushprint("Closing database: " + db_name)
+print("Closing database: " + db_name, flush = True)
 cur.close()
