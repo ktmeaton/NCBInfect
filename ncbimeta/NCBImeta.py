@@ -360,7 +360,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         except TypeError:
             record_dict = ID_record[0]
 
-        #print(record_dict)
+        print(record_dict)
         flatten_record_dict = list(NCBImetaUtilities.flatten_dict(record_dict))
         column_dict = {}
 

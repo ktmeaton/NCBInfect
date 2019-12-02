@@ -12,16 +12,32 @@ import xml.etree.ElementTree as ET
 
 
 def check_accessory_dir(output_dir):
+    '''
+    Check if the accessory directories already exist.
+
+    Parameters:
+    output_dir(str): Path to the output directory.
+    '''
     if not os.path.exists(os.path.join(output_dir,"log")):
         os.makedirs(os.path.join(output_dir,"log"))
     if not os.path.exists(os.path.join(output_dir,"database")):
         os.makedirs(os.path.join(output_dir,"database"))
 
 def table_exists(db_cur, table_name):
+    '''
+    Return the result of fetching a table name from a sqlite database to check if it exists.
+
+    Parameters:
+    db_cur(Cursor): A sqlite cursor connection.
+    table_name(str): Name of a table in the sqite database.
+    '''
     query = "SELECT name FROM sqlite_master WHERE type='table' AND name='{}'".format(table_name)
     return db_cur.execute(query).fetchone() is not None
 
 def flatten_dict(input_dict, pre=None):
+    '''
+    Return a nested dictionary as a flattened structure.
+    '''
     pre = pre[:] if pre else []
     if isinstance(input_dict, dict):
         for key, value in input_dict.items():
