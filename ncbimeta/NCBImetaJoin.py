@@ -5,22 +5,17 @@ NCBI Metadata Database Annotator
 @author: Katherine Eaton
 """
 
-import argparse
-import sqlite3
-import datetime
-import os
-import sys
+#-----------------------------------------------------------------------#
+#                         Modules and Packages                          #
+#-----------------------------------------------------------------------#
 
-from ncbimeta import NCBImetaErrors
-from ncbimeta.NCBImetaUtilities import table_exists
+import argparse                         # Command-line argument parsing
+import sqlite3                          # Database storage and queries
+import os                               # Filepath operations
+import datetime                         # Get date and time for logfile
 
-# Deal with unicode function rename in version 3
-if sys.version_info.major == 3:
-    unicode = str
-
-def flushprint(message):
-    print(message)
-    sys.stdout.flush()
+from ncbimeta import NCBImetaUtilities  # NCBImeta helper functions
+from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
@@ -95,7 +90,7 @@ db_value_sep = ";"
 
 if os.path.exists(db_name):
     conn = sqlite3.connect(db_name)
-    flushprint('\nOpening database: ' + db_name + "\n")
+    print('\nOpening database: ' + db_name + "\n", flush = True)
 else:
     raise NCBImetaErrors.ErrorDBNotExists(db_name)
 
@@ -128,7 +123,7 @@ anchor_col_names = [description[0] for description in cur.description]
 # Check to make sure the unique header is present in the anchor table
 for unique_header in unique_header_list:
     if unique_header not in db_col_names:
-        flushprint("Column not in DB: " + unique_header + ".")
+        print("Column not in DB: " + unique_header + ".", flush = True)
         raise NCBImetaErrors.ErrorEntryNotInDB(unique_header)
 
 # get list of column names in accessory tables
@@ -192,10 +187,10 @@ for record in fetch_records:
     # Increment entry counter and record progress to screen
 
     num_processed += 1
-    flushprint("Unique Value: " + unique_val)
-    flushprint("Processing record: " +
+    print("Unique Value: " + unique_val, flush = True)
+    print("Processing record: " +
       str(num_processed) + \
-     "/" + str(num_records))
+     "/" + str(num_records), flush = True)
 
 
     # Check if this record already exists in the master join table
@@ -326,5 +321,5 @@ for record in fetch_records:
 #-----------------------------------------------------------------------#
 # Commit changes
 conn.commit()
-flushprint("Closing database: " + db_name)
+print("Closing database: " + db_name, flush = True)
 cur.close()
