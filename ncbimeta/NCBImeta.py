@@ -177,10 +177,10 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
     Return result of http_method and check if an HTTP Error is generated
 
     Parameters:
-    http_method (function): An http record-fetching or searching method
-    max_fetch_attempts (int): Maximum number of tries for fetching a record_dict
-    sleep_time (float): Number of seconds to wait in between fetch read_attempts
-    kwargs(dict): keyword arguments for the http_method function
+    http_method (function): An http record-fetching or searching method.
+    max_fetch_attempts (int): Maximum number of tries for fetching a record_dict.
+    sleep_time (float): Number of seconds to wait in between fetch read_attempts.
+    kwargs(dict): keyword arguments for the http_method function.
     '''
     # Attemp the http_method function, wrapped in HTTP error checking
     ID_handle_retrieved = False
@@ -226,9 +226,18 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     Update the contents of a local sqlite database using records retrieved from NCBI as configured by the user.
 
     Parameters:
-    table (str):
-
+    table (str): Name of the NCBI database to search.
+    output_dir (str): Path to the directory where output is written.
+    database (str): Filename of the local sqlite database.
+    email (str): User email.
+    search_term (str): Entrez search query.
+    table_columns(dict): Dictionary of column name and API name as value, ex. {AssemblyGenbankID : GbUid}.
+    log_path(str): Path to the directory where the logfile is stored in.
+    db_dir(str): Path to the directory where the database is stored in.
+    api_key(str): NCBI user account API Key.
+    force_pause_seconds(float): Number of seconds to wait in between fetch read_attempts.
     '''
+
     print("\nCreating/Updating the " + table + " table using the following parameters: " + "\n" +
     "\t" + "Database: " + "\t\t" + database + "\n" +
     "\t" + "Search Term:" + "\t" + "\t" + search_term + "\n" +
@@ -239,8 +248,10 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
     Entrez.email = email
     Entrez.api_key = api_key
-    Entrez.sleep_between_tries = 1
+    # Allow a maximum of 3 tries for error catching before exiting program
     Entrez.max_tries = 3
+    # Sleep for 1 second after an error has been generated before retrying
+    Entrez.sleep_between_tries = 1
 
     #---------------------------------------------------------------------------#
     #                                File Setup                                 #
