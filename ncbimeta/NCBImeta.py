@@ -290,7 +290,9 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     #-----------------------------------------------------------------------#
     #                          Entrez Search                                #
     #-----------------------------------------------------------------------#
-    # Read the record, check for run time errors but only a few times
+    # Read the record, check for runtime errors but only a few times
+    # This section is not wrapped with the HTTPErrorCatch helper function, because
+    # RunTimeErrors are the bigger culprit to catch instead.
     read_succeed = False
     read_attempts = 0
     while not read_succeed and read_attempts < Entrez.max_tries:
@@ -326,9 +328,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                str(num_processed) + \
                "/" + str(num_records), flush = True)
 
-
         #------------Check if Record Already Exists in Database------------#
-
         sql_query = ("SELECT EXISTS(SELECT " + table + "_id FROM " +
                     table + " WHERE " + table + "_id=?)")
         cur.execute(sql_query, (ID,))
@@ -336,6 +336,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         # 0 if not found, 1 if found
         record_exists = cur.fetchone()[0]
 
+        # If the record_exists, skip the whole next part (ie. "continue" to next record)
         if record_exists:
             continue
         '''
@@ -344,31 +345,31 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         ie. The database does not get updated until the end of each record.
         '''
         # This is the sleep command before implementing the HTTPerror catching in next section
+        # This is controlled by the user configuration file
         time.sleep(force_pause_seconds)
-        #---------------If Assembly Isn't in Database, Add it------------#
-        # Retrieve Assembly record using ID, read, store as dictionary
+
+        #---------------If the table isn't in Database, Add it------------#
+        # If we're not workinng with the Nucleotide table, we're using the "esummary function"
+        # Retrieve table record using ID, read, store as dictionary
         if table.lower() != "nucleotide":
-            # Use the esummary function to return a record summary, but wrapped in HTTP error checking
+            # Use the http function to return a record summary, but wrapped in HTTP error checking
             kwargs = {"db":table.lower(), "id":ID}
-            # Possible urllib error occuring in the next line for unknown reasons
-            ID_handle = HTTPErrorCatch(Entrez.esummary, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
-
-            # If successfully fetched, move onto reading the record
-            ID_record = Entrez.read(ID_handle, validate=False)
-            try:
-                record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
-            except TypeError:
-                record_dict = ID_record[0]
+            entrez_method = Entrez.esummary
         else:
-            # Use the esummary function to return a record summary, but wrapped in HTTP error checking
+            # We're working with the Nucleotide table instead, use efetch and get xml
             kwargs = {"db": table.lower(), "id":ID, "retmode":"xml"}
-            ID_handle = HTTPErrorCatch(Entrez.efetch, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
+            entrez_method = Entrez.efetch
 
-            ID_record = Entrez.read(ID_handle, validate=False)
-            try:
-                record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
-            except TypeError:
-                record_dict = ID_record[0]
+        # Possible urllib error occuring in the next line for unknown reasons
+        ID_handle = HTTPErrorCatch(entrez_method, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
+
+        # If successfully fetched, move onto reading the record
+        ID_record = Entrez.read(ID_handle, validate=False)
+        try:
+            record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
+        except TypeError:
+            record_dict = ID_record[0]
+
 
         #print(record_dict)
         flatten_record_dict = list(NCBImetaUtilities.flatten_dict(record_dict))
