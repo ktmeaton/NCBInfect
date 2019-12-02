@@ -67,7 +67,6 @@ if not os.path.exists(output_dir):
 # no errors were raised, safe to connect to db
 cur = conn.cursor()
 
-
 #-----------------------------------------------------------------------#
 #                         Process Database                              #
 #-----------------------------------------------------------------------#
@@ -108,7 +107,6 @@ for table in table_list:
             line += unicode(cell) + "\t"
         line = line.rstrip("\t")  + "\n"
         table_file.write(line)
-        #table_file.write(line.encode('utf-8'))
 
     # Close table file
     table_file.close()
