@@ -6,14 +6,9 @@ NCBI Metadata Database Utility Functions
 """
 
 import os
-import sys
 from sys import platform as _platform
 import sqlite3
 import xml.etree.ElementTree as ET
-
-# Deal with unicode function rename in version 3
-if sys.version_info.major == 3:
-    unicode = str
 
 
 def check_accessory_dir(output_dir):
@@ -85,11 +80,11 @@ def xml_find_attr(xml_root, node_name, attr_name, attr_dict):
                     # simple name, gran associated attribute value
                     if type(attr_name) == str:
                         if(attr_name == item[0]):
-                            attr_dict[attr_name] = unicode(item[1])
+                            attr_dict[attr_name] = str(item[1])
                     # complex node-attribute, grab nove value associated with attribute
                     elif type(attr_name) == list and value:
                         if item[0] == attr_name[1] and item[1] == attr_name[0]:
-                             attr_dict[attr_name[0]] = unicode(value)
+                             attr_dict[attr_name[0]] = str(value)
 
 def xml_find_node(xml_root, node_name, node_dict):
     '''Recursive search of xml to find a desired node value.
@@ -114,12 +109,12 @@ def xml_find_node(xml_root, node_name, node_dict):
             value = xml_find_node(child_node,node_name,node_dict)
             if node_name == xml_root.nodeName:
                 if value:
-                    node_dict[node_name] = unicode(value)
+                    node_dict[node_name] = str(value)
                     return(value)
                 else:
                     # ignore text nodes, this is only for SRA library layout
                     if child_node.nodeName != "#text":
-                        node_dict[node_name] = unicode(child_node.nodeName)
+                        node_dict[node_name] = str(child_node.nodeName)
 
 
 def xml_find_attr_bak(xml_root, node_name, attr_name, attr_dict):
