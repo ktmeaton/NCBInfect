@@ -11,7 +11,7 @@ import os
 import sys
 import io
 
-from NCBImetaErrors import *
+from ncbimeta.NCBImetaErrors import *
 
 # Deal with unicode function rename in version 3
 if sys.version_info.major == 3:

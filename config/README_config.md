@@ -46,7 +46,7 @@ The amount of time (in seconds) that the program should forcibly sleep (wait) in
 ```
 This will be the name of your created database and should not be a path. By default, a "database" directory will be created in your output directory to store this file. If you choose the --flat option at runtime, the database directory will not be created, and it will simply be stored in your selected output directory.    
 
-It does not need to end in "".sqlite", but you may find that helpful as your computer will associate that with an appropriate viewer application.    
+It does not need to end in ".sqlite", but you may find that helpful as your computer will associate that with an appropriate viewer application.    
 
 ## 6) TABLES
 ```
@@ -64,11 +64,11 @@ A line-separated list (beginning with dashes) containing the names of all tables
 ```
 This list contains the names of all tables and corresponding ENTREZ search queries.    
 Building an appropriate search query is sometimes the most difficult part.    
-Test your queries in the web browser first before committing.    
+Test your queries in the web browser first before committing  ([NCBI Web Portal](https://www.ncbi.nlm.nih.gov/)).    
 
 Note that the table names must match exactly to TABLES and TABLE COLUMNS.    
 
-*** Note that record retrieval is currently limited to 9999999 records per table. This can be changed locally in your program by searching for the first instance of "retmax" in the NCBImeta.py source file (src/NCBImeta.py). ***    
+*** Note that record retrieval is currently limited to 9999999 records per table. This can be changed locally in your program by searching for the first instance of "retmax" in the NCBImeta.py source file (ncbimeta/NCBImeta.py). ***    
 
 ## 8) TABLE_COLUMNS
 ```

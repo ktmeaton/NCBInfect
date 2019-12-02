@@ -1,16 +1,23 @@
-[![GitHub (pre-)release](https://img.shields.io/badge/Release-v0.4.1-red.svg)](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.1)
+[![GitHub (pre-)release](https://img.shields.io/badge/Release-v0.4.2-red.svg)](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.2)
 [![GitHub license](https://img.shields.io/dub/l/vibe-d.svg?style=flat)](https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/ktmeaton/NCBImeta.svg)](https://github.com/ktmeaton/NCBImeta/issues)
 [![Build Status](https://travis-ci.org/ktmeaton/NCBImeta.svg?branch=master)](https://travis-ci.org/ktmeaton/NCBImeta)
 
 
 # NCBImeta
+Efficient and comprehensive metadata acquisition from the NCBI databases (includes SRA).  
+
+## Why NCBImeta?
 NCBImeta is a Python application that retrieves and organizes metadata from the National Centre for Biotechnology Information (NCBI). While the NCBI web browser experience allows filtered searches, the output does not facilitate inter-record comparison or bulk record retrieval. NCBImeta tackles this issue by creating a local database of NCBI metadata constructed by user-defined search criteria and customizable metadata columns. The output of NCBImeta, optionally a SQLite database or text files, can then be used by computational biologists for applications such as record filtering, project discovery, sample interpretation, or meta-analyses of published work.
 
-## Installation From PyPI
+## Requirements
+NCBImeta is written in Python 3 and supported on Linux and macOS.  
+Python 3 dependencies include BioPython, PyYAML, and NumPy which are downloaded through the default installation.  
+[Check all Python versions and OS with verified build status](https://travis-ci.org/ktmeaton/NCBImeta)
+
+## Installation (Recommended)
 ```
-pip install ncbimeta
-NCBImeta.py --version
+pip install NCBImeta
 ```
 
 ## Installation From Source
@@ -19,27 +26,26 @@ NCBImeta.py --version
 git clone https://github.com/ktmeaton/NCBImeta.git   
 cd NCBImeta
 python setup.py install
-NCBImeta.py --version
 ```   
-Or download the latest release as a zip/tar archive:  [Version 0.4.1](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.1)  
-Proceed with Installation from Source instructions.  
 
-
-## Requirements
-NCBImeta is written in Python 3 and supported on Linux and macOS.  
-Python 3 dependencies include BioPython, PyYAML, and NumPy which can be installed with:
+Test that the installation was successful:
 ```
-pip3 install --user -r requirements.txt
+NCBImeta.py --version
 ```
-[Check all Python versions and OS with verified build status](https://travis-ci.org/ktmeaton/NCBImeta)
-
 
 ## Quick Start Example
+
+### Access the quick start config file
+Download the NCBImeta github repository to get access to the example configuration files:
+```
+git clone https://github.com/ktmeaton/NCBImeta.git   
+cd NCBImeta
+```
 
 ### Run the program
 Download genomic metadata pertaining to the plague pathogen *Yersinia pestis*.
 ```
-src/NCBImeta.py --flat --config example/config.yaml
+NCBImeta.py --flat --config example/config.yaml
 ```
 
 Example output of the command-line interface (v0.4.0):  
@@ -48,25 +54,25 @@ Example output of the command-line interface (v0.4.0):
 
 ### Annotate the database with tab-separated text files of metadata
 ```
-src/NCBImetaAnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
+NCBImetaAnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
 ```
 
 Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also exactly match the names of your columns in the database.  
 
 ```NCBImetaAnnotateReplace.py```, as the name implies, replaces the existing annotation with the data in your custom metadata file. Alternatively, the script ```NCBImetaAnnotateConcatenate.py``` will concatenate your custom metadata with the pre-existing value in the database cell (separated by a semi-colon).
 ```
-src/NCBImetaAnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
+NCBImetaAnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
 ```
 ### Join NCBI tables into a unified master table  
 ```
-src/NCBImetaJoin.py --database example/yersinia_pestis_db.sqlite --final Master --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
+NCBImetaJoin.py --database example/yersinia_pestis_db.sqlite --final Master --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
 ```  
 The rows of the output "Master" table will be from the anchor table "BioSample", with additional columns added in from the accessory tables "BioProject", "Assembly", "SRA", and "Nucleotide". Unique accession numbers for BioSample (both primary and secondary) and BioProject allow this join to be unambiguous.
 
 
 ### Export the database to tab-separated text files by table.
 ```
-src/NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/
+NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/
 ```
 Each table within the database will be exported to its own tab-separated .txt file in the specified output directory.
 

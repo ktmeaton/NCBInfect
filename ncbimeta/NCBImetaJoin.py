@@ -12,12 +12,12 @@ import os
 import sys
 
 from ncbimeta import NCBImetaErrors
-from NCBImetaUtilities import table_exists
+from ncbimeta.NCBImetaUtilities import table_exists
 
 # Deal with unicode function rename in version 3
 if sys.version_info.major == 3:
     unicode = str
-    
+
 def flushprint(message):
     print(message)
     sys.stdout.flush()
@@ -190,14 +190,14 @@ for record in fetch_records:
 
     #-------------------Progress Log and Entry Counter-------------------#
     # Increment entry counter and record progress to screen
-    
+
     num_processed += 1
     flushprint("Unique Value: " + unique_val)
     flushprint("Processing record: " +
       str(num_processed) + \
      "/" + str(num_records))
 
- 
+
     # Check if this record already exists in the master join table
     sql_query = ("SELECT EXISTS(SELECT " + unique_header_list[0] + " FROM " +
                  db_final + " WHERE " + unique_header_list[0] + "=" +
@@ -209,7 +209,7 @@ for record in fetch_records:
     if record_exists: continue
 
     # Now grab the associated records in the accessory tables
-    sql_query = '''SELECT {0} FROM {1} WHERE {2}={3}'''.format(",".join(unique_header_list), 
+    sql_query = '''SELECT {0} FROM {1} WHERE {2}={3}'''.format(",".join(unique_header_list),
                                                                db_anchor,
                                                                unique_header_list[0],
                                                                unique_val)
@@ -246,9 +246,9 @@ for record in fetch_records:
                     for val in table_col_vals:
                         if type(val[0]) == int: val=str(val[0])
                         elif type(val[0]) == unicode: val=val[0].encode('utf-8')
-                    
+
                         # If it's a match, store the value, and set the boolean flag
-                        if val == uniq_val: 
+                        if val == uniq_val:
                             match_found=True
                             match_column=table_col
                             match_val = val
@@ -261,8 +261,8 @@ for record in fetch_records:
                 if match_found: break
 
             if match_found:
-                query=('''SELECT * FROM {0} WHERE {1}={2}'''.format(table, 
-                                                                match_column, 
+                query=('''SELECT * FROM {0} WHERE {1}={2}'''.format(table,
+                                                                match_column,
                                                                 "'" + match_val.decode('utf-8') + "'"))
                 cur.execute(query)
                 match_records = cur.fetchall()
@@ -281,7 +281,7 @@ for record in fetch_records:
                         if len(tmp_record_list) > 1:
                             # Check if all values are identical
                             dupl_values = set([val for val in tmp_record_list if tmp_record_list.count(val) == len(tmp_record_list)])
-                            if len(dupl_values) == 1: 
+                            if len(dupl_values) == 1:
                                 match_records_concat[i] = list(dupl_values)[0]
                             else: match_records_concat[i] = db_value_sep.join(tmp_record_list)
 
@@ -301,7 +301,7 @@ for record in fetch_records:
                         try:
                             record_val = "'" + str(record_val) + "'"
                         except:
-                            record_val = "'" + record_val.encode('utf-8') + "'" 
+                            record_val = "'" + record_val.encode('utf-8') + "'"
                     # Assign record to dictionary
                     master_column_dict[table_col_names[i]] = record_val
 
@@ -315,9 +315,9 @@ for record in fetch_records:
         cur.execute(sql_query)
         # Save Changes
         conn.commit()
-        
 
-                
+
+
 
 
 

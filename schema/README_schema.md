@@ -101,7 +101,7 @@ The value in this case, is a list of 2 elements:
     GB_BioProjects, BioprojectAccn  
 
 This can be built from any number of elements, and provides a directional path to follow to find a node.    
-Note that it must be IN ORDER, but can skip intermediate values (ex. node <Bioproj> is missing from the list). This has not been extensively tested yet.    
+Note that it must be IN ORDER, but can skip intermediate values (ex. node <Bioproj> is missing from the list).  
 
 ## 5) Customizing Schema
 

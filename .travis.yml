@@ -1,14 +1,13 @@
 # Travis-CI Configuration File
 
+# Whitelist
+branches:
+  only:
+    - master
+
 language: python    # this works for Linux but is an error on macOS or Windows
 jobs:
   include:
-
-# safelist
-branches:
-    only:
-        - master
-
 #-----------------------------------------------------------------------------#
 #                                    MACOS                                    #
 #-----------------------------------------------------------------------------#
@@ -41,17 +40,17 @@ before_install:
 # command to install dependencies
 install:
   - pip3 install --upgrade pip       # all three OSes agree about 'pip3'
-  - pip3 install -r requirements.txt  # install repo specific modules
+  - pip3 install . -r requirements.txt
 
 
 # command to run tests
 script:
   # Fetch records
-  - src/NCBImeta.py --flat --config example/config.yaml
+  - NCBImeta.py --flat --config example/config.yaml
   # Database Annotation
-  - src/NCBImeta_AnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
-  - src/NCBImeta_AnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
+  - NCBImetaAnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
+  - NCBImetaAnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
   # Database table join
-  - src/NCBImeta_Join.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
+  - NCBImetaJoin.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
   # Database export
-  - src/NCBImeta_Export.py --database example/yersinia_pestis_db.sqlite --outputdir example/
+  - NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/

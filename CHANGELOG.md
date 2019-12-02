@@ -6,6 +6,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
+### Changed
+- Reuploaded truncated gif files
+- Typo Nucleotidet fixed in example config.yaml
+
 ## [v0.4.2] - 2019-1127
 
 ### Added
@@ -14,6 +18,8 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ### Changed
 - Rename all files containing "NCBImeta_" to "NCBImeta", correct all references
 - Change src/ directory to ncbimeta/ directory
+- requirements.txt loads into setup.py
+- Update docs to reflect path changes
 
 ## [v0.4.1] - 2019-1127
 

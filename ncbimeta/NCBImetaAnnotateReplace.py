@@ -12,7 +12,7 @@ import os
 import sys
 
 from ncbimeta import NCBImetaErrors
-from NCBImetaUtilities import table_exists
+from ncbimeta.NCBImetaUtilities import table_exists
 
 # Deal with unicode function rename in version 3
 if sys.version_info.major == 3:
