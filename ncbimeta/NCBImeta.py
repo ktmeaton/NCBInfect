@@ -31,11 +31,6 @@ if sys.version_info.major == 3:
 from ncbimeta import NCBImetaUtilities
 from ncbimeta import NCBImetaErrors
 
-
-def flushprint(message):
-    print(message)
-    sys.stdout.flush()
-
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
@@ -59,8 +54,8 @@ parser.add_argument('--flat',
                     action = 'store_true',
                     dest = 'flatMode')
 
-parser.add_argument('--version', 
-                    action='version', 
+parser.add_argument('--version',
+                    action='version',
                     version='%(prog)s v0.4.2')
 
 
@@ -132,16 +127,16 @@ try:
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("TABLE_COLUMNS")
 
-flushprint(
+print(
 "\n" + "NCBImeta was run with the following options: " + "\n" +
 "\t" + "Output Directory: " + str(CONFIG_OUTPUT_DIR) + "\n" +
 "\t" + "Email: " + str(CONFIG_EMAIL) + "\n" +
 "\t" + "User Database: " + str(CONFIG_DATABASE) + "\n" +
 "\t" + "Tables: " + str(CONFIG_TABLES) + "\n" +
-"\t" + "Search Terms: ")
+"\t" + "Search Terms: ", flush = true)
 for table_search_term in CONFIG_SEARCH_TERMS:
-    flushprint("\t\t" + str(table_search_term))
-flushprint("\n")
+    print("\t\t" + str(table_search_term), flush = true)
+print("\n", flush = true)
 
 # Check if output dir exists
 if not os.path.exists(CONFIG_OUTPUT_DIR):
@@ -149,14 +144,14 @@ if not os.path.exists(CONFIG_OUTPUT_DIR):
 
 # Flat mode checking
 if flat_mode:
-    flushprint("Flat mode was requested, organizational directories will not be used.")
+    print("Flat mode was requested, organizational directories will not be used.", flush = true)
     DB_DIR = os.path.join(CONFIG_OUTPUT_DIR, "")
     LOG_PATH = CONFIG_OUTPUT_DIR
 
 
 elif not flat_mode:
     # Create accessory directory (ex. log, data, database, etc.)
-    flushprint("Flat mode was not requested, organization directories will be used.")
+    print("Flat mode was not requested, organization directories will be used.", flush = true)
     NCBImetaUtilities.check_accessory_dir(CONFIG_OUTPUT_DIR)
     DB_DIR = os.path.join(CONFIG_OUTPUT_DIR, "", "database", "")
     LOG_PATH = os.path.join(CONFIG_OUTPUT_DIR, "", "log")
@@ -165,15 +160,15 @@ DB_PATH = os.path.join(DB_DIR, "", CONFIG_DATABASE)
 
 #------------------------- Database Connection---------------------------------#
 if not os.path.exists(DB_PATH):
-    flushprint("\n" + "Creating database: " + DB_PATH)
+    print("\n" + "Creating database: " + DB_PATH, flush = true)
     conn = sqlite3.connect(DB_PATH)
     conn.commit()
-    flushprint("\n" + "Connected to database: " + DB_PATH)
+    print("\n" + "Connected to database: " + DB_PATH, flush = true)
 
 elif os.path.exists(DB_PATH):
     conn = sqlite3.connect(DB_PATH)
     conn.commit()
-    flushprint("\n" + "Connected to database: " + DB_PATH)
+    print("\n" + "Connected to database: " + DB_PATH, flush = true)
 
 #------------------------------------------------------------------------------#
 #                             HTTP Error Catching                              #
@@ -222,12 +217,12 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
 #------------------------------------------------------------------------------#
 
 def UpdateDB(table, output_dir, database, email, search_term, table_columns, log_path, db_dir, api_key, force_pause_seconds):
-    flushprint("\nCreating/Updating the " + table + " table using the following parameters: " + "\n" +
+    print("\nCreating/Updating the " + table + " table using the following parameters: " + "\n" +
     "\t" + "Database: " + "\t\t" + database + "\n" +
     "\t" + "Search Term:" + "\t" + "\t" + search_term + "\n" +
     "\t" + "Email: " + "\t\t\t" + email + "\n" +
     "\t" + "API Key: " + "\t\t\t" + api_key + "\n" +
-    "\t" + "Output Directory: " + "\t" + output_dir + "\n\n")
+    "\t" + "Output Directory: " + "\t" + output_dir + "\n\n", flush = true)
 
 
     Entrez.email = email
@@ -303,10 +298,10 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         #-------------------Progress Log and Entry Counter-------------------#
         # Increment entry counter and record progress to screen
         num_processed += 1
-        flushprint("ID: " + ID)
-        flushprint("Processing record: " +
+        print("ID: " + ID, flush = true)
+        print("Processing record: " +
                str(num_processed) + \
-               "/" + str(num_records))
+               "/" + str(num_records), flush = true)
 
 
         #------------Check if Record Already Exists in Database------------#
