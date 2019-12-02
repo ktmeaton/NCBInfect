@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NCBI Metadata Database Annotator (Concatenation)
+NCBImeta Annotation Tool - Concatenates database fields with values in curated annotation file using a semi-colon separator.
 
 @author: Katherine Eaton
 """
