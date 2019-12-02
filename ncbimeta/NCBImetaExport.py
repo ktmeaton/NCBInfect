@@ -58,11 +58,11 @@ if os.path.exists(db_name):
     conn = sqlite3.connect(db_name)
     print('\nOpening database: ' + db_name, flush = True)
 else:
-    raise ErrorDBNotExists(db_name)
+    raise NCBImetaErrors.ErrorDBNotExists(db_name)
 
 # Check if output dir exists
 if not os.path.exists(output_dir):
-    raise ErrorOutputDirNotExists(output_dir)
+    raise NCBImetaErrors.ErrorOutputDirNotExists(output_dir)
 
 # no errors were raised, safe to connect to db
 cur = conn.cursor()
