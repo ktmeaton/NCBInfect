@@ -46,6 +46,7 @@ install:
 # command to run tests
 script:
   # Fetch records
+  - python3 -m coverage run -m pytest --cov=ncbimeta --cov-report
   - NCBImeta.py --flat --config example/config.yaml
   # Database Annotation
   - NCBImetaAnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
@@ -54,3 +55,6 @@ script:
   - NCBImetaJoin.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
   # Database export
   - NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/
+
+after_success:
+  - codecov

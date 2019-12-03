@@ -502,14 +502,14 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 node_dict = {}
                 attr_dict = {}
 
-                print('Node Name:', node_name)
-                print('Attr Name:', attr_name)
-                print('Column Name:', column_name)
-                print('Column Payload:', column_payload)
+                #print('Node Name:', node_name)
+                #print('Attr Name:', attr_name)
+                #print('Column Name:', column_name)
+                #print('Column Payload:', column_payload)
                 NCBImetaUtilities.xml_find_node(root,node_name,node_dict)
                 NCBImetaUtilities.xml_find_attr(root,node_name,attr_name,attr_dict)
-                print('Node Dict:', node_dict)
-                print('Attr Dict:', attr_dict)
+                #print('Node Dict:', node_dict)
+                #print('Attr Dict:', attr_dict)
 
                 if type(column_payload) == list:
                     attr_name = column_payload[1]
