@@ -47,13 +47,14 @@ def flatten_dict(input_dict, pre=[]):
     '''
     for key,value in input_dict.items():
         if isinstance(value, dict):
-            for flat_path in flatten_dict2(value, pre + [key]):
+            for flat_path in flatten_dict(value, pre + [key]):
                 yield flat_path
         else:
             yield pre + [key, value]
 
 def xml_find_attr(xml_root, node_name, attr_name, attr_dict):
-    '''Recursive search of xml to find a desired node-attribute combination.
+    '''
+    Recursive search of xml to find a desired node-attribute combination.
 
     Parameters:
         xml_root (minidom doc): xml object as a minidom documentElement
@@ -101,9 +102,10 @@ def xml_find_attr(xml_root, node_name, attr_name, attr_dict):
                              attr_dict[attr_name[0]] = str(value)
 
 def xml_find_node(xml_root, node_name, node_dict):
-    '''Recursive search of xml to find a desired node value.
+    '''
+    Recursive search of xml to find a desired node value.
 
-    Args:
+    Parameters:
         xml_root (minidom doc): xml object as a minidom documentElement
         node_name (str): node name to search for
         attr_dict (dict): dictionary object to store retrieved values
