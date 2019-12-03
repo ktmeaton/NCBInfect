@@ -362,6 +362,8 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
         #print(record_dict)
         flatten_record_dict = list(NCBImetaUtilities.flatten_dict(record_dict))
+        #for element in flatten_record_dict:
+        #    print(element)
         column_dict = {}
 
         # Add ID to the dictionary
@@ -448,8 +450,8 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 column_value = "'" + column_value.replace("'","") + "'"
                 column_dict[column_name] = column_value
 
-	    # Briefly try to parse the original record dict
-	    # This was for pubmed author lists originally
+	        # Briefly try to parse the original record dict
+	        # This was for pubmed author lists originally
             elif type(column_payload) != list:
                 try:
                     column_value = record_dict[column_payload]
@@ -484,7 +486,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                     xml = "<Root>" + result.encode('utf-8') + "</Root>"
                     root = minidom.parseString(xml).documentElement
 
-                #print(root.toprettyxml())
+                print(root.toprettyxml())
                 # Names of nodes and attributes we are searching for
                 if type(column_payload) == str:
                     node_name = column_payload
@@ -500,10 +502,14 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 node_dict = {}
                 attr_dict = {}
 
+                print('Node Name:', node_name)
+                print('Attr Name:', attr_name)
+                print('Column Name:', column_name)
+                print('Column Payload:', column_payload)
                 NCBImetaUtilities.xml_find_node(root,node_name,node_dict)
                 NCBImetaUtilities.xml_find_attr(root,node_name,attr_name,attr_dict)
-                #print(node_dict)
-                #print(attr_dict)
+                print('Node Dict:', node_dict)
+                print('Attr Dict:', attr_dict)
 
                 if type(column_payload) == list:
                     attr_name = column_payload[1]
