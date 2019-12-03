@@ -6,7 +6,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
+## [v0.4.3] - 2019-1203
+
 ### Changed
+- Code documentation, Major cleanup of unneeded
+- Major bugfix of flatten_dict method
+- Change unicode to str for Python3
 - Reuploaded truncated gif files
 - Typo Nucleotidet fixed in example config.yaml
 
