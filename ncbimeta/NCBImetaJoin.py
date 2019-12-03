@@ -219,9 +219,9 @@ for record in fetch_records:
             match_column = ""
             # Iterate through each possible unique values (or until match is found)
             for uniq_val in unique_values:
-                # Deal with unicode
+                # Deal with unicode/str
                 if type(uniq_val) == int: val=str(uniq_val)
-                elif type(uniq_val) == unicode: uniq_val=uniq_val.encode('utf-8')
+                elif type(uniq_val) == str: uniq_val=uniq_val.encode('utf-8')
 
                 # Iterate through each column
                 for table_col in table_col_names:
@@ -230,7 +230,7 @@ for record in fetch_records:
                     # Search through every value for a match
                     for val in table_col_vals:
                         if type(val[0]) == int: val=str(val[0])
-                        elif type(val[0]) == unicode: val=val[0].encode('utf-8')
+                        elif type(val[0]) == str: val=val[0].encode('utf-8')
 
                         # If it's a match, store the value, and set the boolean flag
                         if val == uniq_val:

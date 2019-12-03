@@ -95,7 +95,7 @@ for table in table_list:
     # Retrieve and write the header
     header = ""
     for column in table_col_names:
-        header += unicode(column) + "\t"
+        header += str(column) + "\t"
     header = header.rstrip("\t") + "\n"
     table_file.write(header)
 
@@ -104,7 +104,7 @@ for table in table_list:
     for row in cur.execute(query):
         line = ""
         for cell in row:
-            line += unicode(cell) + "\t"
+            line += str(cell) + "\t"
         line = line.rstrip("\t")  + "\n"
         table_file.write(line)
 
