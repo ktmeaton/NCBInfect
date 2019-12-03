@@ -97,10 +97,10 @@ cur = conn.cursor()
 
 #---------------------------Check Tables---------------------------------#
 
-if not table_exists(cur, db_anchor):
+if not NCBImetaUtilities.table_exists(cur, db_anchor):
     raise NCBImetaErrors.ErrorTableNotInDB(db_anchor)
 for table in db_accessory_list:
-    if not table_exists(cur, table):
+    if not NCBImetaUtilities.table_exists(cur, table):
         raise NCBImetaErrors.ErrorTableNotInDB(table)
 
 #-----------------------------------------------------------------------#
