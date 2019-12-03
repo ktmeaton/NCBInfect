@@ -41,11 +41,12 @@ before_install:
 install:
   - pip3 install --upgrade pip       # all three OSes agree about 'pip3'
   - pip3 install . -r requirements.txt
+  - pip3 install codecov==2.0.15 pytest==5.3.1 coverage==4.5.4 pytest-cov==2.8.1
 
 
 # command to run tests
 script:
-  - python3 -m coverage run -m pytest --cov=ncbimeta .
+  - python3 -m coverage run -m pytest --cov=ncbimeta --cov-report=html .
     # Fetch records
   #- NCBImeta.py --flat --config example/config.yaml
   # Database Annotation
