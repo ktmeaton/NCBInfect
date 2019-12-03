@@ -486,7 +486,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                     xml = "<Root>" + result.encode('utf-8') + "</Root>"
                     root = minidom.parseString(xml).documentElement
 
-                print(root.toprettyxml())
+                #print(root.toprettyxml())
                 # Names of nodes and attributes we are searching for
                 if type(column_payload) == str:
                     node_name = column_payload

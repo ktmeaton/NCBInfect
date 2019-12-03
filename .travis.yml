@@ -46,7 +46,7 @@ install:
 # command to run tests
 script:
   # Fetch records
-  - python3 -m coverage run -m pytest --cov=ncbimeta --cov-report
+  - python3 -m coverage run -m pytest --cov=ncbimeta --cov-report=
   - NCBImeta.py --flat --config example/config.yaml
   # Database Annotation
   - NCBImetaAnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
