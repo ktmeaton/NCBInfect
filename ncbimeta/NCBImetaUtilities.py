@@ -5,11 +5,18 @@ NCBI Metadata Database Utility Functions
 @author: Katherine Eaton
 """
 
-import os
-from sys import platform as _platform
-import sqlite3
-import xml.etree.ElementTree as ET
+#-----------------------------------------------------------------------#
+#                         Modules and Packages                          #
+#-----------------------------------------------------------------------#
 
+import os                               # Filepath operations
+from sys import platform as _platform   # Get Platform for OS separator
+import sqlite3                          # Database storage and queries
+import xml.etree.ElementTree as ET      # XML Processing
+
+#-----------------------------------------------------------------------#
+#                         Utility Functions                             #
+#-----------------------------------------------------------------------#
 
 def check_accessory_dir(output_dir):
     '''
@@ -144,127 +151,3 @@ def xml_find_node(xml_root, node_name, node_dict):
                     # ignore text nodes, this is only for SRA library layout
                     if child_node.nodeName != "#text":
                         node_dict[node_name] = str(child_node.nodeName)
-
-
-def xml_find_attr_bak(xml_root, node_name, attr_name, attr_dict):
-    if not xml_root.childNodes:
-        # Pesky empty spaces in unicode strings
-        if xml_root.nodeValue and xml_root.nodeValue.replace(" ",""):
-            return(xml_root.nodeValue)
-    else:
-        for child_node in xml_root.childNodes:
-            value = xml_find_attr(child_node,node_name,attr_name,attr_dict)
-            if value:
-                for item in xml_root.attributes.items():
-                    if attr_name in item:
-                        attr_dict[str(attr_name)] = str(value)
-                        return(value)
-            elif child_node.attributes:
-                for item in child_node.attributes.items():
-                    print(item)
-                    if(attr_name == item[0]):
-                        attr_dict[str(attr_name)] = str(item[1])
-
-
-def xml_find_attr_bak2(xml_root, node_name, attr_name, attr_dict):
-    if not xml_root.childNodes:
-        # Pesky empty spaces in unicode strings
-        if xml_root.nodeValue and xml_root.nodeValue.replace(" ",""):
-            return(xml_root.nodeValue)
-    else:
-        for child_node in xml_root.childNodes:
-            value = xml_find_attr(child_node,node_name,attr_name,attr_dict)
-            #print(xml_root.nodeName, child_node.nodeName, value)
-            if xml_root.nodeName == node_name and xml_root.attributes:
-                for item in xml_root.attributes.items():
-                    if type(attr_name) == str:
-                        if(attr_name == item[0]):
-                            attr_dict[str(attr_name)] = str(item[1])
-
-                    elif type(attr_name) == list:
-                        if item[0] == attr_name[1] and item[1] == attr_name[0]:
-                             attr_dict[attr_name[0]] = value
-            elif child_node.nodeName == node_name and child_node.attributes:
-                for item in child_node.attributes.items():
-                    if(attr_name == item[0]):
-                        attr_dict[str(attr_name)] = str(item[1])
-
-def xml_find_node_bak(xml_root, node_name, node_dict):
-    if not xml_root.childNodes:
-        # Pesky empty spaces in unicode strings
-        if xml_root.nodeValue and xml_root.nodeValue.replace(" ",""):
-            return(xml_root.nodeValue)
-    else:
-        for child_node in xml_root.childNodes:
-            value = xml_find_node(child_node,node_name,node_dict)
-            print(child_node, value)
-            if value:
-                if node_name == xml_root.nodeName:
-                    node_dict[str(node_name)] = str(value)
-                    return(value)
-
-
-
-class XmlListConfig(list):
-    def __init__(self, aList):
-        for element in aList:
-            if element:
-                # treat like dict
-                if len(element) == 1 or element[0].tag != element[1].tag:
-                    self.append(XmlDictConfig(element))
-                # treat like list
-                elif element[0].tag == element[1].tag:
-                    self.append(XmlListConfig(element))
-            elif element.text:
-                text = element.text.strip()
-                if text:
-                    self.append(text)
-
-
-class XmlDictConfig(dict):
-    '''
-    Original Author: Duncan McGregor
-    Orignal URL: https://code.activestate.com/recipes/410469-xml-as-dictionary/
-    Example usage:
-
-    >>> tree = ElementTree.parse('your_file.xml')
-    >>> root = tree.getroot()
-    >>> xmldict = XmlDictConfig(root)
-
-    Or, if you want to use an XML string:
-
-    >>> root = ElementTree.XML(xml_string)
-    >>> xmldict = XmlDictConfig(root)
-
-    And then use xmldict for what it is... a dict.
-    '''
-    def __init__(self, parent_element):
-        if parent_element.items():
-            self.update(dict(parent_element.items()))
-        for element in parent_element:
-            if element:
-                # treat like dict - we assume that if the first two tags
-                # in a series are different, then they are all different.
-                if len(element) == 1 or element[0].tag != element[1].tag:
-                    aDict = XmlDictConfig(element)
-                # treat like list - we assume that if the first two tags
-                # in a series are the same, then the rest are the same.
-                else:
-                    # here, we put the list in dictionary; the key is the
-                    # tag name the list elements all share in common, and
-                    # the value is the list itself
-                    aDict = {element[0].tag: XmlListConfig(element)}
-                # if the tag has attributes, add those to the dict
-                if element.items():
-                    aDict.update(dict(element.items()))
-                self.update({element.tag: aDict})
-            # this assumes that if you've got an attribute in a tag,
-            # you won't be having any text. This may or may not be a
-            # good idea -- time will tell. It works for the way we are
-            # currently doing XML configuration files...
-            elif element.items():
-                self.update({element.tag: dict(element.items())})
-            # finally, if there are no child tags and no attributes, extract
-            # the text
-            else:
-                self.update({element.tag: element.text})
