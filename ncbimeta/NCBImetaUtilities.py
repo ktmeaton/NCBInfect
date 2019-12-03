@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-NCBI Metadata Database Utility Functions
+NCBImeta Utility Functions
 
 @author: Katherine Eaton
 """
@@ -116,7 +116,7 @@ def xml_find_attr(xml_root, node_name, attr_name, attr_dict):
                     if type(attr_name) == str:
                         if(attr_name == item[0]):
                             attr_dict[attr_name] = str(item[1])
-                    # complex node-attribute, grab nove value associated with attribute
+                    # complex node-attribute, grab node value associated with attribute
                     elif type(attr_name) == list and value:
                         if item[0] == attr_name[1] and item[1] == attr_name[0]:
                              attr_dict[attr_name[0]] = str(value)
