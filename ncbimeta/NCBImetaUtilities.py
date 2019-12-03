@@ -45,6 +45,7 @@ def flatten_dict(input_dict, pre=[]):
     Returns:
     Generator object list of flattened path elements of the dictionary key values.
     '''
+    print(input_dict)
     for key,value in input_dict.items():
         if isinstance(value, dict):
             for flat_path in flatten_dict(value, pre + [key]):
