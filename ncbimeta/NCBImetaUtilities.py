@@ -34,30 +34,28 @@ def table_exists(db_cur, table_name):
     query = "SELECT name FROM sqlite_master WHERE type='table' AND name='{}'".format(table_name)
     return db_cur.execute(query).fetchone() is not None
 
-def flatten_dict(input_dict, pre=None):
+def flatten_dict(input_dict, pre=[]):
     '''
-    Return a nested dictionary as a flattened structure.
-    '''
-    pre = pre[:] if pre else []
-    if isinstance(input_dict, dict):
-        for key, value in input_dict.items():
-            if isinstance(value, dict):
-                for d in flatten_dict(value, [key] + pre):
-                    yield d
-            elif isinstance(value, list) or isinstance(value, tuple):
-                for v in value:
-                    for d in flatten_dict(v, [key] + pre):
-                        yield d
-            else:
-                yield pre + [key, value]
-    else:
-        yield input_dict
+    Yield a nested dictionary as a flattened generator list.
 
+    Parameters:
+    input_dict (dict): The nested dictionary to flatten.
+    pre (list): The prefix path of keys to follow.
+
+    Returns:
+    Generator object list of flattened path elements of the dictionary key values.
+    '''
+    for key,value in input_dict.items():
+        if isinstance(value, dict):
+            for flat_path in flatten_dict2(value, pre + [key]):
+                yield flat_path
+        else:
+            yield pre + [key, value]
 
 def xml_find_attr(xml_root, node_name, attr_name, attr_dict):
     '''Recursive search of xml to find a desired node-attribute combination.
 
-    Args:
+    Parameters:
         xml_root (minidom doc): xml object as a minidom documentElement
         node_name (str): node name to search for
         attr_name (str or list): attribute name to search for
@@ -255,3 +253,18 @@ class XmlDictConfig(dict):
             # the text
             else:
                 self.update({element.tag: element.text})
+
+x = {'a': 1,
+     'b': {'c': { 'd': 2, 'e': 3}},
+     'f': {'g': 4, 'h': 5}}
+
+y = {'a': 1,
+     'b': {'c':2}}
+
+print(x)
+#z = flatten_dict2(x,pre=[])
+#print(z)
+print("Original method:")
+print(list(flatten_dict(x)))
+print("New method:")
+print(list(flatten_dict2(x)))
