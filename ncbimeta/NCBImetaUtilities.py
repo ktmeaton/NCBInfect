@@ -36,7 +36,7 @@ def table_exists(db_cur, table_name):
 
 def flatten_dict(input_dict, pre=[]):
     '''
-    Yield a nested dictionary as a flattened generator list.
+    Yield a flattened generator list from a nested dictionary.
 
     Parameters:
     input_dict (dict): The nested dictionary to flatten.
@@ -49,6 +49,10 @@ def flatten_dict(input_dict, pre=[]):
         if isinstance(value, dict):
             for flat_path in flatten_dict(value, pre + [key]):
                 yield flat_path
+        elif isinstance(value, list) or isinstance(value, tuple):
+            for v in value:
+                for flat_path in flatten_dict(v, pre + [key]):
+                    yield flat_path
         else:
             yield pre + [key, value]
 
@@ -255,18 +259,3 @@ class XmlDictConfig(dict):
             # the text
             else:
                 self.update({element.tag: element.text})
-
-x = {'a': 1,
-     'b': {'c': { 'd': 2, 'e': 3}},
-     'f': {'g': 4, 'h': 5}}
-
-y = {'a': 1,
-     'b': {'c':2}}
-
-print(x)
-#z = flatten_dict2(x,pre=[])
-#print(z)
-print("Original method:")
-print(list(flatten_dict(x)))
-print("New method:")
-print(list(flatten_dict2(x)))
