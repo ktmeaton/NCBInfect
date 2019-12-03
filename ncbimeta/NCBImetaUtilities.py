@@ -45,17 +45,25 @@ def flatten_dict(input_dict, pre=[]):
     Returns:
     Generator object list of flattened path elements of the dictionary key values.
     '''
-    print(input_dict)
-    for key,value in input_dict.items():
-        if isinstance(value, dict):
-            for flat_path in flatten_dict(value, pre + [key]):
-                yield flat_path
-        elif isinstance(value, list) or isinstance(value, tuple):
-            for v in value:
-                for flat_path in flatten_dict(v, pre + [key]):
+    # If we are working with a dictionary for the value/payload, use recursion
+    if isinstance(input_dict, dict):
+        for key,value in input_dict.items():
+            if isinstance(value, dict):
+                for flat_path in flatten_dict(value, pre + [key]):
                     yield flat_path
-        else:
-            yield pre + [key, value]
+            elif isinstance(value, list) or isinstance(value, tuple):
+                for v in value:
+                    for flat_path in flatten_dict(v, pre + [key]):
+                        yield flat_path
+            else:
+                yield pre + [key, value]
+    # If the value/payload is a list or tuple, use recursion
+    elif isinstance(input_dict, list) or isinstance(input_dict, tuple):
+        for d in input_dict:
+            yield pre + [d]
+    # If the value/payload is a simple value, yield, including prefix
+    else:
+        yield pre + [input_dict]
 
 def xml_find_attr(xml_root, node_name, attr_name, attr_dict):
     '''
