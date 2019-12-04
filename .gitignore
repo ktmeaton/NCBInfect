@@ -1,3 +1,12 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.pyc
+test/*log
+test/*sqlite
+test/test_Assembly.txt
+test/test_BioProject.txt
+test/test_BioSample.txt
+test/test_Master.txt
+test/test_Nucleotide.txt
+test/test_Pubmed.txt
+test/test_SRA.txt
