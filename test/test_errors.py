@@ -28,7 +28,7 @@ def test_ErrorOutputDirNotExists(tmpdir):
 def test_ErrorAnnotFileNotExists(tmpdir):
     '''Test the class ErrorAnnotFileNotExists (error when an annotation file doesn't exist)'''
     # This file is not created, just a tmp path
-    tmpfile = tmpdir.strpath.join("tmpfile")
+    tmpfile = os.path.join(tmpdir.strpath, "tmpfile")
     # Test instantiation
     test_error = NCBImetaErrors.ErrorAnnotFileNotExists(tmpfile)
     # Test str representation (error message)
@@ -39,7 +39,7 @@ def test_ErrorAnnotFileNotExists(tmpdir):
 def test_ErrorTableNotInDB(tmpdir):
     '''Test the class ErrorTableNotInDB (error when a table doesn't exist in a database)'''
     # This file is not created, just a tmp path
-    tmpfile = tmpdir.strpath.join("tmpfile")
+    tmpfile = os.path.join(tmpdir.strpath, "tmpfile")
     # Test instantiation
     test_error = NCBImetaErrors.ErrorTableNotInDB(tmpfile)
     # Test str representation (error message)
@@ -72,7 +72,7 @@ def test_ErrorEntryMultipleMatches():
 def test_ErrorConfigFileNotExists(tmpdir):
     '''Test the class ErrorAnnotFileNotExists (error when a configuration file doesn't exist)'''
     # This file is not created, just a tmp path
-    tmpfile = tmpdir.strpath.join("tmpfile")
+    tmpfile = os.path.join(tmpdir.strpath, "tmpfile")
     # Test instantiation
     test_error = NCBImetaErrors.ErrorConfigFileNotExists(tmpfile)
     # Test str representation (error message)
@@ -94,7 +94,7 @@ def test_ErrorColumnsNotUnique():
 def test_ErrorDBNotExists(tmpdir):
     '''Test the class ErrorDBNotExists (error when a database doesn't exist)'''
     # This file is not created, just a tmp path
-    tmpfile = tmpdir.strpath.join("tmpfile")
+    tmpfile = os.path.join(tmpdir.strpath, "tmpfile")
     # Test instantiation
     test_error = NCBImetaErrors.ErrorDBNotExists(tmpfile)
     # Test str representation (error message)
