@@ -13,6 +13,8 @@ import os                               # Filepath operations
 from sys import platform as _platform   # Get Platform for OS separator
 import sqlite3                          # Database storage and queries
 import xml.etree.ElementTree as ET      # XML Processing
+from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
+import urllib.error                     # HTTP Error Catching
 
 #-----------------------------------------------------------------------#
 #                         Utility Functions                             #
@@ -148,3 +150,49 @@ def xml_find_node(xml_root, node_name, node_dict):
                 else:
                     if child_node.nodeName != "#text":
                         node_dict[node_name] = str(child_node.nodeName)
+
+
+def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
+    '''
+    Return result of http_method and check if an HTTP Error is generated
+
+    Parameters:
+    http_method (function): An http record-fetching or searching method.
+    max_fetch_attempts (int): Maximum number of tries for fetching a record_dict.
+    sleep_time (float): Number of seconds to wait in between fetch read_attempts.
+    kwargs(dict): keyword arguments for the http_method function.
+    '''
+    # Attemp the http_method function, wrapped in HTTP error checking
+    ID_handle_retrieved = False
+    fetch_attempts = 0
+    while not ID_handle_retrieved and fetch_attempts < max_fetch_attempts:
+        try:
+            ID_handle = http_method(**kwargs)
+            ID_handle_retrieved = True
+        # HTTP Errors
+        except urllib.error.HTTPError as error:
+            # Error code 429: Too Many Requests
+            if error.code == 429:
+                fetch_attempts += 1
+                print("HTTP Error " + str(error.code) + ": " + str(error.reason))
+                print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
+                print("Sleeping for " + str(sleep_time) + " seconds before retrying.")
+                time.sleep(sleep_time)
+                # General Error Code, non specific
+            else:
+                fetch_attempts += 1
+                print("HTTP Error " + str(error.code) + ": " + str(error.reason))
+                print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
+                print("Retrying record fetching.")
+        # URL Errors
+        except urllib.error.URLError as error:
+            fetch_attempts += 1
+            print("URL Error: " + str(error.reason))
+            print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
+            print("Retrying record fetching.")
+
+        # If the maximum number of fetch attempts has been exceeded
+        if fetch_attempts == max_fetch_attempts and not ID_handle_retrieved:
+            raise NCBImetaErrors.ErrorMaxFetchAttemptsExceeded(ID)
+
+    return ID_handle

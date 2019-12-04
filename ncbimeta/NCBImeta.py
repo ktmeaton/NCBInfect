@@ -19,7 +19,6 @@ import datetime                         # Get date and time for logfile
 import Bio                              # Biopython NCBI API
 from Bio import Entrez                  # Entrez queries (NCBI)
 from xml.dom import minidom             # XML Processing
-import urllib.error                     # HTTP Error Catching
 import yaml                             # YAML config file parsing
 
 from ncbimeta import NCBImetaUtilities  # NCBImeta helper functions
@@ -161,54 +160,6 @@ elif os.path.exists(DB_PATH):
     conn.commit()
     print("\n" + "Connected to database: " + DB_PATH, flush = True)
 
-#------------------------------------------------------------------------------#
-#                             HTTP Error Catching                              #
-#------------------------------------------------------------------------------#
-
-def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
-    '''
-    Return result of http_method and check if an HTTP Error is generated
-
-    Parameters:
-    http_method (function): An http record-fetching or searching method.
-    max_fetch_attempts (int): Maximum number of tries for fetching a record_dict.
-    sleep_time (float): Number of seconds to wait in between fetch read_attempts.
-    kwargs(dict): keyword arguments for the http_method function.
-    '''
-    # Attemp the http_method function, wrapped in HTTP error checking
-    ID_handle_retrieved = False
-    fetch_attempts = 0
-    while not ID_handle_retrieved and fetch_attempts < max_fetch_attempts:
-        try:
-            ID_handle = http_method(**kwargs)
-            ID_handle_retrieved = True
-        # HTTP Errors
-        except urllib.error.HTTPError as error:
-            # Error code 429: Too Many Requests
-            if error.code == 429:
-                fetch_attempts += 1
-                print("HTTP Error " + str(error.code) + ": " + str(error.reason))
-                print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
-                print("Sleeping for " + str(sleep_time) + " seconds before retrying.")
-                time.sleep(sleep_time)
-                # General Error Code, non specific
-            else:
-                fetch_attempts += 1
-                print("HTTP Error " + str(error.code) + ": " + str(error.reason))
-                print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
-                print("Retrying record fetching.")
-        # URL Errors
-        except urllib.error.URLError as error:
-            fetch_attempts += 1
-            print("URL Error: " + str(error.reason))
-            print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
-            print("Retrying record fetching.")
-
-        # If the maximum number of fetch attempts has been exceeded
-        if fetch_attempts == max_fetch_attempts and not ID_handle_retrieved:
-            raise ErrorMaxFetchAttemptsExceeded(ID)
-
-    return ID_handle
 
 #------------------------------------------------------------------------------#
 #                       Database Processing Function                           #
@@ -354,7 +305,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             entrez_method = Entrez.efetch
 
         # Possible urllib error occuring in the next line for unknown reasons
-        ID_handle = HTTPErrorCatch(entrez_method, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
+        ID_handle = NCBImetaUtilities.HTTPErrorCatch(entrez_method, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
 
         # If successfully fetched, move onto reading the record
         ID_record = Entrez.read(ID_handle, validate=False)
