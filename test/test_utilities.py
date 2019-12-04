@@ -49,8 +49,7 @@ def test_table_exists(tmpdir):
     # Test Function Call
     assert NCBImetaUtilities.table_exists(cur, table_name)
 
-
-def test_xml_find_attr():
+def test_xml_find_attr_val():
     '''Test the utility function xml_find_attr (retrieve xml attribute payload)'''
     test_xml = "<Root><Stats><Stat category='chromosome_count' sequence_tag='all'>1</Stat></Stats></Root>"
     test_root = minidom.parseString(test_xml).documentElement
@@ -61,6 +60,17 @@ def test_xml_find_attr():
     NCBImetaUtilities.xml_find_attr(test_root,test_node_name,test_attr_name,test_attr_dict)
     assert test_attr_dict == {'chromosome_count': '1'}
 
+def test_xml_find_attr_name():
+    '''Test the utility function xml_find_attr (retrieve xml attribute name)'''
+    test_xml = "<Root><Experiment acc='SRX6977650'/></Root>"
+    test_root = minidom.parseString(test_xml).documentElement
+    test_node_name = 'Experiment'
+    test_attr_name = 'acc'
+    test_attr_dict = {}
+    # Test Function Call
+    NCBImetaUtilities.xml_find_attr(test_root,test_node_name,test_attr_name,test_attr_dict)
+    assert test_attr_dict == {'acc': 'SRX6977650'}
+
 def test_xml_find_node():
     '''Test the utility function xml_find_attr (retrieve xml attribute payload)'''
     test_xml = "<Root><AssemblyAccession>GCA_003086155.1</AssemblyAccession></Root>"
@@ -70,3 +80,13 @@ def test_xml_find_node():
     # Test Function Call
     NCBImetaUtilities.xml_find_node(test_root,test_node_name,test_node_dict)
     assert test_node_dict == {'AssemblyAccession':'GCA_003086155.1'}
+
+def test_xml_find_node_child():
+    '''Test the utility function xml_find_node (retrieve xml attribute child)'''
+    test_xml = "<Root><LIBRARY_LAYOUT><PAIRED/></LIBRARY_LAYOUT></Root>"
+    test_root = minidom.parseString(test_xml).documentElement
+    test_node_name = 'LIBRARY_LAYOUT'
+    test_node_dict = {}
+    # Test Function Call
+    NCBImetaUtilities.xml_find_node(test_root,test_node_name,test_node_dict)
+    assert test_node_dict == {'LIBRARY_LAYOUT': 'PAIRED'}
