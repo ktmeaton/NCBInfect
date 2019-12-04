@@ -25,6 +25,7 @@ def test_ErrorOutputDirNotExists(tmpdir):
     error_expect = ("\n\nOutput directory does not exist." + "\n" + "User entered: " + tmpdir)
     assert error_output == error_expect
 
+
 def test_ErrorAnnotFileNotExists(tmpdir):
     '''Test the class ErrorAnnotFileNotExists (error when an annotation file doesn't exist)'''
     # This file is not created, just a tmp path
@@ -133,4 +134,15 @@ def test_ErrorConfigParameter():
     # Test str representation (error message)
     error_output = str(test_error)
     error_expect = ("\n\nA parameter name and/or value in the configuration file is set incorrectly:" + "\n" + test_parameter)
+    assert error_output == error_expect
+
+def test_ErrorConfigYAMLFormat(tmpdir):
+    '''Test the class ErrorConfigYAMLFormat (error when a configuration file is improperly formatted)'''
+    # This file is not created, just a tmp path
+    tmpfile = os.path.join(tmpdir.strpath, "tmpfile")
+    # Test instantiation
+    test_error = NCBImetaErrors.ErrorConfigYAMLFormat(tmpfile)
+    # Test str representation (error message)
+    error_output = str(test_error)
+    error_expect = ("\n\nThe configuration file could not be loaded, please confirm that this is a proper YAML file: " + "\n" + self.value)
     assert error_output == error_expect

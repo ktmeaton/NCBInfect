@@ -161,3 +161,17 @@ class ErrorConfigParameter(Exception):
         '''When the error is raised, print the name of the config parameter.'''
         return ("\n\nA parameter name and/or value in the configuration file is set incorrectly:" + "\n" +
             self.value)
+
+class ErrorConfigYAMLFormat(Exception):
+    def __init__(self, value):
+        '''
+        The constructor for ErrorConfigYAMLFormat class.
+
+        Parameters:
+        value (str): The name of the config file.
+        '''
+        self.value = value
+    def __str__(self):
+        '''When the error is raised, print the name of the config file.'''
+        return ("\n\nThe configuration file could not be loaded, please confirm that this is a proper YAML file: " + "\n" +
+            self.value)
