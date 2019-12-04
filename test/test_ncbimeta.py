@@ -276,14 +276,11 @@ def test_ncbimeta_OutputDirNotExists(tmpdir):
     config_file = os.path.join(tmpdir,'tmp_config.yaml')
 
     # Read in the file
-    with open(src_config, 'r') as file :
-        filedata = file.read()
+    with open(src_config, 'r') as file: filedata = file.read()
     # Replace the target data
     filedata = filedata.replace('OUTPUT_DIR : test', 'OUTPUT_DIR : ' + dst_dir )
-
     # Write to the destination file
-    with open(config_file, 'a') as file:
-        file.write(filedata)
+    with open(config_file, 'a') as file: file.write(filedata)
 
     test_cmd = "ncbimeta/NCBImeta.py --flat --config " + config_file
     # Use a try-catch with the sub-process module

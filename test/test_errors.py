@@ -12,7 +12,7 @@ import pytest                               # Testing suite
 from ncbimeta import NCBImetaErrors         # Utility Functions
 import os                                   # Filepath operations
 #-----------------------------------------------------------------------#
-#                           Test Function                                #
+#                           Test Function                               #
 #-----------------------------------------------------------------------#
 
 def test_ErrorOutputDirNotExists(tmpdir):
@@ -24,7 +24,6 @@ def test_ErrorOutputDirNotExists(tmpdir):
     error_output = str(test_error)
     error_expect = ("\n\nOutput directory does not exist." + "\n" + "User entered: " + tmpdir)
     assert error_output == error_expect
-
 
 def test_ErrorAnnotFileNotExists(tmpdir):
     '''Test the class ErrorAnnotFileNotExists (error when an annotation file doesn't exist)'''
