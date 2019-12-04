@@ -46,7 +46,7 @@ install:
 
 # command to run tests
 script:
-  - python3 -m coverage run -m pytest --cov=ncbimeta --cov-report=html .
+  - python3 -m coverage run -m pytest --cov=ncbimeta --cov-report=xml .
     # Fetch records
   #- NCBImeta.py --flat --config example/config.yaml
   # Database Annotation
