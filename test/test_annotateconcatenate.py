@@ -11,7 +11,7 @@ NCBImeta Test - Annotate Concatenate
 import pytest                             # Testing suite
 from ncbimeta import *                    # Main Program
 import os                                 # Filepath operations
-import test.test_ncbimeta                      # Run the program to create test db
+import test.test_ncbimeta                 # Run the program to create test db
 import subprocess                         # Execute CLI/Shell
 
 #-----------------------------------------------------------------------#
@@ -58,3 +58,15 @@ def test_annotateconcatenate_missingEntry(tmpdir):
 
     # Cleanup
     os.remove(test_annotfile)
+
+#def test_annotateconcatenate_multipleEntry(tmpdir):
+    #To Be done
+
+#def test_annotateconcatenate_ErrorDBNotExists(tmpdir):
+    #To Be done
+
+#def test_annotateconcatenate_ErrorAnnotFileNotExists(tmpdir):
+    #To Be done
+
+#def test_annotateconcatenate_ErrorTableNotInDB(tmpdir):
+    #To Be done
