@@ -99,9 +99,9 @@ def biosample_table_data():
 
     metadata = ['1', '12991206', 'SAMN12991206', 'None', 'None', 'SRS5502739',
     'Microbe sample from Yersinia pestis', '2019 Sample 199', 'Cell culture',
-    'Microbe.1.0', 'strain: SCPM-O-DNA-18 (I-3113)', 'Yersinia pestis', 'None',
+    'Microbe.1.0', 'strain: SCPM-O-DNA-18 (I-3113)', 'Yersinia pestis', 'Yersinia pestis',
     'None', 'SCPM-O-DNA-18 (I-3113)', '632', 'None', '1984', 'Russia: Tuva',
-    'Marmota sibirica', 'Yersinia pestis', 'None', 'None', 'None', 'None', 'None',
+    'Marmota sibirica', 'Plague', 'None', 'None', 'None', 'None', 'None',
     '2019/10/08', '2019/10/11', '2019/10/08', 'SRCAMB', 'None']
 
     table_dict = {}
