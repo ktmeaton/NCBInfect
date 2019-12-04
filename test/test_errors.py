@@ -144,5 +144,6 @@ def test_ErrorConfigYAMLFormat(tmpdir):
     test_error = NCBImetaErrors.ErrorConfigYAMLFormat(tmpfile)
     # Test str representation (error message)
     error_output = str(test_error)
-    error_expect = ("\n\nThe configuration file could not be loaded, please confirm that this is a proper YAML file: " + "\n" + self.value)
+    error_expect = ("\n\nThe configuration file could not be loaded, please confirm that this is a proper YAML file: " + "\n" + tmpfile)
+    print("TESTING")
     assert error_output == error_expect
