@@ -200,3 +200,51 @@ def test_export_sravalues(sra_table_data):
     assert test_dict == sra_table_data
     #Cleanup
     test_file.close()
+
+# def test_export_mastervalues(assembly_table_data,
+#                                 bioproject_table_data,
+#                                 biosample_table_data,
+#                                 nucleotide_table_data,
+#                                 pubmed_table_data,
+#                                 sra_table_data):
+#     '''
+#     Test the integrity of the Master table values based on expected values.
+#
+#     Parameters:
+#     biosample_table_data (fixture): Dict fixture of BioSample table data from conftest.py
+#     '''
+#     # Setup the assembly table file
+#     test_filename = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test_Master.txt")
+#     test_file = open(test_filename,'r')
+#     # Retrieve the headers and fields
+#     test_column_list = test_file.readline().strip('\n').split("\t")
+#     test_metadata_list = test_file.readline().strip('\n').split("\t")
+#     # Populate the dict with data
+#     test_dict = {}
+#     for i in range(0,len(test_column_list)):
+#         key = test_column_list[i]
+#         value = test_metadata_list[i]
+#         test_dict[key] = value
+#
+#
+#     # Construct the master_table_data
+#     master_table_data = {'id':'1'}
+#     # Nucleotide and sra are multi-row tables
+#     for record in nucleotide_table_data:
+#         # Concatenate the values
+#         unique_value_list = list(set(nucleotide_table_data[record]))
+#         nucleotide_table_data[record] = ";".join(unique_value_list)
+#
+#     for record in sra_table_data:
+#         # Concatenate the values
+#         unique_value_list = list(set(sra_table_data[record]))
+#         sra_table_data[record] = ";".join(unique_value_list)
+#
+#     for table in assembly_table_data, bioproject_table_data, biosample_table_data, nucleotide_table_data, pubmed_table_data, sra_table_data:
+#         table.pop('id', None)
+#         master_table_data.update(table)
+#
+#     # Test whether the values are as expected
+#     assert test_dict == master_table_data
+#     #Cleanup
+#     test_file.close()

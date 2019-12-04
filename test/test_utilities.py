@@ -13,6 +13,7 @@ from ncbimeta import NCBImetaUtilities      # Utility Functions
 import os                                   # Filepath and directory operations
 import sqlite3                              # Database storage and queries
 from xml.dom import minidom                 # XML Processing
+from Bio import Entrez                      # Entrez queries (NCBI)
 #-----------------------------------------------------------------------#
 #                           Test Function                               #
 #-----------------------------------------------------------------------#
@@ -90,3 +91,25 @@ def test_xml_find_node_child():
     # Test Function Call
     NCBImetaUtilities.xml_find_node(test_root,test_node_name,test_node_dict)
     assert test_node_dict == {'LIBRARY_LAYOUT': 'PAIRED'}
+
+def test_HTTPErrorCatch(tmpdir):
+    '''Test the utility function HTTPErrorCatch (catch HTTP Errors)'''
+    # Test query assembly
+    test_ID = '5025191'
+    test_email = 'ktmeaton@gmail.com'
+    Entrez.email = test_email
+    test_table = 'Assembly'
+    test_max_tries = 10
+    test_total_tries = 10
+    test_sleep_between_tries = 0
+    test_kwargs = {"db":test_table.lower(), "id":test_ID}
+    test_entrez_method = Entrez.esummary
+
+    for i in range(1, test_total_tries):
+        ID_handle = NCBImetaUtilities.HTTPErrorCatch(test_entrez_method, test_max_tries, test_sleep_between_tries, **test_kwargs)
+    try:
+        ID_record = Entrez.read(ID_handle, validate=False)
+        assert 1
+    except RuntimeError:
+        # The ID_handle was not succesfully retrieved or the data is not correct
+        assert 0

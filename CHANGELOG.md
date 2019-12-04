@@ -6,7 +6,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
-## [v0.4.3] - 2019-1204
+## [v0.5.0] - 2019-1204
 
 ### Added
 - pytest Testing Suite (all NCBImeta executables and modules)
@@ -18,6 +18,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ### Changed
 - Code documentation, Major cleanup of unneeded
 - Major bugfix of flatten_dict method
+- Move method HTTPErrorCatch to NCBImetaUtilties
 - Change unicode to str for Python3
 - Reuploaded truncated gif files
 - Typo Nucleotidet fixed in example config.yaml
