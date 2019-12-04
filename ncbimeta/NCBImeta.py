@@ -363,10 +363,11 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         except TypeError:
             record_dict = ID_record[0]
 
+        #DEBUG
         #print(record_dict)
         flatten_record_dict = list(NCBImetaUtilities.flatten_dict(record_dict))
-        #for element in flatten_record_dict:
-        #    print(element)
+        for element in flatten_record_dict:
+            #print(element)
         column_dict = {}
 
         # Add ID to the dictionary
@@ -489,6 +490,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                     xml = "<Root>" + result.encode('utf-8') + "</Root>"
                     root = minidom.parseString(xml).documentElement
 
+                #DEBUG
                 #print(root.toprettyxml())
                 # Names of nodes and attributes we are searching for
                 if type(column_payload) == str:
@@ -505,6 +507,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 node_dict = {}
                 attr_dict = {}
 
+                #DEBUG
                 #print('Node Name:', node_name)
                 #print('Attr Name:', attr_name)
                 #print('Column Name:', column_name)
