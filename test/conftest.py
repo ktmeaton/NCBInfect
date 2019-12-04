@@ -175,3 +175,47 @@ def pubmed_table_data():
         table_dict[key] = value
 
     return table_dict
+
+@pytest.fixture(scope="module")
+def sra_table_data():
+    '''Return a dictionary containing the expected database values of the SRA Table'''
+    columns = ['id', 'SRA_id', 'SRABioProjectAccession', 'SRABioSampleAccession', 'SRAExperimentAccession',
+    'SRARunAccession', 'SRASampleAccession', 'SRAExperimentName', 'SRAExperimentStatus',
+    'SRAExperimentVersion', 'SRAIsPublic', 'SRASampleName', 'SRAStaticDataAvailable',
+    'SRAStudyAcc', 'SRAStudName', 'SRATitle', 'SRAOrganismName', 'SRAOrganismTaxID',
+    'SRAClusterName', 'SRAInstrumentModel', 'SRALibraryName', 'SRALibraryLayout',
+    'SRALibrarySelection', 'SRALibrarySource', 'SRALibraryStrategy', 'SRAPlatform',
+    'SRATotalBases', 'SRATotalSize', 'SRATotalSpots', 'SRATotalRuns', 'SRACreateDate',
+    'SRAUpdateDate', 'SRACenterName', 'SRAContactName', 'SRALabName', 'SRASubmitterAccession', 'SRAComment']
+
+    metadata = ['1', '9179237', 'PRJNA269675', 'SAMN12991206', 'SRX6977651', 'SRR10259780',
+    'SRS5502739', 'Shotgun 2019 Sample 199', 'public', '1', 'true', '', 'true', 'SRP051099',
+    'Pathogenic microorganism Genome sequencing', 'Shotgun 2019 Sample 199', 'None', '632',
+    'public', 'MinION', '2019 Sample 199 Library 02', 'SINGLE', 'unspecified', 'GENOMIC',
+    'WGS', 'OXFORD_NANOPORE', '617169107', '500796667', '53647', '1', '2019/10/12',
+    '2019/10/11', 'SRCAMB', 'Alexander Bogun', 'Science Department', 'SRA977701', 'None',
+    '2', '9179236', 'PRJNA269675', 'SAMN12991206', 'SRX6977650', 'SRR10259781', 'SRS5502739',
+    'Shotgun 2019 Sample 199', 'public', '1', 'true', '', 'true', 'SRP051099',
+    'Pathogenic microorganism Genome sequencing', 'Shotgun 2019 Sample 199', 'None', '632',
+    'public', 'Illumina MiSeq', '2019 Sample 199 Library 01', 'PAIRED', 'unspecified', 'GENOMIC',
+    'WGS', 'ILLUMINA', '220972916', '128084615', '414515', '1', '2019/10/12', '2019/10/11',
+    'SRCAMB', 'Alexander Bogun', 'Science Department', 'SRA977701', 'None']
+
+    table_dict = {}
+    # Populate the dict with data
+    for metadata_i in range(0,len(metadata)):
+        columns_i = metadata_i
+        # If we're starting the next row of metadata
+        if metadata_i >= len(columns):
+            columns_i = metadata_i % len(columns)
+        # Add key-value pair
+        key = columns[columns_i]
+        value = metadata[metadata_i]
+        # Check if already present, if not add as list
+        if key not in table_dict:
+            table_dict[key] = [value]
+        # Otherwise append, creating a list of values
+        else:
+            table_dict[key].append(value)
+
+    return table_dict

@@ -165,3 +165,38 @@ def test_export_pubmedvalues(pubmed_table_data):
     assert test_dict == pubmed_table_data
     #Cleanup
     test_file.close()
+
+def test_export_sravalues(sra_table_data):
+    '''
+    Test the integrity of the SRA table values based on expected values.
+
+    Parameters:
+    sra_table_data (fixture): Dict fixture of SRA table data from conftest.py
+    '''
+    # Setup the assembly table file
+    test_filename = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test_SRA.txt")
+    test_file = open(test_filename,'r')
+    # Retrieve the headers and fields
+    test_column_list = test_file.readline().strip('\n').split("\t")
+
+    # Populate the dict with data
+    test_dict = {}
+    read_line = test_file.readline().strip('\n')
+    while read_line:
+        test_metadata_list = read_line.split("\t")
+        for i in range(0,len(test_column_list)):
+            key = test_column_list[i]
+            value = test_metadata_list[i]
+            # Check if key is in dict, if not create as list
+            if key not in test_dict:
+                test_dict[key] = [value]
+            # Otherwise, append to it
+            else:
+                test_dict[key].append(value)
+
+        read_line = test_file.readline().strip('\n')
+
+    # Test whether the values are as expected
+    assert test_dict == sra_table_data
+    #Cleanup
+    test_file.close()
