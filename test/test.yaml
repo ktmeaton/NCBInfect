@@ -3,7 +3,7 @@ OUTPUT_DIR : test
 EMAIL : myemailname@domain.com
 API_KEY :
 FORCE_PAUSE_SECONDS : 1
-DATABASE : yersinia_pestis_db.sqlite
+DATABASE : test.sqlite
 
 # NCBI Tables to Query
 TABLES :
