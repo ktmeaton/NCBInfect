@@ -154,3 +154,24 @@ def nucleotide_table_data():
             table_dict[key].append(value)
 
     return table_dict
+
+@pytest.fixture(scope="module")
+def pubmed_table_data():
+    '''Return a dictionary containing the expected database values of the Pubmed Table'''
+    columns = ['id', 'Pubmed_id', 'PubmedPublishDate', 'PubmedEPublishDate', 'PubmedSource',
+    'PubmedFullSource', 'PubmedAuthorList', 'PubmedTitle', 'PubmedVolume', 'PubmedIssue',
+    'PubmedPages', 'PubmedDOI', 'PubmedPubStatus', 'PubmedRecordStatus', 'PubmedLangList',
+    'PubmedTypeList', 'PubmedComment']
+
+    # Currently testing a pubmed file that is empty
+    #metadata = []
+
+    table_dict = {}
+    # Populate the dict with data
+    for i in range(0,len(columns)):
+        key = columns[i]
+        value = ''
+        #value = metadata[i]
+        table_dict[key] = value
+
+    return table_dict

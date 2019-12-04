@@ -139,3 +139,29 @@ def test_export_nucleotidevalues(nucleotide_table_data):
     assert test_dict == nucleotide_table_data
     #Cleanup
     test_file.close()
+
+def test_export_pubmedvalues(pubmed_table_data):
+    '''
+    Test the integrity of the Pubmed table values based on expected values.
+
+    Parameters:
+    pubmed_table_data (fixture): Dict fixture of Pubmed table data from conftest.py
+    '''
+    # Setup the assembly table file
+    test_filename = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test_Pubmed.txt")
+    test_file = open(test_filename,'r')
+    # Retrieve the headers and fields
+    test_column_list = test_file.readline().strip('\n').split("\t")
+    # Currently testing a pubmed file that is empty
+    #test_metadata_list = test_file.readline().strip('\n').split("\t")
+    # Populate the dict with data
+    test_dict = {}
+    for i in range(0,len(test_column_list)):
+        key = test_column_list[i]
+        value = ''
+        #value = test_metadata_list[i]
+        test_dict[key] = value
+    # Test whether the values are as expected
+    assert test_dict == pubmed_table_data
+    #Cleanup
+    test_file.close()
