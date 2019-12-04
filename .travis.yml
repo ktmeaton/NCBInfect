@@ -46,7 +46,7 @@ install:
 
 # command to run tests
 script:
-  - python3 -m coverage run -m pytest --cov=ncbimeta --cov-report=xml test/test_errors.py test/test_utilities.py test/test_ncbimeta.py test/test_annotateconcatenate.py test/test_annotatereplace.py test/test_join.py
+  - python3 -m coverage run -m pytest --cov=ncbimeta --cov-report=xml test/test_errors.py test/test_utilities.py test/test_ncbimeta.py test/test_annotateconcatenate.py test/test_annotatereplace.py test/test_join.py test/test_export.py
     # Fetch records
   #- NCBImeta.py --flat --config example/config.yaml
   # Database Annotation
