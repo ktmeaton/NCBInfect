@@ -17,8 +17,8 @@ class ErrorOutputDirNotExists(Exception):
         self.value = value
     def __str__(self):
         '''When the error is raised, print the output directory path.'''
-        print("\n\nOutput directory does not exist.")
-        print("User entered: " + self.value)
+        return ("\n\nOutput directory does not exist." + "\n" +
+            "User entered: " + self.value)
 
 
 class ErrorAnnotFileNotExists(Exception):
@@ -32,8 +32,8 @@ class ErrorAnnotFileNotExists(Exception):
         self.value = value
     def __str__(self):
         '''When the error is raised, print the annotation file path.'''
-        print("\n\nFile does not exist.")
-        print("User entered: --annotfile" + self.value)
+        return ("\n\nFile does not exist." + "\n" +
+            "User entered: --annotfile " + self.value)
 
 
 class ErrorTableNotInDB(Exception):
@@ -47,8 +47,8 @@ class ErrorTableNotInDB(Exception):
         self.value = value
     def __str__(self):
         '''When the error is raised, print the name of the table.'''
-        print("\n\nThe table does not exist in the database.")
-        print("Unknown table found: " + self.value)
+        return ("\n\nThe table does not exist in the database." + "\n" +
+            "Unknown table found: " + self.value)
 
 class ErrorEntryNotInDB(Exception):
     def __init__(self, value):
@@ -61,8 +61,8 @@ class ErrorEntryNotInDB(Exception):
         self.value = value
     def __str__(self):
         '''When the error is raised, print the name of the entry.'''
-        print("\n\nThe entry does not exist in the database.")
-        print("Unknown entry found: " + self.value)
+        return ("\n\nThe entry does not exist in the database." + "\n" +
+            "Unknown entry found: " + self.value)
 
 class ErrorEntryMultipleMatches(Exception):
     def __init__(self, value):
@@ -75,8 +75,8 @@ class ErrorEntryMultipleMatches(Exception):
         self.value = value
     def __str__(self):
         '''When the error is raised, print the name of the entry.'''
-        print("\n\nThe entry has multiple matches in the database.")
-        print("Multiple matches for entry: " + self.value)
+        return ("\n\nThe entry has multiple matches in the database." + "\n" +
+            "Multiple matches for entry: " + self.value)
 
 class ErrorConfigFileNotExists(Exception):
     def __init__(self, value):
@@ -89,8 +89,8 @@ class ErrorConfigFileNotExists(Exception):
         self.value = value
     def __str__(self):
         '''When the error is raised, print the path to the configuration file.'''
-        print("\n\nConfig file does not exist in the specified location.")
-        print("Location specified: " + self.value)
+        return ("\n\nConfig file does not exist in the specified location." + "\n" +
+            "Location specified: " + self.value)
 
 class ErrorColumnsNotUnique(Exception):
     def __init__(self, value):
@@ -103,8 +103,8 @@ class ErrorColumnsNotUnique(Exception):
         self.value = value
     def __str__(self):
         '''When the error is raised, print the name of the column.'''
-        print("\n\nThe following columns are not unique in the database:")
-        print(self.value)
+        return ("\n\nThe following columns are not unique in the database:" + "\n" +
+            str(self.value))
 
 class ErrorDBNotExists(Exception):
     def __init__(self, value):
@@ -117,8 +117,8 @@ class ErrorDBNotExists(Exception):
         self.value = value
     def __str__(self):
         '''When the error is raised, print the path to the configuration file.'''
-        print("\n\nDatabase does not exist.")
-        print(self.value)
+        return ("\n\nDatabase does not exist." + "\n" +
+            self.value)
 
 class ErrorMaxFetchAttemptsExceeded(Exception):
     def __init__(self, value):
@@ -131,8 +131,8 @@ class ErrorMaxFetchAttemptsExceeded(Exception):
         self.value = value
     def __str__(self):
         '''When the error is raised, print the number of fetch attempts.'''
-        print("\n\nThe Maximum number of fetch attempts was exceeded for ID:")
-        print(self.value)
+        return ("\n\nThe Maximum number of fetch attempts was exceeded for ID:" + "\n" +
+            self.value)
 
 class ErrorMaxReadAttemptsExceeded(Exception):
     def __init__(self, value):
@@ -145,8 +145,8 @@ class ErrorMaxReadAttemptsExceeded(Exception):
         self.value = value
     def __str__(self):
         '''When the error is raised, print the number of read attempts.'''
-        print("\n\nThe Maximum number of read attempts was exceeded for table:")
-        print(self.value)
+        return ("\n\nThe Maximum number of read attempts was exceeded for table:" + "\n" +
+            self.value)
 
 class ErrorConfigParameter(Exception):
     def __init__(self, value):
@@ -159,5 +159,5 @@ class ErrorConfigParameter(Exception):
         self.value = value
     def __str__(self):
         '''When the error is raised, print the name of the config parameter.'''
-        print("\n\nA parameter name and/or value in the configuration file is set incorrectly:")
-        print(self.value)
+        return ("\n\nA parameter name and/or value in the configuration file is set incorrectly:" + "\n" +
+            self.value)
