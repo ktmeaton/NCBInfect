@@ -1,5 +1,5 @@
 """
-NCBImeta Test - Annotate Concatenate
+NCBImeta Test - Annotate Replace
 
 @author: Katherine Eaton
 """
@@ -18,15 +18,15 @@ import subprocess                         # Execute CLI/Shell
 #                           Test Function                               #
 #-----------------------------------------------------------------------#
 
-def test_annotateconcatenate_run():
-    '''Test the NCBImetaAnnotateConcatenate application for run completion'''
+def test_annotatereplace_run():
+    '''Test the NCBImetaAnnotateReplace application for run completion'''
     # Use the test database
     test_db = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test.sqlite")
     test_annotfile = os.path.join(os.path.dirname(os.path.abspath(__file__)),'test_annot.txt')
     # If the test_db doesn't alread exist, run the test cmd from test_ncbimeta
     if not os.path.exists(test_db): test_ncbimeta.test_ncbimeta_run()
     test_table = 'BioSample'
-    test_cmd = ("ncbimeta/NCBImetaAnnotateConcatenate.py --database " + test_db +
+    test_cmd = ("ncbimeta/NCBImetaAnnotateReplace.py --database " + test_db +
                 " --table  " + test_table +
                 " --annotfile " + test_annotfile)
     # test the main NCBImeta.py through a subprocess
@@ -37,11 +37,11 @@ def test_annotateconcatenate_run():
 #def test_annotateconcatenate_multipleEntry(tmpdir):
     #To Be done
 
-#def test_annotateconcatenate_ErrorDBNotExists(tmpdir):
+#def test_annotatereplace_ErrorDBNotExists(tmpdir):
     #To Be done
 
-#def test_annotateconcatenate_ErrorAnnotFileNotExists(tmpdir):
+#def test_annotatereplace_ErrorAnnotFileNotExists(tmpdir):
     #To Be done
 
-#def test_annotateconcatenate_ErrorTableNotInDB(tmpdir):
+#def test_annotatereplace_ErrorTableNotInDB(tmpdir):
     #To Be done
