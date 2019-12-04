@@ -108,14 +108,15 @@ def xml_find_attr(xml_root, node_name, attr_name, attr_dict):
             # This fails if the node name doesn't match, or has no attributes
             if target_node:
                 for item in target_node.attributes.items():
-                    # simple name, gran associated attribute value
-                    if type(attr_name) == str:
-                        if(attr_name == item[0]):
-                            attr_dict[attr_name] = str(item[1])
                     # complex node-attribute, grab node value associated with attribute
-                    elif type(attr_name) == list and value:
+                    if type(attr_name) == list and value:
                         if item[0] == attr_name[1] and item[1] == attr_name[0]:
                              attr_dict[attr_name[0]] = str(value)
+                    # The following code is suspected to be unnecssary
+                    # simple name, gran associated attribute value
+                    #elif type(attr_name) == str:
+                    #    if(attr_name == item[0]):
+                    #        attr_dict[attr_name] = str(item[1])
 
 def xml_find_node(xml_root, node_name, node_dict):
     '''
@@ -143,7 +144,8 @@ def xml_find_node(xml_root, node_name, node_dict):
                 if value:
                     node_dict[node_name] = str(value)
                     return(value)
-                else:
+                # The following code is suspected to be unnecessary
+                #else:
                     # ignore text nodes, this is only for SRA library layout
-                    if child_node.nodeName != "#text":
-                        node_dict[node_name] = str(child_node.nodeName)
+                    #if child_node.nodeName != "#text":
+                    #    node_dict[node_name] = str(child_node.nodeName)
