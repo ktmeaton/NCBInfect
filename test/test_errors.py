@@ -26,7 +26,7 @@ def test_ErrorOutputDirNotExists(tmpdir):
     assert error_output == error_expect
 
 def test_ErrorAnnotFileNotExists(tmpdir):
-    '''Test the class test_ErrorAnnotFileNotExists (error when an annotation file doesn't exist)'''
+    '''Test the class ErrorAnnotFileNotExists (error when an annotation file doesn't exist)'''
     # This file is not created, just a tmp path
     tmpfile = tmpdir.strpath.join("tmpfile")
     # Test instantiation
@@ -37,7 +37,7 @@ def test_ErrorAnnotFileNotExists(tmpdir):
     assert error_output == error_expect
 
 def test_ErrorTableNotInDB(tmpdir):
-    '''Test the class test_ErrorTableNotInDB (error when a table doesn't exist in a database)'''
+    '''Test the class ErrorTableNotInDB (error when a table doesn't exist in a database)'''
     # This file is not created, just a tmp path
     tmpfile = tmpdir.strpath.join("tmpfile")
     # Test instantiation
@@ -48,7 +48,7 @@ def test_ErrorTableNotInDB(tmpdir):
     assert error_output == error_expect
 
 def test_ErrorEntryNotInDB():
-    '''Test the class test_ErrorEntryNotInDB (error when an entry doesn't exist in a database)'''
+    '''Test the class ErrorEntryNotInDB (error when an entry doesn't exist in a database)'''
     # This file is not created, just a tmp path
     test_entry = "TestEntry"
     # Test instantiation
@@ -59,7 +59,7 @@ def test_ErrorEntryNotInDB():
     assert error_output == error_expect
 
 def test_ErrorEntryMultipleMatches():
-    '''Test the class test_ErrorEntryMultipleMatches (error when their are multiple matching entries in a database)'''
+    '''Test the class ErrorEntryMultipleMatches (error when their are multiple matching entries in a database)'''
     # This file is not created, just a tmp path
     test_entry = "TestEntry"
     # Test instantiation
@@ -70,7 +70,7 @@ def test_ErrorEntryMultipleMatches():
     assert error_output == error_expect
 
 def test_ErrorConfigFileNotExists(tmpdir):
-    '''Test the class test_ErrorAnnotFileNotExists (error when a configuration file doesn't exist)'''
+    '''Test the class ErrorAnnotFileNotExists (error when a configuration file doesn't exist)'''
     # This file is not created, just a tmp path
     tmpfile = tmpdir.strpath.join("tmpfile")
     # Test instantiation
@@ -81,7 +81,7 @@ def test_ErrorConfigFileNotExists(tmpdir):
     assert error_output == error_expect
 
 def test_ErrorColumnsNotUnique():
-    '''Test the class test_ErrorColumnsNotUnique (error when their are non unique columns in a database)'''
+    '''Test the class ErrorColumnsNotUnique (error when their are non unique columns in a database)'''
     # This file is not created, just a tmp path
     test_column = "TestColumn"
     # Test instantiation
@@ -91,10 +91,46 @@ def test_ErrorColumnsNotUnique():
     error_expect = ("\n\nThe following columns are not unique in the database:" + "\n" + test_column)
     assert error_output == error_expect
 
-#def test_ErrorDBNotExists():
+def test_ErrorDBNotExists(tmpdir):
+    '''Test the class ErrorDBNotExists (error when a database doesn't exist)'''
+    # This file is not created, just a tmp path
+    tmpfile = tmpdir.strpath.join("tmpfile")
+    # Test instantiation
+    test_error = NCBImetaErrors.ErrorDBNotExists(tmpfile)
+    # Test str representation (error message)
+    error_output = str(test_error)
+    error_expect = ("\n\nDatabase does not exist." + "\n" + tmpfile)
+    assert error_output == error_expect
 
-#def test_ErrorMaxFetchAttemptsExceeded():
+def test_ErrorMaxFetchAttemptsExceeded():
+    '''Test the class ErrorMaxFetchAttemptsExceeded (error when maximum fetch attempts has been exceeded)'''
+    # This file is not created, just a tmp path
+    test_ID = '123456789'
+    # Test instantiation
+    test_error = NCBImetaErrors.ErrorMaxFetchAttemptsExceeded(test_ID)
+    # Test str representation (error message)
+    error_output = str(test_error)
+    error_expect = ("\n\nThe Maximum number of fetch attempts was exceeded for ID:" + "\n" + test_ID)
+    assert error_output == error_expect
 
-#def test_ErrorMaxReadAttemptsExceeded():
+def test_ErrorMaxReadAttemptsExceeded():
+    '''Test the class ErrorMaxReadAttemptsExceeded (error when maximum read attempts has been exceeded)'''
+    # This file is not created, just a tmp path
+    test_table = 'TestTable'
+    # Test instantiation
+    test_error = NCBImetaErrors.ErrorMaxReadAttemptsExceeded(test_table)
+    # Test str representation (error message)
+    error_output = str(test_error)
+    error_expect = ("\n\nThe Maximum number of read attempts was exceeded for table:" + "\n" + test_table)
+    assert error_output == error_expect
 
-#def test_ErrorConfigParameter():
+def test_ErrorConfigParameter():
+    '''Test the class ErrorConfigParameter (error when a configuration file parameter is incorrect)'''
+    # This file is not created, just a tmp path
+    test_parameter = "TestParameter"
+    # Test instantiation
+    test_error = NCBImetaErrors.ErrorConfigParameter(test_parameter)
+    # Test str representation (error message)
+    error_output = str(test_error)
+    error_expect = ("\n\nA parameter name and/or value in the configuration file is set incorrectly:" + "\n" + test_parameter)
+    assert error_output == error_expect
