@@ -576,5 +576,14 @@ for table in CONFIG_TABLES:
             break
     TABLE_COLUMNS = CONFIG_TABLE_COLUMNS[index][table]
 
+    # Check for duplicate column names
+    # -- Note this is only PER TABLE (Checking for duplicate between table only happens
+    # -- later in the database Join script)
+    table_col_names = []
+    for element in TABLE_COLUMNS: table_col_names += list(element.keys())
+    dupl_table_col_names = set([col for col in table_col_names if table_col_names.count(col) > 1])
+    if len(dupl_table_col_names) > 0:
+        raise NCBImetaErrors.ErrorColumnsNotUnique(dupl_table_col_names)
+    quit()
     # Call the main database updating function
     UpdateDB(table, OUTPUT_DIR, DATABASE, EMAIL, SEARCH_TERM, TABLE_COLUMNS, LOG_PATH, DB_DIR, API_KEY, FORCE_PAUSE_SECONDS)
