@@ -6,10 +6,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
-## [v0.4.3] - 2019-1203
+## [v0.4.3] - 2019-1204
 
 ### Added
-- pytest Testing Suite (utitilies, errors)
+- pytest Testing Suite (utitilies-complete, errors-complete, ncbimeta-in progress)
 - code coverage
 - Dependencies now require pytest module
 
@@ -19,6 +19,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Change unicode to str for Python3
 - Reuploaded truncated gif files
 - Typo Nucleotidet fixed in example config.yaml
+- Re-update execute permissions (git update-index --add --chmod=+x ncbimeta/*.py)
 
 ## [v0.4.2] - 2019-1127
 
