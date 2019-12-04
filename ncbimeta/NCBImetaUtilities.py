@@ -64,10 +64,6 @@ def flatten_dict(input_dict, pre=[]):
                         yield flat_path
             else:
                 yield pre + [key, value]
-    # If the value/payload is a list or tuple, use recursion
-    elif isinstance(input_dict, list) or isinstance(input_dict, tuple):
-        for d in input_dict:
-            yield pre + [d]
     # If the value/payload is a simple value, yield, including prefix
     else:
         yield pre + [input_dict]
