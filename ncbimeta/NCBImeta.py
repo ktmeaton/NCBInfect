@@ -366,7 +366,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         #DEBUG
         #print(record_dict)
         flatten_record_dict = list(NCBImetaUtilities.flatten_dict(record_dict))
-        for element in flatten_record_dict:
+        #for element in flatten_record_dict:
             #print(element)
         column_dict = {}
 
