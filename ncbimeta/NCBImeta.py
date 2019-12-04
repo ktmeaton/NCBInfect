@@ -72,6 +72,8 @@ if not os.path.exists(config_path):
 # YAML switch in v0.3.5
 with open(config_path) as config_file:
     config_data = yaml.load(config_file, Loader=yaml.FullLoader)
+    if config_data is None:
+        raise NCBImetaErrors.ErrorConfigYAMLFormat(config_file)
 
 # Retrieve configuration file values and error catching
 #--- Output Directory ---#
