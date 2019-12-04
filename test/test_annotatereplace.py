@@ -29,7 +29,7 @@ def test_annotatereplace_run():
     test_cmd = ("ncbimeta/NCBImetaAnnotateReplace.py --database " + test_db +
                 " --table  " + test_table +
                 " --annotfile " + test_annotfile)
-    # test the main NCBImeta.py through a subprocess
+    # test NCBImetaAnnotateReplace through a subprocess
     returned_value = subprocess.call(test_cmd, shell=True)
     # If it returns a non-zero value, it failed
     assert returned_value == 0
