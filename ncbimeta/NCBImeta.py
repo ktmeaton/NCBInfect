@@ -117,6 +117,7 @@ except KeyError:
 
 print(
 "\n" + "NCBImeta was run with the following options: " + "\n" +
+"\t" + "Config File: " + str(config_path) + "\n" +
 "\t" + "Output Directory: " + str(CONFIG_OUTPUT_DIR) + "\n" +
 "\t" + "Email: " + str(CONFIG_EMAIL) + "\n" +
 "\t" + "User Database: " + str(CONFIG_DATABASE) + "\n" +
