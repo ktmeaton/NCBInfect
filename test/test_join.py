@@ -22,7 +22,6 @@ def test_join_run():
     '''Test the NCBImetaJoin application for run completion'''
     # Use the test database
     test_db = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test.sqlite")
-    test_annotfile = os.path.join(os.path.dirname(os.path.abspath(__file__)),'test_annot.txt')
     # If the test_db doesn't alread exist, run the test cmd from test_ncbimeta
     if not os.path.exists(test_db): test_ncbimeta.test_ncbimeta_run()
     test_anchor_table = 'BioSample'
