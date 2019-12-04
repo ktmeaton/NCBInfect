@@ -29,11 +29,11 @@ def test_ncbimeta_run():
     # If it returns a non-zero value, it failed
     assert returned_value == 0
 
-def test_ncbimeta_flatmode():
+def test_ncbimeta_noflatmode():
     '''Test the NCBImeta application for run completion'''
     # User the stripped down testing config file
     config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test.yaml")
-    test_cmd = "ncbimeta/NCBImeta.py --flat --config " + config_file
+    test_cmd = "ncbimeta/NCBImeta.py --config " + config_file
     # test the main NCBImeta.py through a subprocess
     returned_value = subprocess.call(test_cmd, shell=True)
     # If it returns a non-zero value, it failed
