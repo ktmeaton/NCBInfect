@@ -9,7 +9,9 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [v0.4.3] - 2019-1204
 
 ### Added
-- pytest Testing Suite (utitilies-complete, errors-complete, ncbimeta-in progress)
+- pytest Testing Suite (all NCBImeta executables and modules)
+- pytest to verify database expected contents
+- conftest file to control fixtures for pytest
 - code coverage
 - Dependencies now require pytest module
 
