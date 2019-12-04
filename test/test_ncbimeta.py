@@ -22,7 +22,7 @@ import subprocess                       # Execute CLI/Shell
 def test_ncbimeta_run():
     '''Test the NCBImeta application for run completion'''
     # User the stripped down testing config file
-    config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test1.yaml")
+    config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test.yaml")
     test_cmd = "ncbimeta/NCBImeta.py --flat --config " + config_file
     # test the main NCBImeta.py through a subprocess
     returned_value = subprocess.call(test_cmd, shell=True)
@@ -271,7 +271,7 @@ def test_ncbimeta_ErrorConfigParameter_TABLE_COLUMNS(tmpdir):
 def test_ncbimeta_OutputDirNotExists(tmpdir):
     '''Test for error catching when the output dir does not exist'''
     # Prep files and directories
-    src_config = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test1.yaml")
+    src_config = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test.yaml")
     dst_dir = os.path.join(tmpdir, "tmp-output-test")
     config_file = os.path.join(tmpdir,'tmp_config.yaml')
 
