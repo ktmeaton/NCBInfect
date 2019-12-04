@@ -584,6 +584,6 @@ for table in CONFIG_TABLES:
     dupl_table_col_names = set([col for col in table_col_names if table_col_names.count(col) > 1])
     if len(dupl_table_col_names) > 0:
         raise NCBImetaErrors.ErrorColumnsNotUnique(dupl_table_col_names)
-    quit()
+
     # Call the main database updating function
     UpdateDB(table, OUTPUT_DIR, DATABASE, EMAIL, SEARCH_TERM, TABLE_COLUMNS, LOG_PATH, DB_DIR, API_KEY, FORCE_PAUSE_SECONDS)
