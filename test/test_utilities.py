@@ -31,37 +31,30 @@ def test_flatten_dict():
         ['f', 'h', 4], ['i', 'j'], ['i', 'k'], ['i', 'l'], ['i', 5], ['i', 6], ['i', 7]]
     assert test_dict_flat_result == test_dict_flat_expect
 
-def test_check_accessory_dir():
+def test_check_accessory_dir(tmpdir):
     '''
     Test the utility function check_accessory_dir (create log/ and database/).
     '''
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    NCBImetaUtilities.check_accessory_dir(current_dir)
-    assert os.path.exists(os.path.join(current_dir,"log") and os.path.exists(os.path.join(current_dir,"database")))
-    # Cleanup testing accessory dir
-    os.rmdir(os.path.join(current_dir,"log"))
-    os.rmdir(os.path.join(current_dir,"database"))
+    NCBImetaUtilities.check_accessory_dir(tmpdir)
+    assert os.path.exists(tmpdir.join("log")) and os.path.exists(tmpdir.join("database"))
 
-def test_table_exists():
+def test_table_exists(tmpdir):
     '''
     Test the utility function table_exists (check if Table is present in sqlite db)
     '''
     # Connect to database and establish cursor for commands.
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    test_db = os.path.join(current_dir,"test.sqlite")
+    test_db = tmpdir.join("test.sqlite")
     conn = sqlite3.connect(test_db)
     cur = conn.cursor()
 
     ## Create the database with a test Table
-    table = "TestTable"
-    sql_query = ("Create TABLE IF NOT EXISTS " + table +
-        " (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
-        table + "_id TEXT)")
+    table_name = "TestTable"
+    sql_query = "Create TABLE IF NOT EXISTS " + table_name + " (id INTEGER)"
     cur.execute(sql_query)
+
     # Test Function Call
-    assert NCBImetaUtilities.table_exists(cur, "TestTable")
-    # Remove test database
-    os.remove(test_db)
+    assert NCBImetaUtilities.table_exists(cur, table_name)
+
 
 def test_xml_find_attr():
     '''
