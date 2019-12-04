@@ -8,6 +8,11 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [v0.4.3] - 2019-1203
 
+### Added
+- pytest Testing Suite (utitilies, errors)
+- code coverage
+- Dependencies now require pytest module
+
 ### Changed
 - Code documentation, Major cleanup of unneeded
 - Major bugfix of flatten_dict method
