@@ -18,9 +18,7 @@ from xml.dom import minidom                 # XML Processing
 #-----------------------------------------------------------------------#
 
 def test_flatten_dict():
-    '''
-    Test the utility function flatten_dict (nested dict to list generator).
-    '''
+    '''Test the utility function flatten_dict (nested dict to list generator).'''
     test_dict = {'a' : 1,
                  'b' : {'c' : { 'd' : 1, 'e' : 2}},
                  'f' : [{'g' : 3, 'h' : 4}],
@@ -32,16 +30,12 @@ def test_flatten_dict():
     assert test_dict_flat_result == test_dict_flat_expect
 
 def test_check_accessory_dir(tmpdir):
-    '''
-    Test the utility function check_accessory_dir (create log/ and database/).
-    '''
+    '''Test the utility function check_accessory_dir (create log/ and database/).'''
     NCBImetaUtilities.check_accessory_dir(tmpdir)
     assert os.path.exists(tmpdir.join("log")) and os.path.exists(tmpdir.join("database"))
 
 def test_table_exists(tmpdir):
-    '''
-    Test the utility function table_exists (check if Table is present in sqlite db)
-    '''
+    '''Test the utility function table_exists (check if Table is present in sqlite db)'''
     # Connect to database and establish cursor for commands.
     test_db = tmpdir.join("test.sqlite")
     conn = sqlite3.connect(test_db)
@@ -57,9 +51,7 @@ def test_table_exists(tmpdir):
 
 
 def test_xml_find_attr():
-    '''
-    Test the utility function xml_find_attr (retrieve xml attribute payload)
-    '''
+    '''Test the utility function xml_find_attr (retrieve xml attribute payload)'''
     test_xml = "<Root><Stats><Stat category='chromosome_count' sequence_tag='all'>1</Stat></Stats></Root>"
     test_root = minidom.parseString(test_xml).documentElement
     test_node_name = "Stat"
@@ -70,9 +62,7 @@ def test_xml_find_attr():
     assert test_attr_dict == {'chromosome_count': '1'}
 
 def test_xml_find_node():
-    '''
-    Test the utility function xml_find_attr (retrieve xml attribute payload)
-    '''
+    '''Test the utility function xml_find_attr (retrieve xml attribute payload)'''
     test_xml = "<Root><AssemblyAccession>GCA_003086155.1</AssemblyAccession></Root>"
     test_root = minidom.parseString(test_xml).documentElement
     test_node_name = "AssemblyAccession"
