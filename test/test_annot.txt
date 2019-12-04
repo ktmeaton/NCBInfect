@@ -1,0 +1,3 @@
+BioSampleAccession	BioSampleHostDisease
+SAMN12991206	Plague
+MissingAccession123	MissingDisease
