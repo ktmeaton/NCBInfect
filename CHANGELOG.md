@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project "attempts" to adhere to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+- pytest integration to verify master table contents
 
 ## [v0.5.0] - 2019-1204
 
@@ -13,11 +14,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - NCBImeta now requires Python3.5+
 
 ### Added
-- pytest Testing Suite (all NCBImeta executables and modules)
-- pytest to verify database expected contents
+- pytest integration (all NCBImeta functions and classes, verify database contents)
+- codecov integration
 - conftest file to control fixtures for pytest
-- code coverage
-- Dependencies now require pytest module
+- pytest, codecov, pytest-cov are requirements for travis build only
 - bugfix in ncbimeta record parsing: column_index position
 
 ### Changed
