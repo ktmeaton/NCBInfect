@@ -332,7 +332,6 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             column_name = list(column.keys())[0]
             column_payload = list(column.values())[0]
             column_value = ""
-            column_index = 0
 
             # Check and see if column is special multi/hierarchical type
             # AssemblyGenbankBioprojectAccession : GB_BioProjects, BioprojectAccn
@@ -385,7 +384,6 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             # Attempt 1: Simple Dictionary Parse, taking first match
 
             for row in flatten_record_dict:
-                #print(row)
                 # For simple column types, as strings
                 if type(column_payload) == str and column_payload in row:
                     column_value = row[-1]
@@ -393,6 +391,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
                 # For complex column types, as list
                 elif type(column_payload) == list:
+                    column_index = 0
                     while column_payload[column_index] in row:
                         if column_index + 1 == len(column_payload):
                             column_value = row[-1]
@@ -485,7 +484,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                         None
                     break
 
-        #print(column_dict)
+        print(column_dict)
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
         sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "
