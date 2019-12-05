@@ -234,15 +234,15 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     #-----------------------------------------------------------------------#
     #                          Entrez Search                                #
     #-----------------------------------------------------------------------#
-    # Read the record, check for runtime errors but only a few times
-    # This section is not wrapped with the HTTPErrorCatch helper function, because
-    # RunTimeErrors are the bigger culprit to catch instead.
+    # Read the record, check for http, url, and runtime errors
     read_succeed = False
     read_attempts = 0
+
     while not read_succeed and read_attempts < Entrez.max_tries:
-        handle = Entrez.esearch(db=table.lower(),
-                            term=search_term,
-                            retmax = 9999999)
+        kwargs = {"db": table.lower(), "term":search_term, "retmax":"9999999"}
+        entrez_method = Entrez.esearch
+        # Possible urllib error and RuntimeErrors occurring in the next line
+        handle = NCBImetaUtilities.HTTPErrorCatch(entrez_method, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
         try:
             record = Entrez.read(handle)
             read_succeed = True
@@ -255,7 +255,6 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         raise ErrorMaxReadAttemptsExceeded(table)
 
     # Count total number of entries, create counter
-
     num_records = int(record['Count'])
     num_processed = 0
 

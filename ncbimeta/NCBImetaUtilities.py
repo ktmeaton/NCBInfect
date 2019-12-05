@@ -179,7 +179,7 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
                 print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
                 print("Sleeping for " + str(sleep_time) + " seconds before retrying.")
                 time.sleep(sleep_time)
-                # General Error Code, non specific
+            # General HTTP Error Code, non specific
             else:
                 fetch_attempts += 1
                 print("HTTP Error " + str(error.code) + ": " + str(error.reason))
@@ -191,6 +191,7 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
             print("URL Error: " + str(error.reason))
             print("Fetch Attempt: " + str(fetch_attempts) + "/" + str(max_fetch_attempts))
             print("Retrying record fetching.")
+
 
         # If the maximum number of fetch attempts has been exceeded
         if fetch_attempts == max_fetch_attempts and not ID_handle_retrieved:
