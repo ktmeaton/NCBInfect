@@ -18,6 +18,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - conftest file to control fixtures for pytest
 - code coverage
 - Dependencies now require pytest module
+- bugfix in ncbimeta record parsing: column_index position
 
 ### Changed
 - Code documentation, Major cleanup of unneeded
