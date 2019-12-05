@@ -1,8 +1,8 @@
 # User Configuration Variables
 OUTPUT_DIR : example
-EMAIL : ktmeaton@gmail.com
-API_KEY : b2174fc1bf4bb642a599e0cb239005a08b08
-FORCE_PAUSE_SECONDS : 0
+EMAIL : myemailname@domain.com
+API_KEY :
+FORCE_PAUSE_SECONDS : 1
 DATABASE : yersinia_pestis_db.sqlite
 
 # NCBI Tables to Query
