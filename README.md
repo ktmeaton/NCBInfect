@@ -43,10 +43,11 @@ cd NCBImeta
 ```
 
 ### Run the program
-Download genomic metadata pertaining to the plague pathogen *Yersinia pestis*.
+Download a selection of genomic metadata pertaining to the plague pathogen *Yersinia pestis*.
 ```
 NCBImeta.py --flat --config example/config.yaml
 ```
+(Note: The 'quick' start config file forces slow downloads to accommodate users with slow internet. For faster record retrieval, please see the [Config File README](config/README_config.md) to start editing config files.)
 
 Example output of the command-line interface (v0.4.0):  
 <img src="images/NCBImetaCLI.gif" alt="NCBImetaCLI" width="700px"/>
