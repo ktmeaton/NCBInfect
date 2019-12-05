@@ -37,7 +37,7 @@ def assembly_table_data():
                 'AssemblySubmissionDate', 'AssemblyReleaseDate', 'AssemblyFTPAssemblyReport',
                 'AssemblyFTPGenbank', 'AssemblyFTPRefSeq', 'AssemblyFTPStatsReport', 'AssemblyComment']
 
-    metadata = ['1', '5025191', 'GCF_009295945.1', 'SAMN12991206', '12991206', 'PRJNA224116',
+    metadata = ['1', '5025191', 'GCF_009295945.1', 'SAMN12991206', '12991206', 'PRJNA269675',
                 '14768768', 'PRJNA224116', 'na', '14769648', '', 'SCPM-O-DNA-18 (I-3113)', 'None',
                 'Yersinia pestis (enterobacteria)', '632', 'Yersinia pestis', '632', 'ASM929594v1',
                 'Complete Genome', 'haploid', '176.1', '1', '5', '4546217', '1', '4',
