@@ -484,7 +484,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                         None
                     break
 
-        print(column_dict)
+        #print(column_dict)
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
         sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "
