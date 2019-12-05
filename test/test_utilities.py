@@ -28,12 +28,21 @@ def test_flatten_dict():
     test_dict_flat_result = list(NCBImetaUtilities.flatten_dict(test_dict))
     test_dict_flat_expect = [['a', 1], ['b', 'c', 'd', 1], ['b', 'c', 'e', 2], ['f', 'g', 3],
         ['f', 'h', 4], ['i', 'j'], ['i', 'k'], ['i', 'l'], ['i', 5], ['i', 6], ['i', 7]]
-    assert test_dict_flat_result == test_dict_flat_expect
+
+    # Create a list that contains items that are different between the two
+    # It was found that in diff versions of Py3, can't simply compare the lists
+    # with the == operator because the order varies
+    test_dict_diff = ([x for x in test_dict_flat_result if x not in test_dict_flat_expect] +
+                      [x for x in test_dict_flat_expect if x not in test_dict_flat_result])
+
+    # If the list is empty (length is 0) then the result is the same as expected
+    assert len(test_dict_diff) == 0
 
 def test_check_accessory_dir(tmpdir):
     '''Test the utility function check_accessory_dir (create log/ and database/).'''
+    tmpdir = tmpdir.strpath
     NCBImetaUtilities.check_accessory_dir(tmpdir)
-    assert os.path.exists(tmpdir.join("log")) and os.path.exists(tmpdir.join("database"))
+    assert os.path.exists(os.path.join(tmpdir,"log")) and os.path.exists(os.path.join(tmpdir,"database"))
 
 def test_table_exists(tmpdir):
     '''Test the utility function table_exists (check if Table is present in sqlite db)'''
