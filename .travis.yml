@@ -3,7 +3,7 @@
 # Whitelist
 branches:
   only:
-    - master
+    - dev
 
 language: python    # this works for Linux but is an error on macOS or Windows
 jobs:
@@ -22,8 +22,7 @@ jobs:
 #-----------------------------------------------------------------------------#
 #                                    LINUX                                    #
 #-----------------------------------------------------------------------------#
-    - name: "Python 3.4 on Xenial Linux"
-      python: 3.4
+
     - name: "Python 3.5 on Xenial Linux"
       python: 3.5
     - name: "Python 3.6 on Xenial Linux"
@@ -41,10 +40,12 @@ before_install:
 install:
   - pip3 install --upgrade pip       # all three OSes agree about 'pip3'
   - pip3 install . -r requirements.txt
+  - pip3 install codecov==2.0.15 pytest==5.3.1 coverage==4.5.4 pytest-cov==2.8.1
 
 
 # command to run tests
 script:
+  - python3 -m coverage run -m pytest --cov=ncbimeta --cov-report=xml test/test_errors.py test/test_utilities.py test/test_ncbimeta.py test/test_annotateconcatenate.py test/test_annotatereplace.py test/test_join.py test/test_export.py
   # Fetch records
   - NCBImeta.py --flat --config example/config.yaml
   # Database Annotation
@@ -54,3 +55,6 @@ script:
   - NCBImetaJoin.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
   # Database export
   - NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

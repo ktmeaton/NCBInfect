@@ -1,31 +1,25 @@
 #!/usr/bin/env python3
 """
-NCBI Metadata Database Annotator
+NCBImeta Export Tool - Export SQLite database to tabular text files.
 
 @author: Katherine Eaton
 """
-
-import argparse
-import sqlite3
-import os
-import sys
-import io
-
-from ncbimeta.NCBImetaErrors import *
-
-# Deal with unicode function rename in version 3
-if sys.version_info.major == 3:
-    unicode = str
-
-def flushprint(message):
-    print(message)
-    sys.stdout.flush()
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-parser = argparse.ArgumentParser(description=("NCBInfect Database Export Tool"),
+import argparse                         # Command-line argument parsing
+import sqlite3                          # Database storage and queries
+import os                               # Filepath operations
+
+from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
+
+#-----------------------------------------------------------------------#
+#                            Argument Parsing                           #
+#-----------------------------------------------------------------------#
+
+parser = argparse.ArgumentParser(description=("NCBImeta Export Tool - Export SQLite database to tabular text files."),
                                  add_help=True)
 
 mandatory = parser.add_argument_group('mandatory')
@@ -62,17 +56,16 @@ output_dir = args['outputDir']
 # Check if database exists
 if os.path.exists(db_name):
     conn = sqlite3.connect(db_name)
-    flushprint('\nOpening database: ' + db_name)
+    print('\nOpening database: ' + db_name, flush = True)
 else:
-    raise ErrorDBNotExists(db_name)
+    raise NCBImetaErrors.ErrorDBNotExists(db_name)
 
 # Check if output dir exists
 if not os.path.exists(output_dir):
-    raise ErrorOutputDirNotExists(output_dir)
+    raise NCBImetaErrors.ErrorOutputDirNotExists(output_dir)
 
 # no errors were raised, safe to connect to db
 cur = conn.cursor()
-
 
 #-----------------------------------------------------------------------#
 #                         Process Database                              #
@@ -102,7 +95,7 @@ for table in table_list:
     # Retrieve and write the header
     header = ""
     for column in table_col_names:
-        header += unicode(column) + "\t"
+        header += str(column) + "\t"
     header = header.rstrip("\t") + "\n"
     table_file.write(header)
 
@@ -111,10 +104,9 @@ for table in table_list:
     for row in cur.execute(query):
         line = ""
         for cell in row:
-            line += unicode(cell) + "\t"
+            line += str(cell) + "\t"
         line = line.rstrip("\t")  + "\n"
         table_file.write(line)
-        #table_file.write(line.encode('utf-8'))
 
     # Close table file
     table_file.close()
@@ -123,5 +115,5 @@ for table in table_list:
 #                                    Cleanup                            #
 #-----------------------------------------------------------------------#
 
-flushprint("Closing database: " + db_name)
+print("Closing database: " + db_name, flush = True)
 cur.close()

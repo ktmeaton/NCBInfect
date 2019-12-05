@@ -1,26 +1,21 @@
 #!/usr/bin/env python3
 """
-NCBI Metadata Database Annotator
+NCBImeta Join Tool - Joins accessory tables to an anchor table.
 
 @author: Katherine Eaton
 """
 
-import argparse
-import sqlite3
-import datetime
-import os
-import sys
+#-----------------------------------------------------------------------#
+#                         Modules and Packages                          #
+#-----------------------------------------------------------------------#
 
-from ncbimeta import NCBImetaErrors
-from ncbimeta.NCBImetaUtilities import table_exists
+import argparse                         # Command-line argument parsing
+import sqlite3                          # Database storage and queries
+import os                               # Filepath operations
+import datetime                         # Get date and time for logfile
 
-# Deal with unicode function rename in version 3
-if sys.version_info.major == 3:
-    unicode = str
-
-def flushprint(message):
-    print(message)
-    sys.stdout.flush()
+from ncbimeta import NCBImetaUtilities  # NCBImeta helper functions
+from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
@@ -84,8 +79,6 @@ unique_header_str = args['dbUnique']
 unique_header_list = unique_header_str.split(" ")
 db_value_sep = ";"
 
-
-
 #-----------------------------------------------------------------------#
 #                           Argument Checking                           #
 #-----------------------------------------------------------------------#
@@ -95,30 +88,24 @@ db_value_sep = ";"
 
 if os.path.exists(db_name):
     conn = sqlite3.connect(db_name)
-    flushprint('\nOpening database: ' + db_name + "\n")
+    print('\nOpening database: ' + db_name + "\n", flush = True)
 else:
     raise NCBImetaErrors.ErrorDBNotExists(db_name)
 
 # no errors were raised, safe to connect to db
 cur = conn.cursor()
 
-
-
 #---------------------------Check Tables---------------------------------#
 
-if not table_exists(cur, db_anchor):
+if not NCBImetaUtilities.table_exists(cur, db_anchor):
     raise NCBImetaErrors.ErrorTableNotInDB(db_anchor)
 for table in db_accessory_list:
-    if not table_exists(cur, table):
+    if not NCBImetaUtilities.table_exists(cur, table):
         raise NCBImetaErrors.ErrorTableNotInDB(table)
-
-
-
 
 #-----------------------------------------------------------------------#
 #                                File Setup                             #
 #-----------------------------------------------------------------------#
-
 
 # get list of column names in anchor table
 cur.execute('''SELECT * FROM {}'''.format(db_anchor))
@@ -128,7 +115,7 @@ anchor_col_names = [description[0] for description in cur.description]
 # Check to make sure the unique header is present in the anchor table
 for unique_header in unique_header_list:
     if unique_header not in db_col_names:
-        flushprint("Column not in DB: " + unique_header + ".")
+        print("Column not in DB: " + unique_header + ".", flush = True)
         raise NCBImetaErrors.ErrorEntryNotInDB(unique_header)
 
 # get list of column names in accessory tables
@@ -142,7 +129,6 @@ dupl_col_names = set([col for col in db_col_names if db_col_names.count(col) > 1
 if len(dupl_col_names) > 0:
     raise NCBImetaErrors.ErrorColumnsNotUnique(dupl_col_names)
 
-
 #-----------------------------------------------------------------------#
 #                              Init Join Table                          #
 #-----------------------------------------------------------------------#
@@ -155,7 +141,6 @@ for column_name in db_col_names:
     sql_query += ", " + column_name + " TEXT"
 sql_query += ")"
 cur.execute(sql_query)
-
 
 #-----------------------------------------------------------------------#
 #                              Join Tables                              #
@@ -192,10 +177,10 @@ for record in fetch_records:
     # Increment entry counter and record progress to screen
 
     num_processed += 1
-    flushprint("Unique Value: " + unique_val)
-    flushprint("Processing record: " +
+    print("Unique Value: " + unique_val, flush = True)
+    print("Processing record: " +
       str(num_processed) + \
-     "/" + str(num_records))
+     "/" + str(num_records), flush = True)
 
 
     # Check if this record already exists in the master join table
@@ -234,9 +219,9 @@ for record in fetch_records:
             match_column = ""
             # Iterate through each possible unique values (or until match is found)
             for uniq_val in unique_values:
-                # Deal with unicode
+                # Deal with unicode/str
                 if type(uniq_val) == int: val=str(uniq_val)
-                elif type(uniq_val) == unicode: uniq_val=uniq_val.encode('utf-8')
+                elif type(uniq_val) == str: uniq_val=uniq_val.encode('utf-8')
 
                 # Iterate through each column
                 for table_col in table_col_names:
@@ -245,7 +230,7 @@ for record in fetch_records:
                     # Search through every value for a match
                     for val in table_col_vals:
                         if type(val[0]) == int: val=str(val[0])
-                        elif type(val[0]) == unicode: val=val[0].encode('utf-8')
+                        elif type(val[0]) == str: val=val[0].encode('utf-8')
 
                         # If it's a match, store the value, and set the boolean flag
                         if val == uniq_val:
@@ -316,15 +301,10 @@ for record in fetch_records:
         # Save Changes
         conn.commit()
 
-
-
-
-
-
 #-----------------------------------------------------------------------#
 #                                    Cleanup                            #
 #-----------------------------------------------------------------------#
 # Commit changes
 conn.commit()
-flushprint("Closing database: " + db_name)
+print("Closing database: " + db_name, flush = True)
 cur.close()

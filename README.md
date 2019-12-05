@@ -1,8 +1,8 @@
-[![GitHub (pre-)release](https://img.shields.io/badge/Release-v0.4.2-red.svg)](https://github.com/ktmeaton/NCBImeta/releases/tag/v0.4.2)
+[![PyPI version](https://badge.fury.io/py/NCBImeta.svg)](https://badge.fury.io/py/NCBImeta)
 [![GitHub license](https://img.shields.io/dub/l/vibe-d.svg?style=flat)](https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/ktmeaton/NCBImeta.svg)](https://github.com/ktmeaton/NCBImeta/issues)
 [![Build Status](https://travis-ci.org/ktmeaton/NCBImeta.svg?branch=master)](https://travis-ci.org/ktmeaton/NCBImeta)
-
+[![codecov](https://codecov.io/gh/ktmeaton/ncbimeta/branch/dev/graph/badge.svg)](https://codecov.io/gh/ktmeaton/NCBImeta/branch/dev)
 
 # NCBImeta
 Efficient and comprehensive metadata acquisition from the NCBI databases (includes SRA).  
@@ -43,10 +43,11 @@ cd NCBImeta
 ```
 
 ### Run the program
-Download genomic metadata pertaining to the plague pathogen *Yersinia pestis*.
+Download a selection of genomic metadata pertaining to the plague pathogen *Yersinia pestis*.
 ```
 NCBImeta.py --flat --config example/config.yaml
 ```
+(Note: The 'quick' start config file forces slow downloads to accommodate users with slow internet. For faster record retrieval, please see the [Config File README](config/README_config.md) to start editing config files.)
 
 Example output of the command-line interface (v0.4.0):  
 <img src="images/NCBImetaCLI.gif" alt="NCBImetaCLI" width="700px"/>

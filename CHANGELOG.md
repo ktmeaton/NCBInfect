@@ -6,9 +6,28 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
+## [v0.5.0] - 2019-1204
+
+### Removed
+- Python 3.4 Support (End of Life) and pytest 5.x.y conflicts.
+- NCBImeta now requires Python3.5+
+
+### Added
+- pytest integration (all NCBImeta functions and classes, verify database contents)
+- codecov integration
+- conftest file to control fixtures for pytest
+- pytest, codecov, pytest-cov are requirements for travis build only
+- bugfix in ncbimeta record parsing: column_index position
+
 ### Changed
+- Code documentation, Major cleanup of unneeded
+- Major bugfix of flatten_dict method
+- Move method HTTPErrorCatch to NCBImetaUtilties
+- Change unicode to str for Python3
 - Reuploaded truncated gif files
 - Typo Nucleotidet fixed in example config.yaml
+- Re-update execute permissions (git update-index --add --chmod=+x ncbimeta/*.py)
+- bash uploader for codecov
 
 ## [v0.4.2] - 2019-1127
 
