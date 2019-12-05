@@ -38,7 +38,8 @@ def test_check_accessory_dir(tmpdir):
 def test_table_exists(tmpdir):
     '''Test the utility function table_exists (check if Table is present in sqlite db)'''
     # Connect to database and establish cursor for commands.
-    test_db = tmpdir.join("test.sqlite")
+    tmpdir = tmpdir.strpath
+    test_db = os.path.join(tmpdir, "test.sqlite")
     conn = sqlite3.connect(test_db)
     cur = conn.cursor()
 
