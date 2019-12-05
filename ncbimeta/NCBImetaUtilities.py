@@ -15,6 +15,7 @@ import sqlite3                          # Database storage and queries
 import xml.etree.ElementTree as ET      # XML Processing
 from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
 import urllib.error                     # HTTP Error Catching
+import time                             # Allow sleeping of processes
 
 #-----------------------------------------------------------------------#
 #                         Utility Functions                             #
