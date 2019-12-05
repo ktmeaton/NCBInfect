@@ -47,7 +47,7 @@ Download a selection of genomic metadata pertaining to the plague pathogen *Yers
 ```
 NCBImeta.py --flat --config example/config.yaml
 ```
-(Note: The 'quick' start config file forces slow downloads to accommodate users with slow internet. For faster record retrieval, please see the [Config File README](config/README_config.md) to start editing config files.)
+(Note: The 'quick' start config file forces slow downloads to accommodate users with slow internet. For faster record retrieval, please see the [Config File README](https://github.com/ktmeaton/NCBImeta/blob/master/config/README_config.md) to start editing config files.)
 
 Example output of the command-line interface (v0.4.0):  
 <img src="images/NCBImetaCLI.gif" alt="NCBImetaCLI" width="700px"/>
@@ -96,8 +96,8 @@ Pubmed
 
 ## Documentation
 To get started with customizing the search terms, database, and metadata fields, please read:
-1. [Config File README](config/README_config.md)
-2. [Schema File README](schema/README_schema.md)
+1. [Config File README](https://github.com/ktmeaton/NCBImeta/blob/master/config/README_config.md)
+2. [Schema File README](https://github.com/ktmeaton/NCBImeta/blob/master/schema/README_schema.md)
 
 
 ## Issues, Questions, and Suggestions
