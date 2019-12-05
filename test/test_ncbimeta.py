@@ -58,6 +58,7 @@ def test_ncbimeta_ConfigFileNotExists(tmpdir):
 def test_ncbimeta_ConfigFileNotYAML(tmpdir):
     '''Test for error catching when a config file has improper format'''
     # User the empty config file
+    tmpdir = tmpdir.strpath
     config_file_name = os.path.join(tmpdir,'tmp_config.yaml')
     config_file = open(config_file_name, 'a').close()
 
@@ -77,6 +78,7 @@ def test_ncbimeta_ConfigFileNotYAML(tmpdir):
 def test_ncbimeta_ErrorConfigParameter_OUTPUT_DIR(tmpdir):
     '''Test for error catching when a config file has improper parameters'''
     # Prep the config file contents
+    tmpdir = tmpdir.strpath
     config_file_name = os.path.join(tmpdir,'tmp_config.yaml')
     config_file = open(config_file_name, 'w')
     config_file.write('OUTPUT_DIRR: output')
@@ -99,6 +101,7 @@ def test_ncbimeta_ErrorConfigParameter_OUTPUT_DIR(tmpdir):
 def test_ncbimeta_ErrorConfigParameter_EMAIL(tmpdir):
     '''Test for error catching when a config file has improper parameters'''
     # Prep the config file contents
+    tmpdir = tmpdir.strpath
     config_file_name = os.path.join(tmpdir,'tmp_config.yaml')
     config_file = open(config_file_name, 'w')
     config_file.write('OUTPUT_DIR: output' + '\n' +
@@ -122,6 +125,7 @@ def test_ncbimeta_ErrorConfigParameter_EMAIL(tmpdir):
 def test_ncbimeta_ErrorConfigParameter_API_KEY(tmpdir):
     '''Test for error catching when a config file has improper parameters'''
     # Prep the config file contents
+    tmpdir = tmpdir.strpath
     config_file_name = os.path.join(tmpdir,'tmp_config.yaml')
     config_file = open(config_file_name, 'w')
     config_file.write('OUTPUT_DIR: output' + '\n' +
@@ -146,6 +150,7 @@ def test_ncbimeta_ErrorConfigParameter_API_KEY(tmpdir):
 def test_ncbimeta_ErrorConfigParameter_FORCE_PAUSE_SECONDS(tmpdir):
     '''Test for error catching when a config file has improper parameters'''
     # Prep the config file contents
+    tmpdir = tmpdir.strpath
     config_file_name = os.path.join(tmpdir,'tmp_config.yaml')
     config_file = open(config_file_name, 'w')
     config_file.write('OUTPUT_DIR: output' + '\n' +
@@ -171,6 +176,7 @@ def test_ncbimeta_ErrorConfigParameter_FORCE_PAUSE_SECONDS(tmpdir):
 def test_ncbimeta_ErrorConfigParameter_DATABASE(tmpdir):
     '''Test for error catching when a config file has improper parameters'''
     # Prep the config file contents
+    tmpdir = tmpdir.strpath
     config_file_name = os.path.join(tmpdir,'tmp_config.yaml')
     config_file = open(config_file_name, 'w')
     config_file.write('OUTPUT_DIR: output' + '\n' +
@@ -197,6 +203,7 @@ def test_ncbimeta_ErrorConfigParameter_DATABASE(tmpdir):
 def test_ncbimeta_ErrorConfigParameter_TABLES(tmpdir):
     '''Test for error catching when a config file has improper parameters'''
     # Prep the config file contents
+    tmpdir = tmpdir.strpath
     config_file_name = os.path.join(tmpdir,'tmp_config.yaml')
     config_file = open(config_file_name, 'w')
     config_file.write('OUTPUT_DIR: output' + '\n' +
@@ -224,6 +231,7 @@ def test_ncbimeta_ErrorConfigParameter_TABLES(tmpdir):
 def test_ncbimeta_ErrorConfigParameter_SEARCH_TERMS(tmpdir):
     '''Test for error catching when a config file has improper parameters'''
     # Prep the config file contents
+    tmpdir = tmpdir.strpath
     config_file_name = os.path.join(tmpdir,'tmp_config.yaml')
     config_file = open(config_file_name, 'w')
     config_file.write('OUTPUT_DIR: output' + '\n' +
@@ -252,6 +260,7 @@ def test_ncbimeta_ErrorConfigParameter_SEARCH_TERMS(tmpdir):
 def test_ncbimeta_ErrorConfigParameter_TABLE_COLUMNS(tmpdir):
     '''Test for error catching when a config file has improper parameters'''
     # Prep the config file contents
+    tmpdir = tmpdir.strpath
     config_file_name = os.path.join(tmpdir,'tmp_config.yaml')
     config_file = open(config_file_name, 'w')
     config_file.write('OUTPUT_DIR: output' + '\n' +
@@ -280,6 +289,7 @@ def test_ncbimeta_ErrorConfigParameter_TABLE_COLUMNS(tmpdir):
 
 def test_ncbimeta_OutputDirNotExists(tmpdir):
     '''Test for error catching when the output dir does not exist'''
+    tmpdir = tmpdir.strpath
     # Prep files and directories
     src_config = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test.yaml")
     dst_dir = os.path.join(tmpdir, "tmp-output-test")
