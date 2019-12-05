@@ -23,6 +23,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Reuploaded truncated gif files
 - Typo Nucleotidet fixed in example config.yaml
 - Re-update execute permissions (git update-index --add --chmod=+x ncbimeta/*.py)
+- bash uploader for codecov
 
 ## [v0.4.2] - 2019-1127
 
