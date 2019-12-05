@@ -8,6 +8,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [v0.5.0] - 2019-1204
 
+### Removed
+- Python 3.4 Support (End of Life) and pytest 5.x.y conflicts.
+- NCBImeta now requires Python3.5+
+
 ### Added
 - pytest Testing Suite (all NCBImeta executables and modules)
 - pytest to verify database expected contents
