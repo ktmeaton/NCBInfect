@@ -16,6 +16,7 @@ import xml.etree.ElementTree as ET      # XML Processing
 from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
 import urllib.error                     # HTTP Error Catching
 import time                             # Allow sleeping of processes
+from lxml import etree                  # XML Parsing
 
 #-----------------------------------------------------------------------#
 #                         Utility Functions                             #
@@ -152,6 +153,74 @@ def xml_find_node(xml_root, node_name, node_dict):
                     if child_node.nodeName != "#text":
                         node_dict[node_name] = str(child_node.nodeName)
 
+
+def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
+    '''Search xml_root for nodes, attributes in search_list, update node_dict'''
+    # Search query (as tag or attribute)
+    tag_xpath = ".//" + current_tag
+    alt_attrib = current_tag
+    print("Tag xpath:", tag_xpath)
+    print("Alt Attribute:", alt_attrib)
+    #print(etree.tostring(xml_root, pretty_print = True))
+
+    # Modify dict (stop recursion), if we're at the end of the list
+    if search_list.index(current_tag) == len(search_list) - 1:
+        # First try tag as node
+        # Attempt to check search results, exception if there are none
+        try:
+            search_result = xml_root.findall(tag_xpath)[0]
+            print("Search Result End:", search_result)
+            search_result_text = search_result.text
+            # Str conversion here is mainly for None results
+            xml_dict[column_name] = str(search_result_text)
+        except IndexError:
+            xml_dict[column_name] = ""
+        # Then try tag as attribute
+        # Something
+    else:
+        # First try tag as node, allowing multiple results
+        next_tag = search_list[search_list.index(current_tag) + 1]
+        print("Next Tag:", next_tag)
+        print("Current Root Before:", etree.tostring(xml_root))
+        search_results = xml_root.findall(tag_xpath)
+        # If there are no results, this is an attribute matching situation
+        if not search_results:
+            print("NO RESULTS")
+            # Retry the search with unescaped characters
+            xml_root_string = etree.tostring(xml_root)
+            open_char = "&lt;"
+            close_char = "&gt;"
+            xml_root_string = str(xml_root_string).replace(open_char,"<").replace(close_char,">").strip()
+            xml_root_string = str(xml_root_string).replace("\\n","").replace("\\t","")
+            print("Current Root After:", xml_root_string)
+            # Strip off the first 2 char (b') and the final char '
+            print("Current Root Mod:", xml_root_string[2:-1])
+            xml_root = etree.fromstring(xml_root_string[2:-1])
+
+            search_results = xml_root.findall(tag_xpath)
+            # If attributes of interest are present and matching
+            try:
+                if xml_root.get(current_tag) == next_tag:
+                    xml_dict[column_name] = xml_root.text
+            except AttributeError:
+                # Fails if no attributes, just a non-existent node
+                xml_dict[column_name] = ""
+        # If there were multiple results, need to keep searching recursively
+        for result in search_results:
+            print("Search Result Ongoing:", result)
+            # Check if the xml_result contains cda  ta
+            result_text = result.text.strip()
+            if result_text:
+                # Check if result contains CDATA
+                first_char = result_text[0]
+                last_char = result_text[-1]
+                if first_char == "<" and last_char == ">":
+                    # Reformat CDATA as complete XML
+                    result_text = ("<" + current_tag + ">" + result_text + "</" + current_tag + ">")
+                    print("Working Text Edit:", result_text)
+                    result = etree.fromstring(result_text)
+                    print(etree.tostring(result))
+            xml_search(result, search_list, next_tag, column_name, xml_dict)
 
 def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
     '''

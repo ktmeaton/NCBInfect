@@ -329,12 +329,18 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         # Iterate through each column to search for values
         column_dict = {}
         for column in table_columns:
-            #column_name = list(column.keys())[0]
-            column_name = "AssemblyChromosomes"
+            column_name = list(column.keys())[0]
+            #column_name = "AssemblyChromosomes"
+            #column_name = 'AssemblyInfraspecies'
+            #column_name = 'AssemblyWGSAccession'
             column_value = ""
-            #column_payload = list(column.values())[0]
-            #column_payload = column_payload.split(", ")
-            column_payload = ['Meta', 'Stat', 'category', 'chromosome_count']
+            column_payload = list(column.values())[0]
+            column_payload = column_payload.split(", ")
+            #column_payload = ['Meta', 'Stat', 'category', 'chromosome_count']
+            #column_payload = ['InfraspeciesList', 'Sub_value']
+            #column_payload = ['WGS']
+            # Initialize with empty values
+            column_dict[column_name] = column_value
             print("Column name: ", column_name)
             print("Column payload: ", column_payload)
 
@@ -343,46 +349,22 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             #-------------------------------------------------------#
             # This should be a recursive function!!!
             working_root =ID_root
-
-            for i in range(0,len(column_payload)):
-                # Construct an xpath recursive search query
-                tag_name = column_payload[i]
-                tag_xpath = ".//" + tag_name
-                # search for the tag
-                working_root = working_root.findall(tag_xpath)[0]
-                working_root_text = working_root.text.strip()
-                # If we've not gone through all values, continue
-                if i != len(column_payload):
-                    print("Working Root:", working_root)
-                    #print(etree.tostring(working_root))
-                    print("Working Root Text:", working_root_text)
-                    first_char = working_root_text[0]
-                    last_char = working_root_text[-1]
-                    # Check if it's CDATA (xml within xml)
-                    if first_char == "<" and last_char == ">":
-                        working_root_text = ("<" + tag_name + ">" +
-                                              working_root_text +
-                                              "</" + tag_name + ">")
-                        print("Working Text Edit:", working_root_text)
-                        working_root = etree.fromstring(working_root_text)
-
-            # Option 1, this is a text node
-            column_value = working_root.text
-
-
-            column_dict[column_name] = column_value
+            print(etree.tostring(working_root))
+            NCBImetaUtilities.xml_search(working_root, column_payload, column_payload[0], column_name, column_dict)
             print(column_dict)
-            quit()
 
-        print(column_dict)
-        quit()
+        #print(column_dict)
+        # Add quotations around each value for sql insertion
+        for key in column_dict:
+            column_dict[key] = "'" + column_dict[key] + "'"
+            print(key, ":", column_dict[key])
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
         sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "
         #sql_dynamic_qmarks = "VALUES (" + ",".join(["?" for column in column_dict.keys()]) + ") "
         sql_dynamic_values = " VALUES (" + ",".join([column_dict[column] for column in column_dict.keys()]) + ")"
         sql_query = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_values
-        print(sql_query)
+        #print(repr(sql_query))
         cur.execute(sql_query)
 
         # Write to logfile
