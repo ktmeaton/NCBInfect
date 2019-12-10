@@ -307,7 +307,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             kwargs = {"db": table.lower(), "id":ID, "retmode":"xml"}
             entrez_method = Entrez.efetch
 
-        # ID_handle is an _io.TextIOWrapped object, which SHOULD have utf-8 encoding
+        # ID_handle is an _io.TextIOWrapped object, which originally had utf-8 encoding
         ID_handle = NCBImetaUtilities.HTTPErrorCatch(entrez_method, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
 
         # Ideal world: Pass an undecoded string to the xml parser
@@ -319,16 +319,9 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 temp_b.write(str.encode(line))
             temp_b.close()
             # Read the data as binary, into the XML parser
-            #ID_data = open(temp_b.name, 'rb')
-            #ID_content = ID_data.read()
-            #ID_root = etree.XML(ID_content, strip_cdata=False)
-            with open(temp_b.name, 'rb') as source:
-                ID_root = etree.parse(source, parser=lxml_cdata_parser)
-                ID_tree = ID_root
-                print(ID_root)
+            with open(temp_b.name, 'rb') as xml_source:
+                ID_root = etree.parse(xml_source, parser=lxml_cdata_parser)
 
-        # Call the ElementTree function, provides methods for document handling
-        #ID_tree = etree.ElementTree(ID_root)
         #----------------------------------------------------------------------#
         #                         NCBI Record Parsing                          #
         #----------------------------------------------------------------------#
@@ -349,18 +342,31 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             #   XML Parse for node or attribute
             #-------------------------------------------------------#
             # This should be a recursive function!!!
-            working_root =ID_tree
+            working_root =ID_root
 
             for i in range(0,len(column_payload)):
                 # Construct an xpath recursive search query
-                tag_xpath = ".//" + column_payload[i]
+                tag_name = column_payload[i]
+                tag_xpath = ".//" + tag_name
                 # search for the tag
                 working_root = working_root.findall(tag_xpath)[0]
-                print(working_root)
-                print(etree.tostring(working_root))
+                working_root_text = working_root.text.strip()
+                # If we've not gone through all values, continue
+                if i != len(column_payload):
+                    print("Working Root:", working_root)
+                    #print(etree.tostring(working_root))
+                    print("Working Root Text:", working_root_text)
+                    first_char = working_root_text[0]
+                    last_char = working_root_text[-1]
+                    # Check if it's CDATA (xml within xml)
+                    if first_char == "<" and last_char == ">":
+                        working_root_text = ("<" + tag_name + ">" +
+                                              working_root_text +
+                                              "</" + tag_name + ">")
+                        print("Working Text Edit:", working_root_text)
+                        working_root = etree.fromstring(working_root_text)
 
             # Option 1, this is a text node
-            print(working_root.text)
             column_value = working_root.text
 
 
