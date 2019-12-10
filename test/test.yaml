@@ -98,8 +98,8 @@ TABLE_COLUMNS :
     - BioSampleComment : NullValue
 
   - BioProject :
-    - BioProjectAccession : Project_Acc
-    - BioProjectDataType : Project_Data_Type
+    - BioProjectAccession : ProjectID, ArchiveID, accession
+    - BioProjectDataType : ProjectType, ProjectDataTypeSet, DataType
     - BioProjectDescription : Project_Description
     - BioProjectMethodType : Project_MethodType
     - BioProjectName : Project_Name

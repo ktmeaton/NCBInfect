@@ -191,7 +191,7 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
             open_char = "&lt;"
             close_char = "&gt;"
             xml_root_string = str(xml_root_string).replace(open_char,"<").replace(close_char,">").strip()
-            xml_root_string = str(xml_root_string).replace("\\n","").replace("\\t","")
+            xml_root_string = str(xml_root_string).replace("\\n","").replace("\t","")
             print("Current Root After:", xml_root_string)
             # Strip off the first 2 char (b') and the final char '
             print("Current Root Mod:", xml_root_string[2:-1])
@@ -208,19 +208,24 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
         # If there were multiple results, need to keep searching recursively
         for result in search_results:
             print("Search Result Ongoing:", result)
-            # Check if the xml_result contains cda  ta
-            result_text = result.text.strip()
-            if result_text:
-                # Check if result contains CDATA
-                first_char = result_text[0]
-                last_char = result_text[-1]
-                if first_char == "<" and last_char == ">":
-                    # Reformat CDATA as complete XML
-                    result_text = ("<" + current_tag + ">" + result_text + "</" + current_tag + ">")
-                    print("Working Text Edit:", result_text)
-                    result = etree.fromstring(result_text)
-                    print(etree.tostring(result))
-            xml_search(result, search_list, next_tag, column_name, xml_dict)
+            # If there was a result, but not a text node, try attribute
+            if not result.text:
+                print("ATTEMPTING GET:", result.get(next_tag))
+                xml_dict[column_name] = result.get(next_tag)
+            else:
+                # Check if the xml_result contains CDATA
+                result_text = result.text.strip()
+                if result_text:
+                    # Check if result contains CDATA
+                    first_char = result_text[0]
+                    last_char = result_text[-1]
+                    if first_char == "<" and last_char == ">":
+                        # Reformat CDATA as complete XML
+                        result_text = ("<" + current_tag + ">" + result_text + "</" + current_tag + ">")
+                        print("Working Text Edit:", result_text)
+                        result = etree.fromstring(result_text)
+                        print(etree.tostring(result))
+                xml_search(result, search_list, next_tag, column_name, xml_dict)
 
 def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
     '''
