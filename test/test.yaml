@@ -49,7 +49,7 @@ TABLE_COLUMNS :
     - AssemblyChromosomes : Meta, Stat, category, chromosome_count
     - AssemblyContigCount: Meta, Stat, category, contig_count
     - AssemblyContigN50 : Meta, Stat, category, contig_n50
-    - AssemblyContigL50 : Meta, Stat,  category, contig_l50
+    - AssemblyContigL50 : Meta, Stat, category, contig_l50
     - AssemblyNonChromosomalReplicons : Meta, Stat, category, non_chromosome_replicon_count
     - AssemblyReplicons : Meta, Stat, category, replicon_count
     - AssemblyScaffolds : Meta, Stat, category, scaffold_count
@@ -70,27 +70,27 @@ TABLE_COLUMNS :
     - BioSampleAccession: Accession
     - BioSampleAccessionSecondary: NullValue
     - BioSampleBioProjectAccession: Link, label
-    - BioSampleSRAAccession: Id, SRA, db
+    - BioSampleSRAAccession: Id, db, SRA
     - BioSampleTitle: Title
-    - BioSampleName: Id, Sample name, db_label
-    - BioSampleType: Attribute, sample_type, harmonized_name
+    - BioSampleName: Id, db_label, Sample name
+    - BioSampleType: Attribute, harmonized_name, sample_type
     - BioSamplePackage: Package
     - BioSampleInfraspecies: Infraspecies
-    - BioSampleOrganism: OrganismName
-    - BioSampleOrganismAlt: Organism, taxonomy_name
-    - BioSampleSubSpecies: Attribute, sub_species, harmonized_name
-    - BioSampleStrain: Attribute, strain, harmonized_name
+    - BioSampleOrganism: Description, OrganismName
+    - BioSampleOrganismAlt: Description, Organism, taxonomy_name
+    - BioSampleSubSpecies: Attribute, harmonized_name, sub_species
+    - BioSampleStrain: Attribute, harmonized_name, strain
     - BioSampleTaxonomyID: Taxonomy
-    - BioSampleBiovar: Attribute, biovar, harmonized_name
-    - BioSampleCollectionDate: Attribute, collection_date, harmonized_name
-    - BioSampleGeographicLocation: Attribute, geo_loc_name, harmonized_name
-    - BioSampleHost: Attribute, host, harmonized_name
-    - BioSampleHostDisease : Attribute, host_disease, harmonized_name
-    - BioSampleIsolateNameAlias: Attribute, isolate_name_alias, harmonized_name
-    - BioSampleIsolationSource: Attribute, isolation_source, harmonized_name
-    - BioSampleLat : Attribute, latitude, harmonized_name
-    - BioSampleLatLon : Attribute, lat_lon, harmonized_name
-    - BioSampleLon : Attribute, longitude, harmonized_name
+    - BioSampleBiovar: Attribute, harmonized_name, biovar
+    - BioSampleCollectionDate: Attribute, harmonized_name, collection_date
+    - BioSampleGeographicLocation: Attribute, harmonized_name, geo_loc_name
+    - BioSampleHost: Attribute, harmonized_name, host
+    - BioSampleHostDisease : Attribute, harmonized_name, host_disease
+    - BioSampleIsolateNameAlias: Attribute, harmonized_name, isolate_name_alias
+    - BioSampleIsolationSource: Attribute, harmonized_name, isolation_source
+    - BioSampleLat : Attribute, harmonized_name, latitude
+    - BioSampleLatLon : Attribute, harmonized_name, lat_lon
+    - BioSampleLon : Attribute, harmonized_name, longitude
     - BioSampleDate: Date
     - BioSampleModificationDate: ModificationDate
     - BioSamplePublicationDate: PublicationDate
