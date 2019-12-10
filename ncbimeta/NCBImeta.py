@@ -21,6 +21,7 @@ from Bio import Entrez                  # Entrez queries (NCBI)
 from xml.dom import minidom             # XML Processing
 import yaml                             # YAML config file parsing
 from lxml import etree                  # XML Parsing
+import tempfile                         # Temporary file for XML parsing
 
 from ncbimeta import NCBImetaUtilities  # NCBImeta helper functions
 from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
@@ -60,6 +61,8 @@ args = vars(parser.parse_args())
 config_path = args['configPath']
 flat_mode = args['flatMode']
 
+# lxml parser
+lxml_cdata_parser = etree.XMLParser(strip_cdata=False)
 
 #------------------------------------------------------------------------------#
 #                              Argument Parsing                                #
@@ -304,12 +307,28 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             kwargs = {"db": table.lower(), "id":ID, "retmode":"xml"}
             entrez_method = Entrez.efetch
 
-        # Possible urllib error occuring in the next line for unknown reasons
+        # ID_handle is an _io.TextIOWrapped object, which SHOULD have utf-8 encoding
         ID_handle = NCBImetaUtilities.HTTPErrorCatch(entrez_method, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
 
-        # If successfully fetched, move onto reading the xml record
-        ID_xml = ID_handle.read()
-        mini_root = minidom.parseString(ID_xml).documentElement
+        # Ideal world: Pass an undecoded string to the xml parser
+        # Could be accomplished by opening in binary ('rb')
+        # tempfiles by default are opened as mode='w+b'
+        with tempfile.NamedTemporaryFile(delete=False) as temp_b:
+            # Write the data from ID_handle to a temporary file (binary)
+            for line in ID_handle:
+                temp_b.write(str.encode(line))
+            temp_b.close()
+            # Read the data as binary, into the XML parser
+            #ID_data = open(temp_b.name, 'rb')
+            #ID_content = ID_data.read()
+            #ID_root = etree.XML(ID_content, strip_cdata=False)
+            with open(temp_b.name, 'rb') as source:
+                ID_root = etree.parse(source, parser=lxml_cdata_parser)
+                ID_tree = ID_root
+                print(ID_root)
+
+        # Call the ElementTree function, provides methods for document handling
+        #ID_tree = etree.ElementTree(ID_root)
         #----------------------------------------------------------------------#
         #                         NCBI Record Parsing                          #
         #----------------------------------------------------------------------#
@@ -317,12 +336,12 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         # Iterate through each column to search for values
         column_dict = {}
         for column in table_columns:
-            column_name = list(column.keys())[0]
-            #column_name = "AssemblyChromosomes"
+            #column_name = list(column.keys())[0]
+            column_name = "AssemblyChromosomes"
             column_value = ""
-            column_payload = list(column.values())[0]
-            column_payload = column_payload.split(", ")
-            #column_payload = ['Meta', 'Stat', 'category', 'chromosome_count']
+            #column_payload = list(column.values())[0]
+            #column_payload = column_payload.split(", ")
+            column_payload = ['Meta', 'Stat', 'category', 'chromosome_count']
             print("Column name: ", column_name)
             print("Column payload: ", column_payload)
 
@@ -330,50 +349,27 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             #   XML Parse for node or attribute
             #-------------------------------------------------------#
             # This should be a recursive function!!!
-            working_root = mini_root
+            working_root =ID_tree
 
             for i in range(0,len(column_payload)):
                 # Construct an xpath recursive search query
                 tag_xpath = ".//" + column_payload[i]
-                # recursively search for the tag
-                working_root = working_root.findall(tag_xpath)
+                # search for the tag
+                working_root = working_root.findall(tag_xpath)[0]
+                print(working_root)
+                print(etree.tostring(working_root))
 
-            print(working_root)
-            print(working_root[0].text)
-            column_value = working_root[0].text
-            column_dict[column_name] = column_value
+            # Option 1, this is a text node
+            print(working_root.text)
+            column_value = working_root.text
 
 
-
-            # If we didn't get to the end of the column_payload
-            if working_root.nodeName != column_payload[-1]:
-                #print("Tag name: ",tag_name)
-                if isinstance(working_root.firstChild, minidom.CDATASection):
-                    cdata = "<root>" + working_root.firstChild.wholeText + "</root>"
-                    working_root = minidom.parseString(cdata).documentElement
-                    for i in range(i,len(column_payload)):
-                        tag_name = column_payload[i]
-                        results = working_root.getElementsByTagName(tag_name)
-                        for element in results:
-                            if element.getAttribute(column_payload[i+1]) == column_payload[i+2]:
-                                working_root = element
-                                #print(working_root.toprettyxml())
-                                # Only finding first matching occurence
-                                break
-
-            print(column_payload)
-            try:
-                column_value = working_root.firstChild.nodeValue
-            except AttributeError:
-                column_value = ""
-            #print(working_root.toprettyxml())
-            #print(column_value)
-            #print(working_root.toprettyxml())
             column_dict[column_name] = column_value
             print(column_dict)
             quit()
 
-        #print(column_dict)
+        print(column_dict)
+        quit()
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
         sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "
