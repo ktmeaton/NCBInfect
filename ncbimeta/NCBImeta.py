@@ -20,6 +20,7 @@ import Bio                              # Biopython NCBI API
 from Bio import Entrez                  # Entrez queries (NCBI)
 from xml.dom import minidom             # XML Processing
 import yaml                             # YAML config file parsing
+from lxml import etree                  # XML Parsing
 
 from ncbimeta import NCBImetaUtilities  # NCBImeta helper functions
 from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
@@ -306,183 +307,71 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         # Possible urllib error occuring in the next line for unknown reasons
         ID_handle = NCBImetaUtilities.HTTPErrorCatch(entrez_method, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
 
-        # If successfully fetched, move onto reading the record
-        ID_record = Entrez.read(ID_handle, validate=False)
-        try:
-            record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
-        except TypeError:
-            record_dict = ID_record[0]
-
-        #DEBUG
-        #print(record_dict)
-        flatten_record_dict = list(NCBImetaUtilities.flatten_dict(record_dict))
-        #for element in flatten_record_dict:
-            #print(element)
-        column_dict = {}
-
-        # Add ID to the dictionary
-        column_dict[table + "_id"] = ID
-
+        # If successfully fetched, move onto reading the xml record
+        ID_xml = ID_handle.read()
+        mini_root = minidom.parseString(ID_xml).documentElement
         #----------------------------------------------------------------------#
         #                         NCBI Record Parsing                          #
         #----------------------------------------------------------------------#
 
         # Iterate through each column to search for values
+        column_dict = {}
         for column in table_columns:
             column_name = list(column.keys())[0]
-            column_payload = list(column.values())[0]
+            #column_name = "AssemblyChromosomes"
             column_value = ""
-
-            # Check and see if column is special multi/hierarchical type
-            # AssemblyGenbankBioprojectAccession : GB_BioProjects, BioprojectAccn
-            split_column_payload = column_payload.split(", ")
-            # if the split was successful, the payload should be a list
-            if len(split_column_payload) > 1:
-                column_payload = split_column_payload
-
-            # Special rules for hard-coded Nucleotide Fields (ex. GBSeq_comment)
-            if "GBSeq_comment" in column.values():
-                for row in flatten_record_dict:
-                    if row[0] == "GBSeq_comment":
-                        # Hard-coded field, also check for user custom column name
-                        for i_column in table_columns:
-                            if "GBSeq_comment" in i_column.values():
-                                column_value = "'" + row[1].replace("'","") + "'"
-                                column_dict[list(i_column.items())[0][0]] = column_value
-
-                        split_comment = row[1].split(";")
-                        for item in split_comment:
-                            split_item = item.split("::")
-                            if len(split_item) < 2: continue
-                            split_key = split_item[0].lstrip(" ").rstrip(" ")
-                            split_value = split_item[1].lstrip(" ").rstrip(" ")
-                            # Accomodate all the inconsistently named fields
-                            for i_column in table_columns:
-                                cur_column = list(i_column.items())[0][1]
-                                if (cur_column == split_key or (cur_column == "CDS (total)" and split_key == "CDSs (total)") or
-				  (cur_column == "CDS (total)" and split_key == "CDS") or
-                                  (cur_column == "CDS (coding)" and split_key == "CDS (with protein)") or
-				  (cur_column == "CDS (coding)" and split_key == "CDSs (with protein)") or
-                                  (cur_column == "Genes (total)" and split_key == "Genes") or
-                                  (cur_column == "Pseudo Genes (total)" and split_key == "Pseudo Genes")):
-                                    column_value = "'" + split_value.replace("'","").replace(",","") + "'"
-                                    column_dict[list(i_column.items())[0][0]] = column_value
-
-            # Special hard-coded field for biosample
-            elif "NucleotideBioSample" in column.values():
-                for row in record_dict:
-                    if row != "GBSeq_xrefs": continue
-                    for subrow in record_dict[row]:
-                        if subrow["GBXref_dbname"] != "BioSample": continue
-                        for i_column in table_columns:
-                            if list(i_column.items())[0][1] == "NucleotideBioSample":
-                                column_value = "'" + subrow["GBXref_id"].replace("'","") + "'"
-                                column_dict[list(i_column.items())[0][0]] = column_value
-
+            column_payload = list(column.values())[0]
+            column_payload = column_payload.split(", ")
+            #column_payload = ['Meta', 'Stat', 'category', 'chromosome_count']
+            print("Column name: ", column_name)
+            print("Column payload: ", column_payload)
 
             #-------------------------------------------------------#
-            # Attempt 1: Simple Dictionary Parse, taking first match
-
-            for row in flatten_record_dict:
-                # For simple column types, as strings
-                if type(column_payload) == str and column_payload in row:
-                    column_value = row[-1]
-                    break
-
-                # For complex column types, as list
-                elif type(column_payload) == list:
-                    column_index = 0
-                    while column_payload[column_index] in row:
-                        if column_index + 1 == len(column_payload):
-                            column_value = row[-1]
-                            break
-                        column_index += 1
-
-            # If the value was found, skip(?) the next section of XML parsing
-            if column_value:
-                column_value = "'" + column_value.replace("'","") + "'"
-                column_dict[column_name] = column_value
-
-	        # Briefly try to parse the original record dict
-	        # This was for pubmed author lists originally
-            elif type(column_payload) != list:
-                try:
-                    column_value = record_dict[column_payload]
-                    # If list, convert to semicolon separated string
-                    if isinstance(column_value,Bio.Entrez.Parser.ListElement):
-                        column_value = '; '.join(str(e) for e in column_value)
-                    column_value = "'" + column_value.replace("'","") + "'"
-                    column_dict[column_name] = column_value
-                except KeyError:
-                    column_value = ""
-
+            #   XML Parse for node or attribute
             #-------------------------------------------------------#
-            # Attempt 2: XML Parse for node or attribute
-            for row in flatten_record_dict:
-                if type(column_payload) == str:
-                    # Pubmed records can have an int value (has abstract = 0 or 1)
-                    result = [str(s) for s in row if column_payload in str(s)]
+            # This should be a recursive function!!!
+            working_root = mini_root
 
-                elif type(column_payload) == list:
-                    result = [s for s in row if column_payload[0] in s and column_payload[1] in s ]
-                if not result: continue
-                result = str(result[0].strip())
-                if result[0] != "<" or result[-1] != ">": continue
+            for i in range(0,len(column_payload)):
+                # Construct an xpath recursive search query
+                tag_xpath = ".//" + column_payload[i]
+                # recursively search for the tag
+                working_root = working_root.findall(tag_xpath)
 
-                # Just in case, wrap sampledata in a root node for XML formatting
-                xml = "<Root>" + result + "</Root>"
-                # minidom doc object for xml manipulation and parsing
-                try:
-                    root = minidom.parseString(xml).documentElement
-                except UnicodeEncodeError:
-                    #xml = "<Root>" + str(result) + "</Root>"
-                    xml = "<Root>" + result.encode('utf-8') + "</Root>"
-                    root = minidom.parseString(xml).documentElement
+            print(working_root)
+            print(working_root[0].text)
+            column_value = working_root[0].text
+            column_dict[column_name] = column_value
 
-                #DEBUG
-                #print(root.toprettyxml())
-                # Names of nodes and attributes we are searching for
-                if type(column_payload) == str:
-                    node_name = column_payload
-                    attr_name = column_payload
 
-                elif type(column_payload) == list:
-                    node_name = column_payload[0]
-                    if len(column_payload) > 2:
-                        attr_name = column_payload[1:]
-                    else:
-                        attr_name = column_payload[1]
-                # Dictionaries store recovered nodes and attributes
-                node_dict = {}
-                attr_dict = {}
 
-                #DEBUG
-                #print('Node Name:', node_name)
-                #print('Attr Name:', attr_name)
-                #print('Column Name:', column_name)
-                #print('Column Payload:', column_payload)
-                NCBImetaUtilities.xml_find_node(root,node_name,node_dict)
-                NCBImetaUtilities.xml_find_attr(root,node_name,attr_name,attr_dict)
-                #print('Node Dict:', node_dict)
-                #print('Attr Dict:', attr_dict)
+            # If we didn't get to the end of the column_payload
+            if working_root.nodeName != column_payload[-1]:
+                #print("Tag name: ",tag_name)
+                if isinstance(working_root.firstChild, minidom.CDATASection):
+                    cdata = "<root>" + working_root.firstChild.wholeText + "</root>"
+                    working_root = minidom.parseString(cdata).documentElement
+                    for i in range(i,len(column_payload)):
+                        tag_name = column_payload[i]
+                        results = working_root.getElementsByTagName(tag_name)
+                        for element in results:
+                            if element.getAttribute(column_payload[i+1]) == column_payload[i+2]:
+                                working_root = element
+                                #print(working_root.toprettyxml())
+                                # Only finding first matching occurence
+                                break
 
-                if type(column_payload) == list:
-                    attr_name = column_payload[1]
-                    try:
-                        column_value = attr_dict[attr_name]
-                        column_value = "'" + column_value.replace("'","") + "'"
-                        column_dict[column_name] = column_value
-                        break
-                    except KeyError:
-                        None
-                else:
-                    try:
-                        column_value = node_dict[node_name]
-                        column_value = "'" + column_value.replace("'","") + "'"
-                        column_dict[column_name] = column_value
-                    except KeyError:
-                        None
-                    break
+            print(column_payload)
+            try:
+                column_value = working_root.firstChild.nodeValue
+            except AttributeError:
+                column_value = ""
+            #print(working_root.toprettyxml())
+            #print(column_value)
+            #print(working_root.toprettyxml())
+            column_dict[column_name] = column_value
+            print(column_dict)
+            quit()
 
         #print(column_dict)
         # Write the column values to the db with dynamic variables
@@ -491,7 +380,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         #sql_dynamic_qmarks = "VALUES (" + ",".join(["?" for column in column_dict.keys()]) + ") "
         sql_dynamic_values = " VALUES (" + ",".join([column_dict[column] for column in column_dict.keys()]) + ")"
         sql_query = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_values
-        #print(sql_query)
+        print(sql_query)
         cur.execute(sql_query)
 
         # Write to logfile
