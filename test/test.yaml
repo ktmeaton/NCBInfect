@@ -21,7 +21,7 @@ SEARCH_TERMS :
   - BioSample: (SAMN12991206[Accession])
   - SRA : (SAMN12991206[BioSample])
   - Nucleotide : (SAMN12991206[BioSample])
-  - Pubmed : (SAMN12991206[BioSample])
+  - Pubmed : (26634751[uid])
 
 # Columns of the database (ie. metadata fields to retrieve)
 TABLE_COLUMNS :
@@ -223,18 +223,26 @@ TABLE_COLUMNS :
     - SRAComment : NullValue
 
   - Pubmed :
-    - PubmedPublishDate : PubDate
+    - PubmedPublishYear : PubDate, Year
+    - PubmedPubishMonth : PubDate, Month
+    - PubmedPublishDay : PubDate, Day
     - PubmedEPublishDate : EPubDate
-    - PubmedSource : Source
-    - PubmedFullSource : FullJournalName
-    - PubmedAuthorList : AuthorList
-    - PubmedTitle : Title
+    - PubmedPublishModel : Article, PubModel
+    - PubmedType : PublicationType
+    - PubmedJournalTitle : Journal, Title
+    - PubmedJournalAbbrev : Journal, ISOAbbreviation
+    - PubmedJournalISSN : Journal, ISSN
+    - PubmedArticleTitle : ArticleTitle
+    - PubmedAbstract : AbstractText
     - PubmedVolume : Volume
     - PubmedIssue : Issue
-    - PubmedPages : Pages
-    - PubmedDOI : DOI
-    - PubmedPubStatus : PubStatus
-    - PubmedRecordStatus : RecordStatus
-    - PubmedLangList : LangList
-    - PubmedTypeList : PubTypeList
+    - PubmedPages : MedlinePgn
+    - PubmedDOI : ELocationID, EIdType, doi
+    - PubmedAuthorsLastName : AuthorList, LastName
+    - PubmedAuthorsForeName : AuthorList, ForeName
+    - PubmedAuthorsAffiliation : AuthorList, Affiliation
+    - PubmedLanguage : Language
+    - PubmedCitations : Reference, Citation
+    - PubmedRecordStatus : MedlineCitation, Status
+    - PubmedPubStatus : PublicationStatus
     - PubmedComment : NullValue

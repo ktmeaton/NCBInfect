@@ -5,17 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project "attempts" to adhere to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-- Think about concatenating multi value nodes
-- Dangling option, single child node name?
 
 ## [v0.6.0] - 2019-1211
 
 ### Added
 - XML overhaul (lxml module added, minidom removed)
-- BioProject record now using efetch rather than esummary
+- Multimatch nodes are concatenated by semi-colon
+- All tables except assembly now use efetch rather than esummary
 - BioProject Fields: BioProjectSpeciesTaxID, BioProjectModificationDate, BioProjectReleaseDate, BioProjectPublished, BioProjectDatePublished, BioProjectPublicationID, BioProjectPublicationDB
 - BioSample Fields: BioSampleSerovar, BioSampleHostHealthState
 - Nucleotide Fields: NucleotideAssemblyAccession, NucleotideCDSProtein, NucleotideCDSTotal, NucleotideGenesTotal, NucleotidePseudoGenesTotal, NucleotideCDSWithoutProtein
+- Pubmed Fields: AbstractText
 
 - Nucleotide: INSDSeq XML (replace "INSD" with "GB")
 

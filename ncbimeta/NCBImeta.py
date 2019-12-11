@@ -59,14 +59,14 @@ config_path = args['configPath']
 flat_mode = args['flatMode']
 
 #------------------------------------------------------------------------------#
-#                              Argument Parsing                                #
+#                            Error Catching                                    #
 #------------------------------------------------------------------------------#
 
 # Check if configuration file exists
 if not os.path.exists(config_path):
     raise NCBImetaErrors.ErrorConfigFileNotExists(config_path)
 
-# YAML switch in v0.3.5
+# Load the YAML configuration file
 with open(config_path) as config_file:
     config_data = yaml.load(config_file, Loader=yaml.FullLoader)
     if config_data is None:
@@ -114,6 +114,7 @@ try:
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("TABLE_COLUMNS")
 
+#--- Print the retrieved config file parameters ---#
 print(
 "\n" + "NCBImeta was run with the following options: " + "\n" +
 "\t" + "Config File: " + str(config_path) + "\n" +
@@ -136,17 +137,19 @@ if flat_mode:
     DB_DIR = os.path.join(CONFIG_OUTPUT_DIR, "")
     LOG_PATH = CONFIG_OUTPUT_DIR
 
-
+# Or Create accessory directory (ex. log, data, database, etc.)
 elif not flat_mode:
-    # Create accessory directory (ex. log, data, database, etc.)
     print("Flat mode was not requested, organization directories will be used.", flush = True)
     NCBImetaUtilities.check_accessory_dir(CONFIG_OUTPUT_DIR)
     DB_DIR = os.path.join(CONFIG_OUTPUT_DIR, "", "database", "")
     LOG_PATH = os.path.join(CONFIG_OUTPUT_DIR, "", "log")
 
+# Database path (depending on flat mode or not)
 DB_PATH = os.path.join(DB_DIR, "", CONFIG_DATABASE)
 
-#------------------------- Database Connection---------------------------------#
+#------------------------------------------------------------------------------#
+#                       Database connection                                    #
+#------------------------------------------------------------------------------#
 if not os.path.exists(DB_PATH):
     print("\n" + "Creating database: " + DB_PATH, flush = True)
     conn = sqlite3.connect(DB_PATH)
@@ -166,8 +169,10 @@ XPATH_SPECIAL_CHAR =['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')',
                      '+', '{', '}', '|', ':', '"', '<', '>', '?', '`', '=',
                      '[', ']', '\\', ';', '‘', ',', '.', '/']
 
+DB_VALUE_SEP = ";"
+
 # lxml parser
-lxml_cdata_parser = etree.XMLParser(strip_cdata=False)
+LXML_CDATA_PARSER = etree.XMLParser(strip_cdata=False)
 
 #------------------------------------------------------------------------------#
 #                       Database Processing Function                           #
@@ -246,6 +251,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     read_succeed = False
     read_attempts = 0
 
+    # Database reading and entrez searching occur in a while loop to catch errors
     while not read_succeed and read_attempts < Entrez.max_tries:
         kwargs = {"db": table.lower(), "term":search_term, "retmax":"9999999"}
         entrez_method = Entrez.esearch
@@ -300,14 +306,13 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         time.sleep(force_pause_seconds)
 
         #---------------If the table isn't in Database, Add it------------#
-        # If we're not workinng with the Nucleotide table, we're using the "esummary function"
-        # Retrieve table record using ID, read, store as dictionary
-        if table.lower() != "nucleotide" and table.lower() != "bioproject" and table.lower() != "biosample" and table.lower() != "sra":
+        # The Assembly table cannot be retrieved using efetch, only docsum esummary
+        if table.lower() == "assembly":
             # Use the http function to return a record summary, but wrapped in HTTP error checking
-            kwargs = {"db":table.lower(), "id":ID}
+            kwargs = {"db":table.lower(), "id":ID, "retmode": "xml"}
             entrez_method = Entrez.esummary
         else:
-            # We're working with the Nucleotide table instead, use efetch and get xml
+            # We're working with any other table instead, use efetch and get xml
             kwargs = {"db": table.lower(), "id": ID, "retmode": "xml"}
             if table.lower() == "nucleotide":
                 kwargs["rettype"] = "gb"
@@ -321,42 +326,35 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         # tempfiles by default are opened as mode='w+b'
         with tempfile.NamedTemporaryFile(delete=False) as temp_b:
             # Write the data from ID_handle to a temporary file (binary)
-            for line in ID_handle:
-                temp_b.write(str.encode(line))
+            for line in ID_handle: temp_b.write(str.encode(line))
             temp_b.close()
-            # Read the data as binary, into the XML parser
+            # Read the data as binary, into the XML parser. Avoids encoding issues
             with open(temp_b.name, 'rb') as xml_source:
-                ID_root = etree.parse(xml_source, parser=lxml_cdata_parser)
-
+                ID_root = etree.parse(xml_source, parser=LXML_CDATA_PARSER)
 
         #----------------------------------------------------------------------#
         #                         NCBI Record Parsing                          #
         #----------------------------------------------------------------------#
 
-        # Iterate through each column to search for values
         column_dict = {}
         # Add ID to the dictionary
-        column_dict[table + "_id"] = ID
+        column_dict[table + "_id"] = [ID]
         # A special dictionary for gbseq annotations
         gbseq_dict = {}
-
+        # Iterate through each column to search for metadata
         for column in table_columns:
             column_name = list(column.keys())[0]
-            column_value = ""
+            column_value = []
             column_payload = list(column.values())[0]
             column_payload = column_payload.split(", ")
             # Initialize with empty values
             column_dict[column_name] = column_value
-            #print("Column name: ", column_name)
-            #print("Column payload: ", column_payload)
 
             #-------------------------------------------------------#
             #   XML Parse for node or attribute
             #-------------------------------------------------------#
-            # This should be a recursive function!!!
             working_root =ID_root
-            #print(etree.tostring(working_root))
-            # If there are special character, this query is not an XML element!!
+            # If there are special character, this query should not be used for xpath!!
             bool_special_char = False
             for char in XPATH_SPECIAL_CHAR:
                 for xquery in column_payload:
@@ -368,8 +366,8 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
             # Special parsing for GBSeq_comment
             # If we're on the GBSeq_comment element and the comment was added to the dictionary
-            if "GBSeq_comment" in column_payload and column_dict[column_name]:
-                comment = column_dict[column_name]
+            if "GBSeq_comment" in column_payload and len(column_dict[column_name]) > 0:
+                comment = column_dict[column_name][0]
                 # Fix the CDS vs CDSs ambiguity
                 comment = comment.replace("CDSs", "CDS")
                 # comment is initialize subdivided by semi-colons
@@ -385,28 +383,20 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                     gbseq_dict[split_key] = split_value
 
             # If the value was still empty, check for gbseq comment
-            #print("TEST:", column_payload[0])
             if column_payload[0] in gbseq_dict:
-                #print(column_payload[0], ":", gbseq_dict[column_payload[0]])
-                column_dict[column_name] = gbseq_dict[column_payload[0]]
+                column_dict[column_name].append(gbseq_dict[column_payload[0]])
 
-            #print(column_dict)
-
-        #print(column_dict)
         # Add quotations around each value for sql insertion
         for key in column_dict:
-            if not column_dict[key]:
-                column_dict[key] = ''
-            column_dict[key] = "'" + column_dict[key] + "'"
-            #print(key, ":", column_dict[key])
+            # Remove empty string elements
+            while "" in column_dict[key]: column_dict[key].remove("")
+            column_dict[key] = "'" + DB_VALUE_SEP.join(column_dict[key]) + "'"
 
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
         sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "
-        #sql_dynamic_qmarks = "VALUES (" + ",".join(["?" for column in column_dict.keys()]) + ") "
         sql_dynamic_values = " VALUES (" + ",".join([column_dict[column] for column in column_dict.keys()]) + ")"
         sql_query = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_values
-        #print(repr(sql_query))
         cur.execute(sql_query)
 
         # Write to logfile

@@ -12,7 +12,6 @@ NCBImeta Utility Functions
 import os                               # Filepath operations
 from sys import platform as _platform   # Get Platform for OS separator
 import sqlite3                          # Database storage and queries
-import xml.etree.ElementTree as ET      # XML Processing
 from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
 import urllib.error                     # HTTP Error Catching
 import time                             # Allow sleeping of processes
@@ -47,7 +46,9 @@ def table_exists(db_cur, table_name):
 
 def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
     '''
-    Search xml_root for nodes, attributes in search_list and update node_dict.
+    Search xml_root using XPATH for nodes, attributes in search_list and update node_dict.
+    In addition to searching, this function also handles escaped XML as text &lt; and &gt;
+    characters, as well as CDATA sections.
 
     Parameters:
     xml_root (ElementTree): xml document as etree object
@@ -58,82 +59,71 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
     Returns:
     Void. Instead the function mutates the dictionary xml_dict.
     '''
-    # Search query (as tag or attribute)
+    # Xpath query (could be tag or attribute)
     tag_xpath = ".//"  + current_tag
-    print("CURRENT TAG:", current_tag)
-    # Modify dict (stop recursion), if we're at the end of the list
+    #--------------------------------------------------------------------------#
+    #                   Recursion Bottom (End of Search List)                  #
+    #--------------------------------------------------------------------------#
     if search_list.index(current_tag) == len(search_list) - 1:
-        # First tag as attribute
+        #--- First try the current_tag as attribute ---#
         try:
             fetch_attrib = xml_root.get(current_tag)
-            print("FETCH ATTRIB1:", fetch_attrib)
-            if fetch_attrib:
-                # Add or append attribute to xml dictionary
-                xml_dict[column_name].append(fetch_attrib)
-        except AttributeError:
-            pass
-        # Then try tag as node
-        # Attempt to check search results, exception if there are none
+            # If successful, add to dictionary
+            if fetch_attrib: xml_dict[column_name].append(fetch_attrib)
+        except AttributeError: pass
+        #--- Next, try the current_tag as a node ---#
         try:
             search_results = xml_root.findall(tag_xpath)
+            # Iterate over all possible nodes
             for result in search_results:
-                print("SEARCH RESULT NODE:", result)
+                # If the result was a text node
                 if result.text:
-                    # Remove empty string elements
+                    # Remove empty string elements/empty whitespace
                     result_text = result.text.strip()
-                    print("SEARCH RESULT1 TEXT:", result_text)
-                    # Str conversion here is mainly for None results
                     xml_dict[column_name].append(str(result_text))
-                # Or if has no text but does have child nodes
+                # If the result wasn't a text node, but does have child nodes
                 elif len(result) > 0:
-                    # Experiment with first child node as value
-                    print("SEARCH RESULT1 CHILD NODE:", result[0].tag)
                     xml_dict[column_name].append(result[0].tag)
-        except IndexError:
-            pass
+        except IndexError: pass
+    #--------------------------------------------------------------------------#
+    #                                 Ongoing Recursion                        #
+    #--------------------------------------------------------------------------#
     else:
-        # First try tag as node, allowing multiple results
-        next_tag = search_list[search_list.index(current_tag) + 1]
-        print("NEXT TAG:", next_tag)
-        #print("Current Root Before:", etree.tostring(xml_root))
+        # First try current_tag as node, allowing multiple results
         search_results = xml_root.findall(tag_xpath)
-        # If there are no results, this is an attribute matching situation
+        # We need to know the next tag
+        next_tag = search_list[search_list.index(current_tag) + 1]
+
+        #--- No results, first possibility is xml tags have been recoded ---#
         if not search_results:
-            #print("NO RESULTS")
             # Retry the search with unescaped characters
             xml_root_string = etree.tostring(xml_root)
             open_char = "&lt;"
             close_char = "&gt;"
             xml_root_string = str(xml_root_string).replace(open_char,"<").replace(close_char,">").strip()
-            xml_root_string = str(xml_root_string).replace("\\n","").replace("\t","")
-            #print("Current Root After:", xml_root_string)
+            xml_root_string = str(xml_root_string).replace("\\n","").replace("\\t","")
             # Strip off the first 2 char (b') and the final char '
-            #print("Current Root Mod:", xml_root_string[2:-1])
             xml_root = etree.fromstring(xml_root_string[2:-1])
-
+            # Now retry the search with the tags fixed up
             search_results = xml_root.findall(tag_xpath)
             # If attributes of interest are present and matching
-            try:
-                if xml_root.get(current_tag) == next_tag:
-                    xml_dict[column_name].append(xml_root.text)
-            except AttributeError:
-                # Fails if no attributes, just a non-existent node
-                pass
-        # If there were multiple results, need to keep searching recursively
+
+        #--- See if the info we want exists at this level as attribute values---#
+        try:
+            if xml_root.get(current_tag) == next_tag:
+                xml_dict[column_name].append(xml_root.text)
+        except AttributeError: pass
+
+        #--- With multiple results, need to keep searching recursively ---#
         for result in search_results:
-            #print("Search Result Ongoing:", result)
             # If there was a result, but not a text node, try attribute
             fetch_attrib = ""
             if not result.text:
                 fetch_attrib = result.get(next_tag)
-                print("FETCH ATTRIB2:", fetch_attrib)
-                #print("ATTEMPTING GET2:", fetch_attrib)
-                if fetch_attrib:
-                    xml_dict[column_name].append(fetch_attrib)
-            else:
-                # Check if the xml_result contains CDATA
+                if fetch_attrib: xml_dict[column_name].append(result.get(next_tag))
+            # If there was a text node found
+            elif result.text:
                 result_text = result.text.strip()
-                print("SEARCH RESULT2 TEXT:", result_text)
                 if result_text:
                     # Check if result contains CDATA
                     first_char = result_text[0]
@@ -141,14 +131,11 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
                     if first_char == "<" and last_char == ">":
                         # Reformat CDATA as complete XML
                         result_text = ("<" + current_tag + ">" + result_text + "</" + current_tag + ">")
-                        #print("Working Text Edit:", result_text)
                         result = etree.fromstring(result_text)
-                        #print(etree.tostring(result))
 
-            # If an attribute wasn't succesfully fetched, need recursion
             if not fetch_attrib:
+                # If an attribute wasn't succesfully fetched, need recursion
                 xml_search(result, search_list, next_tag, column_name, xml_dict)
-
 
 def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
     '''
