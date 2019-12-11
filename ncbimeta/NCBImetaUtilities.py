@@ -97,13 +97,19 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
         #--- No results, first possibility is xml tags have been recoded ---#
         if not search_results:
             # Retry the search with unescaped characters
-            xml_root_string = etree.tostring(xml_root)
+            xml_root_string_orig = etree.tostring(xml_root)
             open_char = "&lt;"
             close_char = "&gt;"
-            xml_root_string = str(xml_root_string).replace(open_char,"<").replace(close_char,">").strip()
+            xml_root_string = str(xml_root_string_orig).replace(open_char,"<").replace(close_char,">").strip()
             xml_root_string = str(xml_root_string).replace("\\n","").replace("\\t","")
             # Strip off the first 2 char (b') and the final char '
-            xml_root = etree.fromstring(xml_root_string[2:-1])
+            #print(xml_root_string)
+            try:
+                xml_root = etree.fromstring(xml_root_string[2:-1])
+            # To aggressive, actual greater than/less than signs got replaced in the text
+            except etree.XMLSyntaxError:
+                xml_root_string = str(xml_root_string_orig).replace("\\n","").replace("\\t","")
+                xml_root = etree.fromstring(xml_root_string[2:-1])
             # Now retry the search with the tags fixed up
             search_results = xml_root.findall(tag_xpath)
             # If attributes of interest are present and matching

@@ -390,13 +390,18 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         for key in column_dict:
             # Remove empty string elements
             while "" in column_dict[key]: column_dict[key].remove("")
-            column_dict[key] = "'" + DB_VALUE_SEP.join(column_dict[key]) + "'"
+            # Remove quotations from each list element
+            for i in range(0,len(column_dict[key])):
+                column_dict[key][i] = column_dict[key][i].replace("\"","")
+            column_dict[key] = "\"" + DB_VALUE_SEP.join(column_dict[key]) + "\""
 
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
         sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "
+        sql_dynamic_qmarks = "VALUES (" + ",".join(["?" for column in column_dict.keys()]) + ") "
         sql_dynamic_values = " VALUES (" + ",".join([column_dict[column] for column in column_dict.keys()]) + ")"
         sql_query = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_values
+        sql_query_q = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_qmarks
         cur.execute(sql_query)
 
         # Write to logfile
