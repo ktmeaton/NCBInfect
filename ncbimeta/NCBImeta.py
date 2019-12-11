@@ -18,7 +18,6 @@ import time                             # Allow sleeping of processes
 import datetime                         # Get date and time for logfile
 import Bio                              # Biopython NCBI API
 from Bio import Entrez                  # Entrez queries (NCBI)
-from xml.dom import minidom             # XML Processing
 import yaml                             # YAML config file parsing
 from lxml import etree                  # XML Parsing
 import tempfile                         # Temporary file for XML parsing
@@ -26,14 +25,14 @@ import tempfile                         # Temporary file for XML parsing
 from ncbimeta import NCBImetaUtilities  # NCBImeta helper functions
 from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
 
+
+
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-# To Be Done: Full Description
 parser = argparse.ArgumentParser(description='NCBImeta: Efficient and comprehensive metadata retrieval from the NCBI databases.',
                                  add_help=True)
-
 
 # Argument groups for the program
 mandatory_parser = parser.add_argument_group('mandatory')
@@ -53,16 +52,11 @@ parser.add_argument('--version',
                     action='version',
                     version='%(prog)s v0.4.2')
 
-
-
 # Retrieve user parameters
 args = vars(parser.parse_args())
 
 config_path = args['configPath']
 flat_mode = args['flatMode']
-
-# lxml parser
-lxml_cdata_parser = etree.XMLParser(strip_cdata=False)
 
 #------------------------------------------------------------------------------#
 #                              Argument Parsing                                #
@@ -164,6 +158,16 @@ elif os.path.exists(DB_PATH):
     conn.commit()
     print("\n" + "Connected to database: " + DB_PATH, flush = True)
 
+#-----------------------------------------------------------------------#
+#                      CONSTANTS and Config                             #
+#-----------------------------------------------------------------------#
+
+XPATH_SPECIAL_CHAR =['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')',
+                     '+', '{', '}', '|', ':', '"', '<', '>', '?', '`', '=',
+                     '[', ']', '\\', ';', '‘', ',', '.', '/']
+
+# lxml parser
+lxml_cdata_parser = etree.XMLParser(strip_cdata=False)
 
 #------------------------------------------------------------------------------#
 #                       Database Processing Function                           #
@@ -304,7 +308,9 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             entrez_method = Entrez.esummary
         else:
             # We're working with the Nucleotide table instead, use efetch and get xml
-            kwargs = {"db": table.lower(), "id":ID, "retmode":"xml"}
+            kwargs = {"db": table.lower(), "id": ID, "retmode": "xml"}
+            if table.lower() == "nucleotide":
+                kwargs["rettype"] = "gb"
             entrez_method = Entrez.efetch
 
         # ID_handle is an _io.TextIOWrapped object, which originally had utf-8 encoding
@@ -322,12 +328,18 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             with open(temp_b.name, 'rb') as xml_source:
                 ID_root = etree.parse(xml_source, parser=lxml_cdata_parser)
 
+
         #----------------------------------------------------------------------#
         #                         NCBI Record Parsing                          #
         #----------------------------------------------------------------------#
 
         # Iterate through each column to search for values
         column_dict = {}
+        # Add ID to the dictionary
+        column_dict[table + "_id"] = ID
+        # A special dictionary for gbseq annotations
+        gbseq_dict = {}
+
         for column in table_columns:
             column_name = list(column.keys())[0]
             column_value = ""
@@ -335,17 +347,50 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             column_payload = column_payload.split(", ")
             # Initialize with empty values
             column_dict[column_name] = column_value
-            print("Column name: ", column_name)
-            print("Column payload: ", column_payload)
+            #print("Column name: ", column_name)
+            #print("Column payload: ", column_payload)
 
             #-------------------------------------------------------#
             #   XML Parse for node or attribute
             #-------------------------------------------------------#
             # This should be a recursive function!!!
             working_root =ID_root
-            print(etree.tostring(working_root))
-            NCBImetaUtilities.xml_search(working_root, column_payload, column_payload[0], column_name, column_dict)
-            print(column_dict)
+            #print(etree.tostring(working_root))
+            # If there are special character, this query is not an XML element!!
+            bool_special_char = False
+            for char in XPATH_SPECIAL_CHAR:
+                for xquery in column_payload:
+                    if char in xquery:
+                        bool_special_char = True
+            # If no special characters, run xpath search Functions
+            if not bool_special_char:
+                NCBImetaUtilities.xml_search(working_root, column_payload, column_payload[0], column_name, column_dict)
+
+            # Special parsing for GBSeq_comment
+            # If we're on the GBSeq_comment element and the comment was added to the dictionary
+            if "GBSeq_comment" in column_payload and column_dict[column_name]:
+                comment = column_dict[column_name]
+                # Fix the CDS vs CDSs ambiguity
+                comment = comment.replace("CDSs", "CDS")
+                # comment is initialize subdivided by semi-colons
+                split_comment = comment.split(";")
+                for item in split_comment:
+                    # Further subdivided by double colons
+                    split_item = item.split("::")
+                    # The elements we're interested have the :: otherwise skip
+                    if len(split_item) < 2: continue
+                    # Left side is the column name, right side is the metadata
+                    split_key = split_item[0].lstrip(" ").rstrip(" ")
+                    split_value = split_item[1].lstrip(" ").rstrip(" ")
+                    gbseq_dict[split_key] = split_value
+
+            # If the value was still empty, check for gbseq comment
+            #print("TEST:", column_payload[0])
+            if column_payload[0] in gbseq_dict:
+                #print(column_payload[0], ":", gbseq_dict[column_payload[0]])
+                column_dict[column_name] = gbseq_dict[column_payload[0]]
+
+            #print(column_dict)
 
         #print(column_dict)
         # Add quotations around each value for sql insertion
@@ -353,7 +398,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             if not column_dict[key]:
                 column_dict[key] = ''
             column_dict[key] = "'" + column_dict[key] + "'"
-            print(key, ":", column_dict[key])
+            #print(key, ":", column_dict[key])
 
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("

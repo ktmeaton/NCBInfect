@@ -15,15 +15,20 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - BioProject record now using efetch rather than esummary
 - BioProject Fields: BioProjectSpeciesTaxID, BioProjectModificationDate, BioProjectReleaseDate, BioProjectPublished, BioProjectDatePublished, BioProjectPublicationID, BioProjectPublicationDB
 - BioSample Fields: BioSampleSerovar, BioSampleHostHealthState
+- Nucleotide Fields: NucleotideAssemblyAccession, NucleotideCDSProtein, NucleotideCDSTotal, NucleotideGenesTotal, NucleotidePseudoGenesTotal, NucleotideCDSWithoutProtein
+
+- Nucleotide: INSDSeq XML (replace "INSD" with "GB")
 
 ### Removed
 - BioProject Fields: BioProjectType, BioProjectSequencingStatus
 - SRA Fields: SRAExperimentStatus, SRAExperimentVersion, SRAStudyName, SRATotalRuns, SRAUpdateDate
+- Nucleotide Fields: NucleotideFirstAccession, NucleotideLastAccession
 
 ### Changed
 - BioProject Fields: BioProjectRegistrationDate -> BioProjectSubmissionDate
 - BioSample Fields: BioSampleDate -> BioSampleSubmissionDate
 - SRA Fields: SRAContactName -> SRAContactEmail, SRACreateDate -> SRARunPublishDate
+- Nucleotide Fields: NucleotideJournal -> NucleotideReferenceJournal
 - Experimented with changing Assembly to efetch, does not support this, only docsum
 
 ## [v0.5.0] - 2019-1204

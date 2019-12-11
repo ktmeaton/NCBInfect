@@ -130,16 +130,16 @@ TABLE_COLUMNS :
     - NucleotideAccessionVersion : GBSeq_accession-version
     - NucleotideBioSampleAccession: NucleotideBioSample
     - NucleotideBioProjectAccession : GBSeq_project
-    - NucleotideFirstAccession : GBAltSeqData_items, GBSeq_alt-seq, GBAltSeqItem_first-accn
-    - NucleotideLastAccession : GBAltSeqData_items, GBSeq_alt-seq, GBAltSeqItem_last-accn
+    - NucleotideAssemblyAccession : GBSeq_xrefs, GBXref_id
     - NucleotideOrganism : GBSeq_organism
     - NucleotideTaxonomy : GBSeq_taxonomy
     - NucleotideDefinition : GBSeq_definition
     - NucleotideDivision : GBSeq_division
-    - NucleotideJournal: GBSeq_references, GBReference_journal
+    - NucleotideReferenceJournal: GBSeq_references, GBReference_journal
+    - NucleotideReferenceTitle : GBSeq_references, GBReference_title
+    - NucleotideReferenceAuthors : GBSeq_references, GBReference_authors, GBAuthor
     - NucleotideLength : GBSeq_length
     - NucleotideMoleculeType : GBSeq_moltype
-    - NucleotideReferenceTitle: GBSeq_references uGBReference_title
     - NucleotideSeqDataName : GBSeq_alt-seq GBAltSeqData_name
     - NucleotideSource : GBSeq_source
     - NucleotideStrandedness : GBSeq_strandedness
@@ -155,18 +155,23 @@ TABLE_COLUMNS :
     - NucleotideAssemblyDate: Assembly Date
     - NucleotideAssemblyMethod: Assembly Method
     - NucleotideAssemblyName: Assembly Name
-    - NucleotideCDS: CDS (total)
+    - NucleotideCDS: CDS
+    - NucleotideCDSTotal: CDS (total)
     - NucleotideCDSCoding: CDS (coding)
+    - NucleotideCDSProtein: CDS (with protein)
+    - NucleotideCDSWithoutProtein: CDS (without protein)
     - NucleotideCRISPRArrays: CRISPR Arrays
     - NucleotideExpectedFinalVersion: Expected Final Version
     - NucleotideFeaturesAnnotated: Features Annotated
-    - NucleotideGenes: Genes (total)
+    - NucleotideGenes: Genes
+    - NucleotideGenesTotal: Genes (total)
     - NucleotideGenesCoding: Genes (coding)
     - NucleotideGenesRNA: Genes (RNA)
     - NucleotideGenomeCoverage: Genome Coverage
     - NucleotideGenomeRepresentation: Genome Representation
     - NucleotidencRNAs: ncRNAs
-    - NucleotidePseudoGenes: Pseudo Genes (total)
+    - NucleotidePseudoGenes: Pseudo Genes
+    - NucleotidePseudoGenesTotal: Pseudo Genes (total)
     - NucleotidePseudoGenesAmbResidues: Pseudo Genes (ambiguous residues)
     - NucleotidePseudoGenesFrameshifted: Pseudo Genes (frameshifted)
     - NucleotidePseudoGenesIncomplete: Pseudo Genes (incomplete)

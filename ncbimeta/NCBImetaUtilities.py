@@ -157,19 +157,17 @@ def xml_find_node(xml_root, node_name, node_dict):
 def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
     '''Search xml_root for nodes, attributes in search_list, update node_dict'''
     # Search query (as tag or attribute)
-    tag_xpath = ".//" + current_tag
-    alt_attrib = current_tag
-    print("Tag xpath:", tag_xpath)
-    print("Alt Attribute:", alt_attrib)
+    tag_xpath = ".//"  + current_tag
+    #print("Tag xpath:", tag_xpath)
     #print(etree.tostring(xml_root, pretty_print = True))
 
     # Modify dict (stop recursion), if we're at the end of the list
     if search_list.index(current_tag) == len(search_list) - 1:
         # First tag as attribute
         try:
-            print("ATTEMPTING GET1:", xml_root.get(current_tag))
+            #print("ATTEMPTING GET1:", xml_root.get(current_tag))
             fetch_attrib = xml_root.get(current_tag)
-            print("Fetch Attrib:", fetch_attrib )
+            #print("Fetch Attrib:", fetch_attrib )
             xml_dict[column_name] = fetch_attrib
         except AttributeError:
             None
@@ -178,7 +176,7 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
         if not xml_dict[column_name]:
             try:
                 search_result = xml_root.findall(tag_xpath)[0]
-                print("Search Result End:", search_result)
+                #print("Search Result End:", search_result)
                 if search_result.text:
                     search_result_text = search_result.text
                     # Str conversion here is mainly for None results
@@ -186,7 +184,7 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
                 # Or if has no text but does have child nodes
                 elif len(search_result) > 0:
                     # Experiment with child_node
-                    print("Tag Experiment:", search_result[0].tag)
+                    #print("Tag Experiment:", search_result[0].tag)
                     xml_dict[column_name] = search_result[0].tag
             except IndexError:
                 xml_dict[column_name] = ""
@@ -195,12 +193,12 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
     else:
         # First try tag as node, allowing multiple results
         next_tag = search_list[search_list.index(current_tag) + 1]
-        print("Next Tag:", next_tag)
+        #print("Next Tag:", next_tag)
         #print("Current Root Before:", etree.tostring(xml_root))
         search_results = xml_root.findall(tag_xpath)
         # If there are no results, this is an attribute matching situation
         if not search_results:
-            print("NO RESULTS")
+            #print("NO RESULTS")
             # Retry the search with unescaped characters
             xml_root_string = etree.tostring(xml_root)
             open_char = "&lt;"
@@ -222,11 +220,11 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
                 xml_dict[column_name] = ""
         # If there were multiple results, need to keep searching recursively
         for result in search_results:
-            print("Search Result Ongoing:", result)
+            #print("Search Result Ongoing:", result)
             # If there was a result, but not a text node, try attribute
             if not result.text:
                 fetch_attrib = result.get(next_tag)
-                print("ATTEMPTING GET2:", fetch_attrib)
+                #print("ATTEMPTING GET2:", fetch_attrib)
                 if fetch_attrib:
                     xml_dict[column_name] = fetch_attrib
             else:
@@ -239,10 +237,14 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
                     if first_char == "<" and last_char == ">":
                         # Reformat CDATA as complete XML
                         result_text = ("<" + current_tag + ">" + result_text + "</" + current_tag + ">")
-                        print("Working Text Edit:", result_text)
+                        #print("Working Text Edit:", result_text)
                         result = etree.fromstring(result_text)
-                        print(etree.tostring(result))
+                        #print(etree.tostring(result))
             xml_search(result, search_list, next_tag, column_name, xml_dict)
+
+def parse_GBSeq_Comment(gbseq_comment, xml_dict):
+    '''Parse the GBSeq comment text for metadata'''
+    None
 
 def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
     '''
