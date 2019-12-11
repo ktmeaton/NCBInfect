@@ -45,155 +45,56 @@ def table_exists(db_cur, table_name):
     query = "SELECT name FROM sqlite_master WHERE type='table' AND name='{}'".format(table_name)
     return db_cur.execute(query).fetchone() is not None
 
-def flatten_dict(input_dict, pre=[]):
-    '''
-    Yield a flattened generator list from a nested dictionary.
-
-    Parameters:
-    input_dict (dict): The nested dictionary to flatten.
-    pre (list): The prefix path of keys to follow.
-
-    Returns:
-    Generator object list of flattened path elements of the dictionary key values.
-    '''
-    # If we are working with a dictionary for the value/payload, use recursion
-    if isinstance(input_dict, dict):
-        for key,value in input_dict.items():
-            if isinstance(value, dict):
-                for flat_path in flatten_dict(value, pre + [key]):
-                    yield flat_path
-            elif isinstance(value, list) or isinstance(value, tuple):
-                for v in value:
-                    for flat_path in flatten_dict(v, pre + [key]):
-                        yield flat_path
-            else:
-                yield pre + [key, value]
-    # If the value/payload is a simple value, yield, including prefix
-    else:
-        yield pre + [input_dict]
-
-def xml_find_attr(xml_root, node_name, attr_name, attr_dict):
-    '''
-    Recursive search of xml to find a desired node-attribute combination.
-
-    Parameters:
-        xml_root (minidom doc): xml object as a minidom documentElement
-        node_name (str): node name to search for
-        attr_name (str or list): attribute name to search for
-        attr_dict (dict): dictionary object to store retrieved values
-
-    Returns:
-        Void. Internal recursion calls will return a node value,
-        which is either str or None. The external call does not return anything,
-        instead it mutates a dictionary.
-    '''
-    # The lowest depth/recursion end, when there are no more child nodes.
-    if not xml_root.childNodes:
-        # Pesky empty spaces in unicode strings
-        if xml_root.nodeValue and xml_root.nodeValue.replace(" ",""):
-            return(xml_root.nodeValue)
-    # All other recursion possibilties, when there are still child nodes
-    else:
-        for child_node in xml_root.childNodes:
-            # Recursive call, this value will be the node value at the lowest depth
-            value = xml_find_attr(child_node,node_name,attr_name,attr_dict)
-
-            # The node we're going to operate on, could be current root or child
-            target_node = None
-
-            # Most NCBI tables: using an attribute to get a specific node value
-            if xml_root.nodeName == node_name and xml_root.attributes:
-                target_node = xml_root
-
-            # The special SRA table: using an attribute to get an attribute value
-            elif child_node.nodeName == node_name and child_node.attributes:
-                target_node = child_node
-
-            # This fails if the node name doesn't match, or has no attributes
-            if target_node:
-                for item in target_node.attributes.items():
-                    # complex node-attribute, grab node value associated with attribute
-                    if type(attr_name) == list and value:
-                        if item[0] == attr_name[1] and item[1] == attr_name[0]:
-                             attr_dict[attr_name[0]] = str(value)
-                    # The following code is suspected to be unnecssary
-                    # simple name, grab associated attribute value
-                    elif type(attr_name) == str:
-                        if(attr_name == item[0]):
-                            attr_dict[attr_name] = str(item[1])
-
-def xml_find_node(xml_root, node_name, node_dict):
-    '''
-    Recursive search of xml to find a desired node value.
-
-    Parameters:
-        xml_root (minidom doc): xml object as a minidom documentElement
-        node_name (str): node name to search for
-        attr_dict (dict): dictionary object to store retrieved values
-
-    Returns:
-        Void. Internal recursion calls will return a node value,
-        which is either str or None. The external call does not return anything,
-        instead it mutates a dictionary.
-    '''
-    # The lowest depth/recursion end, when there are no more child nodes.
-    if not xml_root.childNodes:
-        # Pesky empty spaces in unicode strings
-        if xml_root.nodeValue and xml_root.nodeValue.replace(" ",""):
-            return(xml_root.nodeValue)
-    else:
-        for child_node in xml_root.childNodes:
-            value = xml_find_node(child_node,node_name,node_dict)
-            if node_name == xml_root.nodeName:
-                if value:
-                    node_dict[node_name] = str(value)
-                    return(value)
-                # ignore text nodes, this is only for SRA library layout
-                else:
-                    if child_node.nodeName != "#text":
-                        node_dict[node_name] = str(child_node.nodeName)
-
-
 def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
-    '''Search xml_root for nodes, attributes in search_list, update node_dict'''
+    '''
+    Search xml_root for nodes, attributes in search_list and update node_dict.
+
+    Parameters:
+    xml_root (ElementTree): xml document as etree object
+    search_list (list): list of nodes and attributes in descending hierarchy
+    current_tag (str): current tag (or attribute/value) to be searching
+    xml_dict (dict): A dictionary to modify and store found values.
+
+    Returns:
+    Void. Instead the function mutates the dictionary xml_dict.
+    '''
     # Search query (as tag or attribute)
     tag_xpath = ".//"  + current_tag
-    #print("Tag xpath:", tag_xpath)
-    #print(etree.tostring(xml_root, pretty_print = True))
-
+    print("CURRENT TAG:", current_tag)
     # Modify dict (stop recursion), if we're at the end of the list
     if search_list.index(current_tag) == len(search_list) - 1:
         # First tag as attribute
         try:
-            #print("ATTEMPTING GET1:", xml_root.get(current_tag))
             fetch_attrib = xml_root.get(current_tag)
-            #print("Fetch Attrib:", fetch_attrib )
-            xml_dict[column_name] = fetch_attrib
+            print("FETCH ATTRIB1:", fetch_attrib)
+            if fetch_attrib:
+                # Add or append attribute to xml dictionary
+                xml_dict[column_name].append(fetch_attrib)
         except AttributeError:
-            None
+            pass
         # Then try tag as node
         # Attempt to check search results, exception if there are none
-        if not xml_dict[column_name]:
-            try:
-                search_result = xml_root.findall(tag_xpath)[0]
-                #print("Search Result End:", search_result)
-                if search_result.text:
-                    search_result_text = search_result.text
+        try:
+            search_results = xml_root.findall(tag_xpath)
+            for result in search_results:
+                print("SEARCH RESULT NODE:", result)
+                if result.text:
+                    # Remove empty string elements
+                    result_text = result.text.strip()
+                    print("SEARCH RESULT1 TEXT:", result_text)
                     # Str conversion here is mainly for None results
-                    xml_dict[column_name] = str(search_result_text)
+                    xml_dict[column_name].append(str(result_text))
                 # Or if has no text but does have child nodes
-                elif len(search_result) > 0:
-                    # Experiment with child_node
-                    #print("Tag Experiment:", search_result[0].tag)
-                    xml_dict[column_name] = search_result[0].tag
-            except IndexError:
-                xml_dict[column_name] = ""
-
-
+                elif len(result) > 0:
+                    # Experiment with first child node as value
+                    print("SEARCH RESULT1 CHILD NODE:", result[0].tag)
+                    xml_dict[column_name].append(result[0].tag)
+        except IndexError:
+            pass
     else:
         # First try tag as node, allowing multiple results
         next_tag = search_list[search_list.index(current_tag) + 1]
-        #print("Next Tag:", next_tag)
+        print("NEXT TAG:", next_tag)
         #print("Current Root Before:", etree.tostring(xml_root))
         search_results = xml_root.findall(tag_xpath)
         # If there are no results, this is an attribute matching situation
@@ -214,22 +115,25 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
             # If attributes of interest are present and matching
             try:
                 if xml_root.get(current_tag) == next_tag:
-                    xml_dict[column_name] = xml_root.text
+                    xml_dict[column_name].append(xml_root.text)
             except AttributeError:
                 # Fails if no attributes, just a non-existent node
-                xml_dict[column_name] = ""
+                pass
         # If there were multiple results, need to keep searching recursively
         for result in search_results:
             #print("Search Result Ongoing:", result)
             # If there was a result, but not a text node, try attribute
+            fetch_attrib = ""
             if not result.text:
                 fetch_attrib = result.get(next_tag)
+                print("FETCH ATTRIB2:", fetch_attrib)
                 #print("ATTEMPTING GET2:", fetch_attrib)
                 if fetch_attrib:
-                    xml_dict[column_name] = fetch_attrib
+                    xml_dict[column_name].append(fetch_attrib)
             else:
                 # Check if the xml_result contains CDATA
                 result_text = result.text.strip()
+                print("SEARCH RESULT2 TEXT:", result_text)
                 if result_text:
                     # Check if result contains CDATA
                     first_char = result_text[0]
@@ -240,11 +144,11 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
                         #print("Working Text Edit:", result_text)
                         result = etree.fromstring(result_text)
                         #print(etree.tostring(result))
-            xml_search(result, search_list, next_tag, column_name, xml_dict)
 
-def parse_GBSeq_Comment(gbseq_comment, xml_dict):
-    '''Parse the GBSeq comment text for metadata'''
-    None
+            # If an attribute wasn't succesfully fetched, need recursion
+            if not fetch_attrib:
+                xml_search(result, search_list, next_tag, column_name, xml_dict)
+
 
 def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
     '''
