@@ -298,7 +298,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         #---------------If the table isn't in Database, Add it------------#
         # If we're not workinng with the Nucleotide table, we're using the "esummary function"
         # Retrieve table record using ID, read, store as dictionary
-        if table.lower() != "nucleotide" and table.lower() != "bioproject":
+        if table.lower() != "nucleotide" and table.lower() != "bioproject" and table.lower() != "biosample":
             # Use the http function to return a record summary, but wrapped in HTTP error checking
             kwargs = {"db":table.lower(), "id":ID}
             entrez_method = Entrez.esummary
@@ -349,7 +349,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             #-------------------------------------------------------#
             # This should be a recursive function!!!
             working_root =ID_root
-            #print(etree.tostring(working_root))
+            print(etree.tostring(working_root))
             NCBImetaUtilities.xml_search(working_root, column_payload, column_payload[0], column_name, column_dict)
             print(column_dict)
 

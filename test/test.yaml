@@ -67,7 +67,7 @@ TABLE_COLUMNS :
     - AssemblyComment : NullValue
 
   - BioSample :
-    - BioSampleAccession: Accession
+    - BioSampleAccession: BioSample, accession
     - BioSampleAccessionSecondary: NullValue
     - BioSampleBioProjectAccession: Link, label
     - BioSampleSRAAccession: Id, db, SRA
@@ -82,19 +82,21 @@ TABLE_COLUMNS :
     - BioSampleStrain: Attribute, harmonized_name, strain
     - BioSampleTaxonomyID: Taxonomy
     - BioSampleBiovar: Attribute, harmonized_name, biovar
+    - BioSampleSerovar: Attribute, harmonized_name, serovar
     - BioSampleCollectionDate: Attribute, harmonized_name, collection_date
     - BioSampleGeographicLocation: Attribute, harmonized_name, geo_loc_name
     - BioSampleHost: Attribute, harmonized_name, host
     - BioSampleHostDisease : Attribute, harmonized_name, host_disease
+    - BioSampleHostHealthState : Attribute, harmonized_name, host_health_state
     - BioSampleIsolateNameAlias: Attribute, harmonized_name, isolate_name_alias
     - BioSampleIsolationSource: Attribute, harmonized_name, isolation_source
     - BioSampleLat : Attribute, harmonized_name, latitude
     - BioSampleLatLon : Attribute, harmonized_name, lat_lon
     - BioSampleLon : Attribute, harmonized_name, longitude
-    - BioSampleDate: Date
-    - BioSampleModificationDate: ModificationDate
-    - BioSamplePublicationDate: PublicationDate
-    - BioSampleOrganization: Organization
+    - BioSampleSubmissionDate: BioSample, submission_date
+    - BioSampleModificationDate: BioSample, last_update
+    - BioSamplePublicationDate: BioSample, publication_date
+    - BioSampleOrganization: Owner, Name
     - BioSampleComment : NullValue
 
   - BioProject :

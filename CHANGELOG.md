@@ -13,12 +13,15 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - XML overhaul (lxml module added, minidom removed)
 - BioProject record now using efetch rather than esummary
 - BioProject Fields: BioProjectSpeciesTaxID, BioProjectModificationDate, BioProjectReleaseDate, BioProjectPublished, BioProjectDatePublished, BioProjectPublicationID, BioProjectPublicationDB
+- BioSample Fields: BioSampleSerovar, BioSampleHostHealthState
 
 ### Removed
 - BioProject Fields: BioProjectType, BioProjectSequencingStatus
 
 ### Changed
 - BioProject Fields: BioProjectRegistrationDate -> BioProjectSubmissionDate
+- BioSample Fields: BioSampleDate -> BioSampleSubmissionDate
+- Experimented with changing Assembly to efetch, does not support this, only docsum
 
 ## [v0.5.0] - 2019-1204
 
