@@ -298,7 +298,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         #---------------If the table isn't in Database, Add it------------#
         # If we're not workinng with the Nucleotide table, we're using the "esummary function"
         # Retrieve table record using ID, read, store as dictionary
-        if table.lower() != "nucleotide" and table.lower() != "bioproject" and table.lower() != "biosample":
+        if table.lower() != "nucleotide" and table.lower() != "bioproject" and table.lower() != "biosample" and table.lower() != "sra":
             # Use the http function to return a record summary, but wrapped in HTTP error checking
             kwargs = {"db":table.lower(), "id":ID}
             entrez_method = Entrez.esummary
@@ -330,15 +330,9 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         column_dict = {}
         for column in table_columns:
             column_name = list(column.keys())[0]
-            #column_name = "AssemblyChromosomes"
-            #column_name = 'AssemblyInfraspecies'
-            #column_name = 'AssemblyWGSAccession'
             column_value = ""
             column_payload = list(column.values())[0]
             column_payload = column_payload.split(", ")
-            #column_payload = ['Meta', 'Stat', 'category', 'chromosome_count']
-            #column_payload = ['InfraspeciesList', 'Sub_value']
-            #column_payload = ['WGS']
             # Initialize with empty values
             column_dict[column_name] = column_value
             print("Column name: ", column_name)
@@ -356,8 +350,11 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         #print(column_dict)
         # Add quotations around each value for sql insertion
         for key in column_dict:
+            if not column_dict[key]:
+                column_dict[key] = ''
             column_dict[key] = "'" + column_dict[key] + "'"
             print(key, ":", column_dict[key])
+
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
         sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "

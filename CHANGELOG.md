@@ -6,6 +6,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 - Think about concatenating multi value nodes
+- Dangling option, single child node name?
 
 ## [v0.6.0] - 2019-1211
 
@@ -17,10 +18,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ### Removed
 - BioProject Fields: BioProjectType, BioProjectSequencingStatus
+- SRA Fields: SRAExperimentStatus, SRAExperimentVersion, SRAStudyName, SRATotalRuns, SRAUpdateDate
 
 ### Changed
 - BioProject Fields: BioProjectRegistrationDate -> BioProjectSubmissionDate
 - BioSample Fields: BioSampleDate -> BioSampleSubmissionDate
+- SRA Fields: SRAContactName -> SRAContactEmail, SRACreateDate -> SRARunPublishDate
 - Experimented with changing Assembly to efetch, does not support this, only docsum
 
 ## [v0.5.0] - 2019-1204

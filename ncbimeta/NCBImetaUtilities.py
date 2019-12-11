@@ -167,10 +167,10 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
     if search_list.index(current_tag) == len(search_list) - 1:
         # First tag as attribute
         try:
-            print("ATTEMPTING GET:", xml_root.get(current_tag))
+            print("ATTEMPTING GET1:", xml_root.get(current_tag))
             fetch_attrib = xml_root.get(current_tag)
-            if fetch_attrib:
-                xml_dict[column_name] = fetch_attrib
+            print("Fetch Attrib:", fetch_attrib )
+            xml_dict[column_name] = fetch_attrib
         except AttributeError:
             None
         # Then try tag as node
@@ -179,17 +179,24 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
             try:
                 search_result = xml_root.findall(tag_xpath)[0]
                 print("Search Result End:", search_result)
-                search_result_text = search_result.text
-                # Str conversion here is mainly for None results
-                xml_dict[column_name] = str(search_result_text)
+                if search_result.text:
+                    search_result_text = search_result.text
+                    # Str conversion here is mainly for None results
+                    xml_dict[column_name] = str(search_result_text)
+                # Or if has no text but does have child nodes
+                elif len(search_result) > 0:
+                    # Experiment with child_node
+                    print("Tag Experiment:", search_result[0].tag)
+                    xml_dict[column_name] = search_result[0].tag
             except IndexError:
                 xml_dict[column_name] = ""
+
 
     else:
         # First try tag as node, allowing multiple results
         next_tag = search_list[search_list.index(current_tag) + 1]
         print("Next Tag:", next_tag)
-        print("Current Root Before:", etree.tostring(xml_root))
+        #print("Current Root Before:", etree.tostring(xml_root))
         search_results = xml_root.findall(tag_xpath)
         # If there are no results, this is an attribute matching situation
         if not search_results:
@@ -200,9 +207,9 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
             close_char = "&gt;"
             xml_root_string = str(xml_root_string).replace(open_char,"<").replace(close_char,">").strip()
             xml_root_string = str(xml_root_string).replace("\\n","").replace("\t","")
-            print("Current Root After:", xml_root_string)
+            #print("Current Root After:", xml_root_string)
             # Strip off the first 2 char (b') and the final char '
-            print("Current Root Mod:", xml_root_string[2:-1])
+            #print("Current Root Mod:", xml_root_string[2:-1])
             xml_root = etree.fromstring(xml_root_string[2:-1])
 
             search_results = xml_root.findall(tag_xpath)
@@ -218,8 +225,10 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
             print("Search Result Ongoing:", result)
             # If there was a result, but not a text node, try attribute
             if not result.text:
-                print("ATTEMPTING GET:", result.get(next_tag))
-                xml_dict[column_name] = result.get(next_tag)
+                fetch_attrib = result.get(next_tag)
+                print("ATTEMPTING GET2:", fetch_attrib)
+                if fetch_attrib:
+                    xml_dict[column_name] = fetch_attrib
             else:
                 # Check if the xml_result contains CDATA
                 result_text = result.text.strip()
@@ -233,7 +242,7 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
                         print("Working Text Edit:", result_text)
                         result = etree.fromstring(result_text)
                         print(etree.tostring(result))
-                xml_search(result, search_list, next_tag, column_name, xml_dict)
+            xml_search(result, search_list, next_tag, column_name, xml_dict)
 
 def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
     '''
