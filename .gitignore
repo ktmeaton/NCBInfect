@@ -12,3 +12,5 @@ test/test_Pubmed.txt
 test/test_SRA.txt
 .coverage
 coverage.xml
+example/database/*
+example/log/*

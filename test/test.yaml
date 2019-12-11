@@ -1,7 +1,7 @@
 # User Configuration Variables
 OUTPUT_DIR : test
-EMAIL : myemailname@domain.com
-API_KEY :
+EMAIL : myusername@domain.com
+API_KEY : 
 FORCE_PAUSE_SECONDS : 1
 DATABASE : test.sqlite
 
@@ -140,7 +140,7 @@ TABLE_COLUMNS :
     - NucleotideReferenceAuthors : GBSeq_references, GBReference_authors, GBAuthor
     - NucleotideLength : GBSeq_length
     - NucleotideMoleculeType : GBSeq_moltype
-    - NucleotideSeqDataName : GBSeq_alt-seq GBAltSeqData_name
+    - NucleotideSeqDataName : GBSeq_alt-seq, GBAltSeqData_name
     - NucleotideSource : GBSeq_source
     - NucleotideStrandedness : GBSeq_strandedness
     - NucleotideTopology : GBSeq_topology
