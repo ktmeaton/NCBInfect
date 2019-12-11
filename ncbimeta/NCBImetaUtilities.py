@@ -165,18 +165,26 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
 
     # Modify dict (stop recursion), if we're at the end of the list
     if search_list.index(current_tag) == len(search_list) - 1:
-        # First try tag as node
-        # Attempt to check search results, exception if there are none
+        # First tag as attribute
         try:
-            search_result = xml_root.findall(tag_xpath)[0]
-            print("Search Result End:", search_result)
-            search_result_text = search_result.text
-            # Str conversion here is mainly for None results
-            xml_dict[column_name] = str(search_result_text)
-        except IndexError:
-            xml_dict[column_name] = ""
-        # Then try tag as attribute
-        # Something
+            print("ATTEMPTING GET:", xml_root.get(current_tag))
+            fetch_attrib = xml_root.get(current_tag)
+            if fetch_attrib:
+                xml_dict[column_name] = fetch_attrib
+        except AttributeError:
+            None
+        # Then try tag as node
+        # Attempt to check search results, exception if there are none
+        if not xml_dict[column_name]:
+            try:
+                search_result = xml_root.findall(tag_xpath)[0]
+                print("Search Result End:", search_result)
+                search_result_text = search_result.text
+                # Str conversion here is mainly for None results
+                xml_dict[column_name] = str(search_result_text)
+            except IndexError:
+                xml_dict[column_name] = ""
+
     else:
         # First try tag as node, allowing multiple results
         next_tag = search_list[search_list.index(current_tag) + 1]

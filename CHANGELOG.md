@@ -5,6 +5,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project "attempts" to adhere to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+- Think about concatenating multi value nodes
+
+## [v0.6.0] - 2019-1211
+
+### Added
+- XML overhaul (lxml module added, minidom removed)
+- BioProject record now using efetch rather than esummary
+- BioProject Fields: BioProjectSpeciesTaxID, BioProjectModificationDate, BioProjectReleaseDate, BioProjectPublished, BioProjectDatePublished, BioProjectPublicationID, BioProjectPublicationDB
+
+### Removed
+- BioProject Fields: BioProjectType, BioProjectSequencingStatus
+
+### Changed
+- BioProject Fields: BioProjectRegistrationDate -> BioProjectSubmissionDate
 
 ## [v0.5.0] - 2019-1204
 

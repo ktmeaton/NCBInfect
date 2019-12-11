@@ -98,24 +98,29 @@ TABLE_COLUMNS :
     - BioSampleComment : NullValue
 
   - BioProject :
-    - BioProjectAccession : ProjectID, ArchiveID, accession
-    - BioProjectDataType : ProjectType, ProjectDataTypeSet, DataType
-    - BioProjectDescription : Project_Description
-    - BioProjectMethodType : Project_MethodType
-    - BioProjectName : Project_Name
-    - BioProjectTargetCapture : Project_Target_Capture
-    - BioProjectTargetMaterial : Project_Target_Material
-    - BioProjectTargetScope : Project_Target_Scope
-    - BioProjectTitle : Project_Title
-    - BioProjectType : Project_Type
-    - BioProjectOrganismLabel : Organism_Label
-    - BioProjectOrganismStrain : Organism_Strain
-    - BioProjectSupergroup : Supergroup
-    - BioProjectTaxonomicID : TaxId
-    - BioProjectRegistrationDate : Registration_Date
-    - BioProjectRelevanceMedical : Relevance_Medical
-    - BioProjectSequencingStatus : Sequencing_Status
-    - BioProjectSubmitterOrganization : Submitter_Organization
+    - BioProjectAccession : ArchiveID, accession
+    - BioProjectDataType : ProjectDataTypeSet, DataType
+    - BioProjectDescription : ProjectDescr, Description
+    - BioProjectMethodType : Method, method_type
+    - BioProjectName : ProjectDescr, Name
+    - BioProjectTargetCapture : Target, capture
+    - BioProjectTargetMaterial : Target, material
+    - BioProjectTargetScope : Target, sample_scope
+    - BioProjectTitle : ProjectDescr, Title
+    - BioProjectOrganismLabel : ProjectTypeSubmission, Label
+    - BioProjectOrganismStrain : ProjectTypeSubmission, Strain
+    - BioProjectOrganismTaxID : ProjectTypeSubmission, Organism, taxID
+    - BioProjectSpeciesTaxID : ProjectTypeSubmission, Organism, species
+    - BioProjectSupergroup : ProjectTypeSubmission, Supergroup
+    - BioProjectRegistrationDate : Submission, submitted
+    - BioProjectReleaseDate: ProjectReleaseDate
+    - BioProjectModificationDate: Submission, last_update
+    - BioProjectRelevanceMedical : Relevance, Medical
+    - BioProjectSubmitterOrganization : Organization, Name
+    - BioProjectPublished: Publication, status
+    - BioProjectDatePublished: Publication, date
+    - BioProjectPublicationID: Publication, id
+    - BioProjectPublicationDB: Publication, DbType
     - BioProjectComment : NullValue
 
   - Nucleotide :
