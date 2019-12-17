@@ -65,6 +65,7 @@ def test_xml_search_nodeattr():
     test_xml_dict[test_column_name] = []
     expect_xml_dict = {test_column_name : ['SRX6977650'] }
     NCBImetaUtilities.xml_search(test_root, test_search_list, test_current_tag , test_column_name, test_xml_dict)
+
     assert test_xml_dict == expect_xml_dict
 
 def test_xml_search_nodeattrtext():

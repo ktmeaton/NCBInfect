@@ -17,7 +17,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Nucleotide Fields: NucleotideAssemblyAccession, NucleotideCDSProtein, NucleotideCDSTotal, NucleotideGenesTotal, NucleotidePseudoGenesTotal, NucleotideCDSWithoutProtein
 - Pubmed Fields: AbstractText
 
+- Assembly: XML
+- BioSample: Full XML (text)
+- BioProject: XML
 - Nucleotide: INSDSeq XML (replace "INSD" with "GB")
+- SRA: Full XML
+- Pubmed: XML
 
 ### Removed
 - BioProject Fields: BioProjectType, BioProjectSequencingStatus
