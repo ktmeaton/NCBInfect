@@ -77,7 +77,7 @@ db_final = args['dbFinal']
 db_all_tables = [db_anchor] + db_accessory_list
 unique_header_str = args['dbUnique']
 unique_header_list = unique_header_str.split(" ")
-db_value_sep = ";"
+DB_VALUE_SEP = ";"
 
 #-----------------------------------------------------------------------#
 #                           Argument Checking                           #
@@ -268,7 +268,7 @@ for record in fetch_records:
                             dupl_values = set([val for val in tmp_record_list if tmp_record_list.count(val) == len(tmp_record_list)])
                             if len(dupl_values) == 1:
                                 match_records_concat[i] = list(dupl_values)[0]
-                            else: match_records_concat[i] = db_value_sep.join(tmp_record_list)
+                            else: match_records_concat[i] = DB_VALUE_SEP.join(tmp_record_list)
 
                         else: match_records_concat[i] = None
                     match_records = [match_records_concat]
@@ -289,6 +289,7 @@ for record in fetch_records:
                             record_val = "'" + record_val.encode('utf-8') + "'"
                     # Assign record to dictionary
                     master_column_dict[table_col_names[i]] = record_val
+                    master_column_dict[table_col_names[i]] = "\"" + DB_VALUE_SEP.join(master_column_dict[table_col_names[i]]) + "\""
 
 
         # We've now finished processing all accessory tables

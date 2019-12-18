@@ -393,6 +393,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             # Remove quotations from each list element
             for i in range(0,len(column_dict[key])):
                 column_dict[key][i] = column_dict[key][i].replace("\"","")
+            # The following is to help with single quotes inside
             column_dict[key] = "\"" + DB_VALUE_SEP.join(column_dict[key]) + "\""
 
         # Write the column values to the db with dynamic variables
