@@ -10,6 +10,8 @@ test/test_Master.txt
 test/test_Nucleotide.txt
 test/test_Pubmed.txt
 test/test_SRA.txt
+test/database/*
+test/log/*
 .coverage
 coverage.xml
 example/database/*
