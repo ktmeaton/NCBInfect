@@ -1,6 +1,8 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.pyc
+build/
+dist/
 test/*log
 test/*sqlite
 test/test_Assembly.txt
