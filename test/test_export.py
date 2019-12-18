@@ -45,9 +45,11 @@ def test_export_assemblyvalues(assembly_table_data):
     test_file = open(test_filename,'r')
     # Retrieve the headers and fields
     test_column_list = test_file.readline().strip('\n').split("\t")
-    test_metadata_list = test_file.readline().strip('\n').split("\t")
+    # Add empty tab on the end for empty comment field
+    test_metadata_list = (test_file.readline().strip('\n') + "\t" + "").split("\t")
     # Populate the dict with data
     test_dict = {}
+
     for i in range(0,len(test_column_list)):
         key = test_column_list[i]
         value = test_metadata_list[i]
@@ -69,7 +71,7 @@ def test_export_bioprojectvalues(bioproject_table_data):
     test_file = open(test_filename,'r')
     # Retrieve the headers and fields
     test_column_list = test_file.readline().strip('\n').split("\t")
-    test_metadata_list = test_file.readline().strip('\n').split("\t")
+    test_metadata_list = (test_file.readline().strip('\n') + "\t" + "").split("\t")
     # Populate the dict with data
     test_dict = {}
     for i in range(0,len(test_column_list)):
@@ -93,7 +95,7 @@ def test_export_biosamplevalues(biosample_table_data):
     test_file = open(test_filename,'r')
     # Retrieve the headers and fields
     test_column_list = test_file.readline().strip('\n').split("\t")
-    test_metadata_list = test_file.readline().strip('\n').split("\t")
+    test_metadata_list = (test_file.readline().strip('\n') + "\t" + "").split("\t")
     # Populate the dict with data
     test_dict = {}
     for i in range(0,len(test_column_list)):
@@ -122,7 +124,7 @@ def test_export_nucleotidevalues(nucleotide_table_data):
     test_dict = {}
     read_line = test_file.readline().strip('\n')
     while read_line:
-        test_metadata_list = read_line.split("\t")
+        test_metadata_list = (read_line + "\t" + "").split("\t")
         for i in range(0,len(test_column_list)):
             key = test_column_list[i]
             value = test_metadata_list[i]
@@ -152,15 +154,15 @@ def test_export_pubmedvalues(pubmed_table_data):
     test_file = open(test_filename,'r')
     # Retrieve the headers and fields
     test_column_list = test_file.readline().strip('\n').split("\t")
-    # Currently testing a pubmed file that is empty
-    #test_metadata_list = test_file.readline().strip('\n').split("\t")
+    # Add an extra empty string for the empty comment
+    test_metadata_list = (test_file.readline().strip('\n')  + "\t" + "").split("\t")
     # Populate the dict with data
     test_dict = {}
     for i in range(0,len(test_column_list)):
         key = test_column_list[i]
-        value = ''
-        #value = test_metadata_list[i]
+        value = test_metadata_list[i]
         test_dict[key] = value
+
     # Test whether the values are as expected
     assert test_dict == pubmed_table_data
     #Cleanup
@@ -183,7 +185,7 @@ def test_export_sravalues(sra_table_data):
     test_dict = {}
     read_line = test_file.readline().strip('\n')
     while read_line:
-        test_metadata_list = read_line.split("\t")
+        test_metadata_list = (read_line + "\t" + "").split("\t")
         for i in range(0,len(test_column_list)):
             key = test_column_list[i]
             value = test_metadata_list[i]

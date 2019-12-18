@@ -18,20 +18,21 @@ import time                             # Allow sleeping of processes
 import datetime                         # Get date and time for logfile
 import Bio                              # Biopython NCBI API
 from Bio import Entrez                  # Entrez queries (NCBI)
-from xml.dom import minidom             # XML Processing
 import yaml                             # YAML config file parsing
+from lxml import etree                  # XML Parsing
+import tempfile                         # Temporary file for XML parsing
 
 from ncbimeta import NCBImetaUtilities  # NCBImeta helper functions
 from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
+
+
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
 #-----------------------------------------------------------------------#
 
-# To Be Done: Full Description
 parser = argparse.ArgumentParser(description='NCBImeta: Efficient and comprehensive metadata retrieval from the NCBI databases.',
                                  add_help=True)
-
 
 # Argument groups for the program
 mandatory_parser = parser.add_argument_group('mandatory')
@@ -51,24 +52,21 @@ parser.add_argument('--version',
                     action='version',
                     version='%(prog)s v0.4.2')
 
-
-
 # Retrieve user parameters
 args = vars(parser.parse_args())
 
 config_path = args['configPath']
 flat_mode = args['flatMode']
 
-
 #------------------------------------------------------------------------------#
-#                              Argument Parsing                                #
+#                            Error Catching                                    #
 #------------------------------------------------------------------------------#
 
 # Check if configuration file exists
 if not os.path.exists(config_path):
     raise NCBImetaErrors.ErrorConfigFileNotExists(config_path)
 
-# YAML switch in v0.3.5
+# Load the YAML configuration file
 with open(config_path) as config_file:
     config_data = yaml.load(config_file, Loader=yaml.FullLoader)
     if config_data is None:
@@ -116,6 +114,7 @@ try:
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("TABLE_COLUMNS")
 
+#--- Print the retrieved config file parameters ---#
 print(
 "\n" + "NCBImeta was run with the following options: " + "\n" +
 "\t" + "Config File: " + str(config_path) + "\n" +
@@ -138,17 +137,19 @@ if flat_mode:
     DB_DIR = os.path.join(CONFIG_OUTPUT_DIR, "")
     LOG_PATH = CONFIG_OUTPUT_DIR
 
-
+# Or Create accessory directory (ex. log, data, database, etc.)
 elif not flat_mode:
-    # Create accessory directory (ex. log, data, database, etc.)
     print("Flat mode was not requested, organization directories will be used.", flush = True)
     NCBImetaUtilities.check_accessory_dir(CONFIG_OUTPUT_DIR)
     DB_DIR = os.path.join(CONFIG_OUTPUT_DIR, "", "database", "")
     LOG_PATH = os.path.join(CONFIG_OUTPUT_DIR, "", "log")
 
+# Database path (depending on flat mode or not)
 DB_PATH = os.path.join(DB_DIR, "", CONFIG_DATABASE)
 
-#------------------------- Database Connection---------------------------------#
+#------------------------------------------------------------------------------#
+#                       Database connection                                    #
+#------------------------------------------------------------------------------#
 if not os.path.exists(DB_PATH):
     print("\n" + "Creating database: " + DB_PATH, flush = True)
     conn = sqlite3.connect(DB_PATH)
@@ -160,6 +161,18 @@ elif os.path.exists(DB_PATH):
     conn.commit()
     print("\n" + "Connected to database: " + DB_PATH, flush = True)
 
+#-----------------------------------------------------------------------#
+#                      CONSTANTS and Config                             #
+#-----------------------------------------------------------------------#
+
+XPATH_SPECIAL_CHAR =['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')',
+                     '+', '{', '}', '|', ':', '"', '<', '>', '?', '`', '=',
+                     '[', ']', '\\', ';', '‘', ',', '.', '/']
+
+DB_VALUE_SEP = ";"
+
+# lxml parser
+LXML_CDATA_PARSER = etree.XMLParser(strip_cdata=False)
 
 #------------------------------------------------------------------------------#
 #                       Database Processing Function                           #
@@ -238,6 +251,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     read_succeed = False
     read_attempts = 0
 
+    # Database reading and entrez searching occur in a while loop to catch errors
     while not read_succeed and read_attempts < Entrez.max_tries:
         kwargs = {"db": table.lower(), "term":search_term, "retmax":"9999999"}
         entrez_method = Entrez.esearch
@@ -292,206 +306,103 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         time.sleep(force_pause_seconds)
 
         #---------------If the table isn't in Database, Add it------------#
-        # If we're not workinng with the Nucleotide table, we're using the "esummary function"
-        # Retrieve table record using ID, read, store as dictionary
-        if table.lower() != "nucleotide":
+        # The Assembly table cannot be retrieved using efetch, only docsum esummary
+        if table.lower() == "assembly":
             # Use the http function to return a record summary, but wrapped in HTTP error checking
-            kwargs = {"db":table.lower(), "id":ID}
+            kwargs = {"db":table.lower(), "id":ID, "retmode": "xml"}
             entrez_method = Entrez.esummary
         else:
-            # We're working with the Nucleotide table instead, use efetch and get xml
-            kwargs = {"db": table.lower(), "id":ID, "retmode":"xml"}
+            # We're working with any other table instead, use efetch and get xml
+            kwargs = {"db": table.lower(), "id": ID, "retmode": "xml"}
+            if table.lower() == "nucleotide":
+                kwargs["rettype"] = "gb"
             entrez_method = Entrez.efetch
 
-        # Possible urllib error occuring in the next line for unknown reasons
+        # ID_handle is an _io.TextIOWrapped object, which originally had utf-8 encoding
         ID_handle = NCBImetaUtilities.HTTPErrorCatch(entrez_method, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs)
 
-        # If successfully fetched, move onto reading the record
-        ID_record = Entrez.read(ID_handle, validate=False)
-        try:
-            record_dict = ID_record['DocumentSummarySet']['DocumentSummary'][0]
-        except TypeError:
-            record_dict = ID_record[0]
-
-        #DEBUG
-        #print(record_dict)
-        flatten_record_dict = list(NCBImetaUtilities.flatten_dict(record_dict))
-        #for element in flatten_record_dict:
-            #print(element)
-        column_dict = {}
-
-        # Add ID to the dictionary
-        column_dict[table + "_id"] = ID
+        # Ideal world: Pass an undecoded string to the xml parser
+        # Could be accomplished by opening in binary ('rb')
+        # tempfiles by default are opened as mode='w+b'
+        with tempfile.NamedTemporaryFile(delete=False) as temp_b:
+            # Write the data from ID_handle to a temporary file (binary)
+            for line in ID_handle: temp_b.write(str.encode(line))
+            temp_b.close()
+            # Read the data as binary, into the XML parser. Avoids encoding issues
+            with open(temp_b.name, 'rb') as xml_source:
+                ID_root = etree.parse(xml_source, parser=LXML_CDATA_PARSER)
 
         #----------------------------------------------------------------------#
         #                         NCBI Record Parsing                          #
         #----------------------------------------------------------------------#
 
-        # Iterate through each column to search for values
+        column_dict = {}
+        # Add ID to the dictionary
+        column_dict[table + "_id"] = [ID]
+        # A special dictionary for gbseq annotations
+        gbseq_dict = {}
+        # Iterate through each column to search for metadata
         for column in table_columns:
             column_name = list(column.keys())[0]
+            column_value = []
             column_payload = list(column.values())[0]
-            column_value = ""
-
-            # Check and see if column is special multi/hierarchical type
-            # AssemblyGenbankBioprojectAccession : GB_BioProjects, BioprojectAccn
-            split_column_payload = column_payload.split(", ")
-            # if the split was successful, the payload should be a list
-            if len(split_column_payload) > 1:
-                column_payload = split_column_payload
-
-            # Special rules for hard-coded Nucleotide Fields (ex. GBSeq_comment)
-            if "GBSeq_comment" in column.values():
-                for row in flatten_record_dict:
-                    if row[0] == "GBSeq_comment":
-                        # Hard-coded field, also check for user custom column name
-                        for i_column in table_columns:
-                            if "GBSeq_comment" in i_column.values():
-                                column_value = "'" + row[1].replace("'","") + "'"
-                                column_dict[list(i_column.items())[0][0]] = column_value
-
-                        split_comment = row[1].split(";")
-                        for item in split_comment:
-                            split_item = item.split("::")
-                            if len(split_item) < 2: continue
-                            split_key = split_item[0].lstrip(" ").rstrip(" ")
-                            split_value = split_item[1].lstrip(" ").rstrip(" ")
-                            # Accomodate all the inconsistently named fields
-                            for i_column in table_columns:
-                                cur_column = list(i_column.items())[0][1]
-                                if (cur_column == split_key or (cur_column == "CDS (total)" and split_key == "CDSs (total)") or
-				  (cur_column == "CDS (total)" and split_key == "CDS") or
-                                  (cur_column == "CDS (coding)" and split_key == "CDS (with protein)") or
-				  (cur_column == "CDS (coding)" and split_key == "CDSs (with protein)") or
-                                  (cur_column == "Genes (total)" and split_key == "Genes") or
-                                  (cur_column == "Pseudo Genes (total)" and split_key == "Pseudo Genes")):
-                                    column_value = "'" + split_value.replace("'","").replace(",","") + "'"
-                                    column_dict[list(i_column.items())[0][0]] = column_value
-
-            # Special hard-coded field for biosample
-            elif "NucleotideBioSample" in column.values():
-                for row in record_dict:
-                    if row != "GBSeq_xrefs": continue
-                    for subrow in record_dict[row]:
-                        if subrow["GBXref_dbname"] != "BioSample": continue
-                        for i_column in table_columns:
-                            if list(i_column.items())[0][1] == "NucleotideBioSample":
-                                column_value = "'" + subrow["GBXref_id"].replace("'","") + "'"
-                                column_dict[list(i_column.items())[0][0]] = column_value
-
+            column_payload = column_payload.split(", ")
+            # Initialize with empty values
+            column_dict[column_name] = column_value
 
             #-------------------------------------------------------#
-            # Attempt 1: Simple Dictionary Parse, taking first match
-
-            for row in flatten_record_dict:
-                # For simple column types, as strings
-                if type(column_payload) == str and column_payload in row:
-                    column_value = row[-1]
-                    break
-
-                # For complex column types, as list
-                elif type(column_payload) == list:
-                    column_index = 0
-                    while column_payload[column_index] in row:
-                        if column_index + 1 == len(column_payload):
-                            column_value = row[-1]
-                            break
-                        column_index += 1
-
-            # If the value was found, skip(?) the next section of XML parsing
-            if column_value:
-                column_value = "'" + column_value.replace("'","") + "'"
-                column_dict[column_name] = column_value
-
-	        # Briefly try to parse the original record dict
-	        # This was for pubmed author lists originally
-            elif type(column_payload) != list:
-                try:
-                    column_value = record_dict[column_payload]
-                    # If list, convert to semicolon separated string
-                    if isinstance(column_value,Bio.Entrez.Parser.ListElement):
-                        column_value = '; '.join(str(e) for e in column_value)
-                    column_value = "'" + column_value.replace("'","") + "'"
-                    column_dict[column_name] = column_value
-                except KeyError:
-                    column_value = ""
-
+            #   XML Parse for node or attribute
             #-------------------------------------------------------#
-            # Attempt 2: XML Parse for node or attribute
-            for row in flatten_record_dict:
-                if type(column_payload) == str:
-                    # Pubmed records can have an int value (has abstract = 0 or 1)
-                    result = [str(s) for s in row if column_payload in str(s)]
+            working_root =ID_root
+            # If there are special character, this query should not be used for xpath!!
+            bool_special_char = False
+            for char in XPATH_SPECIAL_CHAR:
+                for xquery in column_payload:
+                    if char in xquery:
+                        bool_special_char = True
+            # If no special characters, run xpath search Functions
+            if not bool_special_char:
+                NCBImetaUtilities.xml_search(working_root, column_payload, column_payload[0], column_name, column_dict)
 
-                elif type(column_payload) == list:
-                    result = [s for s in row if column_payload[0] in s and column_payload[1] in s ]
-                if not result: continue
-                result = str(result[0].strip())
-                if result[0] != "<" or result[-1] != ">": continue
+            # Special parsing for GBSeq_comment
+            # If we're on the GBSeq_comment element and the comment was added to the dictionary
+            if "GBSeq_comment" in column_payload and len(column_dict[column_name]) > 0:
+                comment = column_dict[column_name][0]
+                # Fix the CDS vs CDSs ambiguity
+                comment = comment.replace("CDSs", "CDS")
+                # comment is initialize subdivided by semi-colons
+                split_comment = comment.split(";")
+                for item in split_comment:
+                    # Further subdivided by double colons
+                    split_item = item.split("::")
+                    # The elements we're interested have the :: otherwise skip
+                    if len(split_item) < 2: continue
+                    # Left side is the column name, right side is the metadata
+                    split_key = split_item[0].lstrip(" ").rstrip(" ")
+                    split_value = split_item[1].lstrip(" ").rstrip(" ")
+                    gbseq_dict[split_key] = split_value
 
-                # Just in case, wrap sampledata in a root node for XML formatting
-                xml = "<Root>" + result + "</Root>"
-                # minidom doc object for xml manipulation and parsing
-                try:
-                    root = minidom.parseString(xml).documentElement
-                except UnicodeEncodeError:
-                    #xml = "<Root>" + str(result) + "</Root>"
-                    xml = "<Root>" + result.encode('utf-8') + "</Root>"
-                    root = minidom.parseString(xml).documentElement
+            # If the value was still empty, check for gbseq comment
+            if column_payload[0] in gbseq_dict:
+                column_dict[column_name].append(gbseq_dict[column_payload[0]])
 
-                #DEBUG
-                #print(root.toprettyxml())
-                # Names of nodes and attributes we are searching for
-                if type(column_payload) == str:
-                    node_name = column_payload
-                    attr_name = column_payload
+        # Add quotations around each value for sql insertion
+        for key in column_dict:
+            # Remove empty string elements
+            while "" in column_dict[key]: column_dict[key].remove("")
+            # Remove quotations from each list element
+            for i in range(0,len(column_dict[key])):
+                column_dict[key][i] = column_dict[key][i].replace("\"","")
+            # The following is to help with single quotes inside
+            column_dict[key] = "\"" + DB_VALUE_SEP.join(column_dict[key]) + "\""
 
-                elif type(column_payload) == list:
-                    node_name = column_payload[0]
-                    if len(column_payload) > 2:
-                        attr_name = column_payload[1:]
-                    else:
-                        attr_name = column_payload[1]
-                # Dictionaries store recovered nodes and attributes
-                node_dict = {}
-                attr_dict = {}
-
-                #DEBUG
-                #print('Node Name:', node_name)
-                #print('Attr Name:', attr_name)
-                #print('Column Name:', column_name)
-                #print('Column Payload:', column_payload)
-                NCBImetaUtilities.xml_find_node(root,node_name,node_dict)
-                NCBImetaUtilities.xml_find_attr(root,node_name,attr_name,attr_dict)
-                #print('Node Dict:', node_dict)
-                #print('Attr Dict:', attr_dict)
-
-                if type(column_payload) == list:
-                    attr_name = column_payload[1]
-                    try:
-                        column_value = attr_dict[attr_name]
-                        column_value = "'" + column_value.replace("'","") + "'"
-                        column_dict[column_name] = column_value
-                        break
-                    except KeyError:
-                        None
-                else:
-                    try:
-                        column_value = node_dict[node_name]
-                        column_value = "'" + column_value.replace("'","") + "'"
-                        column_dict[column_name] = column_value
-                    except KeyError:
-                        None
-                    break
-
-        #print(column_dict)
         # Write the column values to the db with dynamic variables
         sql_dynamic_table = "INSERT INTO " + table + " ("
         sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "
-        #sql_dynamic_qmarks = "VALUES (" + ",".join(["?" for column in column_dict.keys()]) + ") "
+        sql_dynamic_qmarks = "VALUES (" + ",".join(["?" for column in column_dict.keys()]) + ") "
         sql_dynamic_values = " VALUES (" + ",".join([column_dict[column] for column in column_dict.keys()]) + ")"
         sql_query = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_values
-        #print(sql_query)
+        sql_query_q = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_qmarks
         cur.execute(sql_query)
 
         # Write to logfile
