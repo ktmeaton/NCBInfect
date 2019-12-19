@@ -12,8 +12,6 @@ TABLE_COLUMNS
 ```
 The names of these variables should not be altered in any way. Just their assigned value.    
 
-The configuration file can be named anything, as long as it ends in ".py" and doesn't have any other periods in the name.
-
 ## 1) OUTPUT_DIR
 ```
   OUTPUT_DIR : ../NCBImeta_ouput/  
