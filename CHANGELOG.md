@@ -6,6 +6,13 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Unreleased]
 
+## [v0.6.1] - 2019-1220
+JOSS Submission
+
+### Added
+- paper directory
+- JOSS paper.md and paper.bib
+
 ## [v0.6.0] - 2019-1218
 Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to be not backwards compatible.
 
