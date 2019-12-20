@@ -336,7 +336,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         #                         NCBI Record Parsing                          #
         #----------------------------------------------------------------------#
 
-        print(etree.tostring(ID_root, pretty_print=True))
+        #print(etree.tostring(ID_root).decode())
 
         column_dict = {}
         # Add ID to the dictionary
