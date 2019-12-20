@@ -31,7 +31,7 @@ Retrieves Accession Number "GCA_003086155.1" and stores it under column "Assembl
 
 User selects:
 
-    - SRAExperimentAccession : Experiment, acc
+    - SRAExperimentAccession : Experiment, accession
 
 XML from NCBI:    
 
@@ -40,19 +40,16 @@ XML from NCBI:
 Retrieves accession "SRX4321294" and stores it under "SRAExperimentAccession"    
 The value in this case, is a list of 2 elements:    
 
-    Experiment, acc
+    Experiment, accession
 
 The first value ("Experiment"), is the name of the node.
-The second value ("acc") is the attribute value to target.    
+The second value ("accession") is the attribute to target.    
 
-** Note that the attribute value name does not match the attribute name
-provided by NCBI. The biopython API occasionally renames attributes.
-
-## 3) Retrieving a simple node value by specifying an associated attribute.
+## 3) Retrieving a simple node value by specifying an attribute value.
 
 User selects:
 
-    - BioSampleCollectionDate : Attribute, collection_date, harmonized_name
+    - BioSampleCollectionDate : Attribute, harmonized_name, collection_date
 
 XML from NCBI:    
 
@@ -65,13 +62,13 @@ The host taxid line is not mistakenly processed instead.
 
 The value in this case, is a list of 3 elements:      
 
-    Attribute, collection_date, attribute_name  
+    Attribute, harmonized_name, collection_date
 
 The first value ("Attribute"), is the name of the node.    
-The second value ("collection date") is the attribute value to target.    
-The third value ("attribute name") is the attribute type to target.    
+The second value ("harmonized_name") is the attribute to match.    
+The third value ("collection_date") is the attribute's value to match.
 
-## 4) Retrieving simple node values that don't have a unique names or attributes.
+## 4) Retrieving simple node values that don't have unique names or attributes.
 
 User selects:    
 
