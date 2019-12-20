@@ -11,7 +11,9 @@ JOSS Submission
 
 ### Added
 - paper directory
-- JOSS paper.md and paper.bib
+- JOSS Paper: paper.md and paper.bib
+- JOSS Figures: NCBImeta_Workflow.jpg, NCBImeta_aeruginosa_db_subset.jpg, NCBImeta_aeruginosa_geogene.jpg
+- JOSS Data: pseudomonas aeruginosa database
 
 ## [v0.6.0] - 2019-1218
 Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to be not backwards compatible.
