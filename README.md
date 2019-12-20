@@ -48,8 +48,8 @@ NCBImeta.py --flat --config example/config.yaml
 ```
 (Note: The 'quick' start config file forces slow downloads to accommodate users with slow internet. For faster record retrieval, please see the [Config File README](https://github.com/ktmeaton/NCBImeta/blob/master/config/README_config.md) to start editing config files.)
 
-Example output of the command-line interface (v0.4.0):  
-<img src="images/NCBImetaCLI.gif" alt="NCBImetaCLI" width="700px"/>
+Example output of the command-line interface (v0.6.1):  
+[![asciicast](https://asciinema.org/a/289560.svg)](https://asciinema.org/a/289560)
 
 
 ### Annotate the database with the user's custom metadata
