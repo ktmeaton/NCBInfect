@@ -30,7 +30,7 @@ This must be a valid email address for using biopython/NCBI's API.
 ```
   API_KEY : a6526gs1h4l3t324th5htl234tlhlt234435
 ```
-This must be a valid API key as issued to your account through NCBI. Providing an API key will allow you to fetch 10 records/sec.
+[OPTIONAL] This is valid API key as issued to your account through NCBI. Providing an API key will allow you to fetch 10 records/sec. Otherwise leave blank as in the example config.yaml file.
 
 ## 4) FORCE_PAUSE_SECONDS:
 ```
