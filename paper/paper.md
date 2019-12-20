@@ -23,7 +23,7 @@ bibliography: paper.bib
 ---
 # Summary
 
-``NCBImeta`` is a Python application that downloads and organizes biological metadata from the National Centre for Biotechnology Information (NCBI). While the NCBI web portal provides an interface for searching and filtering molecular data, the output offers limited options for record retrieval and comparison on a much larger and broader scale. ``NCBImeta`` tackles this problem by creating a reformatted local database of NCBI metadata based on user search queries and customizable fields. The output of ``NCBImeta``, optionally a SQLite database or text file(s), can then be used by computational biologists for applications such as record filtering, project discovery, sample interpretation, and meta-analyses of published work.
+``NCBImeta`` is a command-line application that downloads and organizes biological metadata from the National Centre for Biotechnology Information (NCBI). While the NCBI web portal provides an interface for searching and filtering molecular data, the output offers limited options for record retrieval and comparison on a much larger and broader scale. ``NCBImeta`` tackles this problem by creating a reformatted local database of NCBI metadata based on user search queries and customizable fields. The output of ``NCBImeta``, optionally a SQLite database or text file(s), can then be used by computational biologists for applications such as record filtering, project discovery, sample interpretation, and meta-analyses of published work.
 
 # Background
 
@@ -87,7 +87,7 @@ The development of ``NCBImeta`` has primarily focused on a target audience of re
 
 # Availability
 
-NCBImeta is a Python 3 application that is supported on Linux and macOS systems. It is distributed for use under the OSD-compliant MIT license (https://opensource.org/licenses/MIT). Source code, documentation, and example files are available on the GitHub repository (https://github.com/ktmeaton/NCBImeta).
+NCBImeta is a command-line application written in Python3 that is supported on Linux and macOS systems. It is distributed for use under the OSD-compliant MIT license (https://opensource.org/licenses/MIT). Source code, documentation, and example files are available on the GitHub repository (https://github.com/ktmeaton/NCBImeta).
 
 # Acknowledgements
 
