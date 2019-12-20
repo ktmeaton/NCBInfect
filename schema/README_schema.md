@@ -40,7 +40,7 @@ XML from NCBI:
 Retrieves accession "SRX4321294" and stores it under "SRAExperimentAccession"    
 The value in this case, is a list of 2 elements:    
 
-    Experiment, accession
+    - Experiment, accession
 
 The first value ("Experiment"), is the name of the node.
 The second value ("accession") is the attribute to target.    
@@ -102,8 +102,13 @@ Note that it must be IN ORDER, but can skip intermediate values (ex. node <Biopr
 
 ## 5) Customizing Schema
 
-To puzzle out additional xml criteria for your search query, search for the first instance of "toprettyxml" in src/NCBImeta.py and uncomment this line (delete the '#' at the start of the line). When NCBImeta.py is run now, it will print out the xml for each record. It is recommended to pipe this output to a file:    
+To puzzle out additional xml criteria for your search query, search for the line:  
 
-    src/NCBImeta.py --config example/config.py > config_xml_output.txt    
+    - \#print(etree.tostring(ID_root).decode())  
 
-Sometimes, metadata is not stored in an xml structure, but rather a flattened dictionary. To print out the dictionary for your search term, search for the first instance of "Attempt 1" in src/NCBImeta.py. Three code lines below is the line '#print(row)'. Uncomment this to print out the metadata that is stored in a dictionary rather than an xml structure. These attributes can be accessed using Option 1 or Option 4 in this schema readme file.
+And uncomment it (delete the \#  at the beginning).
+
+When NCBImeta.py is run now, it will print out the xml for each record. It is recommended to redirect this output to a file, example:    
+```
+NCBImeta.py --config example/config.yaml > config_xml_output.txt
+```
