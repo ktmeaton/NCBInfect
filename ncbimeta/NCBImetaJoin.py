@@ -64,7 +64,7 @@ mandatory.add_argument('--unique',
 
 parser.add_argument('--version',
                     action='version',
-                    version='%(prog)s v0.4.2')
+                    version='%(prog)s v0.6.1')
 
 
 args = vars(parser.parse_args())
