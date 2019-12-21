@@ -138,7 +138,7 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 ### Changed
 - Alphabetized schema entries
 
-## v0.3.0 - 2018-0629
+## [v0.3.0] - 2018-0629
 ### Added
 - Automation mode
 - Supported Tables: Assembly, BioProject, BioSample, Nucleotide, SRA
@@ -146,26 +146,29 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 ### Changed
 - Repository Rename: NCBInfect -> NCBImeta
 
-## v0.2.1 - 2018-0308
+## [v0.2.1] - 2018-0308
 
 ### Changed
 - Fully Functional
 
-## v0.2.0 - 2018-0122
+## [v0.2.0] - 2018-0122
 ### Changed
 - Repository Rename: GenomeCollector -> NCBInfect
 
-## v0.1.2 - 2017-0920
+## [v0.1.2] - 2017-0920
 ### Added
 - Bugfixes
 
-## v0.1.1 - 2017-0919
+## [v0.1.1] - 2017-0919
 ### Added
 - SRA Table
 
 ### Changed
 - Bug-fix, multiple accession versions
 - Started better version control
+
+## [v0.1.0] - 2016-0622
+- Repository migrated from GenomeCollector
 
 Project URL: https://github.com/ktmeaton/NCBImeta
 
