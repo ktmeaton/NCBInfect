@@ -83,7 +83,7 @@ Each table within the database will be exported to its own tab-separated .txt fi
 
 Example database output (a subset of the BioSample table)  
     
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImetaDB_large.gif" alt="NCBImetaDB" width="700px"/>
+<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImetaDB.gif" alt="NCBImetaDB" width="700px"/>
 
 ## Currently Supported NCBI Tables  
 Assembly  
