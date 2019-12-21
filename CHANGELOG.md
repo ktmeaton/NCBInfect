@@ -6,14 +6,20 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
-## [v0.6.1] - 2019-1220
-JOSS Submission
+## [v0.6.1] - 2019-1220 - JOSS Submission and Zenodo
 
 ### Added
 - paper directory
 - JOSS Paper: paper.md and paper.bib
 - JOSS Figures: NCBImeta_Workflow.jpg, NCBImeta_aeruginosa_db_subset.jpg, NCBImeta_aeruginosa_geogene.jpg
-- JOSS Data: pseudomonas aeruginosa database
+- JOSS Data: pseudomonas aeruginosa database files
+- Zenodo Integration
+
+### Changed
+- Switched CLI gif to an asciinema recording (web host)
+- Switched DB gif to ShareX recording (github host)
+- Fixed changelog compare links
+- Fixed version numbering in python executables
 
 ## [v0.6.0] - 2019-1218
 Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to be not backwards compatible.
