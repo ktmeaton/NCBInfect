@@ -119,7 +119,7 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - Pubmed Table support
 
 
-## [v0.3.2] = 2019-0905
+## [v0.3.2] - 2019-0905
 ### Added
 - Command example in README.md for creating a master join table of BioSample, BioProject, Assemble, SRA, and Nucleotide tables.
 - Three new annotation files for the example.
@@ -169,8 +169,6 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 
 ## [v0.1.0] - 2016-0622
 - Repository migrated from GenomeCollector
-
-Project URL: https://github.com/ktmeaton/NCBImeta
 
 [Unreleased]: https://github.com/ktmeaton/NCBImeta/compare/dev...HEAD
 [v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.0...HEAD
