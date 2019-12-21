@@ -1,0 +1,248 @@
+# User Configuration Variables
+OUTPUT_DIR : paper
+EMAIL : myusername@domain.com
+API_KEY :
+FORCE_PAUSE_SECONDS : 1
+DATABASE : pseudomonas_aeruginosa_db.sqlite
+
+# NCBI Tables to Query
+TABLES :
+  - Assembly
+  - BioSample
+  - BioProject
+  - SRA
+  - Nucleotide
+  - Pubmed
+
+# Query Terms to Use
+SEARCH_TERMS :
+  - Assembly : (Pseudomonas aeruginosa[Organism]) AND (1900[Date - Sequences Release]:2020[Date - Sequences Release])
+  - BioProject : (Pseudomonas aeruginosa[Organism]) AND (bioproject assembly[Filter] OR bioproject sra[Filter]) AND (1900[Registration Date]:2020[Registration Date])
+  - BioSample: (Pseudomonas aeruginosa[Organism]) AND (biosample assembly[Filter] OR biosample sra[Filter]) AND (1900[Publication Date]:2020[Publication Date])
+  - SRA : ((Pseudomonas aeruginosa[Organism]) AND (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]) AND (1900[Publication Date]:2020[Publication Date])
+  - Nucleotide : (Pseudomonas aeruginosa[Organism]) AND WGS_MASTER[KYWD] AND nucleotide assembly[Filter] AND (1900[Publication Date]:2020[Publication Date])
+  - Pubmed : (Pseudomonas aeruginosa) AND (pubmed assembly[Filter] OR pubmed sra[Filter]) AND (1900[Date - Create]:2020[Date - Create])
+
+# Columns of the database (ie. metadata fields to retrieve)
+TABLE_COLUMNS :
+
+  - Assembly :
+    - AssemblyAccession : AssemblyAccession
+    - AssemblyBioSampleAccession : BioSampleAccn
+    - AssemblyBioSampleID : BioSampleId
+    - AssemblyGenbankBioprojectAccession : GB_BioProjects, BioprojectAccn
+    - AssemblyGenbankID : GbUid
+    - AssemblyRefseqBioprojectAccession : RS_BioProjects, BioprojectAccn
+    - AssemblyRefSeqCategory : RefSeq_category
+    - AssemblyRefSeqID : RsUid
+    - AssemblyWGSAccession : WGS
+    - AssemblyInfraspecies : InfraspeciesList, Sub_value
+    - AssemblyIsolate : Isolate
+    - AssemblyOrganism : Organism
+    - AssemblySpeciesTaxonomicID : SpeciesTaxid
+    - AssemblySpeciesName : SpeciesName
+    - AssemblyTaxonomicID : Taxid
+    - AssemblyName : AssemblyName
+    - AssemblyStatus : AssemblyStatus
+    - AssemblyType : AssemblyType
+    - AssemblyCoverage : Coverage
+    - AssemblyChromosomes : Meta, Stat, category, chromosome_count
+    - AssemblyContigCount: Meta, Stat, category, contig_count
+    - AssemblyContigN50 : Meta, Stat, category, contig_n50
+    - AssemblyContigL50 : Meta, Stat, category, contig_l50
+    - AssemblyNonChromosomalReplicons : Meta, Stat, category, non_chromosome_replicon_count
+    - AssemblyReplicons : Meta, Stat, category, replicon_count
+    - AssemblyScaffolds : Meta, Stat, category, scaffold_count
+    - AssemblyScaffoldN50 : Meta, Stat, category, scaffold_n50
+    - AssemblyScaffoldL50 : Meta, Stat, category, scaffold_l50
+    - AssemblyTotalLength : Meta, Stat, category, total_length
+    - AssemblyUngappedLength : Meta, Stat, category, ungapped_length
+    - AssemblySubmitterOrganization : SubmitterOrganization
+    - AssemblySubmissionDate : SubmissionDate
+    - AssemblyReleaseDate : SeqReleaseDate
+    - AssemblyFTPAssemblyReport : FtpPath_Assembly_rpt
+    - AssemblyFTPGenbank : FtpPath_GenBank
+    - AssemblyFTPRefSeq : FtpPath_RefSeq
+    - AssemblyFTPStatsReport : FtpPath_Stats_rpt
+    - AssemblyComment : NullValue
+
+  - BioSample :
+    - BioSampleAccession: BioSample, accession
+    - BioSampleAccessionSecondary: NullValue
+    - BioSampleBioProjectAccession: Link, label
+    - BioSampleSRAAccession: Id, db, SRA
+    - BioSampleTitle: Title
+    - BioSampleName: Id, db_label, Sample name
+    - BioSampleType: Attribute, harmonized_name, sample_type
+    - BioSamplePackage: Package
+    - BioSampleInfraspecies: Infraspecies
+    - BioSampleOrganism: Description, OrganismName
+    - BioSampleOrganismAlt: Description, Organism, taxonomy_name
+    - BioSampleSubSpecies: Attribute, harmonized_name, sub_species
+    - BioSampleStrain: Attribute, harmonized_name, strain
+    - BioSampleTaxonomyID: Organism, taxonomy_id
+    - BioSampleBiovar: Attribute, harmonized_name, biovar
+    - BioSampleSerovar: Attribute, harmonized_name, serovar
+    - BioSampleCollectionDate: Attribute, harmonized_name, collection_date
+    - BioSampleGeographicLocation: Attribute, harmonized_name, geo_loc_name
+    - BioSampleHost: Attribute, harmonized_name, host
+    - BioSampleHostDisease : Attribute, harmonized_name, host_disease
+    - BioSampleHostHealthState : Attribute, harmonized_name, host_health_state
+    - BioSampleIsolateNameAlias: Attribute, harmonized_name, isolate_name_alias
+    - BioSampleIsolationSource: Attribute, harmonized_name, isolation_source
+    - BioSampleLat : Attribute, harmonized_name, latitude
+    - BioSampleLatLon : Attribute, harmonized_name, lat_lon
+    - BioSampleLon : Attribute, harmonized_name, longitude
+    - BioSampleSubmissionDate: BioSample, submission_date
+    - BioSampleModificationDate: BioSample, last_update
+    - BioSamplePublicationDate: BioSample, publication_date
+    - BioSampleOrganization: Owner, Name
+    - BioSampleComment : NullValue
+
+  - BioProject :
+    - BioProjectAccession : ArchiveID, accession
+    - BioProjectDataType : ProjectDataTypeSet, DataType
+    - BioProjectDescription : ProjectDescr, Description
+    - BioProjectMethodType : Method, method_type
+    - BioProjectName : ProjectDescr, Name
+    - BioProjectTargetCapture : Target, capture
+    - BioProjectTargetMaterial : Target, material
+    - BioProjectTargetScope : Target, sample_scope
+    - BioProjectTitle : ProjectDescr, Title
+    - BioProjectOrganismLabel : ProjectTypeSubmission, Label
+    - BioProjectOrganismStrain : ProjectTypeSubmission, Strain
+    - BioProjectOrganismTaxID : ProjectTypeSubmission, Organism, taxID
+    - BioProjectSpeciesTaxID : ProjectTypeSubmission, Organism, species
+    - BioProjectSupergroup : ProjectTypeSubmission, Supergroup
+    - BioProjectRegistrationDate : Submission, submitted
+    - BioProjectReleaseDate: ProjectReleaseDate
+    - BioProjectModificationDate: Submission, last_update
+    - BioProjectRelevanceMedical : Relevance, Medical
+    - BioProjectSubmitterOrganization : Organization, Name
+    - BioProjectPublished: Publication, status
+    - BioProjectDatePublished: Publication, date
+    - BioProjectPublicationID: Publication, id
+    - BioProjectPublicationDB: Publication, DbType
+    - BioProjectComment : NullValue
+
+  - Nucleotide :
+    - NucleotideAccession : GBSeq_primary-accession
+    - NucleotideAccessionVersion : GBSeq_accession-version
+    - NucleotideBioSampleAccession: NucleotideBioSample
+    - NucleotideBioProjectAccession : GBSeq_project
+    - NucleotideAssemblyAccession : GBSeq_xrefs, GBXref_id
+    - NucleotideOrganism : GBSeq_organism
+    - NucleotideTaxonomy : GBSeq_taxonomy
+    - NucleotideDefinition : GBSeq_definition
+    - NucleotideDivision : GBSeq_division
+    - NucleotideReferenceJournal: GBSeq_references, GBReference_journal
+    - NucleotideReferenceTitle : GBSeq_references, GBReference_title
+    - NucleotideReferenceAuthors : GBSeq_references, GBReference_authors, GBAuthor
+    - NucleotideLength : GBSeq_length
+    - NucleotideMoleculeType : GBSeq_moltype
+    - NucleotideSeqDataName : GBSeq_alt-seq, GBAltSeqData_name
+    - NucleotideSource : GBSeq_source
+    - NucleotideStrandedness : GBSeq_strandedness
+    - NucleotideTopology : GBSeq_topology
+    - NucleotideCreateDate : GBSeq_create-date
+    - NucleotideUpdateDate : GBSeq_update-date
+    - NucleotideGenBankComment : GBSeq_comment
+    - NucleotideAnnotationDate: Annotation Date
+    - NucleotideAnnotationMethod: Annotation Method
+    - NucleotideAnnotationPipeline: Annotation Pipeline
+    - NucleotideAnnotationProvider: Annotation Provider
+    - NucleotideAnnotationSoftwarerevision: Annotation Software revision
+    - NucleotideAssemblyDate: Assembly Date
+    - NucleotideAssemblyMethod: Assembly Method
+    - NucleotideAssemblyName: Assembly Name
+    - NucleotideCDS: CDS
+    - NucleotideCDSTotal: CDS (total)
+    - NucleotideCDSCoding: CDS (coding)
+    - NucleotideCDSProtein: CDS (with protein)
+    - NucleotideCDSWithoutProtein: CDS (without protein)
+    - NucleotideCRISPRArrays: CRISPR Arrays
+    - NucleotideExpectedFinalVersion: Expected Final Version
+    - NucleotideFeaturesAnnotated: Features Annotated
+    - NucleotideGenes: Genes
+    - NucleotideGenesTotal: Genes (total)
+    - NucleotideGenesCoding: Genes (coding)
+    - NucleotideGenesRNA: Genes (RNA)
+    - NucleotideGenomeCoverage: Genome Coverage
+    - NucleotideGenomeRepresentation: Genome Representation
+    - NucleotidencRNAs: ncRNAs
+    - NucleotidePseudoGenes: Pseudo Genes
+    - NucleotidePseudoGenesTotal: Pseudo Genes (total)
+    - NucleotidePseudoGenesAmbResidues: Pseudo Genes (ambiguous residues)
+    - NucleotidePseudoGenesFrameshifted: Pseudo Genes (frameshifted)
+    - NucleotidePseudoGenesIncomplete: Pseudo Genes (incomplete)
+    - NucleotidePseudoGenesInternalStop: Pseudo Genes (internal stop)
+    - NucleotidePseudoGenesMultipleProblems: Pseudo Genes (multiple problems)
+    - NucleotiderRNAs: rRNAs
+    - NucleotiderRNAsComplete: complete rRNAs
+    - NucleotiderRNAsPartial: partial rRNAs
+    - NucleotideSequencingTechnology: Sequencing Technology
+    - NucleotideRNAs: tRNAs
+    - NucleotideComment : NullValue
+
+  - SRA :
+    - SRABioProjectAccession : EXTERNAL_ID, namespace, BioProject
+    - SRABioSampleAccession : EXTERNAL_ID, namespace, BioSample
+    - SRASampleAccession : SAMPLE_DESCRIPTOR, accession
+    - SRASampleName : SAMPLE, alias
+    - SRAExperimentAccession : EXPERIMENT, accession
+    - SRAExperimentName : EXPERIMENT, alias
+    - SRARunAccession : RUN, accession
+    - SRARunName : RUN, alias
+    - SRAIsPublic : RUN, is_public
+    - SRAStaticDataAvailable : RUN, static_data_available
+    - SRAStudyAcc : STUDY, accession
+    - SRAStudyName : STUDY_TITLE
+    - SRAStudyAbstract: STUDY_ABSTRACT
+    - SRAOrganismName : SAMPLE_NAME, SCIENTIFIC_NAME
+    - SRAOrganismTaxID : SAMPLE, TAXON_ID
+    - SRAClusterName : RUN, cluster_name
+    - SRAPlatform : PLATFORM
+    - SRAInstrumentModel : PLATFORM, INSTRUMENT_MODEL
+    - SRALibraryName : LIBRARY_NAME
+    - SRALibraryLayout : LIBRARY_LAYOUT
+    - SRALibrarySelection : LIBRARY_SELECTION
+    - SRALibrarySource : LIBRARY_SOURCE
+    - SRALibraryStrategy : LIBRARY_STRATEGY
+    - SRATotalBases : RUN_SET, RUN, total_bases
+    - SRATotalSize : RUN_SET, RUN, size
+    - SRATotalSpots : RUN_SET, RUN, total_spots
+    - SRAFileUrl : SRAFile, url
+    - SRAFileName : SRAFile, filename
+    - SRAFileSize : SRAFile, size
+    - SRAFileType : SRAFile, semantic_name
+    - SRARunPublishDate : RUN_SET, RUN, published
+    - SRACenterName : SUBMISSION, center_name
+    - SRAContactEmail : Organization, Contact, email
+    - SRALabName : SUBMISSION, lab_name
+    - SRASubmitterAccession : SUBMISSION, accession
+    - SRAComment : NullValue
+
+  - Pubmed :
+    - PubmedPublishYear : PubDate, Year
+    - PubmedPubishMonth : PubDate, Month
+    - PubmedPublishDay : PubDate, Day
+    - PubmedEPublishDate : EPubDate
+    - PubmedPublishModel : Article, PubModel
+    - PubmedType : PublicationType
+    - PubmedJournalTitle : Journal, Title
+    - PubmedJournalAbbrev : Journal, ISOAbbreviation
+    - PubmedJournalISSN : Journal, ISSN
+    - PubmedArticleTitle : ArticleTitle
+    - PubmedAbstract : AbstractText
+    - PubmedVolume : Volume
+    - PubmedIssue : Issue
+    - PubmedPages : MedlinePgn
+    - PubmedDOI : ELocationID, EIdType, doi
+    - PubmedAuthorsLastName : AuthorList, LastName
+    - PubmedAuthorsForeName : AuthorList, ForeName
+    - PubmedAuthorsAffiliation : AuthorList, Affiliation
+    - PubmedLanguage : Language
+    - PubmedCitations : Reference, Citation
+    - PubmedRecordStatus : MedlineCitation, Status
+    - PubmedPubStatus : PublicationStatus
+    - PubmedComment : NullValue
