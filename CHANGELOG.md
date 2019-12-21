@@ -177,4 +177,5 @@ https://github.com/ktmeaton/NCBImeta
 [v0.4.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.4...v0.4.0
 [v0.3.4]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.3...v0.3.4
 [v0.3.3]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.2...v0.3.3
-[v0.3.2]: https://github.com/ktmeaton/NCBImeta/tree/v0.3.2
+[v0.3.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.1...v0.3.2
+[v0.3.1]: https://github.com/ktmeaton/NCBImeta/tree/1c97b6b42b0c774b96c8d404d61f4768d3aeea5c...v0.3.1
