@@ -12,32 +12,39 @@
     - BioProjectAccession : Project_Acc
 
 # Project Information
-    - BioProjectAccession : Project_Acc
-    - BioProjectDataType : Project_Data_Type
-    - BioProjectDescription : Project_Description
-    - BioProjectMethodType : Project_MethodType
-    - BioProjectName : Project_Name
-    - BioProjectTargetCapture : Project_Target_Capture
-    - BioProjectTargetMaterial : Project_Target_Material
-    - BioProjectTargetScope : Project_Target_Scope
-    - BioProjectTitle : Project_Title
-    - BioProjectType : Project_Type
+    - BioProjectAccession : ArchiveID, accession
+    - BioProjectDataType : ProjectDataTypeSet, DataType
+    - BioProjectDescription : ProjectDescr, Description
+    - BioProjectMethodType : Method, method_type
+    - BioProjectName : ProjectDescr, Name
+    - BioProjectTargetCapture : Target, capture
+    - BioProjectTargetMaterial : Target, material
+    - BioProjectTargetScope : Target, sample_scope
+    - BioProjectTitle : ProjectDescr, Title
 
 # Taxonomy Information
-    - BioProjectOrganismLabel : Organism_Label
-    - BioProjectOrganismStrain : Organism_Strain
-    - BioProjectSupergroup : Supergroup
-    - BioProjectTaxonomicID : TaxId
+    - BioProjectOrganismLabel : ProjectTypeSubmission, Label
+    - BioProjectOrganismStrain : ProjectTypeSubmission, Strain
+    - BioProjectOrganismTaxID : ProjectTypeSubmission, Organism, taxID
+    - BioProjectSpeciesTaxID : ProjectTypeSubmission, Organism, species
+    - BioProjectSupergroup : ProjectTypeSubmission, Supergroup
 
 # Dates
-    - BioProjectRegistrationDate : Registration_Date
+    - BioProjectRegistrationDate : Submission, submitted
+    - BioProjectReleaseDate: ProjectReleaseDate
+    - BioProjectModificationDate: Submission, last_update
 
 # Misc
-    - BioProjectRelevanceMedical : Relevance_Medical
-    - BioProjectSequencingStatus : Sequencing_Status
+    - BioProjectRelevanceMedical : Relevance, Medical
 
 # Submitter Information
-    - BioProjectSubmitterOrganization : Submitter_Organization
+    - BioProjectSubmitterOrganization : Organization, Name
+
+# Publication Information
+    - BioProjectPublished: Publication, status
+    - BioProjectDatePublished: Publication, date
+    - BioProjectPublicationID: Publication, id
+    - BioProjectPublicationDB: Publication, DbType
 
 # Empty field for user comments about record
     - BioProjectComment : NullValue

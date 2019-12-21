@@ -8,45 +8,48 @@
 #        biosample assembly[Filter]
 
 # Accession Numbers and ID
-    - BioSampleAccession: Accession
+    - BioSampleAccession: BioSample, accession
     - BioSampleAccessionSecondary: NullValue
     - BioSampleBioProjectAccession: Link, label
+    - BioSampleSRAAccession: Id, db, SRA
 
 # Description
     - BioSampleTitle: Title
-    - BioSampleName: Id, Sample name, db_label
-    - BioSampleType: Attribute, sample_type, harmonized_name
+    - BioSampleName: Id, db_label, Sample name
+    - BioSampleType: Attribute, harmonized_name, sample_type
     - BioSamplePackage: Package
 
 # Taxonomy Information
     - BioSampleInfraspecies: Infraspecies
-    - BioSampleOrganism: OrganismName
-    - BioSampleOrganismAlt: Organism, taxonomy_name
-    - BioSampleSubSpecies: Attribute, sub_species, harmonized_name
-    - BioSampleStrain: Attribute, strain, harmonized_name
-    - BioSampleTaxonomyID: Taxonomy
+    - BioSampleOrganism: Description, OrganismName
+    - BioSampleOrganismAlt: Description, Organism, taxonomy_name
+    - BioSampleSubSpecies: Attribute, harmonized_name, sub_species
+    - BioSampleStrain: Attribute, harmonized_name, strain
+    - BioSampleTaxonomyID: Organism, taxonomy_id
 
 # Sample attributes
 # To customize, consult https://www.ncbi.nlm.nih.gov/biosample/docs/attributes/
 # BioSampleLat and BioSampleLon may not be supported anymore (2019-1031)
-    - BioSampleBiovar: Attribute, biovar, harmonized_name
-    - BioSampleCollectionDate: Attribute, collection_date, harmonized_name
-    - BioSampleGeographicLocation: Attribute, geo_loc_name, harmonized_name
-    - BioSampleHost: Attribute, host, harmonized_name
-    - BioSampleHostDisease : Attribute, host_disease, harmonized_name
-    - BioSampleIsolateNameAlias: Attribute, isolate_name_alias, harmonized_name
-    - BioSampleIsolationSource: Attribute, isolation_source, harmonized_name
-    - BioSampleLatLon : Attribute, lat_lon, harmonized_name
-    - BioSampleLat : Attribute, latitude, harmonized_name
-    - BioSampleLon : Attribute, longitude, harmonized_name
+    - BioSampleBiovar: Attribute, harmonized_name, biovar
+    - BioSampleSerovar: Attribute, harmonized_name, serovar
+    - BioSampleCollectionDate: Attribute, harmonized_name, collection_date
+    - BioSampleGeographicLocation: Attribute, harmonized_name, geo_loc_name
+    - BioSampleHost: Attribute, harmonized_name, host
+    - BioSampleHostDisease : Attribute, harmonized_name, host_disease
+    - BioSampleHostHealthState : Attribute, harmonized_name, host_health_state
+    - BioSampleIsolateNameAlias: Attribute, harmonized_name, isolate_name_alias
+    - BioSampleIsolationSource: Attribute, harmonized_name, isolation_source
+    - BioSampleLat : Attribute, harmonized_name, latitude
+    - BioSampleLatLon : Attribute, harmonized_name, lat_lon
+    - BioSampleLon : Attribute, harmonized_name, longitude
 
 # Dates
-    - BioSampleDate: Date
-    - BioSampleModificationDate: ModificationDate
-    - BioSamplePublicationDate: PublicationDate
+    - BioSampleSubmissionDate: BioSample, submission_date
+    - BioSampleModificationDate: BioSample, last_update
+    - BioSamplePublicationDate: BioSample, publication_date
 
 # Submitter Information
-    - BioSampleOrganization: Organization
+    - BioSampleOrganization: Owner, Name
 
 
 # Empty field for user comments about record

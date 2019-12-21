@@ -15,8 +15,7 @@
     - NucleotideAccessionVersion : GBSeq_accession-version
     - NucleotideBioSampleAccession: NucleotideBioSample
     - NucleotideBioProjectAccession : GBSeq_project
-    - NucleotideFirstAccession : GBAltSeqData_items, GBSeq_alt-seq, GBAltSeqItem_first-accn
-    - NucleotideLastAccession : GBAltSeqData_items, GBSeq_alt-seq, GBAltSeqItem_last-accn
+    - NucleotideAssemblyAccession : GBSeq_xrefs, GBXref_id
 
 # Taxonomy Information
     - NucleotideOrganism : GBSeq_organism
@@ -25,14 +24,17 @@
 # Nucleotide Information
     - NucleotideDefinition : GBSeq_definition
     - NucleotideDivision : GBSeq_division
-    - NucleotideJournal: GBSeq_references, GBReference_journal
     - NucleotideLength : GBSeq_length
     - NucleotideMoleculeType : GBSeq_moltype
-    - NucleotideReferenceTitle: GBSeq_references uGBReference_title
-    - NucleotideSeqDataName : GBSeq_alt-seq GBAltSeqData_name
+    - NucleotideSeqDataName : GBSeq_alt-seq, GBAltSeqData_name
     - NucleotideSource : GBSeq_source
     - NucleotideStrandedness : GBSeq_strandedness
     - NucleotideTopology : GBSeq_topology
+
+# Publication Information
+    - NucleotideReferenceJournal: GBSeq_references, GBReference_journal
+    - NucleotideReferenceTitle : GBSeq_references, GBReference_title
+    - NucleotideReferenceAuthors : GBSeq_references, GBReference_authors, GBAuthor
 
 # Dates
     - NucleotideCreateDate : GBSeq_create-date
@@ -49,28 +51,33 @@
     - NucleotideAssemblyDate: Assembly Date
     - NucleotideAssemblyMethod: Assembly Method
     - NucleotideAssemblyName: Assembly Name
-    - NucleotidetCDS: CDS (total)
-    - NucleotidetCDSCoding: CDS (coding)
-    - NucleotidetCRISPRArrays: CRISPR Arrays
-    - NucleotidetExpectedFinalVersion: Expected Final Version
-    - NucleotidetFeaturesAnnotated: Features Annotated
-    - NucleotidetGenes: Genes (total)
-    - NucleotidetGenesCoding: Genes (coding)
-    - NucleotidetGenesRNA: Genes (RNA)
-    - NucleotidetGenomeCoverage: Genome Coverage
-    - NucleotidetGenomeRepresentation: Genome Representation
-    - NucleotidetncRNAs: ncRNAs
-    - NucleotidetPseudoGenes: Pseudo Genes (total)
-    - NucleotidetPseudoGenesAmbResidues: Pseudo Genes (ambiguous residues)
-    - NucleotidetPseudoGenesFrameshifted: Pseudo Genes (frameshifted)
-    - NucleotidetPseudoGenesIncomplete: Pseudo Genes (incomplete)
-    - NucleotidetPseudoGenesInternalStop: Pseudo Genes (internal stop)
-    - NucleotidetPseudoGenesMultipleProblems: Pseudo Genes (multiple problems)
-    - NucleotidetrRNAs: rRNAs
-    - NucleotidetrRNAsComplete: complete rRNAs
-    - NucleotidetrRNAsPartial: partial rRNAs
+    - NucleotideCDS: CDS
+    - NucleotideCDSTotal: CDS (total)
+    - NucleotideCDSCoding: CDS (coding)
+    - NucleotideCDSProtein: CDS (with protein)
+    - NucleotideCDSWithoutProtein: CDS (without protein)
+    - NucleotideCRISPRArrays: CRISPR Arrays
+    - NucleotideExpectedFinalVersion: Expected Final Version
+    - NucleotideFeaturesAnnotated: Features Annotated
+    - NucleotideGenes: Genes
+    - NucleotideGenesTotal: Genes (total)
+    - NucleotideGenesCoding: Genes (coding)
+    - NucleotideGenesRNA: Genes (RNA)
+    - NucleotideGenomeCoverage: Genome Coverage
+    - NucleotideGenomeRepresentation: Genome Representation
+    - NucleotidencRNAs: ncRNAs
+    - NucleotidePseudoGenes: Pseudo Genes
+    - NucleotidePseudoGenesTotal: Pseudo Genes (total)
+    - NucleotidePseudoGenesAmbResidues: Pseudo Genes (ambiguous residues)
+    - NucleotidePseudoGenesFrameshifted: Pseudo Genes (frameshifted)
+    - NucleotidePseudoGenesIncomplete: Pseudo Genes (incomplete)
+    - NucleotidePseudoGenesInternalStop: Pseudo Genes (internal stop)
+    - NucleotidePseudoGenesMultipleProblems: Pseudo Genes (multiple problems)
+    - NucleotiderRNAs: rRNAs
+    - NucleotiderRNAsComplete: complete rRNAs
+    - NucleotiderRNAsPartial: partial rRNAs
     - NucleotideSequencingTechnology: Sequencing Technology
-    - NucleotidetRNAs: tRNAs
+    - NucleotideRNAs: tRNAs
 
 # Empty field for user comments about record
     - NucleotideComment : NullValue

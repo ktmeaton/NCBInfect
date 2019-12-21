@@ -13,7 +13,7 @@
     - AssemblyWGSAccession : WGS
 
 # Taxonomy Information
-    - AssemblyInfraspecies : InfraspeciesList, Biosource, Sub_value
+    - AssemblyInfraspecies : InfraspeciesList, Sub_value
     - AssemblyIsolate : Isolate
     - AssemblyOrganism : Organism
     - AssemblySpeciesTaxonomicID : SpeciesTaxid
@@ -26,18 +26,17 @@
     - AssemblyType : AssemblyType
 
 # Assembly Statistics
-    - AssemblyCoverage : Coverage
-    - AssemblyChromosomes : Stat, chromosome_count, category
-    - AssemblyContigCount: Stat, contig_count, category
-    - AssemblyContigN50 : Stat, contig_n50, category
-    - AssemblyContigL50 : Stat, contig_l50, category
-    - AssemblyNonChromosomalReplicons : Stat, non_chromosome_replicon_count, category
-    - AssemblyReplicons : Stat, replicon_count, category
-    - AssemblyScaffolds : Stat, scaffold_count, category
-    - AssemblyScaffoldN50 : Stat, scaffold_n50, category
-    - AssemblyScaffoldL50 : Stat, scaffold_l50, category
-    - AssemblyTotalLength : Stat, total_length, category
-    - AssemblyUngappedLength : Stat, ungapped_length, category
+    - AssemblyChromosomes : Meta, Stat, category, chromosome_count
+    - AssemblyContigCount: Meta, Stat, category, contig_count
+    - AssemblyContigN50 : Meta, Stat, category, contig_n50
+    - AssemblyContigL50 : Meta, Stat, category, contig_l50
+    - AssemblyNonChromosomalReplicons : Meta, Stat, category, non_chromosome_replicon_count
+    - AssemblyReplicons : Meta, Stat, category, replicon_count
+    - AssemblyScaffolds : Meta, Stat, category, scaffold_count
+    - AssemblyScaffoldN50 : Meta, Stat, category, scaffold_n50
+    - AssemblyScaffoldL50 : Meta, Stat, category, scaffold_l50
+    - AssemblyTotalLength : Meta, Stat, category, total_length
+    - AssemblyUngappedLength : Meta, Stat, category, ungapped_length
 
 # Submitter Information
     - AssemblySubmitterOrganization : SubmitterOrganization
