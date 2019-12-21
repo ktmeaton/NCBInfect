@@ -41,7 +41,7 @@ In response, ``NCBImeta`` aims to provide a more user-inclusive experience to me
 
 ``NBCImeta`` is a command-line application that executes user queries and metadata retrieval from the NCBI suite of databases. The software is written in Python 3, using the ``BioPython`` module [@cock_biopython:_2009] to connect to, search, and download XML records with NCBI’s E-Utilities [@kans_entrez_2019]. The ``lxml`` package is utilised to perform XPath queries to retrieve nodes containing biological metadata of interest. ``SQLite`` is employed as the database management system for storing fetched records, as implemented with the ``sqlite3`` python module. Accessory scripts are provided to supply external annotation files, to join tables within the local database so as to re-create the relational database structure, and finally to export the database as tabular text for downstream analyses. ``NCBImeta`` currently interfaces with the molecular and literature databases described in Table \ref{NCBI_databases} [@noauthor_entrez_2016; @noauthor_ncbi_nodate].
 
-: NCBI Databases Supported in NCBImeta. \label{NCBI_databases}
+: NCBI databases supported in NCBImeta. \label{NCBI_databases}
 
 +-----------------+-------------------------------------------------------------+
 | **Database**    | **Description**                                             |
@@ -63,7 +63,7 @@ In response, ``NCBImeta`` aims to provide a more user-inclusive experience to me
 The typical workflow of ``NCBImeta`` follows four major steps as outlined in Figure \ref{NCBImeta_Workflow}. Users first configure the program with their desired search terms. ``NCBImeta`` is then executed on the command-line to fetch relevant records and organize them into a local database. Next, the user optionally edits the database to, for example, add their own custom metadata. Finally, the resulting database, kept in SQLite format or exported to text, delivers 100+ biologically-relevant metadata fields to researcher’s fingertips. This process not only saves significant time compared to manual record retrieval through the NCBI web portal, but additionally unlocks attributes for comparison that were not easily accessible via the web-browser interface.
 
 
-![NCBImeta User Workflow \label{NCBImeta_Workflow.}](figures/NCBImeta_Workflow.jpg)
+![NCBImeta user workflow. \label{NCBImeta_Workflow}](figures/NCBImeta_Workflow.jpg)
 
 ``NCBImeta``’s implementation offers a novel approach to metadata management and presentation that improves upon the prevously described limitations of existing software in a number of ways. First, ``NCBImeta`` is run on the command-line, and the final database can be exported to a text file, thus no knowledge of an external programming language is required to generate or explore the output. Second, a general parsing framework for tables and metadata fields was developed which can be extended to work with diverse database types contained within NCBI’s infrastructure. Finally, a query system was implemented for record retrieval that allows users to access records in real-time, as opposed to working with intermittent or out-dated database snapshots.
 
