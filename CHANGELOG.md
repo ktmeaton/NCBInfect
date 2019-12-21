@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project "attempts" to adhere to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Development]
 
 ## [v0.6.1] - 2019-1220
 JOSS Submission
@@ -170,7 +170,7 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 ## [v0.1.0] - 2016-0622
 - Repository migrated from GenomeCollector
 
-[Unreleased]: https://github.com/ktmeaton/NCBImeta/compare/dev...HEAD
+[Development]: https://github.com/ktmeaton/NCBImeta/compare/HEAD...dev
 [v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.1...HEAD
 [v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.0...v0.6.1
 [v0.5.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.5.0...v0.6.0
