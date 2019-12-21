@@ -81,7 +81,8 @@ Each table within the database will be exported to its own tab-separated .txt fi
 2. Browse your SQLite database using DB Browser for SQLite (https://sqlitebrowser.org/)  
 3. Use the columns with FTP links to download your data files of interest.
 
-Example database output (a subset of the Assembly table)      
+Example database output (a subset of the BioSample table)  
+    
 <img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImetaDB_large.gif" alt="NCBImetaDB" width="700px"/>
 
 ## Currently Supported NCBI Tables  
