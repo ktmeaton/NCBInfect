@@ -120,6 +120,7 @@ print(
 "\t" + "Config File: " + str(config_path) + "\n" +
 "\t" + "Output Directory: " + str(CONFIG_OUTPUT_DIR) + "\n" +
 "\t" + "Email: " + str(CONFIG_EMAIL) + "\n" +
+    "\t" + "API Key: " + "\t\t" + str(CONFIG_API_KEY) + "\n" +
 "\t" + "User Database: " + str(CONFIG_DATABASE) + "\n" +
 "\t" + "Tables: " + str(CONFIG_TABLES) + "\n" +
 "\t" + "Search Terms: ", flush = True)
@@ -199,7 +200,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     "\t" + "Database: " + "\t\t" + database + "\n" +
     "\t" + "Search Term:" + "\t" + "\t" + search_term + "\n" +
     "\t" + "Email: " + "\t\t\t" + email + "\n" +
-    "\t" + "API Key: " + "\t\t\t" + api_key + "\n" +
+    "\t" + "API Key: " + "\t\t" + api_key + "\n" +
     "\t" + "Output Directory: " + "\t" + output_dir + "\n\n", flush = True)
 
 
