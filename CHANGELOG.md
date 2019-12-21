@@ -21,7 +21,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Fixed changelog compare links
 - Fixed version numbering in python executables
 
-## [v0.6.0] - 2019-1218
+## [v0.6.0] - 2019-1218 - XML Overhaul XPath
 Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to be not backwards compatible.
 
 ### Added
@@ -52,7 +52,7 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - Nucleotide Fields: NucleotideJournal -> NucleotideReferenceJournal
 - Experimented with changing Assembly to efetch, does not support this, only docsum
 
-## [v0.5.0] - 2019-1204
+## [v0.5.0] - 2019-1204 - PyTest and Codecov
 
 ### Removed
 - Python 3.4 Support (End of Life) and pytest 5.x.y conflicts.
@@ -72,10 +72,10 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - Change unicode to str for Python3
 - Reuploaded truncated gif files
 - Typo Nucleotidet fixed in example config.yaml
-- Re-update execute permissions (git update-index --add --chmod=+x ncbimeta/*.py)
+- Re-update execute permissions (git update-index --add --chmod=+x ncbimeta/\*.py)
 - bash uploader for codecov
 
-## [v0.4.2] - 2019-1127
+## [v0.4.2] - 2019-1127 - Pip Installation
 
 ### Added
 - setup.py for installation from PyPI and source
@@ -86,14 +86,14 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - requirements.txt loads into setup.py
 - Update docs to reflect path changes
 
-## [v0.4.1] - 2019-1127
+## [v0.4.1] - 2019-1127 - Travis CI Integration
 
 ### Changed
-- Execute permissions (git update-index --add --chmod=+x src/*.py)
+- Execute permissions (git update-index --add --chmod=+x src/\*.py)
 - Bugfix for esearch, more HTTP Error catching
 - Travis CI Integration (Linux, MacOSX)
 
-## [v0.4.0] - 2019-1031
+## [v0.4.0] - 2019-1031 - YAML Configuration Files
 ### Added
 - requirements.txt for pip install dependencies
 - PyYAML is now a required module for yaml config file loading
@@ -115,17 +115,17 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - scripts folder with very deprecated R code for plotting
 - excessive annotation files 2 and 3.
 
-## [v0.3.4] - 2019-1028
+## [v0.3.4] - 2019-1028 - HTTP Error Catching
 ### Added
 - HTTP Error catching
 - Bug fixes for HTTP Error 429
 
-## [v0.3.3] - 2019-0912
+## [v0.3.3] - 2019-0912 - Pubmed Table Support
 ### Added
 - Pubmed Table support
 
 
-## [v0.3.2] - 2019-0905
+## [v0.3.2] - 2019-0905 - Genome Annotation Capture
 ### Added
 - Command example in README.md for creating a master join table of BioSample, BioProject, Assemble, SRA, and Nucleotide tables.
 - Three new annotation files for the example.
@@ -136,7 +136,7 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - Fixed missing BioSampleAccession from the Nucleotide Table
 - Fixed incorrect directory paths in README.md example commands.
 
-## [v0.3.1] - 2018-0702
+## [v0.3.1] - 2018-0702 - Alpha Release for User Testing
 ### Added  
 - README files for config and schema
 - Usage in main README
