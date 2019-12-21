@@ -82,7 +82,7 @@ Each table within the database will be exported to its own tab-separated .txt fi
 3. Use the columns with FTP links to download your data files of interest.
 
 Example database output (a subset of the Assembly table)      
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImetaDB.gif" alt="NCBImetaDB" width="700px"/>
+<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImetaDB_large.gif" alt="NCBImetaDB" width="700px"/>
 
 ## Currently Supported NCBI Tables  
 Assembly  
