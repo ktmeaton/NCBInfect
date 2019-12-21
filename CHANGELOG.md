@@ -171,7 +171,8 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - Repository migrated from GenomeCollector
 
 [Unreleased]: https://github.com/ktmeaton/NCBImeta/compare/dev...HEAD
-[v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.0...HEAD
+[v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.1...HEAD
+[v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.0...v0.6.1
 [v0.5.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.5.0...v0.6.0
 [v0.4.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.4.2...v0.5.0
 [v0.4.1]: https://github.com/ktmeaton/NCBImeta/compare/v0.4.1...v0.4.2
