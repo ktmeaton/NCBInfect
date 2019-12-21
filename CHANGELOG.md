@@ -130,7 +130,7 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - Fixed missing BioSampleAccession from the Nucleotide Table
 - Fixed incorrect directory paths in README.md example commands.
 
-## v0.3.1 - 2018-0702
+## [v0.3.1] - 2018-0702
 ### Added  
 - README files for config and schema
 - Usage in main README
@@ -167,7 +167,7 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - Bug-fix, multiple accession versions
 - Started better version control
 
-https://github.com/ktmeaton/NCBImeta
+Project URL: https://github.com/ktmeaton/NCBImeta
 
 [Unreleased]: https://github.com/ktmeaton/NCBImeta/compare/dev...HEAD
 [v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.5.0...v0.6.0
