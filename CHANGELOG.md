@@ -173,18 +173,18 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 Project URL: https://github.com/ktmeaton/NCBImeta
 
 [Unreleased]: https://github.com/ktmeaton/NCBImeta/compare/dev...HEAD
-[v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.5.0...v0.6.0
-[v0.5.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.4.2...v0.5.0
-[v0.4.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.4.1...v0.4.2
-[v0.4.1]: https://github.com/ktmeaton/NCBImeta/compare/v0.4.0...v0.4.1
-[v0.4.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.4...v0.4.0
-[v0.3.4]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.3...v0.3.4
-[v0.3.3]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.2...v0.3.3
-[v0.3.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.1...v0.3.2
-[v0.3.1]: https://github.com/ktmeaton/NCBImeta/compare/1c97b6b42b0c774b96c8d404d61f4768d3aeea5c...v0.3.1
-[v0.3.0]: https://github.com/ktmeaton/NCBImeta/compare/7e77ac2009192eb1905de9d2b687cbac080ebf8a...1c97b6b42b0c774b96c8d404d61f4768d3aeea5c
-[v0.2.1]: https://github.com/ktmeaton/NCBImeta/compare/9dfe4d7ef53e17e482e28b37e809203648ac972e...7e77ac2009192eb1905de9d2b687cbac080ebf8a
-[v0.2.0]: https://github.com/ktmeaton/NCBImeta/compare/0e3e2f33a8d12b49e203e2a1d8205be7e9fa6f39...9dfe4d7ef53e17e482e28b37e809203648ac972e
-[v0.1.2]: https://github.com/ktmeaton/NCBImeta/compare/43c68690ccca7a56031c1914f8a45865302a3696...0e3e2f33a8d12b49e203e2a1d8205be7e9fa6f39
-[v0.1.1]: https://github.com/ktmeaton/NCBImeta/compare/126e2f15b43ab3f12942e845bbef4121cc9baf40...43c68690ccca7a56031c1914f8a45865302a3696
-[v0.1.0]: https://github.com/ktmeaton/NCBImeta/commit/126e2f15b43ab3f12942e845bbef4121cc9baf40
+[v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.0...HEAD
+[v0.5.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.5.0...v0.6.0
+[v0.4.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.4.2...v0.5.0
+[v0.4.1]: https://github.com/ktmeaton/NCBImeta/compare/v0.4.1...v0.4.2
+[v0.4.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.4.0...v0.4.1
+[v0.3.4]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.4...v0.4.0
+[v0.3.3]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.3...v0.3.4
+[v0.3.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.2...v0.3.3
+[v0.3.1]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.1...v0.3.2
+[v0.3.0]: https://github.com/ktmeaton/NCBImeta/compare/1c97b6b42b0c774b96c8d404d61f4768d3aeea5c...v0.3.1
+[v0.2.1]: https://github.com/ktmeaton/NCBImeta/compare/7e77ac2009192eb1905de9d2b687cbac080ebf8a...1c97b6b42b0c774b96c8d404d61f4768d3aeea5c
+[v0.2.0]: https://github.com/ktmeaton/NCBImeta/compare/9dfe4d7ef53e17e482e28b37e809203648ac972e...7e77ac2009192eb1905de9d2b687cbac080ebf8a
+[v0.1.2]: https://github.com/ktmeaton/NCBImeta/compare/0e3e2f33a8d12b49e203e2a1d8205be7e9fa6f39...9dfe4d7ef53e17e482e28b37e809203648ac972e
+[v0.1.1]: https://github.com/ktmeaton/NCBImeta/compare/43c68690ccca7a56031c1914f8a45865302a3696...0e3e2f33a8d12b49e203e2a1d8205be7e9fa6f39
+[v0.1.0]: https://github.com/ktmeaton/NCBImeta/compare/126e2f15b43ab3f12942e845bbef4121cc9baf40...43c68690ccca7a56031c1914f8a45865302a3696
