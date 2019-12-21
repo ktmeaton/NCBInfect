@@ -130,7 +130,7 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - Fixed missing BioSampleAccession from the Nucleotide Table
 - Fixed incorrect directory paths in README.md example commands.
 
-## [v0.3.1] - 2018-0702
+## v0.3.1 - 2018-0702
 ### Added  
 - README files for config and schema
 - Usage in main README
@@ -138,7 +138,7 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 ### Changed
 - Alphabetized schema entries
 
-## [v0.3.0] - 2018-0629
+## v0.3.0 - 2018-0629
 ### Added
 - Automation mode
 - Supported Tables: Assembly, BioProject, BioSample, Nucleotide, SRA
@@ -146,20 +146,20 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 ### Changed
 - Repository Rename: NCBInfect -> NCBImeta
 
-## [v0.2.1] - 2018-0308
+## v0.2.1 - 2018-0308
 
 ### Changed
 - Fully Functional
 
-## [v0.2.0] - 2018-0122
+## v0.2.0 - 2018-0122
 ### Changed
 - Repository Rename: GenomeCollector -> NCBInfect
 
-## [v0.1.2] - 2017-0920
+## v0.1.2 - 2017-0920
 ### Added
 - Bugfixes
 
-## [v0.1.1] - 2017-0919
+## v0.1.1 - 2017-0919
 ### Added
 - SRA Table
 
@@ -170,3 +170,11 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 https://github.com/ktmeaton/NCBImeta
 
 [Unreleased]: https://github.com/ktmeaton/NCBImeta/compare/dev...HEAD
+[v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.5.0...v0.6.0
+[v0.5.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.4.2...v0.5.0
+[v0.4.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.4.1...v0.4.2
+[v0.4.1]: https://github.com/ktmeaton/NCBImeta/compare/v0.4.0...v0.4.1
+[v0.4.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.4...v0.4.0
+[v0.3.4]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.3...v0.3.4
+[v0.3.3]: https://github.com/ktmeaton/NCBImeta/compare/v0.3.2...v0.3.3
+[v0.3.2]: https://github.com/ktmeaton/NCBImeta/tree/v0.3.2
