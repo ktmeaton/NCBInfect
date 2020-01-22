@@ -62,7 +62,7 @@ else:
 
 # Check if output dir exists
 if not os.path.exists(output_dir):
-    raise NCBImetaErrors.ErrorOutputDirNotExists(output_dir)
+    os.makedirs(CONFIG_OUTPUT_DIR)
 
 # no errors were raised, safe to connect to db
 cur = conn.cursor()

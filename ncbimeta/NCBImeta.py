@@ -130,7 +130,7 @@ print("\n", flush = True)
 
 # Check if output dir exists
 if not os.path.exists(CONFIG_OUTPUT_DIR):
-    raise NCBImetaErrors.ErrorOutputDirNotExists(CONFIG_OUTPUT_DIR)
+    os.makedirs(CONFIG_OUTPUT_DIR)
 
 # Flat mode checking
 if flat_mode:
