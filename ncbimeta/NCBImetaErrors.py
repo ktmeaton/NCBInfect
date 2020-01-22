@@ -5,22 +5,6 @@ NCBImeta Error Classes
 @author: Katherine Eaton
 """
 
-class ErrorOutputDirNotExists(Exception):
-    '''Error class for when an output directory does not exist'''
-    def __init__(self, value):
-        '''
-        The constructor for ErrorOutputDirNotExists class.
-
-        Parameters:
-        value(str): Path to the output directory.
-        '''
-        self.value = value
-    def __str__(self):
-        '''When the error is raised, print the output directory path.'''
-        return ("\n\nOutput directory does not exist." + "\n" +
-            "User entered: " + self.value)
-
-
 class ErrorAnnotFileNotExists(Exception):
     def __init__(self, value):
         '''
