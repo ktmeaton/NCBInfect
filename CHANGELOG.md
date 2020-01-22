@@ -6,6 +6,14 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
+## [v0.6.2] - 2020-0122 - JOSS Review and Bioconda
+
+### Added
+- Bioconda packaging and installation now available (PR \#5 , credits and thanks to @druvus)
+
+### Changed
+- If the output directory does not exist, it is now created rather than raising an error (Issue \#4).
+
 ## [v0.6.1] - 2019-1220 - JOSS Submission and Zenodo
 
 ### Added
@@ -177,7 +185,8 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - Repository migrated from GenomeCollector
 
 [Development]: https://github.com/ktmeaton/NCBImeta/compare/HEAD...dev
-[v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.1...HEAD
+[v0.6.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.2...HEAD
+[v0.6.1]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.1...v0.6.2
 [v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.0...v0.6.1
 [v0.5.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.5.0...v0.6.0
 [v0.4.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.4.2...v0.5.0
