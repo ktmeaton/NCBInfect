@@ -104,7 +104,7 @@ Note that it must be IN ORDER, but can skip intermediate values (ex. node <Biopr
 
 To puzzle out additional xml criteria for your search query, search for the line:  
 
-    - \#print(etree.tostring(ID_root).decode())  
+    - #print(etree.tostring(ID_root).decode())  
 
 And uncomment it (delete the \#  at the beginning).
 
