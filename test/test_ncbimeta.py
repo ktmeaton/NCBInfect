@@ -29,9 +29,9 @@ def test_ncbimeta_run():
     # If it returns a non-zero value, it failed
     assert returned_value == 0
 
-def test_ncbimeta_noflatmode():
-    '''Test the NCBImeta application for run completion'''
-    # User the stripped down testing config file
+def test_ncbimeta_noflatmode(tmpdir):
+    '''Test the NCBImeta application without flat mode'''
+    # Use the stripped down testing config file, rewrite OUTPUT_DIR value
     config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test.yaml")
     test_cmd = "ncbimeta/NCBImeta.py --config " + config_file
     # test the main NCBImeta.py through a subprocess
@@ -288,7 +288,7 @@ def test_ncbimeta_ErrorConfigParameter_TABLE_COLUMNS(tmpdir):
     os.remove(config_file_name)
 
 def test_ncbimeta_OutputDirNotExists(tmpdir):
-    '''Test for error catching when the output dir does not exist'''
+    '''Test for successfully running main program when outputdir doesn't exist'''
     tmpdir = tmpdir.strpath
     # Prep files and directories
     src_config = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test.yaml")
@@ -308,10 +308,11 @@ def test_ncbimeta_OutputDirNotExists(tmpdir):
         subprocess.check_output(test_cmd,
                                 shell=True,
                                 stderr=subprocess.STDOUT)
-        # If an exception isn't raise then the assertion fails (0)
-        assert 0
+        # If an exception isn't raise, then the program ran successfully
+        assert 1
     except subprocess.CalledProcessError as e:
-        # If the right error is raise, it's Error Class is in the output
-        assert "ErrorOutputDirNotExists" in str(e.output)
+        # If an error is raised, it's Error Class is in the output
+        #print(str(e.output))
+        assert 0
     # Cleanup
     os.remove(config_file)
