@@ -39,7 +39,7 @@ mandatory.add_argument('--outputdir',
 
 parser.add_argument('--version',
                     action='version',
-                    version='%(prog)s v0.6.1')
+                    version='%(prog)s v0.6.2')
 
 
 args = vars(parser.parse_args())
@@ -62,7 +62,7 @@ else:
 
 # Check if output dir exists
 if not os.path.exists(output_dir):
-    raise NCBImetaErrors.ErrorOutputDirNotExists(output_dir)
+    os.makedirs(CONFIG_OUTPUT_DIR)
 
 # no errors were raised, safe to connect to db
 cur = conn.cursor()

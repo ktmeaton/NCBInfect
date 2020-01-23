@@ -12,25 +12,26 @@ Efficient and comprehensive metadata acquisition from NCBI databases (includes S
 NCBImeta is a command-line application that retrieves and organizes metadata from the National Centre for Biotechnology Information (NCBI). While the NCBI web browser experience allows filtered searches, the output does not facilitate inter-record comparison or bulk record retrieval. NCBImeta tackles this issue by creating a local database of NCBI metadata constructed by user-defined search criteria and customizable metadata columns. The output of NCBImeta, optionally a SQLite database or text files, can then be used by computational biologists for applications such as record filtering, project discovery, sample interpretation, or meta-analyses of published work.
 
 ## Requirements
-NCBImeta is written in Python 3 and supported on Linux and macOS. Dependencies are listed in [requirements.txt](https://github.com/ktmeaton/NCBImeta/blob/master/requirements.txt).  
+NCBImeta is written in Python 3 and supported on Linux and macOS. Dependencies that will be installed are listed in [requirements.txt](https://github.com/ktmeaton/NCBImeta/blob/master/requirements.txt).  
 [Check all Python versions and OS with verified build status](https://travis-ci.org/ktmeaton/NCBImeta)
 
 ## Installation
-You have different options how to intall NCBImeta. 
+There are three installation options for NCBImeta:
 
-### Installation using The Python Package Index (PyPI)
-```
-pip install NCBImeta
-```
-
-### Installation using Bioconda
+### 1. Bioconda
 
 ```
 conda install -c conda-forge -c bioconda -c defaults ncbimeta
 ```
-
-
-### Installation From Source
+### 2. PyPI
+```
+pip install NCBImeta
+```
+If you have both Python2 and Python3 installed, using *pip3* may be beneficial instead:
+```
+pip3 install NCBImeta
+```
+### 3. Source
 
 ```
 git clone https://github.com/ktmeaton/NCBImeta.git   
@@ -94,7 +95,7 @@ Each table within the database will be exported to its own tab-separated .txt fi
 
 Example database output (a subset of the BioSample table)  
 
-<img src="https://github.com/ktmeaton/NCBImeta/blob/master/images/NCBImetaDB.gif" alt="NCBImetaDB" width="700px"/>
+<img src="https://raw.githubusercontent.com/ktmeaton/NCBImeta/master/images/NCBImetaDB.gif" alt="NCBImetaDB" width="700px"/>
 
 ## Currently Supported NCBI Tables  
 - Assembly  

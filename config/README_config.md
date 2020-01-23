@@ -18,7 +18,7 @@ The names of these variables should not be altered in any way. Just their assign
 ```
 Can be a relative or absolute path. Note that when using a relative path, it will be relative from wherever you are EXECUTING the program (not necessarily from where the config file is located).    
 
-This directory MUST exist, otherwise the program will exit with an error status.    
+If the directory does not exist, it will be created.   
 
 ## 2) EMAIL
 ```

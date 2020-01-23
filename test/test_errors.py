@@ -15,16 +15,6 @@ import os                                   # Filepath operations
 #                           Test Function                               #
 #-----------------------------------------------------------------------#
 
-def test_ErrorOutputDirNotExists(tmpdir):
-    '''Test the class ErrorOutputDirNotExists (error when a directory doesn't exist)'''
-    tmpdir = tmpdir.strpath
-    # Test instantiation
-    test_error = NCBImetaErrors.ErrorOutputDirNotExists(tmpdir)
-    # Test str representation (error message)
-    error_output = str(test_error)
-    error_expect = ("\n\nOutput directory does not exist." + "\n" + "User entered: " + tmpdir)
-    assert error_output == error_expect
-
 def test_ErrorAnnotFileNotExists(tmpdir):
     '''Test the class ErrorAnnotFileNotExists (error when an annotation file doesn't exist)'''
     # This file is not created, just a tmp path
