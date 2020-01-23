@@ -9,13 +9,13 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [v0.6.2] - 2020-0123 - JOSS Review and Bioconda
 
 ### Added
-- Bioconda packaging and installation now available (PR \#5 , credits and thanks to @druvus)
+- Bioconda packaging and installation now available (PR: \#5 , credits and thanks to @druvus)
 - Discovered biocontainers automatically created through bioconda
 - PyPI Deployment through Travis-CI on tagged commits
 - Discovered piwheels automatically created through PyPI
 
 ### Changed
-- If the output directory does not exist, it is now created rather than raising an error (Issue \#4).
+- If the output directory does not exist, it is now created rather than raising an error (Issue: \#4).
 
 ## [v0.6.1] - 2019-1220 - JOSS Submission and Zenodo
 
