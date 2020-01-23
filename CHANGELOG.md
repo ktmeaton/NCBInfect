@@ -10,6 +10,9 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ### Added
 - Bioconda packaging and installation now available (PR \#5 , credits and thanks to @druvus)
+- Discovered biocontainers automatically created through bioconda
+- PyPI Deployment through Travis-CI on tagged commits
+- Discovered piwheels automatically created through PyPI
 
 ### Changed
 - If the output directory does not exist, it is now created rather than raising an error (Issue \#4).
