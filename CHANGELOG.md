@@ -6,7 +6,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
-## [v0.6.2] - 2020-0122 - JOSS Review and Bioconda
+## [v0.6.2] - 2020-0123 - JOSS Review and Bioconda
 
 ### Added
 - Bioconda packaging and installation now available (PR \#5 , credits and thanks to @druvus)
