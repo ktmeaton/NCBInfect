@@ -1,6 +1,7 @@
 branches:
   only:
   - master
+  - /^v.*$/
 language: python
 jobs:
   include:
