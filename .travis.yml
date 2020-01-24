@@ -39,38 +39,7 @@ script:
 after_success:
 #- bash < (curl -s https://codecov.io/bash)
 - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
-    program_name=ncbimeta;
-    bioconda_recipe=meta.yaml;
-    program_ver=`NCBImeta.py --version | cut -d " " -f2 | sed 's/v//g'`;
-    program_url=https://github.com/${TRAVIS_REPO_SLUG}/archive/v${program_ver}.tar.gz;
-    cd ../ ;
-    git clone https://github.com/${GITHUB_USER}/bioconda-recipes.git;
-    cd bioconda-recipes/;
-    git checkout master;
-    git config user.name $GITHUB_USER;
-    git config user.email $GITHUB_USER_EMAIL;
-    git remote add upstream https://github.com/bioconda/bioconda-recipes.git;
-    git pull upstream master;
-    git remote rm origin;
-    git remote add origin https://${GITHUB_USER}:${GITHUB_API_KEY}@github.com/${GITHUB_USER}/bioconda-recipes.git > /dev/null 2>&1;
-    git push -f -q https://${GITHUB_USER}:${GITHUB_API_KEY}@github.com/${GITHUB_USER}/bioconda-recipes master;
-    cd recipes/;
-    dest_ver=`echo "{% set version = \"${program_ver}"\" %}`;
-    src_ver=`grep "set version" ${program_name}/${bioconda_recipe}`;
-    dest_sha256=`wget -O- ${program_url} | shasum -a 256 | cut -d " " -f 1`;
-    src_sha256=`grep "sha256" ${program_name}/${bioconda_recipe} | sed 's/^ *//g' | cut -d " " -f 2`;
-    git config -l;
-    git remote -v;
-    git branch -a;
-    git checkout -b ${program_name}-${program_ver};
-    head ${program_name}/${bioconda_recipe};
-    sed -i "s/$src_ver/$dest_ver/g" ${program_name}/${bioconda_recipe};
-    sed -i "s/$src_sha256/$dest_sha256/g" ${program_name}/${bioconda_recipe};
-    head ${program_name}/${bioconda_recipe};
-    git add ${program_name};
-    git commit -m "${program_name} v${program_ver} recipe update";
-    git push --set-upstream origin ${program_name}-${program_ver};
-    cd ../../NCBImeta/;
+    ./conda_update.sh;
   fi
 deploy:
   provider: pypi
