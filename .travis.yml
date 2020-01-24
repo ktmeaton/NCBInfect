@@ -39,9 +39,12 @@ script:
 after_success:
 #- bash <(curl -s https://codecov.io/bash)
 - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
+    pwd;
     cd ../ ;
+    pwd;
     git clone https://github.com/ktmeaton/bioconda-recipes.git;
-    cd bioconda-recipes;
+    cd bioconda-recipes/;
+    pwd;
     git checkout master;
     git config --global user.name = $GITHUB_USER;
     git config --global user.email = $GITHUB_USER_EMAIL;
@@ -51,6 +54,7 @@ after_success:
     git pull upstream master;
     git push -f -q https://${GITHUB_USER}:${GITHUB_API_KEY}@github.com/${TRAVIS_REPO_SLUG} master;
     cd ../NCBImeta/;
+    pwd;
   fi
 deploy:
   provider: pypi
