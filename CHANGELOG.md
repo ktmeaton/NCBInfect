@@ -10,7 +10,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [v0.6.3] - 2020-0124 - Automating the Chain
 
 ### Added
-- conda_update.sh to automate conda recipe updating after Travis-CI tag run
+- Will rely on bioconda's autobump to maintain bioconda releases.
+- Just in case, packaging scripts are located in the new branch bioconda as a backup
+- .conda_update.sh to automate conda recipe updating after Travis-CI tag run
+- .bioconda_autobump.sh (draft) to automate bioconda-utils autobump PR pipeline
 - ver_update.sh to automate version number updating of executables and build scripts
 - git update-index --add --chmod=+x conda_update.sh
 - git update-index --add --chmod=+x ver_update.sh
