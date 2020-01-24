@@ -47,14 +47,14 @@ after_success:
     cd bioconda-recipes/;
     pwd;
     git checkout master;
-    git config --global user.name = $GITHUB_USER;
-    git config --global user.email = $GITHUB_USER_EMAIL;
+    git config user.name = $GITHUB_USER;
+    git config user.email = $GITHUB_USER_EMAIL;
     git remote add upstream https://github.com/bioconda/bioconda-recipes.git;
     git remote rm origin;
-    git remote add origin https://${GITHUB_USER}:${GITHUB_API_KEY}@github.com/${TRAVIS_REPO_SLUG}.git > /dev/null 2>&1;
+    git remote add origin https://${GITHUB_USER}:${GITHUB_API_KEY}@github.com/${GITHUB_USER}/bioconda-recipes.git > /dev/null 2>&1;
     git pull upstream master;
     git config -l;
-    git push -f -q https://${GITHUB_USER}:${GITHUB_API_KEY}@github.com/${TRAVIS_REPO_SLUG} master;
+    git push -f -q https://${GITHUB_USER}:${GITHUB_API_KEY}@github.com/${GITHUB_USER}/bioconda-recipes master;
     cd ../NCBImeta/;
     pwd;
   fi
