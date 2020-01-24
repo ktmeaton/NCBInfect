@@ -39,7 +39,7 @@ script:
 after_success:
 - bash < (curl -s https://codecov.io/bash)
 - if [[ $TRAVIS_PYTHON_VERSION == 3.5 && $TRAVIS_TAG == v* ]]; then
-    ./conda_update.sh;
+    ./.conda_update.sh;
   fi
 deploy:
   provider: pypi
