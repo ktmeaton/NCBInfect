@@ -67,6 +67,9 @@ after_success:
     sed -i "s/$src_ver/$dest_ver/g" ${program_name}/${bioconda_recipe};
     sed -i "s/$src_sha256/$dest_sha256/g" ${program_name}/${bioconda_recipe};
     head ${program_name}/${bioconda_recipe};
+    git add ${program_name};
+    git commit -m "${program_name} v${program_ver} recipe update";
+    git push;
     cd ../../NCBImeta/;
   fi
 deploy:
