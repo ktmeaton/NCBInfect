@@ -50,7 +50,7 @@ parser.add_argument('--flat',
 
 parser.add_argument('--version',
                     action='version',
-                    version='%(prog)s v0.6.2')
+                    version='%(prog)s v0.6.3')
 
 # Retrieve user parameters
 args = vars(parser.parse_args())
