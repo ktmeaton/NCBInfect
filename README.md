@@ -128,7 +128,8 @@ Please submit your questions, suggestions, and bug reports to the
 
 ## Citation
 
-Katherine Eaton. (2019, December 21). NCBImeta: efficient and comprehensive metadata retrieval from NCBI databases (Version v0.6.1). Zenodo. http://doi.org/10.5281/zenodo.3588644
+#### Zenodo
+Katherine Eaton. NCBImeta: efficient and comprehensive metadata retrieval from NCBI databases. Zenodo. http://doi.org/10.5281/zenodo.3588636
 
 ## Credits
 
