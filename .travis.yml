@@ -37,7 +37,7 @@ script:
 #  BioSampleAccessionSecondary BioSampleBioProjectAccession"
 #- NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/
 after_success:
-#- bash <(curl -s https://codecov.io/bash)
+#- bash < (curl -s https://codecov.io/bash)
 - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
     program_name=ncbimeta;
     bioconda_recipe=meta.yaml;
@@ -56,8 +56,8 @@ after_success:
     git push -f -q https://${GITHUB_USER}:${GITHUB_API_KEY}@github.com/${GITHUB_USER}/bioconda-recipes master;
     cd recipes/;
     dest_ver=`echo "{% set version = \"${program_ver}"\" %}`;
-    src_ver=`grep "set version" recipes/${program_name}/${bioconda_recipe}`;
-    dest_sha256=`wget -O- $URL | shasum -a 256 | cut -d " " -f 1`;
+    src_ver=`grep "set version" ${program_name}/${bioconda_recipe}`;
+    dest_sha256=`wget -O- ${program_url} | shasum -a 256 | cut -d " " -f 1`;
     src_sha256=`grep "sha256" ${program_name}/${bioconda_recipe} | sed 's/^ *//g'`;
     echo $program_name;
     echo $bioconda_recipe;
@@ -67,7 +67,7 @@ after_success:
     echo $src_ver;
     echo $dest_sha256;
     echo $src_sha256;
-    cd ../NCBImeta/;
+    cd ../../NCBImeta/;
   fi
 deploy:
   provider: pypi
