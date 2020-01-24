@@ -38,7 +38,7 @@ script:
 #- NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/
 after_success:
 #- bash < (curl -s https://codecov.io/bash)
-- if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" && $TRAVIS_TAG ]]; then
+- if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
     program_name=ncbimeta;
     bioconda_recipe=meta.yaml;
     program_ver=`NCBImeta.py --version | cut -d " " -f2 | sed 's/v//g'`;
