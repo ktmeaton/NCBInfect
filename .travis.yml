@@ -26,6 +26,7 @@ install:
 - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
     echo "This is Python 3.5";
   fi
+- pwd
 script:
 - python3 -m coverage run -m pytest --cov=ncbimeta --cov-report=xml test/test_errors.py
 #  test/test_utilities.py test/test_ncbimeta.py test/test_annotateconcatenate.py test/test_annotatereplace.py
