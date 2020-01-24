@@ -41,10 +41,13 @@ after_success:
 - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
     cd ../ ;
     git clone https://github.com/ktmeaton/bioconda-recipes.git;
+    cd bioconda-recipes;
+    git checkout master;
+    git user.name = $GITHUB_USER;
+    git user.email = $GITHUB_USER_EMAIL;
     git remote add upstream https://github.com/bioconda/bioconda-recipes.git;
     git remote rm origin;
-    git remote add origin https://${GITHUB_USER}:${GITHUB_API_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git > /dev/null 2>&1;
-    git checkout master;
+    git remote add origin https://${GITHUB_USER}:${GITHUB_API_KEY}@github.com/${TRAVIS_REPO_SLUG}.git > /dev/null 2>&1;
     git pull upstream master;
     git push -f -q https://${GITHUB_USER}:${GITHUB_API_KEY}@github.com/${TRAVIS_REPO_SLUG} master;
     cd ../NCBImeta/;
