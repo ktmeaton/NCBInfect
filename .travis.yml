@@ -58,7 +58,7 @@ after_success:
     dest_ver=`echo "{% set version = \"${program_ver}"\" %}`;
     src_ver=`grep "set version" ${program_name}/${bioconda_recipe}`;
     dest_sha256=`wget -O- ${program_url} | shasum -a 256 | cut -d " " -f 1`;
-    src_sha256=`grep "sha256" ${program_name}/${bioconda_recipe} | sed 's/^ *//g'`;
+    src_sha256=`grep "sha256" ${program_name}/${bioconda_recipe} | sed 's/^ *//g' | cut -d " " -f 2`;
     echo $program_name;
     echo $bioconda_recipe;
     echo $program_ver;
