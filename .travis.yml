@@ -23,10 +23,6 @@ install:
 - pip3 install --upgrade pip
 - pip3 install . -r requirements.txt
 - pip3 install codecov==2.0.15 pytest==5.3.1 coverage==4.5.4 pytest-cov==2.8.1
-- if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
-    echo "This is Python 3.5";
-  fi
-- pwd
 script:
 - python3 -m coverage run -m pytest --cov=ncbimeta --cov-report=xml test/test_errors.py
 #  test/test_utilities.py test/test_ncbimeta.py test/test_annotateconcatenate.py test/test_annotatereplace.py
@@ -42,6 +38,12 @@ script:
 #- NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/
 after_success:
 #- bash <(curl -s https://codecov.io/bash)
+- if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
+    echo "This is Python 3.5";
+    pwd;
+    cd ../ ;
+    pwd;
+  fi
 deploy:
   provider: pypi
   user: ktmeaton
