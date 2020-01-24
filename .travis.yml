@@ -1,6 +1,6 @@
 branches:
   only:
-  - dev
+  - master
   - /^v.*$/
 language: python
 jobs:
