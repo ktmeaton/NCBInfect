@@ -6,6 +6,10 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
+### Added
+- conda_update.sh to automate conda recipe updating after Travis-CI tag run
+- git update-index --add --chmod=+x conda_update.sh
+
 ### Changed
 - 2020-01-23: the master branch switched to the bioconda-recipes repo. I'm uncertain about why this happened but I
 copied the master branch to a new branch called 'bc-tbd' (bioconda to-be-determined). To recover, I'm copying v0.6.2 to
