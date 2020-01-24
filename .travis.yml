@@ -40,7 +40,7 @@ after_success:
 #- bash <(curl -s https://codecov.io/bash)
 - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
     cd ../ ;
-    git clone https://github.com/ktmeaton/bioconda-recipes.git;
+    git clone https://github.com/${GITHUB_USER}/bioconda-recipes.git;
     cd bioconda-recipes/;
     git checkout master;
     git config user.name $GITHUB_USER;
@@ -54,7 +54,7 @@ after_success:
   fi
 deploy:
   provider: pypi
-  user: ktmeaton
+  user: ${GITHUB_USER}
   password:
     secure: yDyygOrB0wtkeYPOVHPYN45waTXdenAC9kBac778/z9TTEYIdXjLTaYEJFkDzQeiH7ykH09OVdpkL6Z+YbzE6oFxuZzEWZ906MX2uT26BUsGIjXa3yIJrMw7aqQC8/Q8wYZBoM2KA/63ur/vxuMfju/Q6lDQvaA14+Nt+u20pyNHFwB/cGGNJdH/wAbgANVQ7QW88fVyUublDo3zONw8VYuLZaTePcMQnglmSva68KhUskDFO6Fz+yCzzBEqiUsbEIXs0etGkq4aPoHDq5esYE/6d/ql2jmhDTRRBrYQsnoCbXIDbafPij85djV3b+TWtoONlW1uDkqUq+22F8dA/nR4QSg8+l3JkKb4cyR5CINC/3JR/AobkwtFcmLcXAiQG5oN5QjqIPuW5X2fcPoQjsoalkDBhpxX0Aj2T9l/h/52++2I5L9N+aWzGb7TrFArGL9nlMsrfz9CK+J6GqUPDMU7v6w/UGJal11k6l3PatAEozbaMpE1iXQwiyiehpE0p4u8dLl3R54Fb+tMwS2xvIol4uRUSFn//aWdPMM2Z5jg5p5w4xiAUBMZR2vM0WIdU6PSfoel4tZlxzH99EOCjpx6CTEhCvpnwfaYkOaHLmFl8zu6lIKRsru6q3hexVSbWqudpOT6RHI3B9JrKPkLbklYsTf0E7M6ehcPsbHLTmE=
   skip_existing: true
