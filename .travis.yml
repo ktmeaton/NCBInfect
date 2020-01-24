@@ -69,7 +69,7 @@ after_success:
     head ${program_name}/${bioconda_recipe};
     git add ${program_name};
     git commit -m "${program_name} v${program_ver} recipe update";
-    git push;
+    git push --set-upstream origin ${program_name}-${program_ver};
     cd ../../NCBImeta/;
   fi
 deploy:
