@@ -6,6 +6,11 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
+### Changed
+- 2020-01-23: the master branch switched to the bioconda-recipes repo. I'm uncertain about why this happened but I
+copied the master branch to a new branch called 'bc-tbd' (bioconda to-be-determined). To recover, I'm copying v0.6.2 to
+a new master branch.
+
 ## [v0.6.2] - 2020-0123 - JOSS Review and Bioconda
 
 ### Added
