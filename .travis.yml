@@ -38,7 +38,7 @@ script:
 #- NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/
 after_success:
 #- bash < (curl -s https://codecov.io/bash)
-- if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
+- if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" && $TRAVIS_TAG != "" ]]; then
     ./conda_update.sh;
   fi
 deploy:
@@ -49,5 +49,5 @@ deploy:
   skip_existing: true
   on:
     branch: master
-    condition: $TRAVIS_OS_NAME = linux && $TRAVIS_PYTHON_VERSION = "3.5"
+    condition: $TRAVIS_OS_NAME = linux AND $TRAVIS_PYTHON_VERSION = "3.5"
     tags: true
