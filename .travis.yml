@@ -39,10 +39,15 @@ script:
 after_success:
 #- bash <(curl -s https://codecov.io/bash)
 - if [[ "$TRAVIS_PYTHON_VERSION" == "3.5" ]]; then
-    echo "This is Python 3.5";
-    pwd;
     cd ../ ;
-    pwd;
+    git clone https://github.com/ktmeaton/bioconda-recipes.git;
+    git remote add upstream https://github.com/bioconda/bioconda-recipes.git;
+    git remote rm origin;
+    git remote add origin https://${GITHUB_USER}:${GITHUB_API_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git > /dev/null 2>&1;
+    git checkout master;
+    git pull upstream master;
+    git push -f -q https://${GITHUB_USER}:${GITHUB_API_KEY}@github.com/${TRAVIS_REPO_SLUG} master;
+    cd ../NCBImeta/;
   fi
 deploy:
   provider: pypi
