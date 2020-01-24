@@ -48,3 +48,10 @@ deploy:
     branch: master
     condition: $TRAVIS_OS_NAME = linux && $TRAVIS_PYTHON_VERSION = 3.5
     tags: true
+notifications:
+  slack:
+    on_pull_requests: always
+    on_success: always
+    on_failure: always
+    rooms:
+    - secure: KLCMg7vubNuaaQUH4VpbBQhxH4VMSdYhe2GEMeaaCvbeOAUx0ODSYCrpYBDTCbUhLxVoa6Efk7wK7G/mBjvVEFI+X/rrXikRJtUonWYI3Xh7tZCNEveglULjmbcN1kCdCpj2Ola7e3CnclcfZrP7uFXD3M2lt3/651cfIGmH3Wdj4tklBslSV3R2bguUsevhmQ7aqFpHPABwcpZA/IbSgTVwCN8+zpTQgbr9X7aGGY1hkdV+lHAROFLYThSa2NWgU95DrADtWdvLHVMbYFone4Jg2WXSPJFXQ5GqlWuiRzFPE59NNSCZJ9eAiQpiOOVl4j1wjMYsU9oC9olbJbC/GZiEQGqF+PRjzAehCAoFNIZQIV+42lbPuEkIJP2yTdED1E7MU52CvQ75670stTyv8K2xDiOTqN1mqQRoyLovdKFwvc1uunr7v3wMh1xdL9UVmZ6uMlF/LVshtOeHzqQB8f3TSf8hW1918Y1D7eZIjIiwiXcj2H6fYy27N2pglOL6vmdzHnFwK8/PS75A4Rf4isbsl+r2h+n6pI1g3LoRHDCHbk5KKPE3RTX/I7y4t4alP2sEP/dY3uU00aoQX0RCDGCX7ff2WWkBCaqv7mrrFtl41kY69Pn01Lu1TiaF5TSbc3wgoPwzMmyqT+1iFSIBWNqF5TzdbTB7B5kF8HREtrM=
