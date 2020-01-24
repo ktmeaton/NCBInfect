@@ -62,8 +62,7 @@ after_success:
     git config -l;
     git remote -v;
     git branch -a;
-    git branch ${program_name}-${program_ver} origin/${program_name}-${program_ver};
-    git checkout ${program_name}-${program_ver}
+    git checkout -b ${program_name}-${program_ver};
     head ${program_name}/${bioconda_recipe};
     sed -i "s/$src_ver/$dest_ver/g" ${program_name}/${bioconda_recipe};
     sed -i "s/$src_sha256/$dest_sha256/g" ${program_name}/${bioconda_recipe};
