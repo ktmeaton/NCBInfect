@@ -53,7 +53,7 @@ head ${program_name}/${bioconda_recipe};
 
 # Add, commit, push the new recipe to the new branch
 git add ${program_name};
-git commit -m "${program_name} v${program_ver} recipe update";
+git commit -m "${program_name} v${program_ver} update";
 git push --set-upstream origin ${program_name}-${program_ver};
 
 # Return to the original directory
