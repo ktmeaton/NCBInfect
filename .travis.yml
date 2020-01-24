@@ -59,9 +59,14 @@ after_success:
     src_ver=`grep "set version" ${program_name}/${bioconda_recipe}`;
     dest_sha256=`wget -O- ${program_url} | shasum -a 256 | cut -d " " -f 1`;
     src_sha256=`grep "sha256" ${program_name}/${bioconda_recipe} | sed 's/^ *//g' | cut -d " " -f 2`;
-    git checkout -b ${program_name}-${program_ver}
+    git config -l;
+    git remote -v;
+    git branch -a;
+    git branch ${program_name}-${program_ver} origin/${program_name}-${program_ver};
+    git checkout ${program_name}-${program_ver}
     head ${program_name}/${bioconda_recipe};
-    sed -i "s/$src_ver/$dest_ver/g" ${program_name}/${bioconda_recipe} | sed "s/$src_sha256/$dest_sha256/g"
+    sed -i "s/$src_ver/$dest_ver/g" ${program_name}/${bioconda_recipe};
+    sed -i "s/$src_sha256/$dest_sha256/g" ${program_name}/${bioconda_recipe};
     head ${program_name}/${bioconda_recipe};
     cd ../../NCBImeta/;
   fi
