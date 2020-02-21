@@ -15,7 +15,7 @@ import datetime                         # Get date and time for logfile
 import os                               # Filepath operations
 
 from ncbimeta import NCBImetaErrors     # NCBImeta Error Classes
-from ncbimeta.NCBImetaUtilities import table_exists  # Check if table exists
+from ncbimeta import NCBImetaUtilities  # Need table_exists and sql_sanitize
 
 #-----------------------------------------------------------------------#
 #                            Argument Parsing                           #
@@ -89,7 +89,7 @@ if table_name != table_name_sanitize:
     raise NCBImetaErrors.ErrorSQLNameSanitize(table_name, table_name_sanitize)
 
 # Check table exists
-if not table_exists(cur, db_table):
+if not NCBImetaUtilities.table_exists(cur, db_table):
     raise NCBImetaErrors.ErrorTableNotInDB(db_table)
 
 
@@ -107,8 +107,8 @@ db_col_names = [description[0] for description in cur.description]
 annot_file = open(annot_file_name, "r")
 annot_dict = {}
 
-# Read header columns into list
-header_columns_list = annot_file.readline().split("\t")
+# Read header columns into list, remove whitespace char like newline
+header_columns_list = annot_file.readline().strip().split("\t")
 
 # Check column names
 for col_name in header_columns_list:

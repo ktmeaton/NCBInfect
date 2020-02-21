@@ -354,7 +354,8 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         # tempfiles by default are opened as mode='w+b'
         with tempfile.NamedTemporaryFile(delete=False) as temp_b:
             # Write the data from ID_handle to a temporary file (binary)
-            for line in ID_handle: temp_b.write(str.encode(line))
+            for line in ID_handle:
+                temp_b.write(str.encode(line))
             temp_b.close()
             # Read the data as binary, into the XML parser. Avoids encoding issues
             with open(temp_b.name, 'rb') as xml_source:
@@ -420,21 +421,11 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
         for key in column_dict:
             # Remove empty string elements
             while "" in column_dict[key]: column_dict[key].remove("")
-            # Remove quotations from each list element
-            # Should be unneccessary now with proper parameterization?
-            #for i in range(0,len(column_dict[key])):
-            #    column_dict[key][i] = column_dict[key][i].replace("\"","")
-            # The following is to help with single quotes inside
-            #column_dict[key] = "\"" + DB_VALUE_SEP.join(column_dict[key]) + "\""
+
+            # Concatenate multi elements
+            column_dict[key] = DB_VALUE_SEP.join(column_dict[key])
 
         # Write the column values to the db with dynamic variables
-        #sql_dynamic_table = "INSERT INTO " + table + " ("
-        #sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "
-        #sql_dynamic_qmarks = "VALUES (" + ",".join(["?" for column in column_dict.keys()]) + ") "
-        #sql_dynamic_values = " VALUES (" + ",".join([column_dict[column] for column in column_dict.keys()]) + ")"
-        #sql_query = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_values
-        #sql_query_q = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_qmarks
-
         sql_q_marks = ",".join(["?"] * len(column_dict.keys()))
         sql_q_marks = "(" + sql_q_marks + ")"
         sql_dynamic_colnames = "(" + ",".join(column_dict.keys()) + ")"
