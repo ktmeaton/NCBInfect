@@ -81,6 +81,13 @@ cur = conn.cursor()
 
 #---------------------------Check Table---------------------------------#
 
+# Check table name
+table_name = db_table
+table_name_sanitize = NCBImetaUtilities.sql_sanitize(table_name)
+if table_name != table_name_sanitize:
+    raise NCBImetaErrors.ErrorSQLNameSanitize(table_name, table_name_sanitize)
+
+# Check table exists
 if not table_exists(cur, db_table):
     raise NCBImetaErrors.ErrorTableNotInDB(db_table)
 
@@ -104,6 +111,13 @@ annot_dict = {}
 header_columns_list = annot_file.readline().split("\t")
 header_dict = {}
 
+# Check column names
+for col_name in header_columns_list:
+    col_name_sanitize = NCBImetaUtilities.sql_sanitize(col_name)
+    if col_name != col_name_sanitize:
+        raise NCBImetaErrors.ErrorSQLNameSanitize(col_name, col_name_sanitize)
+
+# Store in dictionary
 for i,header in enumerate(header_columns_list):
     header_dict[i] = header
 
@@ -123,8 +137,8 @@ while annot_line:
     for i,element in enumerate(split_line):
         # Save the name of the column/header being processed
         header = header_dict[i].strip()
-        # Cleanup extra white space, remove extra quotation marks
-        element = element.strip().replace('\"','')
+        # Cleanup extra white space?
+        element = element.strip()
 
         # If it's the first column (index 0) this is the unique column for matching
         if i == 0:
@@ -136,11 +150,10 @@ while annot_line:
             line_dict[header] = element
 
     # Check if unique_element is in table
-    query = "SELECT * FROM {0} WHERE {1}={2}".format(db_table,
-                                                    unique_header,
-                                                    "'" + unique_element + "'")
+    query = "SELECT * FROM {0} WHERE {1}=?".format(db_table,
+                                                    unique_header)
 
-    cur.execute(query)
+    cur.execute(query, (unique_element,))
     fetch_records = cur.fetchall()
 
     # Check if the record could be found in the database
@@ -160,12 +173,12 @@ while annot_line:
 
     # This section allows for dynamic variable creation and column modification
     sql_dynamic_vars = ",".join([header + "=" + "'" + line_dict[header] + "'" for header in line_dict.keys()])
-    sql_dynamic_query = "UPDATE {0} SET {1} WHERE {2}={3}".format(db_table,
+    sql_dynamic_query = "UPDATE {0} SET {1} WHERE {2}=?".format(db_table,
                                                     sql_dynamic_vars,
-                                                    unique_header,
-                                                    "'" + unique_element + "'")
+                                                    unique_header)
+
     print("Entry " + unique_element + " found in db. " + sql_dynamic_query)
-    cur.execute(sql_dynamic_query)
+    cur.execute(sql_dynamic_query, (unique_element,))
 
     # Read in the next line
     annot_line = annot_file.readline()
