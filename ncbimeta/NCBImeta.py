@@ -73,46 +73,59 @@ with open(config_path) as config_file:
         raise NCBImetaErrors.ErrorConfigYAMLFormat(config_file)
 
 # Retrieve configuration file values and error catching
+# Note this could be condensed and done with dynamic vars...
+
 #--- Output Directory ---#
 try:
     CONFIG_OUTPUT_DIR = config_data["OUTPUT_DIR"]
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("OUTPUT_DIR")
+if not CONFIG_OUTPUT_DIR: raise NCBImetaErrors.ErrorConfigParameter("OUTPUT_DIR")
+
 #--- User Email ---#
 try:
     CONFIG_EMAIL = config_data["EMAIL"]
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("EMAIL")
+if not CONFIG_EMAIL: raise NCBImetaErrors.ErrorConfigParameter("EMAIL")
 #--- User API Key ---#
 try:
     CONFIG_API_KEY = config_data["API_KEY"]
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("API_KEY")
+
 #--- Force pausing in between record fetching ---#
 try:
     CONFIG_FORCE_PAUSE_SECONDS = config_data["FORCE_PAUSE_SECONDS"]
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("FORCE_PAUSE_SECONDS")
+if not CONFIG_FORCE_PAUSE_SECONDS: raise NCBImetaErrors.ErrorConfigParameter("FORCE_PAUSE_SECONDS")
+
 #--- Database file name---#
 try:
     CONFIG_DATABASE = config_data["DATABASE"]
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("DATABASE")
+if not CONFIG_DATABASE: raise NCBImetaErrors.ErrorConfigParameter("CONFIG_DATABASE")
+
 #--- NCBI Tables to Search (list) ---#
 try:
     CONFIG_TABLES = config_data["TABLES"]
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("TABLES")
+if not CONFIG_TABLES: raise NCBImetaErrors.ErrorConfigParameter("TABLES")
 #--- Search terms for each table (dict) ---#
 try:
     CONFIG_SEARCH_TERMS = config_data["SEARCH_TERMS"]
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("SEARCH_TERMS")
+if not CONFIG_SEARCH_TERMS: raise NCBImetaErrors.ErrorConfigParameter("SEARCH_TERMS")
 #--- Table Columns/Metadata to retrieve (list of dict)---#
 try:
     CONFIG_TABLE_COLUMNS = config_data["TABLE_COLUMNS"]
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("TABLE_COLUMNS")
+if not CONFIG_TABLE_COLUMNS: raise NCBImetaErrors.ErrorConfigParameter("TABLE_COLUMNS")
 
 #--- Print the retrieved config file parameters ---#
 print(

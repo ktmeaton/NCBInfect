@@ -287,6 +287,37 @@ def test_ncbimeta_ErrorConfigParameter_TABLE_COLUMNS(tmpdir):
     # Cleanup
     os.remove(config_file_name)
 
+def test_ncbimeta_ErrorConfigParameter_no_EMAIL(tmpdir):
+    '''Test for error catching when a config file has missing mandatory parameters'''
+    # Prep the config file contents
+    tmpdir = tmpdir.strpath
+    config_file_name = os.path.join(tmpdir,'tmp_config.yaml')
+    config_file = open(config_file_name, 'w')
+    config_file.write('OUTPUT_DIR: output' + '\n' +
+                      'EMAIL:' + '\n' +
+                      'API_KEY: api_key' + '\n' +
+                      'FORCE_PAUSE_SECONDS: force_pause_seconds' + '\n' +
+                      'DATABASE: database' + '\n' +
+                      'TABLES: tables' + '\n' +
+                      'SEARCH_TERMS: search_terms' + '\n' +
+                      'TABLE_COLUMNSS: table_columns')
+    config_file.close()
+
+    test_cmd = "ncbimeta/NCBImeta.py --flat --config " + config_file_name
+    # Use a try-catch with the sub-process of module
+    try:
+        subprocess.check_output(test_cmd,
+                                shell=True,
+                                stderr=subprocess.STDOUT)
+        # If an exception isn't raise then the assertion fails (0)
+        assert 0
+    except subprocess.CalledProcessError as e:
+        # If the right error is raise, it's Error Class is in the output
+        print(str(e.output))
+        assert "ErrorConfigParameter" in str(e.output)
+    # Cleanup
+    os.remove(config_file_name)
+
 def test_ncbimeta_OutputDirNotExists(tmpdir):
     '''Test for successfully running main program when outputdir doesn't exist'''
     tmpdir = tmpdir.strpath
