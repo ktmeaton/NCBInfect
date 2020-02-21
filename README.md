@@ -119,7 +119,9 @@ To get started with customizing the search terms, database, and metadata fields,
 ## Issues, Questions, and Suggestions
 
 Please submit your questions, suggestions, and bug reports to the
-[Issue Tracker](https://github.com/ktmeaton/NCBImeta/issues)
+[Issue Tracker](https://github.com/ktmeaton/NCBImeta/issues).  
+
+Please do not hesitate to post any manner of curiosity in the "Issues" tracker :) User-feedback and ideas are the most valuable resource for emerging software.
 
 
 ## Contributing
