@@ -105,6 +105,10 @@ Example database output (a subset of the BioSample table)
 - SRA  
 - Pubmed
 
+## Upcoming Features
+- [Project v0.6.4 - "Bobby Tables"](https://github.com/ktmeaton/NCBImeta/projects/5): SQL Security Update
+- [Project v0.6.5 - "NextFlow"](https://github.com/ktmeaton/NCBImeta/projects/6): Improved NextFlow integration and quiet mode
+- Project v0.6.x - "Read the Docs": Full documentation pages on Read the Docs
 
 ## Documentation
 To get started with customizing the search terms, database, and metadata fields, please read:
