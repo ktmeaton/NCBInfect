@@ -116,3 +116,10 @@ def test_HTTPErrorCatch(tmpdir):
     except RuntimeError:
         # The ID_handle was not succesfully retrieved or the data is not correct
         assert 0
+
+def test_sql_sanitize():
+    '''Test the utility function sql_sanitize (remove problematic characters)'''
+    test_name = "); drop tables --"
+    test_target_name = "droptables"
+    test_sanitize_name = NCBImetaUtilities.sql_sanitize(test_name)
+    assert test_target_name == test_sanitize_name

@@ -160,16 +160,16 @@ class ErrorConfigYAMLFormat(Exception):
         return ("\n\nThe configuration file could not be loaded, please confirm that this is a proper YAML file: " + "\n" +
             self.value)
 
-class ErrorSQLTableNameSanitize(Exception):
+class ErrorSQLNameSanitize(Exception):
     def __init__(self, value, sanitize_value):
         '''
-        The constructor for ErrorSQLTableNameSanitize class.
+        The constructor for ErrorSQLNameSanitize class.
 
         Parameters:
-        value (str): The name of the SQL Table Name.
+        value (str): The name of the SQL Table or Column.
         '''
         self.value = value
         self.sanitize_value = sanitize_value
     def __str__(self):
-        '''When the error is raised, print the name table and the recommended sanitized version.'''
-        return ("\n\nThe table name " + self.value " contains problematic characters. Please rename it to : " self.sanitize_value )
+        '''When the error is raised, print the name and the recommended sanitized version.'''
+        return ("\n\nThe name " + self.value + " contains problematic characters. Please rename it to : " + self.sanitize_value )

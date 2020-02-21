@@ -188,3 +188,14 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
             raise NCBImetaErrors.ErrorMaxFetchAttemptsExceeded(ID)
 
     return ID_handle
+
+def sql_sanitize(sql_name):
+    """
+    Return a SQL name (table or column) that has been cleaned of problematic characters.
+    ex. punctuation )(][; whitespace
+    This is not to be used with values, which can be properly escaped with parameterization.
+    Ideally retaining only alphanumeric char.
+    Credits: Donald Miner, Source: StackOverflow, DateAccessed: 2020-02-20
+    """
+    sanitize_name = ''.join( char for char in sql_name if char.isalnum() )
+    return sanitize_name

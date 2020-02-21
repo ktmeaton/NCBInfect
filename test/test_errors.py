@@ -136,3 +136,14 @@ def test_ErrorConfigYAMLFormat(tmpdir):
     error_expect = ("\n\nThe configuration file could not be loaded, please confirm that this is a proper YAML file: " + "\n" + tmpfile)
     print("TESTING")
     assert error_output == error_expect
+
+def test_ErrorSQLNameSanitize():
+    '''Test the class ErrorSQLNameSanitize (error when a table name is improperly formatted)'''
+    # Use an improper table name
+    test_name = "); drop tables --"
+    test_sanitize_name = "droptables"
+    # Raise the error
+    test_error = NCBImetaErrors.ErrorSQLNameSanitize(test_name, test_sanitize_name)
+    error_output = str(test_error)
+    error_expect =  ("\n\nThe name " + test_name + " contains problematic characters. Please rename it to : " + test_sanitize_name )
+    assert error_output == error_expect
