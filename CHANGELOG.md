@@ -6,9 +6,9 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
-## [v0.6.4] - 2020-0220 - Bobby Tables
+TO DO: A true quick start example, just SRA data?
 
-TO DO: The Nucleotide export test table data
+## [v0.6.4] - 2020-0220 - Bobby Tables
 
 ### Added
 - Extra param checking for yaml config files (Issue #7)

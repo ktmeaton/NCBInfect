@@ -3,7 +3,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/ktmeaton/NCBImeta.svg)](https://github.com/ktmeaton/NCBImeta/issues)
 [![Build Status](https://travis-ci.org/ktmeaton/NCBImeta.svg?branch=master)](https://travis-ci.org/ktmeaton/NCBImeta)
 [![codecov](https://codecov.io/gh/ktmeaton/ncbimeta/branch/dev/graph/badge.svg)](https://codecov.io/gh/ktmeaton/NCBImeta/branch/master)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3588644.svg)](https://doi.org/10.5281/zenodo.3588644)
+[![status](https://joss.theoj.org/papers/72376aa12ddf832465c92490b2074e7b/status.svg)](https://joss.theoj.org/papers/72376aa12ddf832465c92490b2074e7b)
 
 # NCBImeta
 Efficient and comprehensive metadata acquisition from NCBI databases (includes SRA).  
@@ -128,8 +128,7 @@ Please submit your questions, suggestions, and bug reports to the
 
 ## Citation
 
-#### Zenodo
-Katherine Eaton. NCBImeta: efficient and comprehensive metadata retrieval from NCBI databases. Zenodo. http://doi.org/10.5281/zenodo.3588636
+Eaton, K. (2020). NCBImeta: efficient and comprehensive metadata retrieval from NCBI databases. Journal of Open Source Software, 5(46), 1990, https://doi.org/10.21105/joss.01990
 
 ## Credits
 
