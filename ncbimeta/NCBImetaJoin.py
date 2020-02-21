@@ -64,7 +64,7 @@ mandatory.add_argument('--unique',
 
 parser.add_argument('--version',
                     action='version',
-                    version='%(prog)s v0.6.3')
+                    version='%(prog)s v0.6.4')
 
 
 args = vars(parser.parse_args())
@@ -83,6 +83,7 @@ DB_VALUE_SEP = ";"
 #                           Argument Checking                           #
 #-----------------------------------------------------------------------#
 
+print("START")
 
 #---------------------------Check Database------------------------------#
 
@@ -227,7 +228,6 @@ for record in fetch_records:
 
         # search for this value in each accessory table
         for table in db_accessory_list:
-            print("TABLE: ", table)
             # Get list of each column
             cur.execute(''' SELECT * FROM {}'''.format(table))
             table_col_names = [description[0] for description in cur.description]
@@ -238,10 +238,6 @@ for record in fetch_records:
             # Iterate through each possible unique values (or until match is found)
             for uniq_val in unique_values:
                 val = str(uniq_val)
-                # Deal with unicode/str
-                #if type(uniq_val) == int: val=str(uniq_val)
-                #elif type(uniq_val) == str: uniq_val=uniq_val.encode('utf-8')
-
                 # Iterate through each column
                 for table_col in table_col_names:
                     cur.execute('''SELECT {0} FROM {1}'''.format(table_col, table))
@@ -249,15 +245,12 @@ for record in fetch_records:
                     # Search through every value for a match
                     for val in table_col_vals:
                         val = str(val[0])
-                        #if type(val[0]) == int: val=str(val[0])
-                        #elif type(val[0]) == str: val=val[0].encode('utf-8')
 
                         # If it's a match, store the value, and set the boolean flag
                         if val == uniq_val:
                             match_found=True
                             match_column=table_col
                             match_val = val
-                            #match_val = val.decode('utf-8')
                             # Found the match, stop searching through vals in this column
                             break
 
@@ -304,16 +297,6 @@ for record in fetch_records:
                     # Check for None and handle unicode
                     if record_val is None: record_val = ""
                     record_val = str(record_val)
-                    # FIX THIS UNICODE MESS
-                    #else:
-                    #    try:
-                    #        #No quote wrapping needed after parameterizing input?
-                    #        record_val = "'" + str(record_val) + "'"
-                    #        record_val = str(record_val)
-                    #    except:
-                    #       # No quote wrapping needed after parameterizing input?
-                    #       #record_val = "'" + record_val.encode('utf-8') + "'"
-                    #        record_val = record_val.encode('utf-8')
                     # Assign record to dictionary
                     master_column_dict[table_col_names[i]] = record_val
                     # Uncommented the following line when excessive semi-colons appeared in between every char

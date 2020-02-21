@@ -39,7 +39,7 @@ mandatory.add_argument('--outputdir',
 
 parser.add_argument('--version',
                     action='version',
-                    version='%(prog)s v0.6.3')
+                    version='%(prog)s v0.6.4')
 
 
 args = vars(parser.parse_args())

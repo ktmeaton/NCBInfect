@@ -50,7 +50,7 @@ parser.add_argument('--flat',
 
 parser.add_argument('--version',
                     action='version',
-                    version='%(prog)s v0.6.3')
+                    version='%(prog)s v0.6.4')
 
 # Retrieve user parameters
 args = vars(parser.parse_args())
@@ -99,7 +99,7 @@ try:
     CONFIG_FORCE_PAUSE_SECONDS = config_data["FORCE_PAUSE_SECONDS"]
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("FORCE_PAUSE_SECONDS")
-if not CONFIG_FORCE_PAUSE_SECONDS: raise NCBImetaErrors.ErrorConfigParameter("FORCE_PAUSE_SECONDS")
+if CONFIG_FORCE_PAUSE_SECONDS is None: raise NCBImetaErrors.ErrorConfigParameter("FORCE_PAUSE_SECONDS")
 
 #--- Database file name---#
 try:
