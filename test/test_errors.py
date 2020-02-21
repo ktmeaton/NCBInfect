@@ -145,5 +145,5 @@ def test_ErrorSQLNameSanitize():
     # Raise the error
     test_error = NCBImetaErrors.ErrorSQLNameSanitize(test_name, test_sanitize_name)
     error_output = str(test_error)
-    error_expect =  ("\n\nThe name " + test_name + " contains problematic characters. Please rename it to: " + test_sanitize_name )
+    error_expect =  ("\n\nThe name: " + test_name + " contains problematic characters. Please rename it to: " + test_sanitize_name )
     assert error_output == error_expect

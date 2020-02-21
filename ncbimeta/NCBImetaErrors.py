@@ -172,4 +172,4 @@ class ErrorSQLNameSanitize(Exception):
         self.sanitize_value = sanitize_value
     def __str__(self):
         '''When the error is raised, print the name and the recommended sanitized version.'''
-        return ("\n\nThe name " + self.value + " contains problematic characters. Please rename it to: " + self.sanitize_value )
+        return ("\n\nThe name: " + self.value + " contains problematic characters. Please rename it to: " + self.sanitize_value )
