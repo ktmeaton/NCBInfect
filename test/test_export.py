@@ -137,6 +137,12 @@ def test_export_nucleotidevalues(nucleotide_table_data):
 
         read_line = test_file.readline().strip('\n')
 
+    for thing in nucleotide_table_data:
+        print(thing, nucleotide_table_data[thing])
+        print(thing, test_dict[thing])
+
+
+
     # Test whether the values are as expected
     assert test_dict == nucleotide_table_data
     #Cleanup
