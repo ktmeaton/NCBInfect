@@ -154,6 +154,7 @@ sql_query = ("Create TABLE IF NOT EXISTS " + db_final +
 for column_name in db_col_names:
     sql_query += ", " + column_name + " TEXT"
 sql_query += ")"
+
 cur.execute(sql_query)
 
 #-----------------------------------------------------------------------#
@@ -172,14 +173,14 @@ num_records = len(fetch_records)
 for record in fetch_records:
     # Initialize/Reinitialize the master table value dictionary
     master_column_dict = {}
-    for col in db_col_names: master_column_dict[col] = "NULL"
+    for col in db_col_names: master_column_dict[col] = ""
 
     # Store the anchor table values
     for i in range(0,len(record)):
         # Skip id
         if anchor_col_names[i] == "id": continue
         if record[i] is None:
-            record_val = "NULL"
+            record_val = ""
         else:
             # No quote wrapping needed after parameterizing input?
             record_val = str(record[i])
@@ -226,6 +227,7 @@ for record in fetch_records:
 
         # search for this value in each accessory table
         for table in db_accessory_list:
+            print("TABLE: ", table)
             # Get list of each column
             cur.execute(''' SELECT * FROM {}'''.format(table))
             table_col_names = [description[0] for description in cur.description]
@@ -235,9 +237,10 @@ for record in fetch_records:
             match_column = ""
             # Iterate through each possible unique values (or until match is found)
             for uniq_val in unique_values:
+                val = str(uniq_val)
                 # Deal with unicode/str
-                if type(uniq_val) == int: val=str(uniq_val)
-                elif type(uniq_val) == str: uniq_val=uniq_val.encode('utf-8')
+                #if type(uniq_val) == int: val=str(uniq_val)
+                #elif type(uniq_val) == str: uniq_val=uniq_val.encode('utf-8')
 
                 # Iterate through each column
                 for table_col in table_col_names:
@@ -245,14 +248,16 @@ for record in fetch_records:
                     table_col_vals = cur.fetchall()
                     # Search through every value for a match
                     for val in table_col_vals:
-                        if type(val[0]) == int: val=str(val[0])
-                        elif type(val[0]) == str: val=val[0].encode('utf-8')
+                        val = str(val[0])
+                        #if type(val[0]) == int: val=str(val[0])
+                        #elif type(val[0]) == str: val=val[0].encode('utf-8')
 
                         # If it's a match, store the value, and set the boolean flag
                         if val == uniq_val:
                             match_found=True
                             match_column=table_col
                             match_val = val
+                            #match_val = val.decode('utf-8')
                             # Found the match, stop searching through vals in this column
                             break
 
@@ -264,7 +269,7 @@ for record in fetch_records:
             if match_found:
                 query=('''SELECT * FROM {0} WHERE {1}=?'''.format(table,
                                                                 match_column))
-                #match_val.decode('utf-8')
+
                 cur.execute(query, (match_val,))
                 match_records = cur.fetchall()
                 record_dict = {}
@@ -297,17 +302,18 @@ for record in fetch_records:
                     if table_col_names[i] not in master_column_dict.keys(): continue
                     record_val = match_records[i]
                     # Check for None and handle unicode
-                    if record_val is None: record_val = "NULL"
+                    if record_val is None: record_val = ""
+                    record_val = str(record_val)
                     # FIX THIS UNICODE MESS
-                    else:
-                        try:
-                            # No quote wrapping needed after parameterizing input?
-                            #record_val = "'" + str(record_val) + "'"
-                            record_val = str(record_val)
-                        except:
-                            # No quote wrapping needed after parameterizing input?
-                            #record_val = "'" + record_val.encode('utf-8') + "'"
-                            record_val = record_val.encode('utf-8')
+                    #else:
+                    #    try:
+                    #        #No quote wrapping needed after parameterizing input?
+                    #        record_val = "'" + str(record_val) + "'"
+                    #        record_val = str(record_val)
+                    #    except:
+                    #       # No quote wrapping needed after parameterizing input?
+                    #       #record_val = "'" + record_val.encode('utf-8') + "'"
+                    #        record_val = record_val.encode('utf-8')
                     # Assign record to dictionary
                     master_column_dict[table_col_names[i]] = record_val
                     # Uncommented the following line when excessive semi-colons appeared in between every char
