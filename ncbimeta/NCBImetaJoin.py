@@ -167,7 +167,8 @@ for record in fetch_records:
         if record[i] is None:
             record_val = "NULL"
         else:
-            record_val = "'" + str(record[i]) + "'"
+            # No quote wrapping needed after parameterizing input?
+            record_val = str(record[i])
         master_column_dict[anchor_col_names[i]] = record_val
 
     # Find the first unique column and its headers
@@ -187,6 +188,7 @@ for record in fetch_records:
     sql_query = ("SELECT EXISTS(SELECT " + unique_header_list[0] + " FROM " +
                  db_final + " WHERE " + unique_header_list[0] + "=" +
                  unique_val + ")" )
+    
     cur.execute(sql_query)
 
     # 0 if not found, 1 if found
@@ -198,18 +200,24 @@ for record in fetch_records:
                                                                db_anchor,
                                                                unique_header_list[0],
                                                                unique_val)
+    print("SQL_QUERY")
+    print(sql_query)
     cur.execute(sql_query)
     fetch_unique_vals_anchor = cur.fetchall()
+    print(fetch_unique_vals_anchor)
 
 
     for unique_values in fetch_unique_vals_anchor:
         # Convert from tuple to list for index positions
         unique_values = list(unique_values)
         # Ignore any supposedly unique values that wound up being missing
-        if None in unique_values: unique_values.remove(None)
+        while None in unique_values: unique_values.remove(None)
+        # Properly remove empty string values
+        while '' in unique_values: unique_values.remove('')
 
         # search for this value in each accessory table
         for table in db_accessory_list:
+            print("TABLE: ", table)
             # Get list of each column
             cur.execute(''' SELECT * FROM {}'''.format(table))
             table_col_names = [description[0] for description in cur.description]
@@ -268,7 +276,8 @@ for record in fetch_records:
                             dupl_values = set([val for val in tmp_record_list if tmp_record_list.count(val) == len(tmp_record_list)])
                             if len(dupl_values) == 1:
                                 match_records_concat[i] = list(dupl_values)[0]
-                            else: match_records_concat[i] = DB_VALUE_SEP.join(tmp_record_list)
+                            else:
+                                match_records_concat[i] = DB_VALUE_SEP.join(tmp_record_list)
 
                         else: match_records_concat[i] = None
                     match_records = [match_records_concat]
@@ -284,23 +293,41 @@ for record in fetch_records:
                     # FIX THIS UNICODE MESS
                     else:
                         try:
-                            record_val = "'" + str(record_val) + "'"
+                            # No quote wrapping needed after parameterizing input?
+                            #record_val = "'" + str(record_val) + "'"
+                            record_val = str(record_val)
                         except:
-                            record_val = "'" + record_val.encode('utf-8') + "'"
+                            # No quote wrapping needed after parameterizing input?
+                            #record_val = "'" + record_val.encode('utf-8') + "'"
+                            record_val = record_val.encode('utf-8')
                     # Assign record to dictionary
                     master_column_dict[table_col_names[i]] = record_val
-                    master_column_dict[table_col_names[i]] = "\"" + DB_VALUE_SEP.join(master_column_dict[table_col_names[i]]) + "\""
+                    # Uncommented the following line when excessive semi-colons appeared in between every char
+                    master_column_dict[table_col_names[i]] =  master_column_dict[table_col_names[i]]
 
 
         # We've now finished processing all accessory tables
         # Add values to new join table
-        sql_dynamic_table = "INSERT INTO " + db_final + " ("
-        sql_dynamic_vars = ",".join([column for column in master_column_dict.keys()]) + ")"
-        sql_dynamic_values = " VALUES (" + ",".join([master_column_dict[column] for column in master_column_dict.keys()]) + ")"
-        sql_query = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_values
-        cur.execute(sql_query)
+
+        # Experiment in placeholders to avoid escaping issue of special char
+        sql_q_marks = ",".join(["?"] * len(master_column_dict.keys()))
+        sql_q_marks = "(" + sql_q_marks + ")"
+        print(sql_q_marks)
+        sql_dynamic_colnames = "(" + ",".join(master_column_dict.keys()) + ")"
+        print(sql_dynamic_colnames)
+        sql_values_placeholder = [master_column_dict[column] for column in master_column_dict.keys()]
+        #sql_query_placeholders = ",".join([master_column_dict[column] for column in master_column_dict.keys()])
+        #sql_query_placeholders = tuple(sql_query_placeholders)
+        print(sql_values_placeholder)
+
+        sql_query = "INSERT INTO " + db_final + " " + sql_dynamic_colnames + " VALUES " + sql_q_marks
+
+        print(sql_query)
+        cur.execute(sql_query, sql_values_placeholder)
         # Save Changes
+        #quit()
         conn.commit()
+        quit()
 
 #-----------------------------------------------------------------------#
 #                                    Cleanup                            #
