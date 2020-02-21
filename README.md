@@ -1,9 +1,10 @@
-[![PyPI version](https://badge.fury.io/py/NCBImeta.svg)](https://badge.fury.io/py/NCBImeta)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/ktmeaton/NCBImeta.svg)](https://github.com/ktmeaton/NCBImeta/issues)
 [![Build Status](https://travis-ci.org/ktmeaton/NCBImeta.svg?branch=master)](https://travis-ci.org/ktmeaton/NCBImeta)
 [![codecov](https://codecov.io/gh/ktmeaton/ncbimeta/branch/dev/graph/badge.svg)](https://codecov.io/gh/ktmeaton/NCBImeta/branch/master)
 [![status](https://joss.theoj.org/papers/72376aa12ddf832465c92490b2074e7b/status.svg)](https://joss.theoj.org/papers/72376aa12ddf832465c92490b2074e7b)
+[![GitHub issues](https://img.shields.io/github/issues/ktmeaton/NCBImeta.svg)](https://github.com/ktmeaton/NCBImeta/issues)
+[![PyPI version](https://badge.fury.io/py/NCBImeta.svg)](https://badge.fury.io/py/NCBImeta)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/ncbimeta/badges/version.svg)](https://anaconda.org/bioconda/ncbimeta)
 
 # NCBImeta
 Efficient and comprehensive metadata acquisition from NCBI databases (includes SRA).  
