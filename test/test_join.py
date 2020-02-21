@@ -39,7 +39,26 @@ def test_join_run():
     # If it returns a non-zero value, it failed
     assert returned_value == 0
 
-#def test_join_ErrorDBNotExists():
+def test_multi_match():
+    ''' The ability to properly concatenate multiple matches'''
+    # Use the test database
+    test_db = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test.sqlite")
+    # If the test_db doesn't alread exist, run the test cmd from test_ncbimeta
+    if not os.path.exists(test_db): test_ncbimeta.test_ncbimeta_run()
+    test_anchor_table = 'BioProject'
+    test_final_table = 'BioProjectNucleotide'
+    test_accessory_table = "Nucleotide"
+    test_unique_field = "BioProjectAccession"
+    test_cmd = ("ncbimeta/NCBImetaJoin.py --database " + test_db +
+                " --final " + test_final_table  +
+                " --anchor " + test_anchor_table +
+                " --accessory " + test_accessory_table +
+                " --unique " + test_unique_field)
+
+    # test NCBImetaJoin through a subprocess
+    returned_value = subprocess.call(test_cmd, shell=True)
+    # If it returns a non-zero value, it failed
+    assert returned_value == 0#def test_join_ErrorDBNotExists():
     #To Be Done
 
 #def test_join_ErrorTableNotInDB():
@@ -49,7 +68,4 @@ def test_join_run():
     #To Be Done
 
 #def test_join_ErrorColumnsNotUnique():
-    #To Be Done
-
-#def test_join_unicode():
     #To Be Done
