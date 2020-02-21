@@ -6,6 +6,19 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
+## [v0.6.4] - 2020-0220 - Bobby Tables
+
+TO DO: The Nucleotide export test table data
+
+### Added
+- Extra param checking for yaml config files (Issue #7)
+
+### Changed
+- Bugfix for table joining multiple records (Isssue #8))
+- SQL query execution is now done by parameterizing Value
+- SQL query tables and columns are checked manually
+- NCBImetaJoin.py will use an empty string (blank cell) instead of NULL
+- Now free of unnecessary/poorly thought out use of encode and decode
 
 ## [v0.6.3] - 2020-0124 - Automating the Chain
 
