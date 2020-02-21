@@ -95,7 +95,21 @@ else:
 # no errors were raised, safe to connect to db
 cur = conn.cursor()
 
-#---------------------------Check Tables---------------------------------#
+#---------------------------Check Table Names----------------------------#
+# Check the table names for problematic char
+table_name_list = [db_anchor] + [db_final] + db_accessory_list
+for table_name in table_name_list:
+    table_name_sanitize = NCBImetaUtilities.sql_sanitize(table_name)
+    if table_name != table_name_sanitize:
+        raise NCBImetaErrors.ErrorSQLNameSanitize(table_name, table_name_sanitize)
+
+# Check the column names
+for col_name in unique_header_list:
+    col_name_sanitize = NCBImetaUtilities.sql_sanitize(col_name)
+    if col_name != col_name_sanitize:
+        raise NCBImetaErrors.ErrorSQLNameSanitize(col_name, col_name_sanitize)
+
+#---------------------------Check Tables Existence----------------------#
 
 if not NCBImetaUtilities.table_exists(cur, db_anchor):
     raise NCBImetaErrors.ErrorTableNotInDB(db_anchor)
@@ -186,25 +200,20 @@ for record in fetch_records:
 
     # Check if this record already exists in the master join table
     sql_query = ("SELECT EXISTS(SELECT " + unique_header_list[0] + " FROM " +
-                 db_final + " WHERE " + unique_header_list[0] + "=" +
-                 unique_val + ")" )
-    
-    cur.execute(sql_query)
+                 db_final + " WHERE " + unique_header_list[0] + "=?)")
+
+    cur.execute(sql_query, (unique_val,))
 
     # 0 if not found, 1 if found
     record_exists = cur.fetchone()[0]
     if record_exists: continue
 
     # Now grab the associated records in the accessory tables
-    sql_query = '''SELECT {0} FROM {1} WHERE {2}={3}'''.format(",".join(unique_header_list),
+    sql_query = '''SELECT {0} FROM {1} WHERE {2}=?'''.format(",".join(unique_header_list),
                                                                db_anchor,
-                                                               unique_header_list[0],
-                                                               unique_val)
-    print("SQL_QUERY")
-    print(sql_query)
-    cur.execute(sql_query)
+                                                               unique_header_list[0])
+    cur.execute(sql_query,(unique_val,))
     fetch_unique_vals_anchor = cur.fetchall()
-    print(fetch_unique_vals_anchor)
 
 
     for unique_values in fetch_unique_vals_anchor:
@@ -217,7 +226,6 @@ for record in fetch_records:
 
         # search for this value in each accessory table
         for table in db_accessory_list:
-            print("TABLE: ", table)
             # Get list of each column
             cur.execute(''' SELECT * FROM {}'''.format(table))
             table_col_names = [description[0] for description in cur.description]
@@ -254,10 +262,10 @@ for record in fetch_records:
                 if match_found: break
 
             if match_found:
-                query=('''SELECT * FROM {0} WHERE {1}={2}'''.format(table,
-                                                                match_column,
-                                                                "'" + match_val.decode('utf-8') + "'"))
-                cur.execute(query)
+                query=('''SELECT * FROM {0} WHERE {1}=?'''.format(table,
+                                                                match_column))
+                #match_val.decode('utf-8')
+                cur.execute(query, (match_val,))
                 match_records = cur.fetchall()
                 record_dict = {}
 
@@ -312,22 +320,14 @@ for record in fetch_records:
         # Experiment in placeholders to avoid escaping issue of special char
         sql_q_marks = ",".join(["?"] * len(master_column_dict.keys()))
         sql_q_marks = "(" + sql_q_marks + ")"
-        print(sql_q_marks)
         sql_dynamic_colnames = "(" + ",".join(master_column_dict.keys()) + ")"
-        print(sql_dynamic_colnames)
         sql_values_placeholder = [master_column_dict[column] for column in master_column_dict.keys()]
-        #sql_query_placeholders = ",".join([master_column_dict[column] for column in master_column_dict.keys()])
-        #sql_query_placeholders = tuple(sql_query_placeholders)
-        print(sql_values_placeholder)
 
         sql_query = "INSERT INTO " + db_final + " " + sql_dynamic_colnames + " VALUES " + sql_q_marks
 
-        print(sql_query)
         cur.execute(sql_query, sql_values_placeholder)
         # Save Changes
-        #quit()
         conn.commit()
-        quit()
 
 #-----------------------------------------------------------------------#
 #                                    Cleanup                            #
