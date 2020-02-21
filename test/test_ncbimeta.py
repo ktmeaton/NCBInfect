@@ -316,3 +316,65 @@ def test_ncbimeta_OutputDirNotExists(tmpdir):
         assert 0
     # Cleanup
     os.remove(config_file)
+
+def test_ncbimeta_improper_table_name(tmpdir):
+    '''Test for successfully catching a SQL table name error'''
+    tmpdir = tmpdir.strpath
+    # Prep files and directories
+    src_config = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test.yaml")
+    dst_dir = os.path.join(tmpdir, "tmp-output-test")
+    config_file = os.path.join(tmpdir,'tmp_config.yaml')
+
+    # Read in the file
+    with open(src_config, 'r') as file: filedata = file.read()
+    # Replace the target data
+    filedata = filedata.replace('- Assembly',
+                                '- Assembly()')
+    # Write to the destination file
+    with open(config_file, 'a') as file: file.write(filedata)
+
+    test_cmd = "ncbimeta/NCBImeta.py --flat --config " + config_file
+    # Use a try-catch with the sub-process module
+    try:
+        subprocess.check_output(test_cmd,
+                                shell=True,
+                                stderr=subprocess.STDOUT)
+        # If an exception isn't raise, then the program ran successfully
+        assert 1
+    except subprocess.CalledProcessError as e:
+        # If an error is raised, it's Error Class is in the output
+        #print(str(e.output))
+        assert "ErrorSQLNameSanitize" in str(e.output)
+    # Cleanup
+    os.remove(config_file)
+
+def test_ncbimeta_improper_column_name(tmpdir):
+    '''Test for successfully catching a SQL column name error'''
+    tmpdir = tmpdir.strpath
+    # Prep files and directories
+    src_config = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test.yaml")
+    dst_dir = os.path.join(tmpdir, "tmp-output-test")
+    config_file = os.path.join(tmpdir,'tmp_config.yaml')
+
+    # Read in the file
+    with open(src_config, 'r') as file: filedata = file.read()
+    # Replace the target data
+    filedata = filedata.replace('- AssemblyAccession',
+                                '- AssemblyAccession()')
+    # Write to the destination file
+    with open(config_file, 'a') as file: file.write(filedata)
+
+    test_cmd = "ncbimeta/NCBImeta.py --flat --config " + config_file
+    # Use a try-catch with the sub-process module
+    try:
+        subprocess.check_output(test_cmd,
+                                shell=True,
+                                stderr=subprocess.STDOUT)
+        # If an exception isn't raise, then the program ran successfully
+        assert 1
+    except subprocess.CalledProcessError as e:
+        # If an error is raised, it's Error Class is in the output
+        #print(str(e.output))
+        assert "ErrorSQLNameSanitize" in str(e.output)
+    # Cleanup
+    os.remove(config_file)

@@ -228,6 +228,12 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
     #                                SQL Setup                                 #
     #--------------------------------------------------------------------------#
 
+    # Check for problematic table name
+    table_name = table
+    table_name_sanitize = NCBImetaUtilities.sql_sanitize(table_name)
+    if table_name != table_name_sanitize:
+        raise NCBImetaErrors.ErrorSQLNameSanitize(table_name, table_name_sanitize)
+
     # Connect to database and establish cursor for commands.
     conn = sqlite3.connect(os.path.join(db_dir, "", database))
     cur = conn.cursor()
@@ -239,9 +245,17 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
     for column_name_dict in table_columns:
         column_name = list(column_name_dict.keys())[0]
+        # Check for problematic column name
+        col_name_sanitize = NCBImetaUtilities.sql_sanitize(column_name)
+        if column_name != col_name_sanitize:
+            raise NCBImetaErrors.ErrorSQLNameSanitize(column_name, col_name_sanitize)
+
         # By default, every user-specified column is type TEXT
         sql_query += ", " + column_name + " TEXT"
+
+
     sql_query += ")"
+
 
     cur.execute(sql_query)
 
@@ -394,19 +408,28 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             # Remove empty string elements
             while "" in column_dict[key]: column_dict[key].remove("")
             # Remove quotations from each list element
-            for i in range(0,len(column_dict[key])):
-                column_dict[key][i] = column_dict[key][i].replace("\"","")
+            # Should be unneccessary now with proper parameterization?
+            #for i in range(0,len(column_dict[key])):
+            #    column_dict[key][i] = column_dict[key][i].replace("\"","")
             # The following is to help with single quotes inside
-            column_dict[key] = "\"" + DB_VALUE_SEP.join(column_dict[key]) + "\""
+            #column_dict[key] = "\"" + DB_VALUE_SEP.join(column_dict[key]) + "\""
 
         # Write the column values to the db with dynamic variables
-        sql_dynamic_table = "INSERT INTO " + table + " ("
-        sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "
-        sql_dynamic_qmarks = "VALUES (" + ",".join(["?" for column in column_dict.keys()]) + ") "
-        sql_dynamic_values = " VALUES (" + ",".join([column_dict[column] for column in column_dict.keys()]) + ")"
-        sql_query = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_values
-        sql_query_q = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_qmarks
-        cur.execute(sql_query)
+        #sql_dynamic_table = "INSERT INTO " + table + " ("
+        #sql_dynamic_vars = ",".join([column for column in column_dict.keys()]) + ") "
+        #sql_dynamic_qmarks = "VALUES (" + ",".join(["?" for column in column_dict.keys()]) + ") "
+        #sql_dynamic_values = " VALUES (" + ",".join([column_dict[column] for column in column_dict.keys()]) + ")"
+        #sql_query = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_values
+        #sql_query_q = sql_dynamic_table + sql_dynamic_vars + sql_dynamic_qmarks
+
+        sql_q_marks = ",".join(["?"] * len(column_dict.keys()))
+        sql_q_marks = "(" + sql_q_marks + ")"
+        sql_dynamic_colnames = "(" + ",".join(column_dict.keys()) + ")"
+        sql_values_placeholder = [column_dict[column] for column in column_dict.keys()]
+
+        sql_query = "INSERT INTO " + table + " " + sql_dynamic_colnames + " VALUES " + sql_q_marks
+
+        cur.execute(sql_query, sql_values_placeholder)
 
         # Write to logfile
         now = datetime.datetime.now()
