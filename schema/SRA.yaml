@@ -6,7 +6,7 @@
 #     (genome OR genomes OR genomic OR genomics) NOT transcriptomic[Source]
 
 # Accession Numbers and ID
-    - SRABioProjectAccession : EXTERNAL_ID, namespace, BioProject
+    - SRABioProjectAccession : STUDY_REF, EXTERNAL_ID, namespace, BioProject
     - SRABioSampleAccession : SAMPLE_DESCRIPTION, EXTERNAL_ID, namespace, BioSample
     - SRASampleAccession : SAMPLE_DESCRIPTOR, accession
     - SRAExperimentAccession : EXPERIMENT, accession

@@ -185,7 +185,7 @@ TABLE_COLUMNS :
     - NucleotideComment : NullValue
 
   - SRA :
-    - SRABioProjectAccession : EXTERNAL_ID, namespace, BioProject
+    - SRABioProjectAccession : STUDY_REF, EXTERNAL_ID, namespace, BioProject
     - SRABioSampleAccession : SAMPLE_DESCRIPTION, EXTERNAL_ID, namespace, BioSample
     - SRASampleAccession : SAMPLE_DESCRIPTOR, accession
     - SRASampleName : SAMPLE, alias
