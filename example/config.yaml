@@ -186,7 +186,7 @@ TABLE_COLUMNS :
 
   - SRA :
     - SRABioProjectAccession : EXTERNAL_ID, namespace, BioProject
-    - SRABioSampleAccession : EXTERNAL_ID, namespace, BioSample
+    - SRABioSampleAccession : SAMPLE_DESCRIPTION, EXTERNAL_ID, namespace, BioSample
     - SRASampleAccession : SAMPLE_DESCRIPTOR, accession
     - SRASampleName : SAMPLE, alias
     - SRAExperimentAccession : EXPERIMENT, accession
