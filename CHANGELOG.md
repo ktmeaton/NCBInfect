@@ -7,11 +7,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [Development]
 
 TO DO: A true quick start example, just SRA data?
+Fix BioSampleBioProjectAccession, NucleotideAssemblyAccesion?
 
 ## [v0.6.5] - 2020-0227
 
 ### Changed
-- Made SRABioSampleAccession a specific match by including SAMPLE_DESCRIPTOR in path
+- Bug: Improved specificty of SRABioSampleAccession and SRABioProjectAccession
 
 ## [v0.6.4] - 2020-0220 - Bobby Tables
 
