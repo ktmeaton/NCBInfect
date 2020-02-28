@@ -7,6 +7,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [Development]
 
 TO DO: A true quick start example, just SRA data?
+Fix BioSampleBioProjectAccession, NucleotideAssemblyAccesion?
+
+## [v0.6.5] - 2020-0227
+
+### Changed
+- Bug: Improved specificty of SRABioSampleAccession and SRABioProjectAccession
 
 ## [v0.6.4] - 2020-0220 - Bobby Tables
 
@@ -219,7 +225,9 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - Repository migrated from GenomeCollector
 
 [Development]: https://github.com/ktmeaton/NCBImeta/compare/HEAD...dev
-[v0.6.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.2...HEAD
+[v0.6.4]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.4...HEAD
+[v0.6.3]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.3...v0.6.4
+[v0.6.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.2...v0.6.3
 [v0.6.1]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.1...v0.6.2
 [v0.6.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.0...v0.6.1
 [v0.5.0]: https://github.com/ktmeaton/NCBImeta/compare/v0.5.0...v0.6.0
