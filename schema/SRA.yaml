@@ -7,7 +7,7 @@
 
 # Accession Numbers and ID
     - SRABioProjectAccession : STUDY_REF, EXTERNAL_ID, namespace, BioProject
-    - SRABioSampleAccession : SAMPLE_DESCRIPTION, EXTERNAL_ID, namespace, BioSample
+    - SRABioSampleAccession : SAMPLE_DESCRIPTOR, EXTERNAL_ID, namespace, BioSample
     - SRASampleAccession : SAMPLE_DESCRIPTOR, accession
     - SRAExperimentAccession : EXPERIMENT, accession
     - SRARunAccession : RUN, accession
