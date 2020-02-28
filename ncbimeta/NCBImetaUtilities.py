@@ -44,6 +44,16 @@ def table_exists(db_cur, table_name):
     query = "SELECT name FROM sqlite_master WHERE type='table' AND name='{}'".format(table_name)
     return db_cur.execute(query).fetchone() is not None
 
+def adv_xml_search(xml_root, xpath, column_name, xml_dict):
+    targ_xpath = ".//{}".format("/".join(xpath))
+    results = xml_root.xpath(targ_xpath)
+    for result in results:
+        if result.text:
+            result_text = result.text.strip()
+            xml_dict[column_name].append(str(result_text))
+        elif len(result) > 0:
+            xml_dict[column_name].append(result.tag)
+    
 def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
     '''
     Search xml_root using XPATH for nodes, attributes in search_list and update node_dict.
