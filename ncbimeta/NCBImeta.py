@@ -389,8 +389,6 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             if column_payload[0] == "XPATH":
                 column_payload.remove("XPATH")
                 column_payload_xpath = column_payload[0]
-                print(column_payload_xpath)
-                print(etree.tostring(working_root).decode())
                 NCBImetaUtilities.adv_xml_search(working_root, column_payload_xpath, column_name, column_dict)
             else:
                 # If there are special character, this query should not be used for xpath!!

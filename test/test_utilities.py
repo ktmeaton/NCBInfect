@@ -124,7 +124,7 @@ def test_sql_sanitize():
     test_sanitize_name = NCBImetaUtilities.sql_sanitize(test_name)
     assert test_target_name == test_sanitize_name
 
-def test_adv_xml_search_root():
+def test_adv_xml_search_abs():
     '''Test the utility function adv_xml_search, navigating from root of document (use XPath query, PR #9)'''
     test_xml = '''
     <GBSeq_feature-table>
@@ -157,26 +157,37 @@ def test_adv_xml_search_root():
     NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)
     assert test_xml_dict == expect_xml_dict
 
-def test_adv_xml_search_tip():
+def test_adv_xml_search_rel():
     '''Test the utility function adv_xml_search, navigating from tip of document (use XPath query, PR #9)'''
     test_xml ='''
-    <GBSeq_xrefs>
-      <GBXref>
-        <GBXref_dbname>BioProject</GBXref_dbname>
-        <GBXref_id>PRJNA412676</GBXref_id>
-      </GBXref>
-      <GBXref>
-        <GBXref_dbname>BioSample</GBXref_dbname>
-        <GBXref_id>SAMN07722868</GBXref_id>
-      </GBXref>
-    </GBSeq_xrefs>
+    <GBSeq_feature-table>
+        <GBFeature>
+            <GBFeature_key>source</GBFeature_key>
+            <GBFeature_quals>
+                <GBQualifier>
+                    <GBQualifier_name>organism</GBQualifier_name>
+                    <GBQualifier_value>my_name</GBQualifier_value>
+                </GBQualifier>
+            </GBFeature_quals>
+        </GBFeature>
+        <GBFeature>
+            <GBFeature_key>gene</GBFeature_key>
+            <GBFeature_quals>
+                <GBQualifier>
+                    <GBQualifier_name>gene</GBQualifier_name>
+                    <GBQualifier_value>my_gene_here</GBQualifier_value>
+                </GBQualifier>
+            </GBFeature_quals>
+        </GBFeature>
+    </GBSeq_feature-table>
     '''
     test_xml_root = etree.fromstring(test_xml)
     #test_payload = "XPATH, //User-field_data_strs_E[../../../User-field_label/Object-id/Object-id_str/text() = 'BioSample']"
-    test_payload = "XPATH, //GBXref[GBXref_dbname/text() = 'BioSample']/GBXref_id"
+    test_payload = "XPATH, //GBQualifier[GBQualifier_name/text() = 'organism']/GBQualifier_value"
     test_xpath = test_payload.split(", ")[1]
     test_column_name = 'GBOrganismName'
     test_xml_dict = {test_column_name : [] }
-    expect_xml_dict = {test_column_name : ['SAMN07722868'] }
+    expect_xml_dict = {test_column_name : ['my_name'] }
     NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)
+    print(test_xml_dict)
     assert test_xml_dict == expect_xml_dict
