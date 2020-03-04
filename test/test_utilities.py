@@ -201,7 +201,7 @@ def test_adv_xml_search_attr():
     '''
     test_xml_root = etree.fromstring(test_xml)
     #test_payload = "XPATH, //User-field_data_strs_E[../../../User-field_label/Object-id/Object-id_str/text() = 'BioSample']"
-    test_payload = "XPATH, //Links/Link[@type='entrez']/@label"
+    test_payload = "XPATH, //Links/Link[@target='bioproject']/@label"
     test_xpath = test_payload.split(", ")[1]
     test_column_name = 'BioProject'
     test_xml_dict = {test_column_name : [] }
