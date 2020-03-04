@@ -7,19 +7,19 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [Development]
 
 TO DO: A true quick start example, just SRA data?
-Fix BioSampleBioProjectAccession, NucleotideAssemblyAccesion?
 
-## [v0.6.5] - 2020-0227
+## [v0.6.5] - 2020-0304
 
 ### Added
-- NCBImetaUtilties.py function: adv_xml_search to allow pre-formatted XPATH query
+- NCBImetaUtilties.py function: adv_xml_search to allow pre-formatted XPath query (PR #9)
 
 ### Changed
 - Bug: Improved specificty of SRABioSampleAccession and SRABioProjectAccession
-- NucleotideBioSampleAccession now a preformatted XPATH query (previously empty value)
+- NucleotideBioSampleAccession now a preformatted XPath query (previously empty value)
+- BioSampleBioProjectAccession now a preformatted XPath query (previously non-specific)
 
 ### Removed
-- Non-specific node NucleotideAssemblyAccession 
+- Non-specific node NucleotideAssemblyAccession
 
 ## [v0.6.4] - 2020-0220 - Bobby Tables
 

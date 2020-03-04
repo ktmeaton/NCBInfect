@@ -69,7 +69,7 @@ TABLE_COLUMNS :
   - BioSample :
     - BioSampleAccession: BioSample, accession
     - BioSampleAccessionSecondary: NullValue
-    - BioSampleBioProjectAccession: Link, label
+    - BioSampleBioProjectAccession: XPATH, //Links/Link[@target='bioproject']/@label
     - BioSampleSRAAccession: Id, db, SRA
     - BioSampleTitle: Title
     - BioSampleName: Id, db_label, Sample name
