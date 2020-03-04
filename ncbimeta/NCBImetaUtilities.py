@@ -47,6 +47,7 @@ def table_exists(db_cur, table_name):
 def adv_xml_search(xml_root, targ_xpath, column_name, xml_dict):
     '''
     Search xml_root using targ_xpath XPATH query, assign to column name in xml_dict.
+    Contributor: @hellothisisMatt
 
     Parameters:
     xml_root (ElementTree): xml document as etree object
