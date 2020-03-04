@@ -123,3 +123,77 @@ def test_sql_sanitize():
     test_target_name = "droptables"
     test_sanitize_name = NCBImetaUtilities.sql_sanitize(test_name)
     assert test_target_name == test_sanitize_name
+
+def test_adv_xml_search_root():
+    '''Test the utility function adv_xml_search, navigating from root of document (use XPath query, PR #9)'''
+    test_xml = '''
+    <GBSeq_feature-table>
+        <GBFeature>
+            <GBFeature_key>source</GBFeature_key>
+            <GBFeature_quals>
+                <GBQualifier>
+                    <GBQualifier_name>organism</GBQualifier_name>
+                    <GBQualifier_value>my_name</GBQualifier_value>
+                </GBQualifier>
+            </GBFeature_quals>
+        </GBFeature>
+        <GBFeature>
+            <GBFeature_key>gene</GBFeature_key>
+            <GBFeature_quals>
+                <GBQualifier>
+                    <GBQualifier_name>gene</GBQualifier_name>
+                    <GBQualifier_value>my_gene_here</GBQualifier_value>
+                </GBQualifier>
+            </GBFeature_quals>
+        </GBFeature>
+    </GBSeq_feature-table>
+    '''
+    test_xml_root = etree.fromstring(test_xml)
+    test_payload = "XPATH, //GBSeq_feature-table/GBFeature[GBFeature_key/text() = 'source']/GBFeature_quals/GBQualifier[GBQualifier_name/text() = 'organism']/GBQualifier_value"
+    test_xpath = test_payload.split(", ")[1]
+    test_column_name = 'GBOrganismName'
+    test_xml_dict = {test_column_name : [] }
+    expect_xml_dict = {test_column_name : ['my_name'] }
+    NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)
+    assert test_xml_dict == expect_xml_dict
+
+def test_adv_xml_search_tip():
+    '''Test the utility function adv_xml_search, navigating from tip of document (use XPath query, PR #9)'''
+    test_xml ='''
+    <User-object_data>
+        <User-field>
+            <User-field_label>
+                <Object-id>
+                    <Object-id_str>BioProject</Object-id_str>
+                </Object-id>
+            </User-field_label>
+            <User-field_num>1</User-field_num>
+                <User-field_data>
+                    <User-field_data_strs>
+                        <User-field_data_strs_E>PRJNA596632</User-field_data_strs_E>
+                    </User-field_data_strs>
+                </User-field_data>
+        </User-field>
+        <User-field>
+            <User-field_label>
+                <Object-id>
+                    <Object-id_str>BioSample</Object-id_str>
+                </Object-id>
+            </User-field_label>
+            <User-field_num>1</User-field_num>
+            <User-field_data>
+                <User-field_data_strs>
+                    <User-field_data_strs_E>SAMN13632826</User-field_data_strs_E>
+                </User-field_data_strs>
+            </User-field_data>
+        </User-field>
+    </User-object_data>
+    '''
+    test_xml_root = etree.fromstring(test_xml)
+    test_payload = "XPATH, //User-field_data_strs_E[../../../User-field_label/Object-id/Object-id_str/text() = 'BioSample']"
+    test_xpath = test_payload.split(", ")[1]
+    test_column_name = 'GBOrganismName'
+    test_xml_dict = {test_column_name : [] }
+    expect_xml_dict = {test_column_name : ['SAMN13632826'] }
+    NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)
+    assert test_xml_dict == expect_xml_dict
