@@ -160,40 +160,23 @@ def test_adv_xml_search_root():
 def test_adv_xml_search_tip():
     '''Test the utility function adv_xml_search, navigating from tip of document (use XPath query, PR #9)'''
     test_xml ='''
-    <User-object_data>
-        <User-field>
-            <User-field_label>
-                <Object-id>
-                    <Object-id_str>BioProject</Object-id_str>
-                </Object-id>
-            </User-field_label>
-            <User-field_num>1</User-field_num>
-                <User-field_data>
-                    <User-field_data_strs>
-                        <User-field_data_strs_E>PRJNA596632</User-field_data_strs_E>
-                    </User-field_data_strs>
-                </User-field_data>
-        </User-field>
-        <User-field>
-            <User-field_label>
-                <Object-id>
-                    <Object-id_str>BioSample</Object-id_str>
-                </Object-id>
-            </User-field_label>
-            <User-field_num>1</User-field_num>
-            <User-field_data>
-                <User-field_data_strs>
-                    <User-field_data_strs_E>SAMN13632826</User-field_data_strs_E>
-                </User-field_data_strs>
-            </User-field_data>
-        </User-field>
-    </User-object_data>
+    <GBSeq_xrefs>
+      <GBXref>
+        <GBXref_dbname>BioProject</GBXref_dbname>
+        <GBXref_id>PRJNA412676</GBXref_id>
+      </GBXref>
+      <GBXref>
+        <GBXref_dbname>BioSample</GBXref_dbname>
+        <GBXref_id>SAMN07722868</GBXref_id>
+      </GBXref>
+    </GBSeq_xrefs>
     '''
     test_xml_root = etree.fromstring(test_xml)
-    test_payload = "XPATH, //User-field_data_strs_E[../../../User-field_label/Object-id/Object-id_str/text() = 'BioSample']"
+    #test_payload = "XPATH, //User-field_data_strs_E[../../../User-field_label/Object-id/Object-id_str/text() = 'BioSample']"
+    test_payload = "XPATH, //GBXref[GBXref_dbname/text() = 'BioSample']/GBXref_id"
     test_xpath = test_payload.split(", ")[1]
     test_column_name = 'GBOrganismName'
     test_xml_dict = {test_column_name : [] }
-    expect_xml_dict = {test_column_name : ['SAMN13632826'] }
+    expect_xml_dict = {test_column_name : ['SAMN07722868'] }
     NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)
     assert test_xml_dict == expect_xml_dict
