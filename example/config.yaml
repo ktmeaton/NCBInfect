@@ -128,9 +128,8 @@ TABLE_COLUMNS :
   - Nucleotide :
     - NucleotideAccession : GBSeq_primary-accession
     - NucleotideAccessionVersion : GBSeq_accession-version
-    - NucleotideBioSampleAccession: NucleotideBioSample
+    - NucleotideBioSampleAccession: XPATH, //User-field_data_strs_E[../../../User-field_label/Object-id/Object-id_str/text() = 'BioSample']
     - NucleotideBioProjectAccession : GBSeq_project
-    - NucleotideAssemblyAccession : GBSeq_xrefs, GBXref_id
     - NucleotideOrganism : GBSeq_organism
     - NucleotideTaxonomy : GBSeq_taxonomy
     - NucleotideDefinition : GBSeq_definition

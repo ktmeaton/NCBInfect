@@ -11,8 +11,15 @@ Fix BioSampleBioProjectAccession, NucleotideAssemblyAccesion?
 
 ## [v0.6.5] - 2020-0227
 
+### Added
+- NCBImetaUtilties.py function: adv_xml_search to allow pre-formatted XPATH query
+
 ### Changed
 - Bug: Improved specificty of SRABioSampleAccession and SRABioProjectAccession
+- NucleotideBioSampleAccession now a preformatted XPATH query (previously empty value)
+
+### Removed
+- Non-specific node NucleotideAssemblyAccession 
 
 ## [v0.6.4] - 2020-0220 - Bobby Tables
 
