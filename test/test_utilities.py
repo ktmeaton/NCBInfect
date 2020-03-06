@@ -10,6 +10,7 @@ NCBImeta Test - Utility Functions
 
 import pytest                               # Testing suite
 from ncbimeta import NCBImetaUtilities      # Utility Functions
+from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
 import os                                   # Filepath and directory operations
 import sqlite3                              # Database storage and queries
 from lxml import etree                      # XML Parsing
@@ -205,5 +206,53 @@ def test_adv_xml_search_attr():
     test_xml_dict = {test_column_name : [] }
     expect_xml_dict = {test_column_name : ['PRJNA558013'] }
     NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)
-    print(test_xml_dict)
     assert test_xml_dict == expect_xml_dict
+
+def test_adv_xml_search_multigood():
+    '''Test the utility function adv_xml_search, multiple good node match (use XPath query, PR #9)'''
+    test_xml ='''
+    <RUN_SET>
+        <RUN alias="E-MTAB-8370:untagged-His-run30_S9_L003" accession="ERR3549715">
+            <Statistics nspots="5441517" nreads="1">
+                <Read stdev="0" average="49" count="5441517" index="0"/>
+            </Statistics>
+        </RUN>
+        <RUN alias="E-MTAB-8370:untagged-His-run30_S9_L004" accession="ERR3549716">
+             <Statistics nspots="5518807" nreads="1">
+                 <Read stdev="0" average="49" count="5518807" index="0"/>
+             </Statistics>
+        </RUN>
+    </RUN_SET>
+    '''
+    test_xml_root = etree.fromstring(test_xml)
+    test_payload = "XPATH, //RUN/@accession"
+    test_xpath = test_payload.split(", ")[1]
+    test_column_name = 'SRARunAccession'
+    test_xml_dict = {test_column_name : [] }
+    expect_xml_dict = {test_column_name : ['ERR3549715','ERR3549716'] }
+    NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)
+    assert test_xml_dict == expect_xml_dict
+
+def test_adv_xml_search_multibad():
+    '''Test the utility function adv_xml_search, multiple bad node match (use XPath query, PR #9)'''
+    test_xml ='''
+    <RUN_SET>
+        <RUN alias="E-MTAB-8370:untagged-His-run30_S9_L003" accession="ERR3549715">
+            <Statistics nspots="5441517" nreads="1">
+                <Read stdev="0" average="49" count="5441517" index="0"/>
+            </Statistics>
+        </RUN>
+        <RUN alias="E-MTAB-8370:untagged-His-run30_S9_L004" accession="ERR3549716">
+             <Statistics nspots="5518807" nreads="1">
+                 <Read stdev="0" average="49" count="5518807" index="0"/>
+             </Statistics>
+        </RUN>
+    </RUN_SET>
+    '''
+    test_xml_root = etree.fromstring(test_xml)
+    test_payload = "XPATH, //RUN"
+    test_xpath = test_payload.split(", ")[1]
+    test_column_name = 'SRARun'
+    test_xml_dict = {test_column_name : [] }
+    with pytest.raises(NCBImetaErrors.ErrorXPathQueryMultiElement) as err_info:
+        NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)
