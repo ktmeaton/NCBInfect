@@ -182,7 +182,6 @@ def test_adv_xml_search_rel():
     </GBSeq_feature-table>
     '''
     test_xml_root = etree.fromstring(test_xml)
-    #test_payload = "XPATH, //User-field_data_strs_E[../../../User-field_label/Object-id/Object-id_str/text() = 'BioSample']"
     test_payload = "XPATH, //GBQualifier[GBQualifier_name/text() = 'organism']/GBQualifier_value"
     test_xpath = test_payload.split(", ")[1]
     test_column_name = 'GBOrganismName'
@@ -200,7 +199,6 @@ def test_adv_xml_search_attr():
     </Links>
     '''
     test_xml_root = etree.fromstring(test_xml)
-    #test_payload = "XPATH, //User-field_data_strs_E[../../../User-field_label/Object-id/Object-id_str/text() = 'BioSample']"
     test_payload = "XPATH, //Links/Link[@target='bioproject']/@label"
     test_xpath = test_payload.split(", ")[1]
     test_column_name = 'BioProject'
