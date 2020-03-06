@@ -12,6 +12,7 @@ TO DO: A true quick start example, just SRA data?
 
 ### Added
 - NCBImetaUtilties.py function: adv_xml_search to allow pre-formatted XPath query (PR #9)
+- Two new error classes ErrorXPathQueryMultiElement and ErrorXPathElementUnknown
 
 ### Changed
 - Bug: Improved specificty of SRABioSampleAccession and SRABioProjectAccession
