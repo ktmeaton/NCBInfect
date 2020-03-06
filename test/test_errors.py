@@ -147,3 +147,23 @@ def test_ErrorSQLNameSanitize():
     error_output = str(test_error)
     error_expect =  ("\n\nThe name: " + test_name + " contains problematic characters. Please rename it to: " + test_sanitize_name )
     assert error_output == error_expect
+
+def test_ErrorXPathQueryMultiElement():
+    '''Test the class ErrorXPathQueryMultiElement (error when bad multiple matches have been found for an Xpath query)'''
+    # Use an improper table name
+    test_xpath = "//RUN"
+    # Raise the error
+    test_error = NCBImetaErrors.ErrorXPathQueryMultiElement(test_xpath)
+    error_output = str(test_error)
+    error_expect =  ("\n\nMore than one element returned for XPath {}. Are you using the correct XPath query?".format(test_xpath))
+    assert error_output == error_expect
+
+def test_ErrorXPathElementUnknown():
+    '''Test the class ErrorXPathElementUnknown (unknown type of search result)'''
+    # Use an improper table name
+    test_result = {'test': 'dict'}
+    # Raise the error
+    test_error = NCBImetaErrors.ErrorXPathElementUnknown(test_result)
+    error_output = str(test_error)
+    error_expect =  ("\n\nUnknown XPath return element: {}".format(type(test_result)))
+    assert error_output == error_expect
