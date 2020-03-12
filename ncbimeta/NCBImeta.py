@@ -388,7 +388,8 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
 
             if column_payload[0] == "XPATH":
                 column_payload.remove("XPATH")
-                NCBImetaUtilities.adv_xml_search(working_root, column_payload, column_name, column_dict)
+                column_payload_xpath = column_payload[0]
+                NCBImetaUtilities.adv_xml_search(working_root, column_payload_xpath, column_name, column_dict)
             else:
                 # If there are special character, this query should not be used for xpath!!
                 bool_special_char = False
@@ -399,7 +400,7 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
                 # If no special characters, run xpath search Functions
                 if not bool_special_char:
                     NCBImetaUtilities.xml_search(working_root, column_payload, column_payload[0], column_name, column_dict)
-     
+
             # Special parsing for GBSeq_comment
             # If we're on the GBSeq_comment element and the comment was added to the dictionary
             if "GBSeq_comment" in column_payload and len(column_dict[column_name]) > 0:
