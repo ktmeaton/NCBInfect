@@ -387,7 +387,12 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             working_root =ID_root
 
             if column_payload[0] == "XPATH":
+                # Remove the signal element 'XPATH'.
+                # Consider the possibility of 'XPATH,' showing up as well.
                 column_payload.remove("XPATH")
+                # Check if there was no XPATH command supplied afterwards
+                if len(column_payload) == 0:
+                    raise NCBImetaErrors.ErrorXPathQueryMissing(column_name)
                 column_payload_xpath = column_payload[0]
                 NCBImetaUtilities.adv_xml_search(working_root, column_payload_xpath, column_name, column_dict)
             else:
