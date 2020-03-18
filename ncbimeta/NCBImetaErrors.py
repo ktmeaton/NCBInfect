@@ -199,3 +199,16 @@ class ErrorXPathElementUnknown(Exception):
     def __str__(self):
         '''When the error is raised, print the problematic search result.'''
         return ("\n\nUnknown XPath return element: {}".format(type(self.value)))
+
+class ErrorXPathQueryMissing(Exception):
+    def __init__(self, value):
+        '''
+        The constructor for ErrorXPathQueryMissing class.
+
+        Parameters:
+        value (str): The column name with an empty XPath query.
+        '''
+        self.value = value
+    def __str__(self):
+        '''When the error is raised, print the problematic column name.'''
+        return ("\n\nThe following column name uses XPath but no query was supplied: {}".format(self.value))
