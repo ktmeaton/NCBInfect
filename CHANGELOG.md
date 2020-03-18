@@ -8,14 +8,14 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 TO DO: A true quick start example, just SRA data?
 
-## [v0.6.5] - 2020-0304
+## [v0.6.5] - 2020-0318 - XPath Advanced
 
 ### Added
 - NCBImetaUtilties.py function: adv_xml_search to allow pre-formatted XPath query (PR #9)
-- Two new error classes ErrorXPathQueryMultiElement and ErrorXPathElementUnknown
+- Three new error classes ErrorXPathQueryMultiElement, ErrorXPathElementUnknown, ErrorXPathQueryMissing
 
 ### Changed
-- Bug: Improved specificty of SRABioSampleAccession and SRABioProjectAccession
+- Bug: Improved specificity of SRABioSampleAccession and SRABioProjectAccession
 - NucleotideBioSampleAccession now a preformatted XPath query (previously empty value)
 - BioSampleBioProjectAccession now a preformatted XPath query (previously non-specific)
 

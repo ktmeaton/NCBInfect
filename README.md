@@ -107,8 +107,8 @@ Example database output (a subset of the BioSample table)
 - Pubmed
 
 ## Upcoming Features
-- [Project v0.6.4 - "Bobby Tables"](https://github.com/ktmeaton/NCBImeta/projects/5): SQL Security Update
-- [Project v0.6.5 - "NextFlow"](https://github.com/ktmeaton/NCBImeta/projects/6): Improved NextFlow integration and quiet mode
+- [Project v0.6.5 - "XML Advanced"](https://github.com/ktmeaton/NCBImeta/projects/6): Advanced Usage of XPath Queries - RELEASED
+- [Project v0.6.6 - "NextFlow Quiet"](https://github.com/ktmeaton/NCBImeta/projects/7): Improved NextFlow integration and quiet mode
 - Project v0.6.x - "Read the Docs": Full documentation pages on Read the Docs
 
 ## Documentation
@@ -132,6 +132,10 @@ Please do not hesitate to post any manner of curiosity in the "Issues" tracker :
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request!
+
+## Community
+
+GitHub not your style? Join the [NCBImeta Slack Group](https://join.slack.com/t/ncbimeta/shared_invite/zt-crbtn51t-bdQKeBqz6Nkmj~hgU8ZZFA) to see release alerts, chat with other users, and get insider perspective on development.
 
 ## Citation
 
