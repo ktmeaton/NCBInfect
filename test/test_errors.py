@@ -167,3 +167,13 @@ def test_ErrorXPathElementUnknown():
     error_output = str(test_error)
     error_expect =  ("\n\nUnknown XPath return element: {}".format(type(test_result)))
     assert error_output == error_expect
+
+def test_ErrorXPathQueryMissing():
+    '''Test the class ErrorXPathQueryMissing (query was not specified)'''
+    # Use an improper table name
+    test_col_name = {'AssemblyAccession'}
+    # Raise the error
+    test_error = NCBImetaErrors.ErrorXPathQueryMissing(test_col_name)
+    error_output = str(test_error)
+    error_expect =  ("\n\nThe following column name uses XPath but no query was supplied: {}".format(test_col_name))
+    assert error_output == error_expect
