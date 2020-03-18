@@ -86,15 +86,3 @@ Note that the table names must match exactly to TABLES and TABLE COLUMNS.
 This contains metadata elements selected from the schema files (schema/). They should be copy-pasted from the appropriate schema file if adding additional lines. The whitespace (number of spaces/indendentation) is very important in this file! When copying and pasting, don't delete spaces before the dash.
 
 Note that the Table Names must match exactly to SEARCH TERMS and TABLES.    
-
-## 9) Direct XPath Queries
-```
-  TABLE_COLUMNS :
-    - Nucleotide  :
-      # XPath command separated by commas using conditionals.
-      - NucleotideSourceOrganism : XPATH, GBSeq_feature-table, GBFeature[GBFeature_key/text() = "source"], GBFeature_quals, GBQualifier[GBQualifier_name/text() = "organism"], GBQualifier_value 
-      # XPath command without // prepended using conditionals. 
-      - NucleotideSourceMolType : XPATH, GBSeq_feature-table/GBFeature[GBFeature_key/text() = "source"]/GBFeature_quals/GBQualifier[GBQualifier_name/text() = "mol_type"]/GBQualifier_value  
-
-```
-You can pass an XPath query by specifying the first element in the comma separated list as "XPATH". Following that you can specify the path to the desired node separated by commas, OR an actual XPath command without "//" prepended.

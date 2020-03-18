@@ -103,7 +103,24 @@ The value in this case, is a list of 2 elements:
 This can be built from any number of elements, and provides a directional path to follow to find a node.    
 Note that it must be IN ORDER, but can skip intermediate values (ex. node <Bioproj> is missing from the list).  
 
-## 5) Customizing Schema
+## 5) Advanced XPath Queries
+
+Advanced users can pass an XPath query by specifying the first element in the comma separated list as "XPATH". Following that you can specify an actual XPath query to be executed.  
+
+User selects:  
+
+    - BioProjectAccession: XPATH, //Links/Link[@target='bioproject']/@label  
+
+XML from NCBI:  
+
+    <Links>
+      <Link type="url" label="GEO Sample GSM3995467">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM3995467</Link>
+      <Link type="entrez" target="bioproject" label="PRJNA558013">558013</Link>
+    </Links>
+
+Retrieves accession number "PRJNA558013" and stores it under "BioProjectAccession".  
+
+## 6) Customizing Schema
 
 To puzzle out additional xml criteria for your search query, search for the line:  
 
