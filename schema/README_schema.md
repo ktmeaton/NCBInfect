@@ -45,6 +45,9 @@ The value in this case, is a list of 2 elements:
 The first value ("Experiment"), is the name of the node.
 The second value ("accession") is the attribute to target.    
 
+Note that the list of elements are values separated by a comma and a single space.  
+This is mandatory and used for parsing/splitting them into separate elements.
+
 ## 3) Retrieving a simple node value by specifying an attribute value.
 
 User selects:

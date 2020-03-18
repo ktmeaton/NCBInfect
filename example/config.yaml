@@ -69,7 +69,7 @@ TABLE_COLUMNS :
   - BioSample :
     - BioSampleAccession: BioSample, accession
     - BioSampleAccessionSecondary: NullValue
-    - BioSampleBioProjectAccession: Link, label
+    - BioSampleBioProjectAccession: XPATH, //Links/Link[@target='bioproject']/@label
     - BioSampleSRAAccession: Id, db, SRA
     - BioSampleTitle: Title
     - BioSampleName: Id, db_label, Sample name
@@ -128,9 +128,8 @@ TABLE_COLUMNS :
   - Nucleotide :
     - NucleotideAccession : GBSeq_primary-accession
     - NucleotideAccessionVersion : GBSeq_accession-version
-    - NucleotideBioSampleAccession: NucleotideBioSample
+    - NucleotideBioSampleAccession: XPATH, //GBXref[GBXref_dbname/text() = 'BioSample']/GBXref_id
     - NucleotideBioProjectAccession : GBSeq_project
-    - NucleotideAssemblyAccession : GBSeq_xrefs, GBXref_id
     - NucleotideOrganism : GBSeq_organism
     - NucleotideTaxonomy : GBSeq_taxonomy
     - NucleotideDefinition : GBSeq_definition

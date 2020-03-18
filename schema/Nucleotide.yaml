@@ -13,9 +13,8 @@
 # Accession Numbers and ID
     - NucleotideAccession : GBSeq_primary-accession
     - NucleotideAccessionVersion : GBSeq_accession-version
-    - NucleotideBioSampleAccession: NucleotideBioSample
+    - NucleotideBioSampleAccession: XPATH, //GBXref[GBXref_dbname/text() = 'BioSample']/GBXref_id
     - NucleotideBioProjectAccession : GBSeq_project
-    - NucleotideAssemblyAccession : GBSeq_xrefs, GBXref_id
 
 # Taxonomy Information
     - NucleotideOrganism : GBSeq_organism

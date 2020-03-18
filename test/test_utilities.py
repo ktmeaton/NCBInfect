@@ -10,6 +10,7 @@ NCBImeta Test - Utility Functions
 
 import pytest                               # Testing suite
 from ncbimeta import NCBImetaUtilities      # Utility Functions
+from ncbimeta import NCBImetaErrors     # NCBImeta Error classes
 import os                                   # Filepath and directory operations
 import sqlite3                              # Database storage and queries
 from lxml import etree                      # XML Parsing
@@ -123,3 +124,135 @@ def test_sql_sanitize():
     test_target_name = "droptables"
     test_sanitize_name = NCBImetaUtilities.sql_sanitize(test_name)
     assert test_target_name == test_sanitize_name
+
+def test_adv_xml_search_abs():
+    '''Test the utility function adv_xml_search, navigating from root of document (use XPath query, PR #9)'''
+    test_xml = '''
+    <GBSeq_feature-table>
+        <GBFeature>
+            <GBFeature_key>source</GBFeature_key>
+            <GBFeature_quals>
+                <GBQualifier>
+                    <GBQualifier_name>organism</GBQualifier_name>
+                    <GBQualifier_value>my_name</GBQualifier_value>
+                </GBQualifier>
+            </GBFeature_quals>
+        </GBFeature>
+        <GBFeature>
+            <GBFeature_key>gene</GBFeature_key>
+            <GBFeature_quals>
+                <GBQualifier>
+                    <GBQualifier_name>gene</GBQualifier_name>
+                    <GBQualifier_value>my_gene_here</GBQualifier_value>
+                </GBQualifier>
+            </GBFeature_quals>
+        </GBFeature>
+    </GBSeq_feature-table>
+    '''
+    test_xml_root = etree.fromstring(test_xml)
+    test_payload = "XPATH, //GBSeq_feature-table/GBFeature[GBFeature_key/text() = 'source']/GBFeature_quals/GBQualifier[GBQualifier_name/text() = 'organism']/GBQualifier_value"
+    test_xpath = test_payload.split(", ")[1]
+    test_column_name = 'GBOrganismName'
+    test_xml_dict = {test_column_name : [] }
+    expect_xml_dict = {test_column_name : ['my_name'] }
+    NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)
+    assert test_xml_dict == expect_xml_dict
+
+def test_adv_xml_search_rel():
+    '''Test the utility function adv_xml_search, navigating from tip of document (use XPath query, PR #9)'''
+    test_xml ='''
+    <GBSeq_feature-table>
+        <GBFeature>
+            <GBFeature_key>source</GBFeature_key>
+            <GBFeature_quals>
+                <GBQualifier>
+                    <GBQualifier_name>organism</GBQualifier_name>
+                    <GBQualifier_value>my_name</GBQualifier_value>
+                </GBQualifier>
+            </GBFeature_quals>
+        </GBFeature>
+        <GBFeature>
+            <GBFeature_key>gene</GBFeature_key>
+            <GBFeature_quals>
+                <GBQualifier>
+                    <GBQualifier_name>gene</GBQualifier_name>
+                    <GBQualifier_value>my_gene_here</GBQualifier_value>
+                </GBQualifier>
+            </GBFeature_quals>
+        </GBFeature>
+    </GBSeq_feature-table>
+    '''
+    test_xml_root = etree.fromstring(test_xml)
+    test_payload = "XPATH, //GBQualifier[GBQualifier_name/text() = 'organism']/GBQualifier_value"
+    test_xpath = test_payload.split(", ")[1]
+    test_column_name = 'GBOrganismName'
+    test_xml_dict = {test_column_name : [] }
+    expect_xml_dict = {test_column_name : ['my_name'] }
+    NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)
+    assert test_xml_dict == expect_xml_dict
+
+def test_adv_xml_search_attr():
+    '''Test the utility function adv_xml_search, label conditional (use XPath query, PR #9)'''
+    test_xml ='''
+    <Links>
+      <Link type="url" label="GEO Sample GSM3995467">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM3995467</Link>
+      <Link type="entrez" target="bioproject" label="PRJNA558013">558013</Link>
+    </Links>
+    '''
+    test_xml_root = etree.fromstring(test_xml)
+    test_payload = "XPATH, //Links/Link[@target='bioproject']/@label"
+    test_xpath = test_payload.split(", ")[1]
+    test_column_name = 'BioProject'
+    test_xml_dict = {test_column_name : [] }
+    expect_xml_dict = {test_column_name : ['PRJNA558013'] }
+    NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)
+    assert test_xml_dict == expect_xml_dict
+
+def test_adv_xml_search_multigood():
+    '''Test the utility function adv_xml_search, multiple good node match (use XPath query, PR #9)'''
+    test_xml ='''
+    <RUN_SET>
+        <RUN alias="E-MTAB-8370:untagged-His-run30_S9_L003" accession="ERR3549715">
+            <Statistics nspots="5441517" nreads="1">
+                <Read stdev="0" average="49" count="5441517" index="0"/>
+            </Statistics>
+        </RUN>
+        <RUN alias="E-MTAB-8370:untagged-His-run30_S9_L004" accession="ERR3549716">
+             <Statistics nspots="5518807" nreads="1">
+                 <Read stdev="0" average="49" count="5518807" index="0"/>
+             </Statistics>
+        </RUN>
+    </RUN_SET>
+    '''
+    test_xml_root = etree.fromstring(test_xml)
+    test_payload = "XPATH, //RUN/@accession"
+    test_xpath = test_payload.split(", ")[1]
+    test_column_name = 'SRARunAccession'
+    test_xml_dict = {test_column_name : [] }
+    expect_xml_dict = {test_column_name : ['ERR3549715','ERR3549716'] }
+    NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)
+    assert test_xml_dict == expect_xml_dict
+
+def test_adv_xml_search_multibad():
+    '''Test the utility function adv_xml_search, multiple bad node match (use XPath query, PR #9)'''
+    test_xml ='''
+    <RUN_SET>
+        <RUN alias="E-MTAB-8370:untagged-His-run30_S9_L003" accession="ERR3549715">
+            <Statistics nspots="5441517" nreads="1">
+                <Read stdev="0" average="49" count="5441517" index="0"/>
+            </Statistics>
+        </RUN>
+        <RUN alias="E-MTAB-8370:untagged-His-run30_S9_L004" accession="ERR3549716">
+             <Statistics nspots="5518807" nreads="1">
+                 <Read stdev="0" average="49" count="5518807" index="0"/>
+             </Statistics>
+        </RUN>
+    </RUN_SET>
+    '''
+    test_xml_root = etree.fromstring(test_xml)
+    test_payload = "XPATH, //RUN"
+    test_xpath = test_payload.split(", ")[1]
+    test_column_name = 'SRARun'
+    test_xml_dict = {test_column_name : [] }
+    with pytest.raises(NCBImetaErrors.ErrorXPathQueryMultiElement) as err_info:
+        NCBImetaUtilities.adv_xml_search(test_xml_root, test_xpath, test_column_name, test_xml_dict)

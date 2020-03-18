@@ -1,7 +1,7 @@
 # User Configuration Variables
 OUTPUT_DIR : test
 EMAIL : myusername@domain.com
-API_KEY : 
+API_KEY :
 FORCE_PAUSE_SECONDS : 1
 DATABASE : test.sqlite
 
@@ -69,7 +69,7 @@ TABLE_COLUMNS :
   - BioSample :
     - BioSampleAccession: BioSample, accession
     - BioSampleAccessionSecondary: NullValue
-    - BioSampleBioProjectAccession: Link, label
+    - BioSampleBioProjectAccession: XPATH, //Links/Link[@target='bioproject']/@label
     - BioSampleSRAAccession: Id, db, SRA
     - BioSampleTitle: Title
     - BioSampleName: Id, db_label, Sample name
@@ -80,7 +80,7 @@ TABLE_COLUMNS :
     - BioSampleOrganismAlt: Description, Organism, taxonomy_name
     - BioSampleSubSpecies: Attribute, harmonized_name, sub_species
     - BioSampleStrain: Attribute, harmonized_name, strain
-    - BioSampleTaxonomyID: Taxonomy
+    - BioSampleTaxonomyID: Organism, taxonomy_id
     - BioSampleBiovar: Attribute, harmonized_name, biovar
     - BioSampleSerovar: Attribute, harmonized_name, serovar
     - BioSampleCollectionDate: Attribute, harmonized_name, collection_date
@@ -128,9 +128,8 @@ TABLE_COLUMNS :
   - Nucleotide :
     - NucleotideAccession : GBSeq_primary-accession
     - NucleotideAccessionVersion : GBSeq_accession-version
-    - NucleotideBioSampleAccession: NucleotideBioSample
+    - NucleotideBioSampleAccession: XPATH, //GBXref[GBXref_dbname/text() = 'BioSample']/GBXref_id
     - NucleotideBioProjectAccession : GBSeq_project
-    - NucleotideAssemblyAccession : GBSeq_xrefs, GBXref_id
     - NucleotideOrganism : GBSeq_organism
     - NucleotideTaxonomy : GBSeq_taxonomy
     - NucleotideDefinition : GBSeq_definition
@@ -185,8 +184,8 @@ TABLE_COLUMNS :
     - NucleotideComment : NullValue
 
   - SRA :
-    - SRABioProjectAccession : EXTERNAL_ID, namespace, BioProject
-    - SRABioSampleAccession : EXTERNAL_ID, namespace, BioSample
+    - SRABioProjectAccession : STUDY, EXTERNAL_ID, namespace, BioProject
+    - SRABioSampleAccession : RUN_SET, RUN, Pool, EXTERNAL_ID, namespace, BioSample
     - SRASampleAccession : SAMPLE_DESCRIPTOR, accession
     - SRASampleName : SAMPLE, alias
     - SRAExperimentAccession : EXPERIMENT, accession

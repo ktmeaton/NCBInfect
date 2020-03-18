@@ -385,15 +385,26 @@ def UpdateDB(table, output_dir, database, email, search_term, table_columns, log
             #   XML Parse for node or attribute
             #-------------------------------------------------------#
             working_root =ID_root
-            # If there are special character, this query should not be used for xpath!!
-            bool_special_char = False
-            for char in XPATH_SPECIAL_CHAR:
-                for xquery in column_payload:
-                    if char in xquery:
-                        bool_special_char = True
-            # If no special characters, run xpath search Functions
-            if not bool_special_char:
-                NCBImetaUtilities.xml_search(working_root, column_payload, column_payload[0], column_name, column_dict)
+
+            if column_payload[0] == "XPATH":
+                # Remove the signal element 'XPATH'.
+                # Consider the possibility of 'XPATH,' showing up as well.
+                column_payload.remove("XPATH")
+                # Check if there was no XPATH command supplied afterwards
+                if len(column_payload) == 0:
+                    raise NCBImetaErrors.ErrorXPathQueryMissing(column_name)
+                column_payload_xpath = column_payload[0]
+                NCBImetaUtilities.adv_xml_search(working_root, column_payload_xpath, column_name, column_dict)
+            else:
+                # If there are special character, this query should not be used for xpath!!
+                bool_special_char = False
+                for char in XPATH_SPECIAL_CHAR:
+                    for xquery in column_payload:
+                        if char in xquery:
+                            bool_special_char = True
+                # If no special characters, run xpath search Functions
+                if not bool_special_char:
+                    NCBImetaUtilities.xml_search(working_root, column_payload, column_payload[0], column_name, column_dict)
 
             # Special parsing for GBSeq_comment
             # If we're on the GBSeq_comment element and the comment was added to the dictionary

@@ -173,3 +173,42 @@ class ErrorSQLNameSanitize(Exception):
     def __str__(self):
         '''When the error is raised, print the name and the recommended sanitized version.'''
         return ("\n\nThe name: " + self.value + " contains problematic characters. Please rename it to: " + self.sanitize_value )
+
+class ErrorXPathQueryMultiElement(Exception):
+    def __init__(self, value):
+        '''
+        The constructor for ErrorXPathQueryMultiElement class.
+
+        Parameters:
+        value (str): The Xpath query.
+        '''
+        self.value = value
+    def __str__(self):
+        '''When the error is raised, print the problematic Xpath query.'''
+        return ("\n\nMore than one element returned for XPath {}. Are you using the correct XPath query?".format(self.value))
+
+class ErrorXPathElementUnknown(Exception):
+    def __init__(self, value):
+        '''
+        The constructor for ErrorXPathElementUnknown class.
+
+        Parameters:
+        value (str): The returned search result from an Xpath query.
+        '''
+        self.value = value
+    def __str__(self):
+        '''When the error is raised, print the problematic search result.'''
+        return ("\n\nUnknown XPath return element: {}".format(type(self.value)))
+
+class ErrorXPathQueryMissing(Exception):
+    def __init__(self, value):
+        '''
+        The constructor for ErrorXPathQueryMissing class.
+
+        Parameters:
+        value (str): The column name with an empty XPath query.
+        '''
+        self.value = value
+    def __str__(self):
+        '''When the error is raised, print the problematic column name.'''
+        return ("\n\nThe following column name uses XPath but no query was supplied: {}".format(self.value))

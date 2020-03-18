@@ -44,9 +44,55 @@ def table_exists(db_cur, table_name):
     query = "SELECT name FROM sqlite_master WHERE type='table' AND name='{}'".format(table_name)
     return db_cur.execute(query).fetchone() is not None
 
+def adv_xml_search(xml_root, targ_xpath, column_name, xml_dict):
+    '''
+    Search xml_root using targ_xpath XPATH query, assign to column name in xml_dict.
+    Contributor: @ktmeaton, @hellothisisMatt
+
+    Parameters:
+    xml_root (ElementTree): xml document as etree object
+    targ_xpath (str): XPATH query (lxml python module, XPATH 1.0)
+    column_name (str): column_name in xml_dict to assign node value to.
+    xml_dict (dict): A dictionary to modify and store found values.
+
+    Returns:
+    Void. Instead the function mutates the dictionary xml_dict.
+    '''
+    results = xml_root.xpath(targ_xpath)
+
+    for result in results:
+        # Lets figure out the returned element from our XPath query.
+        # First check if we returned an XML node.
+        if isinstance(result, etree._Element):
+            # If it's an XML node, lets make sure it returned a unique value.
+            # getchildren function returns a list, test no children with len
+            if len(result.getchildren()) == 0:
+                # Now lets check if it has a text value that it can return.
+                if result.text is not None:
+                    result_text = result.text.strip()
+                # Now check if we can use the tag as a value to return.
+                elif result.tag is not None:
+                    result_text = result.tag.strip()
+                # Welp, we can't return anything. Set to None to avoid throwing an error.
+                # Hmm do we want this to be None or an empty string...
+                else:
+                    result_text = None
+            else:
+                # We didn't get a unique value from the XPath query provided. Help!
+                raise NCBImetaErrors.ErrorXPathQueryMultiElement(targ_xpath)
+        elif isinstance(result, str):
+            # If we didn't get an element, then we returned an attribute (which is a string)!
+            result_text = result.strip()
+        else:
+            # Uh oh, we received a value from our XPath that we don't know how to deal with.
+            raise NCBImetaErrors.ErrorXPathElementUnknown(result)
+
+         # Add the found node value to the dictionary
+        xml_dict[column_name].append(str(result_text))
+
 def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
     '''
-    Search xml_root using XPATH for nodes, attributes in search_list and update node_dict.
+    Search xml_root using XPATH for nodes, attributes in search_list and assign to column_name in xml_dict.
     In addition to searching, this function also handles escaped XML as text &lt; and &gt;
     characters, as well as CDATA sections.
 
@@ -54,6 +100,7 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
     xml_root (ElementTree): xml document as etree object
     search_list (list): list of nodes and attributes in descending hierarchy
     current_tag (str): current tag (or attribute/value) to be searching
+    column_name (str): column_name in xml_dict to assign node value to.
     xml_dict (dict): A dictionary to modify and store found values.
 
     Returns:
