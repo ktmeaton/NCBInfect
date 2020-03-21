@@ -23,7 +23,7 @@ NCBImetaExport.py --database database/sarscov2.sqlite --outputdir database/
 ```
 
 ### Visualize
-<img src="https://github.com/ktmeaton/NCBImeta/blob/SARSCOV2/images/sarscov2_sra.png" alt="SARSCOV2_SRA" width="700px"/>
+[![sarscov2-sradb](https://github.com/ktmeaton/NCBImeta/blob/SARSCOV2/images/sarscov2_sra.png)](https://inloop.github.io/sqlite-viewer/)
 
 ### Database Links
 1. [All DB - SQLite](https://github.com/ktmeaton/NCBImeta/raw/SARSCOV2/database/sarscov2.sqlite). Download and explore [online](https://inloop.github.io/sqlite-viewer/) or [locally](https://sqlitebrowser.org/).
