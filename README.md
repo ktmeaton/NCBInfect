@@ -26,6 +26,12 @@ conda install -c bioconda ncbimeta
 ```
 ### 2. PyPI
 PyPI installation is currently under development! Please use the Bioconda or Source options for now.  
+NCBImeta can be install with pip using:
+```
+git clone https://github.com/ktmeaton/NCBImeta.git
+cd NCBImeta
+pip install .
+``` 
 
 ### 3. Source
 
