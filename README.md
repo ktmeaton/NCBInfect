@@ -25,13 +25,8 @@ There are three installation options for NCBImeta:
 conda install -c bioconda ncbimeta
 ```
 ### 2. PyPI
-```
-pip install NCBImeta
-```
-If you have both Python2 and Python3 installed, using *pip3* may be beneficial instead:
-```
-pip3 install NCBImeta
-```
+PyPI installation is currently under development! Please use the Bioconda or Source options for now.  
+
 ### 3. Source
 
 ```
