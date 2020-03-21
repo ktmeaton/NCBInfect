@@ -51,7 +51,7 @@ deploy:
     tags: true
 notifications:
   slack:
-    on_pull_requests: always
+    on_pull_requests: true
     on_success: always
     on_failure: always
     rooms:
