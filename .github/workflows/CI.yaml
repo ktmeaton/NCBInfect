@@ -1,0 +1,33 @@
+name: NCBImeta Continuous Integration
+#This is a continuous-integration workflow, triggered on a push or pull-request.
+on: [push, pull_request]
+
+jobs:
+  source_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build From Source
+        run: |
+          python setup.py install
+  pip_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install With Pip
+        run: |
+          pip install .
+  pypi_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install From PyPI
+        run: |
+          pip install ncbimeta
+  conda_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install From Conda
+        run: |
+          conda install -c bioconda ncbimeta
