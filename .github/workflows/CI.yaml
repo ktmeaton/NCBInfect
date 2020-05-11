@@ -9,9 +9,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build From Source
         run: |
-          conda create --name ncbimeta-env
-          conda activate ncbimeta-env
-          python setup.py install
+          sudo python setup.py install
   pip_build:
     runs-on: ubuntu-latest
     steps:
