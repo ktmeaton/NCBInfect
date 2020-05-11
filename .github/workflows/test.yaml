@@ -1,4 +1,4 @@
-name: NCBImeta Build
+name: NCBImeta Test
 #This is a building workflow, triggered on a push or pull-request.
 on: [push, pull_request]
 
