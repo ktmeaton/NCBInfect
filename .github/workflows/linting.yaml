@@ -9,7 +9,7 @@ on:
     # On change to workflow, markdown
     paths:
       - '.github/workflows/linting.yaml*'
-      - *.md
+      - '*.md'
   # Triggered on PR for all branches, any file
   pull_request:
     branches:
@@ -27,4 +27,4 @@ jobs:
       - name: Install markdownlint
         run: npm install -g markdownlint-cli
       - name: Run Markdownlint
-        run: markdownlint ${GITHUB_WORKSPACE} -c ${GITHUB_WORKSPACE}/.github/markdownlint.yml
+        run: markdownlint ${GITHUB_WORKSPACE} -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yml
