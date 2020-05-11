@@ -3,6 +3,7 @@ name: NCBImeta Continuous Integration
 on: [push, pull_request]
 
 jobs:
+
   source_build:
     runs-on: ubuntu-latest
     steps:
@@ -10,20 +11,8 @@ jobs:
       - name: Build From Source
         run: |
           sudo python setup.py install
-  pip_build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install With Pip
-        run: |
-          sudo pip install .
-  pypi_build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install From PyPI
-        run: |
-          sudo pip install ncbimeta
+
+
   conda_build:
     runs-on: ubuntu-latest
     steps:
@@ -31,3 +20,20 @@ jobs:
       - name: Install From Conda
         run: |
           conda install -c bioconda ncbimeta
+
+  pip_build:
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          python-version: [3.5, 3.6, 3.7, 3.8]
+
+      steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
