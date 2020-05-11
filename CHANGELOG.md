@@ -8,6 +8,17 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 TO DO: A true quick start example, just SRA data?
 
+## [v0.6.6] - 2020-0511
+
+### Added
+- MANIFEST.in to make sure requirements.txt is packaged for PyPi
+
+### Changed
+- Convert BioProjectTitle to XPath query
+
+### Removed
+- I worry that BioProjectPublished might be missing now somehow?
+
 ## [v0.6.5] - 2020-0318 - XPath Advanced
 
 ### Added

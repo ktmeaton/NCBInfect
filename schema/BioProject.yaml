@@ -20,7 +20,7 @@
     - BioProjectTargetCapture : Target, capture
     - BioProjectTargetMaterial : Target, material
     - BioProjectTargetScope : Target, sample_scope
-    - BioProjectTitle : ProjectDescr, Title
+    - BioProjectTitle : XPATH, //ProjectDescr/Title/text()
 
 # Taxonomy Information
     - BioProjectOrganismLabel : ProjectTypeSubmission, Label

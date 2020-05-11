@@ -108,7 +108,7 @@ TABLE_COLUMNS :
     - BioProjectTargetCapture : Target, capture
     - BioProjectTargetMaterial : Target, material
     - BioProjectTargetScope : Target, sample_scope
-    - BioProjectTitle : ProjectDescr, Title
+    - BioProjectTitle : XPATH, //ProjectDescr/Title/text()
     - BioProjectOrganismLabel : ProjectTypeSubmission, Label
     - BioProjectOrganismStrain : ProjectTypeSubmission, Strain
     - BioProjectOrganismTaxID : ProjectTypeSubmission, Organism, taxID

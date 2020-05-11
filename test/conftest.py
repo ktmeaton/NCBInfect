@@ -77,7 +77,7 @@ def bioproject_table_data():
                 'eSequencing', 'Bacteria', 'eWhole', 'eGenome', 'eMultispecies',
                 'Pathogenic microorganism Genome sequencing', '',
                 '', '2', '-1', 'eBacteria', '2014-12-09', '2015-03-11T00:00:00Z',
-                '2014-12-09', 'yes', 'SRCAMB', 'ePublished;ePublished', '',
+                '2014-12-09', 'yes', 'SRCAMB', '', '2015-12-03T00:00:00Z;2016-03-03T00:00:00Z',
                 '26634751;26941146', 'ePubmed;ePubmed', '']
 
     table_dict = {}
