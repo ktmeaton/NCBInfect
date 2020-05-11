@@ -1,0 +1,42 @@
+name: NCBImeta Build
+#This is a building workflow, triggered on a push or pull-request.
+on: [push, pull_request]
+
+jobs:
+
+  source_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build From Source
+        run: |
+          sudo python setup.py install
+
+
+  conda_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install From Conda
+        run: |
+          conda install -c bioconda ncbimeta
+
+  pip_build:
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          python-version: [3.5, 3.6, 3.7, 3.8]
+
+      steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Install main
+        run: |
+          pip install .
