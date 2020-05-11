@@ -195,13 +195,13 @@ while annot_line:
 
 
     # This section allows for dynamic variable creation and column modification
-    sql_dynamic_vars = ",".join([header + "=" + "'" + line_dict[header] + "'" for header in line_dict.keys()])
-    sql_dynamic_query = "UPDATE {0} SET {1} WHERE {2}=?".format(db_table,
-                                                    sql_dynamic_vars,
-                                                    unique_header)
-
-    print("Entry " + unique_element + " found in db. " + sql_dynamic_query)
-    cur.execute(sql_dynamic_query, (unique_element,))
+    sql_dynamic_colnames_list = [colname + "=?" for colname in line_dict.keys()]
+    sql_dynamic_colnames = ",".join(sql_dynamic_colnames_list)
+    sql_values_placeholder = [line_dict[header] for header in line_dict.keys()]
+    sql_query = "UPDATE " + db_table + " SET " + sql_dynamic_colnames + " WHERE " + unique_header + "=" + "\'" + unique_element + "\'"
+    
+    print("Entry " + unique_element + " found in db. " + sql_query + str(sql_values_placeholder))
+    cur.execute(sql_query, sql_values_placeholder)
 
     # Read in the next line
     annot_line = annot_file.readline()
