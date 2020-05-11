@@ -7,6 +7,7 @@ test/*log
 test/*sqlite
 test/test_Assembly.txt
 test/test_BioProject.txt
+test/test_BioProjectNucleotide.txt
 test/test_BioSample.txt
 test/test_Master.txt
 test/test_Nucleotide.txt
