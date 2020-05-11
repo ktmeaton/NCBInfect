@@ -1,0 +1,30 @@
+name: NCBImeta Linting
+#This is a workflow for linting
+
+on:
+  # Triggered on Push for all branches
+  push:
+    branches:
+      - '*'
+    # On change to workflow, markdown
+    paths:
+      - '.github/workflows/linting.yaml*'
+      - *.md
+  # Triggered on PR for all branches, any file
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  # Template from nf-core eager to trial
+  markdown_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+      - name: Run Markdownlint
+        run: markdownlint ${GITHUB_WORKSPACE} -c ${GITHUB_WORKSPACE}/.github/markdownlint.yml
