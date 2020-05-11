@@ -1,4 +1,4 @@
-name: NCBImeta Linting
+name: Linting
 #This is a workflow for linting
 
 on:
