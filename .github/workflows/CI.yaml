@@ -10,6 +10,7 @@ jobs:
       - name: Build From Source
         run: |
           conda create --name ncbimeta-env
+          conda activate ncbimeta-env
           python setup.py install
   pip_build:
     runs-on: ubuntu-latest
