@@ -5,11 +5,11 @@ on:
   # Triggered on Push for all branches
   push:
     branches:
-      - *
+      - '*'
   # Triggered on PR for all branches, any file
   pull_request:
     branches:
-      - *
+      - '*'
 
 jobs:
 

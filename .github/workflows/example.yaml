@@ -4,7 +4,7 @@ on:
   # Triggered on Push for master and dev branches
   push:
     branches:
-      - *
+      - '*'
     # On change to example
     paths:
       - 'example/*'
@@ -12,7 +12,7 @@ on:
   # Triggered on PR for all branches, any file
   pull_request:
     branches:
-      - *
+      - '*'
 
 jobs:
 

@@ -5,7 +5,7 @@ on:
   # Triggered on Push for all branches
   push:
     branches:
-      - *
+      - '*'
     # On change to workflow, example, src code, test, requirements
     paths:
       - '.github/workflows/test.yaml*'
@@ -16,7 +16,7 @@ on:
   # Triggered on PR for all branches, any file
   pull_request:
     branches:
-      - *
+      - '*'
 
 
 jobs:
