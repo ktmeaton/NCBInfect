@@ -209,7 +209,7 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - Fixed incorrect directory paths in README.md example commands.
 
 ## [v0.3.1] - 2018-0702 - Alpha Release for User Testing
-### Added  
+### Added
 - README files for config and schema
 - Usage in main README
 

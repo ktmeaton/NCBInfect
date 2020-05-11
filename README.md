@@ -7,13 +7,13 @@
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/ncbimeta/badges/version.svg)](https://anaconda.org/bioconda/ncbimeta)
 
 # NCBImeta
-Efficient and comprehensive metadata acquisition from NCBI databases (includes SRA).  
+Efficient and comprehensive metadata acquisition from NCBI databases (includes SRA).
 
 ## Why NCBImeta?
 NCBImeta is a command-line application that retrieves and organizes metadata from the National Centre for Biotechnology Information (NCBI). While the NCBI web browser experience allows filtered searches, the output does not facilitate inter-record comparison or bulk record retrieval. NCBImeta tackles this issue by creating a local database of NCBI metadata constructed by user-defined search criteria and customizable metadata columns. The output of NCBImeta, optionally a SQLite database or text files, can then be used by computational biologists for applications such as record filtering, project discovery, sample interpretation, or meta-analyses of published work.
 
 ## Requirements
-NCBImeta is written in Python 3 and supported on Linux and macOS. Dependencies that will be installed are listed in [requirements.txt](https://github.com/ktmeaton/NCBImeta/blob/master/requirements.txt).  
+NCBImeta is written in Python 3 and supported on Linux and macOS. Dependencies that will be installed are listed in [requirements.txt](https://github.com/ktmeaton/NCBImeta/blob/master/requirements.txt).
 [Check all Python versions and OS with verified build status](https://travis-ci.org/ktmeaton/NCBImeta)
 
 ## Installation
@@ -25,7 +25,7 @@ There are three installation options for NCBImeta:
 conda install -c bioconda ncbimeta
 ```
 ### 2. PyPI
-PyPI installation is currently under development! Please use the Bioconda or Source options for now.  
+PyPI installation is currently under development! Please use the Bioconda or Source options for now.
 NCBImeta can be install with pip using:
 ```
 git clone https://github.com/ktmeaton/NCBImeta.git
@@ -36,10 +36,10 @@ pip install .
 ### 3. Source
 
 ```
-git clone https://github.com/ktmeaton/NCBImeta.git   
+git clone https://github.com/ktmeaton/NCBImeta.git
 cd NCBImeta
 python setup.py install
-```   
+```
 
 Test that the installation was successful:
 ```
@@ -51,7 +51,7 @@ NCBImeta.py --version
 ### Access the quick start config file
 Download the NCBImeta github repository to get access to the example configuration files:
 ```
-git clone https://github.com/ktmeaton/NCBImeta.git   
+git clone https://github.com/ktmeaton/NCBImeta.git
 cd NCBImeta
 ```
 
@@ -62,7 +62,7 @@ NCBImeta.py --flat --config example/config.yaml
 ```
 (Note: The 'quick' start config file forces slow downloads to accommodate users with slow internet. For faster record retrieval, please see the [Config File README](https://github.com/ktmeaton/NCBImeta/blob/master/config/README_config.md) to start editing config files.)
 
-Example output of the command-line interface (v0.6.1):  
+Example output of the command-line interface (v0.6.1):
 [![asciicast](https://asciinema.org/a/289560.svg)](https://asciinema.org/a/289560)
 
 
@@ -71,16 +71,16 @@ Example output of the command-line interface (v0.6.1):
 NCBImetaAnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
 ```
 
-Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also exactly match the names of your columns in the database.  
+Note that the first column of your annotation file MUST be a column that is unique to each record. An Accession number or ID is highly recommended. The column headers in your annotation file must also exactly match the names of your columns in the database.
 
 ```NCBImetaAnnotateReplace.py```, as the name implies, replaces the existing annotation with the data in your custom metadata file. Alternatively, the script ```NCBImetaAnnotateConcatenate.py``` will concatenate your custom metadata with the pre-existing value in the database cell (separated by a semi-colon).
 ```
 NCBImetaAnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
 ```
-### Join NCBI tables into a unified master table  
+### Join NCBI tables into a unified master table
 ```
 NCBImetaJoin.py --database example/yersinia_pestis_db.sqlite --final Master --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
-```  
+```
 The rows of the output "Master" table will be from the anchor table "BioSample", with additional columns added in from the accessory tables "BioProject", "Assembly", "SRA", and "Nucleotide". Unique accession numbers for BioSample (both primary and secondary) and BioProject allow this join to be unambiguous.
 
 
@@ -91,20 +91,20 @@ NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir examp
 Each table within the database will be exported to its own tab-separated .txt file in the specified output directory.
 
 ### Explore!
-1. Explore your database text files using a spreadsheet viewer (Microsoft Excel, Google Sheets, etc.)  
-2. Browse your SQLite database using DB Browser for SQLite (https://sqlitebrowser.org/)  
+1. Explore your database text files using a spreadsheet viewer (Microsoft Excel, Google Sheets, etc.)
+2. Browse your SQLite database using DB Browser for SQLite (https://sqlitebrowser.org/)
 3. Use the columns with FTP links to download your data files of interest.
 
-Example database output (a subset of the BioSample table)  
+Example database output (a subset of the BioSample table)
 
 <img src="https://raw.githubusercontent.com/ktmeaton/NCBImeta/master/images/NCBImetaDB.gif" alt="NCBImetaDB" width="700px"/>
 
-## Currently Supported NCBI Tables  
-- Assembly  
-- BioProject  
-- BioSample  
-- Nucleotide  
-- SRA  
+## Currently Supported NCBI Tables
+- Assembly
+- BioProject
+- BioSample
+- Nucleotide
+- SRA
 - Pubmed
 
 ## Upcoming Features
@@ -121,7 +121,7 @@ To get started with customizing the search terms, database, and metadata fields,
 ## Issues, Questions, and Suggestions
 
 Please submit your questions, suggestions, and bug reports to the
-[Issue Tracker](https://github.com/ktmeaton/NCBImeta/issues).  
+[Issue Tracker](https://github.com/ktmeaton/NCBImeta/issues).
 
 Please do not hesitate to post any manner of curiosity in the "Issues" tracker :) User-feedback and ideas are the most valuable resource for emerging software.
 
@@ -147,10 +147,14 @@ Deployment
 ```
 pip install check-manifest twine
 ```
-Linting
+Linting and Pre-Commit
 ```
 pip install pre-commit
+pre-commit sample-config > .pre-commit-config.yaml
+pre-commit install
+pre-commit run --all-files
 ```
+
 
 ## Citation
 
@@ -158,7 +162,7 @@ Eaton, K. (2020). NCBImeta: efficient and comprehensive metadata retrieval from 
 
 ## Credits
 
-Author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)  
+Author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)
 
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)

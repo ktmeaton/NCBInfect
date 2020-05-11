@@ -199,7 +199,7 @@ while annot_line:
     sql_dynamic_colnames = ",".join(sql_dynamic_colnames_list)
     sql_values_placeholder = [line_dict[header] for header in line_dict.keys()]
     sql_query = "UPDATE " + db_table + " SET " + sql_dynamic_colnames + " WHERE " + unique_header + "=" + "\'" + unique_element + "\'"
-    
+
     print("Entry " + unique_element + " found in db. " + sql_query + str(sql_values_placeholder))
     cur.execute(sql_query, sql_values_placeholder)
 
