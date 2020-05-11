@@ -138,6 +138,11 @@ Please do not hesitate to post any manner of curiosity in the "Issues" tracker :
 
 GitHub not your style? Join the [NCBImeta Slack Group](https://join.slack.com/t/ncbimeta/shared_invite/zt-crbtn51t-bdQKeBqz6Nkmj~hgU8ZZFA) to see release alerts, chat with other users, and get insider perspective on development.
 
+## Developer Dependencies
+```
+pip install coverage check-manifest pytest pytest-cov
+```
+
 ## Citation
 
 Eaton, K. (2020). NCBImeta: efficient and comprehensive metadata retrieval from NCBI databases. Journal of Open Source Software, 5(46), 1990, https://doi.org/10.21105/joss.01990
