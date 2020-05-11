@@ -37,3 +37,13 @@ jobs:
         env_vars: OS,PYTHON
         name: codecov-umbrella
         fail_ci_if_error: true
+
+
+    - name: Quick Start Example
+      run: |
+        python -m coverage run -m pytest --cov=ncbimeta --cov-report=xml test/test_errors.py test/test_utilities.py test/test_ncbimeta.py test/test_annotateconcatenate.py test/test_annotatereplace.py test/test_join.py test/test_export.py
+        NCBImeta.py --flat --config example/config.yaml
+        NCBImetaAnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
+        NCBImetaAnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
+        NCBImetaJoin.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
+        NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/
