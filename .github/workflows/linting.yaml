@@ -9,6 +9,7 @@ on:
     # On change to workflow, markdown
     paths:
       - '.github/workflows/linting.yaml*'
+      - '.github/markdown_lint.yaml'
       - '*.md'
   # Triggered on PR for all branches, any file
   pull_request:
