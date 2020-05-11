@@ -6,15 +6,15 @@ on:
   push:
     branches:
       - '*'
-  # On change to workflow, example, src code, test, requirements
-  paths:
-    - '.github/workflows/build.yaml*'
-    - 'example/*'
-    - 'ncbimeta/*.py'
-    - 'test/*'
-    - 'requirements.txt'
-    - 'setup.py'
-    - 'setup.cfg'
+    # On change to workflow, example, src code, test, requirements
+    paths:
+      - '.github/workflows/build.yaml*'
+      - 'example/*'
+      - 'ncbimeta/*.py'
+      - 'test/*'
+      - 'requirements.txt'
+      - 'setup.py'
+      - 'setup.cfg'
   # Triggered on PR for all branches, any file
   pull_request:
     branches:
