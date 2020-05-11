@@ -1,27 +1,22 @@
-name: NCBImeta Test
-#This is a workflow for unittests.
-
+name: NCBImeta Example
+#This is a workflow for the quick-start example, triggered on a push or pull-request.
 on:
-  # Triggered on Push for all branches
+  # Triggered on Push for master and dev branches
   push:
     branches:
       - *
-    # On change to workflow, example, src code, test, requirements
+    # On change to example
     paths:
-      - '.github/workflows/test.yaml*'
       - 'example/*'
-      - 'ncbimeta/*.py'
-      - 'test/*'
-      - 'requirements.txt'
+
   # Triggered on PR for all branches, any file
   pull_request:
     branches:
       - *
 
-
 jobs:
 
-  pytest:
+  example:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -38,19 +33,13 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install codecov==2.0.15 pytest==5.3.1 coverage==4.5.4 pytest-cov==2.8.1
         pip install .
 
-
-    - name: PyTest Modules
+    - name: Quick Start Example
       run: |
         python -m coverage run -m pytest --cov=ncbimeta --cov-report=xml test/test_errors.py test/test_utilities.py test/test_ncbimeta.py test/test_annotateconcatenate.py test/test_annotatereplace.py test/test_join.py test/test_export.py
-
-    - name: Codecov Upload
-      uses: codecov/codecov-action@v1
-      with:
-        file: ./coverage.xml
-        flags: unittests
-        env_vars: OS,PYTHON
-        name: codecov-umbrella
-        fail_ci_if_error: true
+        NCBImeta.py --flat --config example/config.yaml
+        NCBImetaAnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
+        NCBImetaAnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
+        NCBImetaJoin.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
+        NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/

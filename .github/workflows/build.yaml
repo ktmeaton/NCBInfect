@@ -1,6 +1,15 @@
 name: NCBImeta Build
-#This is a building workflow, triggered on a push or pull-request.
-on: [push, pull_request]
+#This is a building workflow, triggered on any push or pull-request.
+
+on:
+  # Triggered on Push for all branches
+  push:
+    branches:
+      - *
+  # Triggered on PR for all branches, any file
+  pull_request:
+    branches:
+      - *
 
 jobs:
 
