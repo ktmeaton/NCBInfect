@@ -28,4 +28,4 @@ jobs:
       - name: Install markdownlint
         run: npm install -g markdownlint-cli
       - name: Run Markdownlint
-        run: markdownlint ${GITHUB_WORKSPACE} -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yml
+        run: markdownlint ${GITHUB_WORKSPACE} -c ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml
