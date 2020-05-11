@@ -6,9 +6,9 @@ jobs:
 
   source_build:
     runs-on: ubuntu-latest
-      strategy:
-        matrix:
-          python-version: [3.5, 3.6, 3.7, 3.8]
+    strategy:
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8]
     steps:
       - uses: actions/checkout@v2
       - name: Build From Source
