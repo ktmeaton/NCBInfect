@@ -31,7 +31,7 @@ NCBImeta can be install with pip using:
 git clone https://github.com/ktmeaton/NCBImeta.git
 cd NCBImeta
 pip install .
-``` 
+```
 
 ### 3. Source
 
@@ -139,8 +139,17 @@ Please do not hesitate to post any manner of curiosity in the "Issues" tracker :
 GitHub not your style? Join the [NCBImeta Slack Group](https://join.slack.com/t/ncbimeta/shared_invite/zt-crbtn51t-bdQKeBqz6Nkmj~hgU8ZZFA) to see release alerts, chat with other users, and get insider perspective on development.
 
 ## Developer Dependencies
+Code Coverage and Unit Testing
 ```
-pip install coverage check-manifest pytest pytest-cov
+pip install coverage pytest pytest-cov
+```
+Deployment
+```
+pip install check-manifest twine
+```
+Linting
+```
+pip install pre-commit
 ```
 
 ## Citation

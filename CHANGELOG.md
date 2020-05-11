@@ -8,16 +8,21 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 TO DO: A true quick start example, just SRA data?
 
-## [v0.6.6] - 2020-0511
+## [v0.6.6] - 2020-0511 - PyPI Github Actions
 
 ### Added
-- MANIFEST.in to make sure requirements.txt is packaged for PyPi
+- MANIFEST.in to make sure requirements.txt is packaged for PyPI
+- GitHub Actions Continuous Integration (Build, PyTest, Example, Linting)
+- Linting infrastructure for Markdown begins
+- Pre-Commit hooks
 
 ### Changed
 - Convert BioProjectTitle to XPath query
+- The Annotate scripts (Replace and Concatenate) now properly handle inserting/updating values.
 
 ### Removed
-- I worry that BioProjectPublished might be missing now somehow?
+- Travis Continuous Integration
+- Keep an eye on BioProjectPublished values.
 
 ## [v0.6.5] - 2020-0318 - XPath Advanced
 
