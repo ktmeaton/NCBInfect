@@ -5,9 +5,11 @@ repos:
     rev: v2.4.0
     hooks:
     -   id: trailing-whitespace
+        exclude: paper/*
     -   id: end-of-file-fixer
     -   id: check-yaml
     -   id: check-added-large-files
     -   id: mixed-line-ending
+        exclude: paper/*
         args: [--fix=lf]
     -   id: detect-private-key

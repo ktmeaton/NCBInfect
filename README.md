@@ -138,19 +138,10 @@ Please do not hesitate to post any manner of curiosity in the "Issues" tracker :
 
 GitHub not your style? Join the [NCBImeta Slack Group](https://join.slack.com/t/ncbimeta/shared_invite/zt-crbtn51t-bdQKeBqz6Nkmj~hgU8ZZFA) to see release alerts, chat with other users, and get insider perspective on development.
 
-## Developer Dependencies
-Code Coverage and Unit Testing
+## Developer Dependencies and Setup
+Code Coverage, Unit Testing, PyPI Deployment, ReadTheDocs, Pre-Commit, Linting, etc.
+Setup pre-commit hooks
 ```
-pip install coverage pytest pytest-cov
-```
-Deployment
-```
-pip install check-manifest twine
-```
-Linting and Pre-Commit
-```
-pip install pre-commit
-pre-commit sample-config > .pre-commit-config.yaml
 pre-commit install
 pre-commit run --all-files
 ```
