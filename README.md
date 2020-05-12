@@ -149,8 +149,14 @@ pre-commit run --all-files
 Install poetry
 ```
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+poetry install
 ```
-
+Replacing old schema text
+```
+OLD="BioProjectTitle : ProjectDescr, Title";
+NEW="BioProjectTitle : XPATH, //ProjectDescr/Title/text()";
+sed -i "s|$OLD|$NEW|g" */*.yaml
+```
 
 ## Citation
 
