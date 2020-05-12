@@ -6,11 +6,13 @@ on:
   push:
     branches:
       - '*'
-    # On change to workflow, markdown
+    # On change to workflow, markdown, python
     paths:
       - '.github/workflows/linting.yaml*'
       - '.github/markdown_lint.yaml'
       - '*.md'
+      - ncbimeta/*.py
+      - test/*.py
   # Triggered on PR for all branches, any file
   pull_request:
     branches:
@@ -54,7 +56,7 @@ jobs:
           # stop the build if there are Python syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
 
   # Markdown template from nf-core eager to trial
   markdown_lint:
