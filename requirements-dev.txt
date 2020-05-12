@@ -1,0 +1,9 @@
+coverage
+pytest
+pytest-cov
+check-manifest
+twine
+pre-commit
+sphinx
+sphinx-rtd-theme
+m2r
