@@ -90,9 +90,9 @@ TABLE_COLUMNS :
     - BioSampleHostHealthState : Attribute, harmonized_name, host_health_state
     - BioSampleIsolateNameAlias: Attribute, harmonized_name, isolate_name_alias
     - BioSampleIsolationSource: Attribute, harmonized_name, isolation_source
-    - BioSampleLat : Attribute, harmonized_name, latitude
+    - BioSampleLat : Attribute, attribute_name, Latitude
     - BioSampleLatLon : Attribute, harmonized_name, lat_lon
-    - BioSampleLon : Attribute, harmonized_name, longitude
+    - BioSampleLon : Attribute, attribute_name, Longitude
     - BioSampleSubmissionDate: BioSample, submission_date
     - BioSampleModificationDate: BioSample, last_update
     - BioSamplePublicationDate: BioSample, publication_date
