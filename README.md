@@ -142,6 +142,7 @@ GitHub not your style? Join the [NCBImeta Slack Group](https://join.slack.com/t/
 Code Coverage, Unit Testing, PyPI Deployment, ReadTheDocs, Pre-Commit, Linting, etc.
 Setup pre-commit hooks
 ```
+pip install -r requirements-dev.txt
 pre-commit install
 pre-commit run --all-files
 ```

@@ -1,0 +1,88 @@
+[project]
+name = "NCBImeta"
+version = "0.6.6"
+description = "Efficient and comprehensive metadata acquisition from the NCBI databases (includes SRA)."
+authors = [
+    "Katherine Eaton <ktmeaton@gmail.com>"
+]
+license = "MIT"
+readme = "README.md"
+python = "^3.5"
+homepage = "https://ktmeaton.github.io/NCBImeta/"
+repository = "https://github.com/ktmeaton/NCBImeta"
+documentation = "https://ncbimeta.readthedocs.io/en/latest/"
+
+keywords = ["python", "bioinformatics", "genomics", "metadata", "NCBI", "SRA"]
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License"
+]
+
+# Requirements
+[dependencies]
+biopython = "^1.74"
+PyYAML = "5.1.2"
+numpy = "^1.16.4"
+lxml= "^4.4.2"
+
+[dev-dependencies]
+black = { version = "^18.3-alpha.0", python = "^3.7" }
+coverage = "^5.1"
+pytest = "^5.4.2"
+pytest-cov = "^2.8.1"
+check-manifest = "^0.42"
+twine = "^3.1.1"
+pre-commit = "^pre-commit==2.4.0"
+sphinx-rtd-theme = "0.4.3"
+sphinxcontrib-applehelp= "^1.0.2"
+sphinxcontrib-devhelp= "^1.0.2"
+sphinxcontrib-htmlhelp= "^1.0.3"
+sphinxcontrib-jsmath= "^1.0.1"
+sphinxcontrib-qthelp= "^1.0.3"
+sphinxcontrib-serializinghtml= "^1.1.4"
+m2r = "^0.2.1"
+
+[scripts]
+poetry = [
+  "ncbimeta.NCBImeta:main",
+  'ncbimeta.NCBImetaExport:main',
+  'ncbimeta.NCBImetaJoin:main',
+  'ncbimeta.NCBImetaAnnotateReplace:main',
+  'ncbimeta.NCBImetaAnnotateConcatenate:main']
+
+[build-system]
+requires = [
+    "setuptools >= 35.0.2",
+    "setuptools_scm >= 2.0.0, <3"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 79
+target_version = ['py37']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
+
+[flake8]
+ignore = E203, E266, E501, W503, F403, F401
+max-line-length = 79
+max-complexity = 18
+select = B,C,E,F,W,T4,B9
