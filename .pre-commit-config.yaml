@@ -9,3 +9,5 @@ repos:
     -   id: check-yaml
     -   id: check-added-large-files
     -   id: mixed-line-ending
+        args: [--fix=lf]
+    -   id: detect-private-key
