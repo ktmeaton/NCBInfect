@@ -15,6 +15,9 @@ TO DO: A true quick start example, just SRA data?
 - GitHub Actions Continuous Integration (Build, PyTest, Example, Linting)
 - Linting infrastructure for Markdown begins
 - Pre-Commit hooks
+- Formatting with black and flake8
+- Experiment with poetry pyproject.toml
+- Some config now in setup.cfg
 
 ### Changed
 - Convert BioProjectTitle to XPath query
