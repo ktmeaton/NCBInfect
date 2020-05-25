@@ -22,6 +22,7 @@ on:
 
 jobs:
 
+  # Setuptools Build and Install
   source_build:
     runs-on: ubuntu-latest
     strategy:
@@ -33,7 +34,7 @@ jobs:
         run: |
           sudo python setup.py install
 
-
+  # Conda Repository Install
   conda_build:
     runs-on: ubuntu-latest
     steps:
@@ -42,6 +43,7 @@ jobs:
         run: |
           conda install -c bioconda ncbimeta
 
+  # PyPI Repository Install
   pip_build:
       runs-on: ubuntu-latest
       strategy:
