@@ -6,17 +6,17 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 ## [Development]
 
-TO DO: A true quick start example, just SRA data?
+- TO DO: A true quick start example, just SRA data?
+- Fetching nucleotide annotations could probably be improved with xpath xml.
 
-## [v0.6.6] - 2020-0511 - PyPI Github Actions
+## [v0.6.6] - 2020-0525 - PyPI Github Actions
 
 ### Added
 - MANIFEST.in to make sure requirements.txt is packaged for PyPI
 - GitHub Actions Continuous Integration (Build, PyTest, Example, Linting)
 - Linting infrastructure for Markdown begins
 - Pre-Commit hooks
-- Formatting with black and flake8
-- Experiment with poetry pyproject.toml
+- Begin formatting with black and flake8
 - Some config now in setup.cfg
 
 ### Changed
