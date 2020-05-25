@@ -151,41 +151,13 @@ Please submit your questions, suggestions, and bug reports to the
 
 Please do not hesitate to post any manner of curiosity in the "Issues" tracker :) User-feedback and ideas are the most valuable resource for emerging software.
 
-
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request!
+Want to add features and fix bugs? Check out the [Contributor's Guide](https://github.com/ktmeaton/NCBImeta/contribute.md) for suggestions on getting started.
 
 ## Community
 
 GitHub not your style? Join the [NCBImeta Slack Group](https://join.slack.com/t/ncbimeta/shared_invite/zt-crbtn51t-bdQKeBqz6Nkmj~hgU8ZZFA) to see release alerts, chat with other users, and get insider perspective on development.
-
-## Contributing
-
-1. Fork it!
-
-Clone the repository
-
-```bash
-git clone https://github.com/ktmeaton/NCBImeta.git
-cd NCBImeta
-```
-
-Install dependencies, including developer pre-requesities.
-
-```bash
-pip install .[dev]
-```
-
-Install pre-commit hooks for linting and formatting misc.
-
-```
-pre-commit install
-```
 
 ## Citation
 
