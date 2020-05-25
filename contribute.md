@@ -41,4 +41,4 @@ git commit -m "descriptive message of changes"
 git push origin
 ```
 
-8. When ready, submit a pull request through GitHub.
+8. When ready, submit a pull request (PR) through GitHub. Complete the PR checklist.

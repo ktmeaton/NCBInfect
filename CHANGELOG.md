@@ -8,15 +8,16 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 - TO DO: A true quick start example, just SRA data?
 - Fetching nucleotide annotations could probably be improved with xpath xml.
+- black/flake8 format all py files
+- add back in max-osx for gh-actions
 
 ## [v0.6.6] - 2020-0525 - PyPI Github Actions
 
 ### Added
 - MANIFEST.in to make sure requirements.txt is packaged for PyPI
 - GitHub Actions Continuous Integration (Build, PyTest, Example, Linting)
-- Linting infrastructure for Markdown begins
 - Pre-Commit hooks
-- Begin formatting with black and flake8
+- Linting: python (black and flake8), markdown
 - Some config now in setup.cfg
 
 ### Changed
