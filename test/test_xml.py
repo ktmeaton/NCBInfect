@@ -8,7 +8,6 @@ NCBImeta Test - lxml
 #                         Modules and Packages                           #
 # -----------------------------------------------------------------------#
 
-# from ncbimeta import NCBImetaUtilities  # Utility Functions
 from lxml import etree  # XML Parsing
 
 
@@ -29,11 +28,11 @@ def test_lxml(assembly_xml):
         # recursively search for the tag
         working_root = working_root.findall(tag_xpath)
 
-    print(working_root)
-    print(working_root[0].text)
+    # print(working_root)
+    # print(working_root[0].text)
     column_value = working_root[0].text
     column_dict[column_name] = column_value
-    print(column_dict)
+    # print(column_dict)
 
     # print("Findall: ", root.findall(tag_xpath))  # XPath, recursive.
     # print("Iterfind: ", root.iterfind(tag_xpath))
