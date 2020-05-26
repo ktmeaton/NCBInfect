@@ -9,7 +9,7 @@ NCBImeta Test - Join
 # -----------------------------------------------------------------------#
 
 import os  # Filepath operations
-import test.test_ncbimeta.test_ncbimeta_run  # Run the program to create test db
+import test.test_ncbimeta as test_ncbimeta  # Run main program to create test db
 import subprocess  # Execute CLI/Shell
 
 # -----------------------------------------------------------------------#
@@ -23,7 +23,7 @@ def test_join_run():
     test_db = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test.sqlite")
     # If the test_db doesn't alread exist, run the test cmd from test_ncbimeta
     if not os.path.exists(test_db):
-        test.test_ncbimeta.test_ncbimeta_run()
+        test_ncbimeta.test_ncbimeta_run()
     test_anchor_table = "BioSample"
     test_final_table = "Master"
     test_accessory_table = "'BioProject Assembly SRA Nucleotide'"
@@ -55,7 +55,7 @@ def test_multi_match():
     test_db = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test.sqlite")
     # If the test_db doesn't alread exist, run the test cmd from test_ncbimeta
     if not os.path.exists(test_db):
-        test.test_ncbimeta.test_ncbimeta_run()
+        test_ncbimeta.test_ncbimeta_run()
     test_anchor_table = "BioProject"
     test_final_table = "BioProjectNucleotide"
     test_accessory_table = "Nucleotide"

@@ -9,7 +9,7 @@ NCBImeta Test - Annotate Replace
 # -----------------------------------------------------------------------#
 
 import os  # Filepath operations
-import test.test_ncbimeta.test_ncbimeta_run  # Run the program to create test db
+import test.test_ncbimeta as test_ncbimeta  # Run main program to create test db
 import subprocess  # Execute CLI/Shell
 
 # -----------------------------------------------------------------------#
@@ -26,7 +26,7 @@ def test_annotatereplace_run():
     )
     # If the test_db doesn't already exist, run the test cmd from test_ncbimeta
     if not os.path.exists(test_db):
-        test.test_ncbimeta.test_ncbimeta_run()
+        test_ncbimeta.test_ncbimeta_run()
     test_table = "BioSample"
     test_cmd = (
         "ncbimeta/NCBImetaAnnotateReplace.py --database "
