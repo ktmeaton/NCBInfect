@@ -8,9 +8,8 @@ NCBImeta Test - Annotate Replace
 #                         Modules and Packages                          #
 # -----------------------------------------------------------------------#
 
-# from ncbimeta import *  # Main Program
 import os  # Filepath operations
-import test_ncbimeta  # Run the program to create test db
+import test.test_ncbimeta as test_ncbimeta  # Run the program to create test db
 import subprocess  # Execute CLI/Shell
 
 # -----------------------------------------------------------------------#
