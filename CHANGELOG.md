@@ -8,7 +8,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 - TO DO: A true quick start example, just SRA data?
 - Fetching nucleotide annotations could probably be improved with xpath xml.
-- black/flake8 format all py files
+- change flake8 max line length to 80 (88)
 - add back in max-osx for gh-actions
 
 ## [v0.6.6] - 2020-0525 - PyPI Github Actions
@@ -36,7 +36,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   - [x] test_annotatereplace.py
   - [x] test_errors.py
   - [x] test_export.py
-  - [ ] conftest.py
+  - [x] conftest.py
   - [x] test_join.py
   - [x] test_utilities.py
   - [x] test_xml.py

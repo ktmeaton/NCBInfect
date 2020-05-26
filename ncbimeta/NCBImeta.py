@@ -24,8 +24,6 @@ from ncbimeta import NCBImetaErrors  # NCBImeta Error classes
 if __name__ != "__main__":
     quit()
 
-test = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-
 # -----------------------------------------------------------------------------#
 #                            Argument Parsing                                  #
 # -----------------------------------------------------------------------------#
@@ -50,7 +48,7 @@ parser.add_argument(
 
 parser.add_argument(
     "--flat",
-    help="Do not create organization directories, output all files to output directory.",
+    help="Don't create sub-directories in output directory.",
     action="store_true",
     dest="flatMode",
 )
@@ -262,7 +260,7 @@ def UpdateDB(
     force_pause_seconds,
 ):
     """
-    Update the contents of a local sqlite database using records retrieved from NCBI as configured by the user.
+    Update the contents of a sqlite database using records retrieved from NCBI.
 
     Parameters:
     table (str): Name of the NCBI database to search.
@@ -270,11 +268,11 @@ def UpdateDB(
     database (str): Filename of the local sqlite database.
     email (str): User email.
     search_term (str): Entrez search query.
-    table_columns(dict): Dictionary of column name and API name as value, ex. {AssemblyGenbankID : GbUid}.
+    table_columns(dict): Dictionary of column name and API name as value.
     log_path(str): Path to the directory where the logfile is stored in.
     db_dir(str): Path to the directory where the database is stored in.
     api_key(str): NCBI user account API Key.
-    force_pause_seconds(float): Number of seconds to wait in between fetch read_attempts.
+    force_pause_seconds(float): Time wait in between fetch read_attempts.
     """
 
     print(
@@ -416,7 +414,7 @@ def UpdateDB(
         # 0 if not found, 1 if found
         record_exists = cur.fetchone()[0]
 
-        # If the record_exists, skip the whole next part (ie. "continue" to next record)
+        # If the record_exists, skip the next part ("continue" to next record)
         if record_exists:
             continue
         """
@@ -424,14 +422,14 @@ def UpdateDB(
         The ID should not exists in the table UNLESS the record was fully parsed.
         ie. The database does not get updated until the end of each record.
         """
-        # This is the sleep command before implementing the HTTPerror catching in next section
+        # This is the sleep command before HTTPerror catching in next section
         # This is controlled by the user configuration file
         time.sleep(force_pause_seconds)
 
         # ---------------If the table isn't in Database, Add it------------#
         # The Assembly table cannot be retrieved using efetch, only docsum esummary
         if table.lower() == "assembly":
-            # Use the http function to return a record summary, but wrapped in HTTP error checking
+            # Use http function to return record summary, with HTTP error checking
             kwargs = {"db": table.lower(), "id": ID, "retmode": "xml"}
             entrez_method = Entrez.esummary
         else:
@@ -441,7 +439,7 @@ def UpdateDB(
                 kwargs["rettype"] = "gb"
             entrez_method = Entrez.efetch
 
-        # ID_handle is an _io.TextIOWrapped object, which originally had utf-8 encoding
+        # ID_handle is an _io.TextIOWrapped object, originally had utf-8 encoding
         ID_handle = NCBImetaUtilities.HTTPErrorCatch(
             entrez_method, Entrez.max_tries, Entrez.sleep_between_tries, **kwargs
         )
@@ -594,17 +592,17 @@ for table in CONFIG_TABLES:
         API_KEY = ""
     FORCE_PAUSE_SECONDS = CONFIG_FORCE_PAUSE_SECONDS
     # Config search terms, match table to table name
-    for index, search_term_table in enumerate(CONFIG_SEARCH_TERMS):
+    for _index, search_term_table in enumerate(CONFIG_SEARCH_TERMS):
         table_name = list(search_term_table)[0]
         if table_name == table:
             break
-    SEARCH_TERM = CONFIG_SEARCH_TERMS[index][table]
+    SEARCH_TERM = CONFIG_SEARCH_TERMS[_index][table]
     # Table columns, match table to table name
-    for index, table_column_dict in enumerate(CONFIG_TABLE_COLUMNS):
+    for _index, table_column_dict in enumerate(CONFIG_TABLE_COLUMNS):
         table_name = list(table_column_dict)[0]
         if table_name == table:
             break
-    TABLE_COLUMNS = CONFIG_TABLE_COLUMNS[index][table]
+    TABLE_COLUMNS = CONFIG_TABLE_COLUMNS[_index][table]
 
     # Check for duplicate column names
     # -- Note this is only PER TABLE (Checking for duplicate between table only happens

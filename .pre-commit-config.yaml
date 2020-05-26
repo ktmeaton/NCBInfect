@@ -14,7 +14,10 @@ repos:
     rev: 3.7.9
     hooks:
     - id: flake8
-      args: [--config=setup.cfg, --select=B950]
+      additional_dependencies: [
+        'flake8-bugbear==20.1.4'
+      ]
+      args: [--config=setup.cfg]
 
   # General Text + YAML Lint
   - repo: https://github.com/pre-commit/pre-commit-hooks
