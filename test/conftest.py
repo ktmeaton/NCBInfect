@@ -3,6 +3,8 @@ NCBImeta Conftest
 This is the pytest fixture file.
 
 @author: Katherine Eaton
+
+update: lint
 """
 
 # -----------------------------------------------------------------------#
