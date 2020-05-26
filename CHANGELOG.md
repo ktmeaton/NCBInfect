@@ -23,6 +23,25 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ### Changed
 - Convert BioProjectTitle to XPath query
 - The Annotate scripts (Replace and Concatenate) now properly handle inserting/updating values.
+- ncbimeta/ lint checklist:
+  - [x] NCBImetaUtilities.py
+  - [x] NCBImetaErrors.py
+  - [ ] NCBImetaJoin.py
+  - [ ] NCBImetaAnnotateConcatenate.py
+  - [ ] NCBImetaAnnotateReplace.py
+  - [ ] NCBImetaExport.py
+  - [ ] NCBImeta.py
+- test/ lint checklist:
+  - [ ] test_annotateconcatenate.py
+  - [ ] test_annotatereplace.py
+  - [ ] test_errors.py
+  - [ ] test_export.py
+  - [ ] conftest.py
+  - [ ] test_join.py
+  - [ ] test_utilities.py
+  - [ ] test_xml.py
+  - [ ] test_ncbimeta.py
+
 
 ### Removed
 - Travis Continuous Integration
