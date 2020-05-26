@@ -34,12 +34,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - test/ lint checklist:
   - [x] test_annotateconcatenate.py
   - [x] test_annotatereplace.py
-  - [ ] test_errors.py
+  - [x] test_errors.py
   - [ ] test_export.py
   - [ ] conftest.py
   - [ ] test_join.py
   - [ ] test_utilities.py
-  - [ ] test_xml.py
+  - [x] test_xml.py
   - [ ] test_ncbimeta.py
 
 
