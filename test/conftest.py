@@ -4,7 +4,6 @@ This is the pytest fixture file.
 
 @author: Katherine Eaton
 """
-# flake8: noqa
 
 # -----------------------------------------------------------------------#
 #                         Modules and Packages                          #

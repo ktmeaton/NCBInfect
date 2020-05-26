@@ -2,18 +2,21 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 
+  # black: Python Formatter
   - repo: https://github.com/psf/black
     rev: stable
     hooks:
       - id: black
         language_version: python3.7
 
+  # flake8: Python PEP8 Compliance
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.7.9
     hooks:
     - id: flake8
-      args: ['--max-line-length=120']
+      args: [--max-line-length=120, --config=setup.cfg]
 
+  # General Text + YAML Lint
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.4.0
     hooks:
