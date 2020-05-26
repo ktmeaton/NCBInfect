@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NCBImeta Annotation Tool - Replaces database fields with values in curated annotation file.
+NCBImeta Annotation Tool - Replace database fields with values from an annotation file.
 
 @author: Katherine Eaton
 """
@@ -22,7 +22,7 @@ from ncbimeta import NCBImetaUtilities  # Need table_exists and sql_sanitize
 
 parser = argparse.ArgumentParser(
     description=(
-        "NCBImeta Annotation Tool - Replaces database fields with values in curated annotation file."
+        "NCBImeta Annotation Tool - Replace database fields with values from an annotation file."
     ),
     add_help=True,
 )
