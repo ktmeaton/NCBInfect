@@ -40,7 +40,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   - [x] test_join.py
   - [x] test_utilities.py
   - [x] test_xml.py
-  - [ ] test_ncbimeta.py
+  - [x] test_ncbimeta.py
 
 
 ### Removed
