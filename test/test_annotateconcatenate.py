@@ -5,7 +5,7 @@ NCBImeta Test - Annotate Concatenate
 """
 
 # -----------------------------------------------------------------------#
-#                         Modules and Packages                          #
+#                         Modules and Packages                           #
 # -----------------------------------------------------------------------#
 
 import os  # Filepath operations
@@ -13,7 +13,7 @@ import test.test_ncbimeta.test_ncbimeta_run  # Run the program to create test db
 import subprocess  # Execute CLI/Shell
 
 # -----------------------------------------------------------------------#
-#                           Test Function                               #
+#                           Test Function                                #
 # -----------------------------------------------------------------------#
 
 
