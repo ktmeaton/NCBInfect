@@ -4,7 +4,6 @@
 
 NCBImeta: Efficient and comprehensive metadata retrieval from the NCBI databases.
 """
-
 # -----------------------------------------------------------------------------#
 #                         Modules and Packages                                 #
 # -----------------------------------------------------------------------------#
@@ -25,6 +24,7 @@ from ncbimeta import NCBImetaErrors  # NCBImeta Error classes
 if __name__ != "__main__":
     quit()
 
+test = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
 # -----------------------------------------------------------------------------#
 #                            Argument Parsing                                  #
