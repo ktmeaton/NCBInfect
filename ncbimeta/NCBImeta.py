@@ -5,9 +5,9 @@
 NCBImeta: Efficient and comprehensive metadata retrieval from the NCBI databases.
 """
 
-# -----------------------------------------------------------------------#
-#                         Modules and Packages                           #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                         Modules and Packages                                 #
+# -----------------------------------------------------------------------------#
 import argparse  # Command-line argument parsing
 import sqlite3  # Database storage and queries
 import os  # Filepath operations
@@ -26,12 +26,14 @@ if __name__ != "__main__":
     quit()
 
 
-# -----------------------------------------------------------------------#
-#                            Argument Parsing                            #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                            Argument Parsing                                  #
+# -----------------------------------------------------------------------------#
 
 parser = argparse.ArgumentParser(
-    description="NCBImeta: Efficient and comprehensive metadata retrieval from the NCBI databases.",
+    description="""
+    NCBImeta: Efficient and comprehensive metadata retrieval from the NCBI databases.
+    """,
     add_help=True,
 )
 
@@ -61,9 +63,9 @@ args = vars(parser.parse_args())
 config_path = args["configPath"]
 flat_mode = args["flatMode"]
 
-# ------------------------------------------------------------------------------#
-#                            Error Catching                                     #
-# ------------------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                            Error Catching                                    #
+# -----------------------------------------------------------------------------#
 
 # Check if configuration file exists
 if not os.path.exists(config_path):
@@ -140,35 +142,26 @@ if not CONFIG_TABLE_COLUMNS:
 # --- Print the retrieved config file parameters ---#
 print(
     "\n"
-    + "NCBImeta was run with the following options: "
-    + "\n"
-    + "\t"
-    + "Config File: "
+    + "NCBImeta was run with the following options: \n"
+    + "\tConfig File: "
     + str(config_path)
     + "\n"
-    + "\t"
-    + "Output Directory: "
+    + "\tOutput Directory: "
     + str(CONFIG_OUTPUT_DIR)
     + "\n"
-    + "\t"
-    + "Email: "
+    + "\tEmail: "
     + str(CONFIG_EMAIL)
     + "\n"
-    + "\t"
-    + "API Key: "
-    + "\t\t"
+    + "\tAPI Key: \t\t"
     + str(CONFIG_API_KEY)
     + "\n"
-    + "\t"
-    + "User Database: "
+    + "\tUser Database: "
     + str(CONFIG_DATABASE)
     + "\n"
-    + "\t"
-    + "Tables: "
+    + "\tTables: "
     + str(CONFIG_TABLES)
     + "\n"
-    + "\t"
-    + "Search Terms: ",
+    + "\tSearch Terms: ",
     flush=True,
 )
 for table_search_term in CONFIG_SEARCH_TERMS:
