@@ -188,9 +188,9 @@ elif not flat_mode:
 # Database path (depending on flat mode or not)
 DB_PATH = os.path.join(DB_DIR, "", CONFIG_DATABASE)
 
-# ------------------------------------------------------------------------------#
-#                       Database connection                                     #
-# ------------------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                       Database connection                                    #
+# -----------------------------------------------------------------------------#
 if not os.path.exists(DB_PATH):
     print("\n" + "Creating database: " + DB_PATH, flush=True)
     conn = sqlite3.connect(DB_PATH)
@@ -202,9 +202,9 @@ elif os.path.exists(DB_PATH):
     conn.commit()
     print("\n" + "Connected to database: " + DB_PATH, flush=True)
 
-# -----------------------------------------------------------------------#
-#                      CONSTANTS and Config                              #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                      CONSTANTS and Config                                    #
+# -----------------------------------------------------------------------------#
 
 XPATH_SPECIAL_CHAR = [
     "~",
@@ -244,9 +244,9 @@ DB_VALUE_SEP = ";"
 # lxml parser
 LXML_CDATA_PARSER = etree.XMLParser(strip_cdata=False)
 
-# ------------------------------------------------------------------------------#
-#                       Database Processing Function                            #
-# ------------------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                       Database Processing Function                           #
+# -----------------------------------------------------------------------------#
 
 
 def UpdateDB(
@@ -280,32 +280,16 @@ def UpdateDB(
     print(
         "\nCreating/Updating the "
         + table
-        + " table using the following parameters: "
-        + "\n"
-        + "\t"
-        + "Database: "
-        + "\t\t"
+        + " table using the following parameters: \n\t"
+        + "Database: \t\t"
         + database
-        + "\n"
-        + "\t"
-        + "Search Term:"
-        + "\t"
-        + "\t"
+        + "\n\tSearch Term:\t\t"
         + search_term
-        + "\n"
-        + "\t"
-        + "Email: "
-        + "\t\t\t"
+        + "\n\tEmail: \t\t\t"
         + email
-        + "\n"
-        + "\t"
-        + "API Key: "
-        + "\t\t"
+        + "\n\tAPI Key: \t\t"
         + api_key
-        + "\n"
-        + "\t"
-        + "Output Directory: "
-        + "\t"
+        + "\n\tOutput Directory: \t"
         + output_dir
         + "\n\n",
         flush=True,
@@ -318,9 +302,9 @@ def UpdateDB(
     # Sleep for 1 second after an error has been generated before retrying
     Entrez.sleep_between_tries = 1
 
-    # ---------------------------------------------------------------------------#
-    #                                File Setup                                  #
-    # ---------------------------------------------------------------------------#
+    # -------------------------------------------------------------------------#
+    #                                File Setup                                #
+    # -------------------------------------------------------------------------#
     # Name of Log File
     log_file_path = os.path.join(
         LOG_PATH, "", os.path.splitext(database)[0] + "_" + table + ".log"
@@ -332,9 +316,9 @@ def UpdateDB(
     else:
         log_file = open(log_file_path, "w")
 
-    # --------------------------------------------------------------------------#
-    #                                SQL Setup                                  #
-    # --------------------------------------------------------------------------#
+    # -------------------------------------------------------------------------#
+    #                                SQL Setup                                 #
+    # -------------------------------------------------------------------------#
 
     # Check for problematic table name
     table_name = table
@@ -369,9 +353,9 @@ def UpdateDB(
 
     cur.execute(sql_query)
 
-    # -----------------------------------------------------------------------#
-    #                          Entrez Search                                 #
-    # -----------------------------------------------------------------------#
+    # -------------------------------------------------------------------------#
+    #                          Entrez Search                                   #
+    # -------------------------------------------------------------------------#
     # Read the record, check for http, url, and runtime errors
     read_succeed = False
     read_attempts = 0
@@ -403,12 +387,12 @@ def UpdateDB(
     num_records = int(record["Count"])
     num_processed = 0
 
-    # -----------------------------------------------------------------------#
-    #                          Iterate Through ID List                       #
-    # -----------------------------------------------------------------------#
+    # -------------------------------------------------------------------------#
+    #                          Iterate Through ID List                         #
+    # -------------------------------------------------------------------------#
 
     for ID in record["IdList"]:
-        # -------------------Progress Log and Entry Counter-------------------#
+        # -------------------Progress Log and Entry Counter--------------------#
         # Increment entry counter and record progress to screen
         num_processed += 1
         print("ID: " + ID, flush=True)
@@ -417,7 +401,7 @@ def UpdateDB(
             flush=True,
         )
 
-        # ------------Check if Record Already Exists in Database------------#
+        # ------------Check if Record Already Exists in Database---------------#
         sql_query = (
             "SELECT EXISTS(SELECT "
             + table
@@ -474,9 +458,9 @@ def UpdateDB(
             with open(temp_b.name, "rb") as xml_source:
                 ID_root = etree.parse(xml_source, parser=LXML_CDATA_PARSER)
 
-        # ----------------------------------------------------------------------#
-        #                         NCBI Record Parsing                           #
-        # ----------------------------------------------------------------------#
+        # ---------------------------------------------------------------------#
+        #                         NCBI Record Parsing                          #
+        # ---------------------------------------------------------------------#
 
         # print(etree.tostring(ID_root).decode())
 
@@ -597,9 +581,9 @@ def UpdateDB(
     log_file.close()
 
 
-# ------------------------------------------------------------------------------#
-#                     Iterate Through Tables in Config File                     #
-# ------------------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                     Iterate Through Tables in Config File                    #
+# -----------------------------------------------------------------------------#
 for table in CONFIG_TABLES:
     OUTPUT_DIR = CONFIG_OUTPUT_DIR
     DATABASE = CONFIG_DATABASE
