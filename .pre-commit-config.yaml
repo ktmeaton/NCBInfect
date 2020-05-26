@@ -14,7 +14,7 @@ repos:
     rev: 3.7.9
     hooks:
     - id: flake8
-      args: [--config=setup.cfg]
+      args: [--config=setup.cfg, --select=B950]
 
   # General Text + YAML Lint
   - repo: https://github.com/pre-commit/pre-commit-hooks
