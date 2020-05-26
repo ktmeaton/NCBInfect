@@ -24,7 +24,7 @@ from ncbimeta import NCBImetaErrors  # NCBImeta Error classes
 if __name__ != "__main__":
     quit()
 
-test = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+test = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
 # -----------------------------------------------------------------------------#
 #                            Argument Parsing                                  #
@@ -142,28 +142,22 @@ if not CONFIG_TABLE_COLUMNS:
 # --- Print the retrieved config file parameters ---#
 print(
     "\n"
-    + "NCBImeta was run with the following options: \n"
-    + "\tConfig File: "
+    + "NCBImeta was run with the following options: \n\tConfig File: "
     + str(config_path)
-    + "\n"
-    + "\tOutput Directory: "
+    + "\n\tOutput Directory: "
     + str(CONFIG_OUTPUT_DIR)
-    + "\n"
-    + "\tEmail: "
+    + "\n\tEmail: "
     + str(CONFIG_EMAIL)
-    + "\n"
-    + "\tAPI Key: \t\t"
+    + "\n\tAPI Key: \t\t"
     + str(CONFIG_API_KEY)
-    + "\n"
-    + "\tUser Database: "
+    + "\n\tUser Database: "
     + str(CONFIG_DATABASE)
-    + "\n"
-    + "\tTables: "
+    + "\n\tTables: "
     + str(CONFIG_TABLES)
-    + "\n"
-    + "\tSearch Terms: ",
+    + "\n\tSearch Terms: ",
     flush=True,
 )
+
 for table_search_term in CONFIG_SEARCH_TERMS:
     print("\t\t" + str(table_search_term), flush=True)
 print("\n", flush=True)
