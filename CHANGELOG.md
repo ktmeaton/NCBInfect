@@ -30,7 +30,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   - [x] NCBImetaAnnotateConcatenate.py
   - [x] NCBImetaAnnotateReplace.py
   - [x] NCBImetaExport.py
-  - [ ] NCBImeta.py
+  - [x] NCBImeta.py
 - test/ lint checklist:
   - [ ] test_annotateconcatenate.py
   - [ ] test_annotatereplace.py
