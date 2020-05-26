@@ -6,7 +6,7 @@ NCBImeta: Efficient and comprehensive metadata retrieval from the NCBI databases
 """
 
 # -----------------------------------------------------------------------#
-#                         Modules and Packages                          #
+#                         Modules and Packages                           #
 # -----------------------------------------------------------------------#
 import argparse  # Command-line argument parsing
 import sqlite3  # Database storage and queries
@@ -27,7 +27,7 @@ if __name__ != "__main__":
 
 
 # -----------------------------------------------------------------------#
-#                            Argument Parsing                           #
+#                            Argument Parsing                            #
 # -----------------------------------------------------------------------#
 
 parser = argparse.ArgumentParser(
@@ -62,7 +62,7 @@ config_path = args["configPath"]
 flat_mode = args["flatMode"]
 
 # ------------------------------------------------------------------------------#
-#                            Error Catching                                    #
+#                            Error Catching                                     #
 # ------------------------------------------------------------------------------#
 
 # Check if configuration file exists
@@ -202,7 +202,7 @@ elif not flat_mode:
 DB_PATH = os.path.join(DB_DIR, "", CONFIG_DATABASE)
 
 # ------------------------------------------------------------------------------#
-#                       Database connection                                    #
+#                       Database connection                                     #
 # ------------------------------------------------------------------------------#
 if not os.path.exists(DB_PATH):
     print("\n" + "Creating database: " + DB_PATH, flush=True)
@@ -216,7 +216,7 @@ elif os.path.exists(DB_PATH):
     print("\n" + "Connected to database: " + DB_PATH, flush=True)
 
 # -----------------------------------------------------------------------#
-#                      CONSTANTS and Config                             #
+#                      CONSTANTS and Config                              #
 # -----------------------------------------------------------------------#
 
 XPATH_SPECIAL_CHAR = [
@@ -258,7 +258,7 @@ DB_VALUE_SEP = ";"
 LXML_CDATA_PARSER = etree.XMLParser(strip_cdata=False)
 
 # ------------------------------------------------------------------------------#
-#                       Database Processing Function                           #
+#                       Database Processing Function                            #
 # ------------------------------------------------------------------------------#
 
 
@@ -332,7 +332,7 @@ def UpdateDB(
     Entrez.sleep_between_tries = 1
 
     # ---------------------------------------------------------------------------#
-    #                                File Setup                                 #
+    #                                File Setup                                  #
     # ---------------------------------------------------------------------------#
     # Name of Log File
     log_file_path = os.path.join(
@@ -346,7 +346,7 @@ def UpdateDB(
         log_file = open(log_file_path, "w")
 
     # --------------------------------------------------------------------------#
-    #                                SQL Setup                                 #
+    #                                SQL Setup                                  #
     # --------------------------------------------------------------------------#
 
     # Check for problematic table name
@@ -383,7 +383,7 @@ def UpdateDB(
     cur.execute(sql_query)
 
     # -----------------------------------------------------------------------#
-    #                          Entrez Search                                #
+    #                          Entrez Search                                 #
     # -----------------------------------------------------------------------#
     # Read the record, check for http, url, and runtime errors
     read_succeed = False
@@ -417,7 +417,7 @@ def UpdateDB(
     num_processed = 0
 
     # -----------------------------------------------------------------------#
-    #                          Iterate Through ID List                      #
+    #                          Iterate Through ID List                       #
     # -----------------------------------------------------------------------#
 
     for ID in record["IdList"]:
@@ -488,7 +488,7 @@ def UpdateDB(
                 ID_root = etree.parse(xml_source, parser=LXML_CDATA_PARSER)
 
         # ----------------------------------------------------------------------#
-        #                         NCBI Record Parsing                          #
+        #                         NCBI Record Parsing                           #
         # ----------------------------------------------------------------------#
 
         # print(etree.tostring(ID_root).decode())
@@ -611,7 +611,7 @@ def UpdateDB(
 
 
 # ------------------------------------------------------------------------------#
-#                     Iterate Through Tables in Config File                    #
+#                     Iterate Through Tables in Config File                     #
 # ------------------------------------------------------------------------------#
 for table in CONFIG_TABLES:
     OUTPUT_DIR = CONFIG_OUTPUT_DIR

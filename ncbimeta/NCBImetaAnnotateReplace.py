@@ -6,7 +6,7 @@ NCBImeta Annotation Tool - Replace database fields with values from an annotatio
 """
 
 # -----------------------------------------------------------------------#
-#                            Argument Parsing                           #
+#                            Argument Parsing                            #
 # -----------------------------------------------------------------------#
 
 import argparse  # Command-line argument parsing
@@ -17,7 +17,7 @@ from ncbimeta import NCBImetaErrors  # NCBImeta Error Classes
 from ncbimeta import NCBImetaUtilities  # Need table_exists and sql_sanitize
 
 # -----------------------------------------------------------------------#
-#                            Argument Parsing                           #
+#                            Argument Parsing                            #
 # -----------------------------------------------------------------------#
 
 parser = argparse.ArgumentParser(
@@ -68,7 +68,7 @@ annot_file_name = args["annotFile"]
 
 
 # -----------------------------------------------------------------------#
-#                           Argument Checking                           #
+#                           Argument Checking                            #
 # -----------------------------------------------------------------------#
 
 
@@ -100,7 +100,7 @@ if not NCBImetaUtilities.table_exists(cur, db_table):
 
 
 # -----------------------------------------------------------------------#
-#                                File Setup                             #
+#                                File Setup                              #
 # -----------------------------------------------------------------------#
 
 
@@ -109,7 +109,7 @@ cur.execute("""SELECT * FROM {}""".format(db_table))
 db_col_names = [description[0] for description in cur.description]
 
 # -----------------------------------------------------------------------#
-#                             Annotation Setup                          #
+#                             Annotation Setup                           #
 # -----------------------------------------------------------------------#
 annot_file = open(annot_file_name, "r")
 annot_dict = {}
@@ -132,7 +132,7 @@ annot_line = annot_file.readline()
 
 
 # -----------------------------------------------------------------------#
-#                         Process Annotations                           #
+#                         Process Annotations                            #
 # -----------------------------------------------------------------------#
 
 while annot_line:
@@ -213,7 +213,7 @@ while annot_line:
 
 
 # -----------------------------------------------------------------------#
-#                                    Cleanup                            #
+#                                    Cleanup                             #
 # -----------------------------------------------------------------------#
 # Commit changes
 conn.commit()

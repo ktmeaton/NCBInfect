@@ -6,7 +6,7 @@ NCBImeta Join Tool - Joins accessory tables to an anchor table.
 """
 
 # -----------------------------------------------------------------------#
-#                         Modules and Packages                          #
+#                         Modules and Packages                           #
 # -----------------------------------------------------------------------#
 
 import argparse  # Command-line argument parsing
@@ -17,7 +17,7 @@ from ncbimeta import NCBImetaUtilities  # NCBImeta helper functions
 from ncbimeta import NCBImetaErrors  # NCBImeta Error classes
 
 # -----------------------------------------------------------------------#
-#                            Argument Parsing                           #
+#                            Argument Parsing                            #
 # -----------------------------------------------------------------------#
 
 parser = argparse.ArgumentParser(
@@ -89,7 +89,7 @@ unique_header_list = unique_header_str.split(" ")
 DB_VALUE_SEP = ";"
 
 # -----------------------------------------------------------------------#
-#                           Argument Checking                           #
+#                           Argument Checking                            #
 # -----------------------------------------------------------------------#
 
 print("START")
@@ -128,7 +128,7 @@ for table in db_accessory_list:
         raise NCBImetaErrors.ErrorTableNotInDB(table)
 
 # -----------------------------------------------------------------------#
-#                                File Setup                             #
+#                                File Setup                              #
 # -----------------------------------------------------------------------#
 
 # get list of column names in anchor table
@@ -158,7 +158,7 @@ if len(dupl_col_names) > 0:
     raise NCBImetaErrors.ErrorColumnsNotUnique(dupl_col_names)
 
 # -----------------------------------------------------------------------#
-#                              Init Join Table                          #
+#                              Init Join Table                           #
 # -----------------------------------------------------------------------#
 
 # Create the database with dynamic variables to store joined info
@@ -175,7 +175,7 @@ sql_query += ")"
 cur.execute(sql_query)
 
 # -----------------------------------------------------------------------#
-#                              Join Tables                              #
+#                              Join Tables                               #
 # -----------------------------------------------------------------------#
 
 # Retrieve all the anchor table records
@@ -369,7 +369,7 @@ for record in fetch_records:
         conn.commit()
 
 # -----------------------------------------------------------------------#
-#                                    Cleanup                            #
+#                                    Cleanup                             #
 # -----------------------------------------------------------------------#
 # Commit changes
 conn.commit()

@@ -6,7 +6,7 @@ NCBImeta Export Tool - Export SQLite database to tabular text files.
 """
 
 # -----------------------------------------------------------------------#
-#                            Argument Parsing                           #
+#                            Argument Parsing                            #
 # -----------------------------------------------------------------------#
 
 import argparse  # Command-line argument parsing
@@ -16,7 +16,7 @@ import os  # Filepath operations
 from ncbimeta import NCBImetaErrors  # NCBImeta Error classes
 
 # -----------------------------------------------------------------------#
-#                            Argument Parsing                           #
+#                            Argument Parsing                            #
 # -----------------------------------------------------------------------#
 
 parser = argparse.ArgumentParser(
@@ -55,7 +55,7 @@ output_dir = args["outputDir"]
 
 
 # -----------------------------------------------------------------------#
-#                           Argument Checking                           #
+#                           Argument Checking                            #
 # -----------------------------------------------------------------------#
 
 # Check if database exists
@@ -73,7 +73,7 @@ if not os.path.exists(output_dir):
 cur = conn.cursor()
 
 # -----------------------------------------------------------------------#
-#                         Process Database                              #
+#                         Process Database                               #
 # -----------------------------------------------------------------------#
 
 # Get a list of tables
@@ -120,7 +120,7 @@ for table in table_list:
     table_file.close()
 
 # -----------------------------------------------------------------------#
-#                                    Cleanup                            #
+#                                    Cleanup                             #
 # -----------------------------------------------------------------------#
 
 print("Closing database: " + db_name, flush=True)
