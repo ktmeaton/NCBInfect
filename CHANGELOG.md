@@ -29,7 +29,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - The Annotate scripts (Replace and Concatenate) now properly handle inserting/updating values.
 - ncbimeta/ lint checklist:
   - [x] NCBImetaUtilities.py
-  - [ ] NCBImetaErrors.py
+  - [x] NCBImetaErrors.py
   - [ ] NCBImetaJoin.py
   - [ ] NCBImetaAnnotateConcatenate.py
   - [ ] NCBImetaAnnotateReplace.py
