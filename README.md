@@ -3,8 +3,8 @@
 **Efficient and comprehensive metadata acquisition from NCBI databases (includes SRA).**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
-[![Build Status](https://github.com/ktmeaton/NCBImeta/workflows/Building/badge.svg?branch=master)](https://github.com/ktmeaton/NCBImeta/actions?query=workflow%3ABuilding)
-[![codecov](https://codecov.io/gh/ktmeaton/ncbimeta/branch/dev/graph/badge.svg)](https://codecov.io/gh/ktmeaton/NCBImeta/branch/master)
+[![Build Status](https://github.com/ktmeaton/NCBImeta/workflows/Building/badge.svg?branch=master)](https://github.com/ktmeaton/NCBImeta/actions?query=workflow%3ABuilding+branch%3Amaster)
+[![codecov](https://codecov.io/gh/ktmeaton/ncbimeta/branch/master/graph/badge.svg)](https://codecov.io/gh/ktmeaton/NCBImeta/branch/master)
 [![status](https://joss.theoj.org/papers/72376aa12ddf832465c92490b2074e7b/status.svg)](https://joss.theoj.org/papers/72376aa12ddf832465c92490b2074e7b)
 [![GitHub issues](https://img.shields.io/github/issues/ktmeaton/NCBImeta.svg)](https://github.com/ktmeaton/NCBImeta/issues)
 [![PyPI version](https://badge.fury.io/py/NCBImeta.svg)](https://badge.fury.io/py/NCBImeta)
@@ -16,8 +16,9 @@ NCBImeta is a command-line application that retrieves and organizes metadata fro
 
 ## Requirements
 
-NCBImeta is written in Python 3 and supported on Linux and macOS. Dependencies that will be installed are listed in [requirements.txt](https://github.com/ktmeaton/NCBImeta/blob/master/requirements.txt).
-[Check all Python versions and OS with verified build status](https://travis-ci.org/ktmeaton/NCBImeta)
+* NCBImeta is written in Python 3 and supported on Linux and macOS.
+* Dependencies that will be installed are listed in [requirements.txt](https://github.com/ktmeaton/NCBImeta/blob/master/requirements.txt).
+* [Check all Python versions and OS with verified build status](https://github.com/ktmeaton/NCBImeta/actions?query=workflow%3ABuilding+branch%3Amaster)
 
 Conda is the recommended installation method. To install with pip or setuptools, ```gcc``` is required.
 
@@ -122,18 +123,18 @@ Example database output (a subset of the BioSample table)
 
 ## Currently Supported NCBI Tables
 
-- Assembly
-- BioProject
-- BioSample
-- Nucleotide
-- SRA
-- Pubmed
+* Assembly
+* BioProject
+* BioSample
+* Nucleotide
+* SRA
+* Pubmed
 
 ## Upcoming Features
 
-- [Project v0.6.6 - "PyPI Requirements Bug"](https://github.com/ktmeaton/NCBImeta/projects/8): Deployment Bug Fixes - DEVELOPMENT
-- Project v0.6.7
-- Project v0.6.x
+* [Project v0.6.6 - "PyPI Requirements Bug"](https://github.com/ktmeaton/NCBImeta/projects/8): Deployment Bug Fixes - DEVELOPMENT
+* Project v0.6.7
+* Project v0.6.x
 
 ## Documentation
 
