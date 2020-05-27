@@ -36,13 +36,13 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   - [x] NCBImetaExport.py
   - [x] NCBImeta.py
 - test/ lint checklist:
-  - [ ] test_annotateconcatenate.py
-  - [ ] test_annotatereplace.py
+  - [x] test_annotateconcatenate.py
+  - [x] test_annotatereplace.py
   - [x] test_errors.py
-  - [ ] test_export.py
+  - [x] test_export.py
   - [ ] conftest.py
-  - [ ] test_join.py
-  - [ ] test_utilities.py
+  - [x] test_join.py
+  - [x] test_utilities.py
   - [ ] test_xml.py
   - [ ] test_ncbimeta.py
 - markdown checklist:
