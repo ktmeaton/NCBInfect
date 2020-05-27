@@ -15,8 +15,6 @@ import urllib.error  # HTTP Error Catching
 import time  # Allow sleeping of processes
 from lxml import etree  # XML Parsing
 
-test = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-
 # -----------------------------------------------------------------------------#
 #                         Utility Functions                                    #
 # -----------------------------------------------------------------------------#
