@@ -23,7 +23,7 @@ on:
 jobs:
 
   # Setuptools Build and Install
-  source_build_ubuntu_py:
+  setuptools_build_ubuntu_py:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build From Source
         run: |
-          sudo python setup.py install
+          sudo python3 setup.py install
 
   # Conda Repository Install
   conda_build_ubuntu:
