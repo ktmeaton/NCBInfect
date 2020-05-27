@@ -43,7 +43,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   - [ ] conftest.py
   - [x] test_join.py
   - [x] test_utilities.py
-  - [ ] test_xml.py
+  - [x] test_xml.py
   - [ ] test_ncbimeta.py
 - markdown checklist:
   - [x] CHANGELOG
