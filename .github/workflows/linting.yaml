@@ -8,9 +8,13 @@ on:
       - '*'
     # On change to workflow, markdown, python
     paths:
-      - '.github/workflows/linting.yaml*'
-      - '.github/markdown_lint.yaml'
+      - '.github/workflows/*.yaml'
+      - '.github/*.yaml'
+      - 'schema/*.yaml'
+      - 'example/*.yaml'
       - '*.md'
+      - 'config/*md'
+      - 'schema/*md'
       - ncbimeta/*.py
       - test/*.py
   # Triggered on PR for all branches, any file
