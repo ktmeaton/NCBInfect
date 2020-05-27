@@ -30,38 +30,45 @@ jobs:
         python-version: [3.5, 3.6, 3.7, 3.8]
     steps:
       - uses: actions/checkout@v2
+      # Setup the difference versions of python
+      - name: Python Setup ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      # Install the main program with setuptools
       - name: Build From Source
         run: |
-          sudo python3 setup.py install
+          sudo python setup.py install
 
   # Conda Repository Install
   conda_build_ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      # Install the main program with bioconda
       - name: Install From Conda
         run: |
           conda install -c bioconda ncbimeta
 
   # PyPI Repository Install
   pip_build_ubuntu_py:
-      runs-on: ubuntu-latest
-      strategy:
-        matrix:
-          python-version: [3.5, 3.6, 3.7, 3.8]
-
-      steps:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8]
+    steps:
       - uses: actions/checkout@v2
+      # Setup the difference versions of python
       - name: Python Setup ${{ matrix.python-version }}
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
-
+      # Install the repositories dependencies with pip
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
+      # Install the main program with pip
       - name: Install Main
         run: |
           pip install .
