@@ -5,9 +5,9 @@ NCBImeta Join Tool - Joins accessory tables to an anchor table.
 @author: Katherine Eaton
 """
 
-# -----------------------------------------------------------------------#
-#                         Modules and Packages                           #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                         Modules and Packages                                 #
+# -----------------------------------------------------------------------------#
 
 import argparse  # Command-line argument parsing
 import sqlite3  # Database storage and queries
@@ -16,9 +16,9 @@ import os  # Filepath operations
 from ncbimeta import NCBImetaUtilities  # NCBImeta helper functions
 from ncbimeta import NCBImetaErrors  # NCBImeta Error classes
 
-# -----------------------------------------------------------------------#
-#                            Argument Parsing                            #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                            Argument Parsing                                  #
+# -----------------------------------------------------------------------------#
 
 parser = argparse.ArgumentParser(
     description=("NCBImeta Join Tool - Joins accessory tables to an anchor table."),
@@ -48,7 +48,10 @@ mandatory.add_argument(
 
 mandatory.add_argument(
     "--accessory",
-    help='Accessory tables to join to the anchor as space separated str list ex. "BioProject Assembly" ',
+    help=(
+        "Accessory tables to join to the anchor as "
+        + "space separated str list ex. 'BioProject Assembly' "
+    ),
     type=str,
     action="store",
     dest="dbAccessory",
@@ -66,7 +69,10 @@ mandatory.add_argument(
 
 mandatory.add_argument(
     "--unique",
-    help='Column names in anchor table, to search for values in accessory tables ex. "Accession BioProject"',
+    help=(
+        "Column names in anchor table, to search for "
+        + "values in accessory tables ex. 'Accession BioProject' "
+    ),
     type=str,
     action="store",
     dest="dbUnique",
@@ -88,13 +94,13 @@ unique_header_str = args["dbUnique"]
 unique_header_list = unique_header_str.split(" ")
 DB_VALUE_SEP = ";"
 
-# -----------------------------------------------------------------------#
-#                           Argument Checking                            #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                           Argument Checking                                  #
+# -----------------------------------------------------------------------------#
 
 print("START")
 
-# ---------------------------Check Database------------------------------#
+# ---------------------------Check Database------------------------------------#
 
 if os.path.exists(db_name):
     conn = sqlite3.connect(db_name)
@@ -105,7 +111,7 @@ else:
 # no errors were raised, safe to connect to db
 cur = conn.cursor()
 
-# ---------------------------Check Table Names----------------------------#
+# ---------------------------Check Table Names---------------------------------#
 # Check the table names for problematic char
 table_name_list = [db_anchor] + [db_final] + db_accessory_list
 for table_name in table_name_list:
@@ -119,7 +125,7 @@ for col_name in unique_header_list:
     if col_name != col_name_sanitize:
         raise NCBImetaErrors.ErrorSQLNameSanitize(col_name, col_name_sanitize)
 
-# ---------------------------Check Tables Existence----------------------#
+# ---------------------------Check Tables Existence----------------------------#
 
 if not NCBImetaUtilities.table_exists(cur, db_anchor):
     raise NCBImetaErrors.ErrorTableNotInDB(db_anchor)
@@ -127,9 +133,9 @@ for table in db_accessory_list:
     if not NCBImetaUtilities.table_exists(cur, table):
         raise NCBImetaErrors.ErrorTableNotInDB(table)
 
-# -----------------------------------------------------------------------#
-#                                File Setup                              #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                                File Setup                                    #
+# -----------------------------------------------------------------------------#
 
 # get list of column names in anchor table
 cur.execute("""SELECT * FROM {}""".format(db_anchor))
@@ -157,9 +163,9 @@ dupl_col_names = set([col for col in db_col_names if db_col_names.count(col) > 1
 if len(dupl_col_names) > 0:
     raise NCBImetaErrors.ErrorColumnsNotUnique(dupl_col_names)
 
-# -----------------------------------------------------------------------#
-#                              Init Join Table                           #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                              Init Join Table                                 #
+# -----------------------------------------------------------------------------#
 
 # Create the database with dynamic variables to store joined info
 sql_query = (
@@ -174,9 +180,9 @@ sql_query += ")"
 
 cur.execute(sql_query)
 
-# -----------------------------------------------------------------------#
-#                              Join Tables                               #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                              Join Tables                                     #
+# -----------------------------------------------------------------------------#
 
 # Retrieve all the anchor table records
 cur.execute("""SELECT * FROM {}""".format(db_anchor))
@@ -208,7 +214,7 @@ for record in fetch_records:
     # Find the first unique column and its headers
     unique_val = master_column_dict[unique_header_list[0]]
 
-    # -------------------Progress Log and Entry Counter-------------------#
+    # -------------------Progress Log and Entry Counter------------------------#
     # Increment entry counter and record progress to screen
 
     num_processed += 1
@@ -272,12 +278,12 @@ for record in fetch_records:
                     for val in table_col_vals:
                         val = str(val[0])
 
-                        # If it's a match, store the value, and set the boolean flag
+                        # If a match, store the value, and set the boolean flag
                         if val == uniq_val:
                             match_found = True
                             match_column = table_col
                             match_val = val
-                            # Found the match, stop searching through vals in this column
+                            # Found the match, stop searching through this column
                             break
 
                     # Found a match, stop searching through columns
@@ -294,7 +300,7 @@ for record in fetch_records:
                 match_records = cur.fetchall()
                 record_dict = {}
 
-                # If multiple records are found, concatenate into a pseudo single record
+                # If multiple records are found, concat into a pseudo single record
                 if len(match_records) > 1:
                     match_records_concat = [None] * len(match_records[0])
                     for i in range(0, len(match_records[0])):
@@ -329,7 +335,7 @@ for record in fetch_records:
 
                 match_records = list(match_records[0])
                 for i in range(0, len(table_col_names)):
-                    # Check if this is a valid column name in the master join table
+                    # Check if this is a valid col name in the master join table
                     if table_col_names[i] not in master_column_dict.keys():
                         continue
                     record_val = match_records[i]
@@ -339,7 +345,8 @@ for record in fetch_records:
                     record_val = str(record_val)
                     # Assign record to dictionary
                     master_column_dict[table_col_names[i]] = record_val
-                    # Uncommented the following line when excessive semi-colons appeared in between every char
+                    # Uncommented the following line when
+                    # excessive semi-colons appeared in between every char
                     master_column_dict[table_col_names[i]] = master_column_dict[
                         table_col_names[i]
                     ]
@@ -368,9 +375,9 @@ for record in fetch_records:
         # Save Changes
         conn.commit()
 
-# -----------------------------------------------------------------------#
-#                                    Cleanup                             #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                                    Cleanup                                   #
+# -----------------------------------------------------------------------------#
 # Commit changes
 conn.commit()
 print("Closing database: " + db_name, flush=True)
