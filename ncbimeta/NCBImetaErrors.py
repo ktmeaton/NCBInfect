@@ -191,7 +191,8 @@ class ErrorConfigParameter(Exception):
     def __str__(self):
         """When the error is raised, print the name of the config parameter."""
         return (
-            "\n\nA parameter name and/or value in the configuration file is set incorrectly:"
+            "\n\nA parameter name and/or value in the "
+            + "configuration file is set incorrectly:"
             + "\n"
             + self.value
         )
@@ -210,7 +211,8 @@ class ErrorConfigYAMLFormat(Exception):
     def __str__(self):
         """When the error is raised, print the name of the config file."""
         return (
-            "\n\nThe configuration file could not be loaded, please confirm that this is a proper YAML file: "
+            "\n\nThe configuration file could not be loaded, "
+            + "please confirm that this is a proper YAML file: "
             + "\n"
             + self.value
         )
@@ -228,7 +230,7 @@ class ErrorSQLNameSanitize(Exception):
         self.sanitize_value = sanitize_value
 
     def __str__(self):
-        """When the error is raised, print the name and the recommended sanitized version."""
+        """When the error is raised, prints the name and sanitized version."""
         return (
             "\n\nThe name: "
             + self.value
@@ -249,8 +251,9 @@ class ErrorXPathQueryMultiElement(Exception):
 
     def __str__(self):
         """When the error is raised, print the problematic Xpath query."""
-        return "\n\nMore than one element returned for XPath {}. Are you using the correct XPath query?".format(
-            self.value
+        return (
+            "\n\nMore than one element returned for XPath {}. "
+            + "Are you using the correct XPath query?".format(self.value)
         )
 
 
@@ -281,6 +284,7 @@ class ErrorXPathQueryMissing(Exception):
 
     def __str__(self):
         """When the error is raised, print the problematic column name."""
-        return "\n\nThe following column name uses XPath but no query was supplied: {}".format(
-            self.value
+        return (
+            "\n\nThe following column name uses XPath "
+            + " but no query was supplied: {}".format(self.value)
         )
