@@ -4,20 +4,20 @@ NCBImeta Test - Error Classes
 @author: Katherine Eaton
 """
 
-# -----------------------------------------------------------------------#
-#                         Modules and Packages                          #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                         Modules and Packages                                 #
+# -----------------------------------------------------------------------------#
 
 from ncbimeta import NCBImetaErrors  # Utility Functions
 import os  # Filepath operations
 
-# -----------------------------------------------------------------------#
-#                           Test Function                               #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                           Test Function                                      #
+# -----------------------------------------------------------------------------#
 
 
 def test_ErrorAnnotFileNotExists(tmpdir):
-    """Test the class ErrorAnnotFileNotExists (error when an annotation file doesn't exist)"""
+    """Test error when an annotation file doesn't exist"""
     # This file is not created, just a tmp path
     tmpfile = os.path.join(tmpdir.strpath, "tmpfile")
     # Test instantiation
@@ -31,7 +31,7 @@ def test_ErrorAnnotFileNotExists(tmpdir):
 
 
 def test_ErrorTableNotInDB(tmpdir):
-    """Test the class ErrorTableNotInDB (error when a table doesn't exist in a database)"""
+    """Test error when a table doesn't exist in a database"""
     # This file is not created, just a tmp path
     tmpfile = os.path.join(tmpdir.strpath, "tmpfile")
     # Test instantiation
@@ -48,7 +48,7 @@ def test_ErrorTableNotInDB(tmpdir):
 
 
 def test_ErrorEntryNotInDB():
-    """Test the class ErrorEntryNotInDB (error when an entry doesn't exist in a database)"""
+    """Test error when an entry doesn't exist in a database"""
     # This file is not created, just a tmp path
     test_entry = "TestEntry"
     # Test instantiation
@@ -65,7 +65,7 @@ def test_ErrorEntryNotInDB():
 
 
 def test_ErrorEntryMultipleMatches():
-    """Test the class ErrorEntryMultipleMatches (error when their are multiple matching entries in a database)"""
+    """Test error when their are multiple matching entries in a database"""
     # This file is not created, just a tmp path
     test_entry = "TestEntry"
     # Test instantiation
@@ -82,7 +82,7 @@ def test_ErrorEntryMultipleMatches():
 
 
 def test_ErrorConfigFileNotExists(tmpdir):
-    """Test the class ErrorAnnotFileNotExists (error when a configuration file doesn't exist)"""
+    """Test error when a configuration file doesn't exist"""
     # This file is not created, just a tmp path
     tmpfile = os.path.join(tmpdir.strpath, "tmpfile")
     # Test instantiation
@@ -99,7 +99,7 @@ def test_ErrorConfigFileNotExists(tmpdir):
 
 
 def test_ErrorColumnsNotUnique():
-    """Test the class ErrorColumnsNotUnique (error when their are non unique columns in a database)"""
+    """Test error when their are non unique columns in a database"""
     # This file is not created, just a tmp path
     test_column = "TestColumn"
     # Test instantiation
@@ -113,7 +113,7 @@ def test_ErrorColumnsNotUnique():
 
 
 def test_ErrorDBNotExists(tmpdir):
-    """Test the class ErrorDBNotExists (error when a database doesn't exist)"""
+    """Test error when a database doesn't exist"""
     # This file is not created, just a tmp path
     tmpfile = os.path.join(tmpdir.strpath, "tmpfile")
     # Test instantiation
@@ -125,7 +125,7 @@ def test_ErrorDBNotExists(tmpdir):
 
 
 def test_ErrorMaxFetchAttemptsExceeded():
-    """Test the class ErrorMaxFetchAttemptsExceeded (error when maximum fetch attempts has been exceeded)"""
+    """Test error when maximum fetch attempts has been exceeded"""
     # This file is not created, just a tmp path
     test_ID = "123456789"
     # Test instantiation
@@ -139,7 +139,7 @@ def test_ErrorMaxFetchAttemptsExceeded():
 
 
 def test_ErrorMaxReadAttemptsExceeded():
-    """Test the class ErrorMaxReadAttemptsExceeded (error when maximum read attempts has been exceeded)"""
+    """Test error when maximum read attempts has been exceeded"""
     # This file is not created, just a tmp path
     test_table = "TestTable"
     # Test instantiation
@@ -155,7 +155,7 @@ def test_ErrorMaxReadAttemptsExceeded():
 
 
 def test_ErrorConfigParameter():
-    """Test the class ErrorConfigParameter (error when a configuration file parameter is incorrect)"""
+    """Test error when a configuration file parameter is incorrect"""
     # This file is not created, just a tmp path
     test_parameter = "TestParameter"
     # Test instantiation
@@ -163,7 +163,8 @@ def test_ErrorConfigParameter():
     # Test str representation (error message)
     error_output = str(test_error)
     error_expect = (
-        "\n\nA parameter name and/or value in the configuration file is set incorrectly:"
+        "\n\nA parameter name and/or value in the "
+        + "configuration file is set incorrectly:"
         + "\n"
         + test_parameter
     )
@@ -171,7 +172,7 @@ def test_ErrorConfigParameter():
 
 
 def test_ErrorConfigYAMLFormat(tmpdir):
-    """Test the class ErrorConfigYAMLFormat (error when a configuration file is improperly formatted)"""
+    """Test error when a configuration file is improperly formatted"""
     # This file is not created, just a tmp path
     tmpfile = os.path.join(tmpdir.strpath, "tmpfile")
     # Test instantiation
@@ -179,16 +180,16 @@ def test_ErrorConfigYAMLFormat(tmpdir):
     # Test str representation (error message)
     error_output = str(test_error)
     error_expect = (
-        "\n\nThe configuration file could not be loaded, please confirm that this is a proper YAML file: "
+        "\n\nThe configuration file could not be loaded, "
+        + "please confirm that this is a proper YAML file: "
         + "\n"
         + tmpfile
     )
-    print("TESTING")
     assert error_output == error_expect
 
 
 def test_ErrorSQLNameSanitize():
-    """Test the class ErrorSQLNameSanitize (error when a table name is improperly formatted)"""
+    """Test error when a table name is improperly formatted"""
     # Use an improper table name
     test_name = "); drop tables --"
     test_sanitize_name = "droptables"
@@ -205,20 +206,22 @@ def test_ErrorSQLNameSanitize():
 
 
 def test_ErrorXPathQueryMultiElement():
-    """Test the class ErrorXPathQueryMultiElement (bad multiple matches have been found for an Xpath query)"""
+    """Test when bad multiple matches have been found for an Xpath query"""
     # Use an improper table name
     test_xpath = "//RUN"
     # Raise the error
     test_error = NCBImetaErrors.ErrorXPathQueryMultiElement(test_xpath)
     error_output = str(test_error)
-    error_expect = "\n\nMore than one element returned for XPath {}. Are you using the correct XPath query?".format(
-        test_xpath
+    error_expect = (
+        "\n\nMore than one element returned for XPath "
+        + str(test_xpath)
+        + ". Are you using the correct XPath query?"
     )
     assert error_output == error_expect
 
 
 def test_ErrorXPathElementUnknown():
-    """Test the class ErrorXPathElementUnknown (unknown type of search result)"""
+    """Test unknown type of search result"""
     # Use an improper table name
     test_result = {"test": "dict"}
     # Raise the error
@@ -229,13 +232,15 @@ def test_ErrorXPathElementUnknown():
 
 
 def test_ErrorXPathQueryMissing():
-    """Test the class ErrorXPathQueryMissing (query was not specified)"""
+    """Test when query was not specified"""
     # Use an improper table name
     test_col_name = {"AssemblyAccession"}
     # Raise the error
     test_error = NCBImetaErrors.ErrorXPathQueryMissing(test_col_name)
     error_output = str(test_error)
-    error_expect = "\n\nThe following column name uses XPath but no query was supplied: {}".format(
-        test_col_name
+    error_expect = (
+        "\n\nThe following column name uses XPath "
+        + "but no query was supplied: "
+        + str(test_col_name)
     )
     assert error_output == error_expect

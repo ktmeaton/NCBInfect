@@ -252,8 +252,9 @@ class ErrorXPathQueryMultiElement(Exception):
     def __str__(self):
         """When the error is raised, print the problematic Xpath query."""
         return (
-            "\n\nMore than one element returned for XPath {}. "
-            + "Are you using the correct XPath query?".format(self.value)
+            "\n\nMore than one element returned for XPath "
+            + str(self.value)
+            + ". Are you using the correct XPath query?"
         )
 
 
@@ -286,5 +287,6 @@ class ErrorXPathQueryMissing(Exception):
         """When the error is raised, print the problematic column name."""
         return (
             "\n\nThe following column name uses XPath "
-            + " but no query was supplied: {}".format(self.value)
+            + "but no query was supplied: "
+            + str(self.value)
         )
