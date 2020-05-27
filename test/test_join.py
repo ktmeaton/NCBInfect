@@ -4,17 +4,17 @@ NCBImeta Test - Join
 @author: Katherine Eaton
 """
 
-# -----------------------------------------------------------------------#
-#                         Modules and Packages                           #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                         Modules and Packages                                 #
+# -----------------------------------------------------------------------------#
 
 import os  # Filepath operations
 import test.test_ncbimeta as test_ncbimeta  # Run main program to create test db
 import subprocess  # Execute CLI/Shell
 
-# -----------------------------------------------------------------------#
-#                           Test Function                                #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                           Test Function                                      #
+# -----------------------------------------------------------------------------#
 
 
 def test_join_run():
@@ -28,7 +28,9 @@ def test_join_run():
     test_final_table = "Master"
     test_accessory_table = "'BioProject Assembly SRA Nucleotide'"
     test_unique_field = (
-        "'BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession'"
+        "'BioSampleAccession "
+        + "BioSampleAccessionSecondary "
+        + "BioSampleBioProjectAccession'"
     )
     test_cmd = (
         "ncbimeta/NCBImetaJoin.py --database "
@@ -76,15 +78,17 @@ def test_multi_match():
     # test NCBImetaJoin through a subprocess
     returned_value = subprocess.call(test_cmd, shell=True)
     # If it returns a non-zero value, it failed
-    assert returned_value == 0  # def test_join_ErrorDBNotExists():
-    # To Be Done
+    assert returned_value == 0
 
+
+# def test_join_ErrorDBNotExists():
+#     To Be Done
 
 # def test_join_ErrorTableNotInDB():
-# To Be Done
+#     To Be Done
 
 # def test_join_ErrorEntryNotInDB():
-# To Be Done
+#     To Be Done
 
 # def test_join_ErrorColumnsNotUnique():
-# To Be Done
+#     To Be Done
