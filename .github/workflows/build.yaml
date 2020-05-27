@@ -47,7 +47,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       # Install the main program with bioconda
+      - uses: goanpeca/setup-miniconda@v1
+        with:
+          auto-activate-base: true
+
       - name: Install From Conda
+        shell: bash -l {0}
         run: |
           conda install -c bioconda ncbimeta
           NCBImeta.py --version
