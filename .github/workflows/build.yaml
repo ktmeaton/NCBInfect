@@ -1,4 +1,4 @@
-name: Building
+name: Build
 #This is a building workflow, triggered on any push or pull-request.
 
 on:
