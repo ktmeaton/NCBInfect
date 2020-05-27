@@ -1,17 +1,18 @@
-Thank you for contributing to NCBImeta!
+# NCBImeta Pull Request
 
-Please fill in the checklist below and delete any lines that are not relevant.
+Thank you for contributing to NCBImeta! Please fill in the checklist below.
 
-**Pre-Submission:**
+* [ ] I have read the [Contributor's Guide](https://github.com/ktmeaton/NCBImeta/contribute.md).
 
-- [ ] A description of changes is included.
-- [ ] Tests have been added for code contributions.
-- [ ] All code lints successfully during pre-commit.
-- [ ] Updated [Schema](https://github.com/ktmeaton/NCBImeta/blob/master/schema/README_schema.md) and/or [Config](https://github.com/ktmeaton/NCBImeta/blob/master/config/README_config.md) documentation.
-- [ ] Updated [CHANGELOG](https://github.com/ktmeaton/NCBImeta/blob/master/CHANGELOG.md).
-- [ ] Updated [README](https://github.com/ktmeaton/NCBImeta/blob/master/README.md).
+## Pull Request Type
 
-**Post-Submission:**
+* [ ] Bug fix (non-breaking change which fixes an issue).
+* [ ] New feature (non-breaking change which adds functionality).
 
-- [ ] All Checks pass.
-- [ ] Code Coverage change acceptable.
+## Pre/Post-Submission
+
+* [ ] All new and existing tests passed  (```pytest```).
+* [ ] I have added tests to cover my changes.
+* [ ] My change requires a change to the documentation.
+* [ ] I have updated the documentation accordingly.
+* [ ] My code lints locally prior to submission (```pre-commit```).
