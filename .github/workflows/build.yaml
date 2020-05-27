@@ -23,7 +23,7 @@ on:
 jobs:
 
   # Setuptools Build and Install
-  source_build:
+  source_build_ubuntu_py:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -35,7 +35,7 @@ jobs:
           sudo python setup.py install
 
   # Conda Repository Install
-  conda_build:
+  conda_build_ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -44,7 +44,7 @@ jobs:
           conda install -c bioconda ncbimeta
 
   # PyPI Repository Install
-  pip_build:
+  pip_build_ubuntu_py:
       runs-on: ubuntu-latest
       strategy:
         matrix:
