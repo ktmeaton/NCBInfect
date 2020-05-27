@@ -127,7 +127,8 @@ def test_HTTPErrorCatch(tmpdir):
     test_kwargs = {"db": test_table.lower(), "id": test_ID}
     test_entrez_method = Entrez.esummary
 
-    for i in range(1, test_total_tries):
+    # Redo as while loop (unnecesary i var)
+    for _i in range(1, test_total_tries):
         ID_handle = NCBImetaUtilities.HTTPErrorCatch(
             test_entrez_method, test_max_tries, test_sleep_between_tries, **test_kwargs
         )
