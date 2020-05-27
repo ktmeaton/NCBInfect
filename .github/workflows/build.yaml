@@ -22,8 +22,8 @@ on:
 
 jobs:
 
-  # Setuptools Build and Install
-  setuptools_build_ubuntu_py:
+  # Source Build and Install
+  source_build_ubuntu_py:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -38,7 +38,7 @@ jobs:
       # Install the main program with setuptools
       - name: Build From Source
         run: |
-          sudo python setup.py install
+          pip install .
 
   # Conda Repository Install
   conda_build_ubuntu:
@@ -63,12 +63,8 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
-      # Install the repositories dependencies with pip
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
       # Install the main program with pip
       - name: Install Main
         run: |
-          pip install .
+          pip install -r requirements.txt
+          pip install ncbimeta
