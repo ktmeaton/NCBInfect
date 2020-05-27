@@ -21,6 +21,7 @@ import pytest
 # To get the metadata field values:
 # tail -n+2 test_Assembly.txt | awk '
 #    BEGIN{FS="\t"; ORS=", "}{for (i=1;i<=NF;i++){print "\x27"$i"\x27"}}'
+# To format into single line lists, run through black pre-commit
 
 
 @pytest.fixture(scope="module")
