@@ -5,25 +5,27 @@ This is the pytest fixture file.
 @author: Katherine Eaton
 """
 
-# -----------------------------------------------------------------------#
-#                         Modules and Packages                          #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                         Modules and Packages                                 #
+# -----------------------------------------------------------------------------#
 import pytest
 
-# -----------------------------------------------------------------------#
-#                             Fixtures                                  #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                             Fixtures                                         #
+# -----------------------------------------------------------------------------#
 
 # Reminder, awk was used to help efficiently format the column and value lists
 # To get the column names:
-# head -n 1 test_Assembly.txt | awk 'BEGIN{FS="\t"; ORS=", "}{for (i=1;i<=NF;i++){print "\x27"$i"\x27"}}'
+# head -n 1 test_Assembly.txt | awk '
+#     BEGIN{FS="\t"; ORS=", "}{for (i=1;i<=NF;i++){print "\x27"$i"\x27"}}'
 # To get the metadata field values:
-# tail -n+2 test_Assembly.txt | awk 'BEGIN{FS="\t"; ORS=", "}{for (i=1;i<=NF;i++){print "\x27"$i"\x27"}}'
+# tail -n+2 test_Assembly.txt | awk '
+#    BEGIN{FS="\t"; ORS=", "}{for (i=1;i<=NF;i++){print "\x27"$i"\x27"}}'
 
 
 @pytest.fixture(scope="module")
 def assembly_table_data():
-    """Return a dictionary containing the expected database values of the Assembly Table"""
+    """Return a dictionary containing the expected values of the Assembly Table"""
 
     columns = [
         "id",
@@ -123,7 +125,7 @@ def assembly_table_data():
 
 @pytest.fixture(scope="module")
 def bioproject_table_data():
-    """Return a dictionary containing the expected database values of the BioProject Table"""
+    """Return a dictionary containing the expected values of the BioProject Table"""
 
     columns = [
         "id",
@@ -195,7 +197,7 @@ def bioproject_table_data():
 
 @pytest.fixture(scope="module")
 def biosample_table_data():
-    """Return a dictionary containing the expected database values of the BioSample Table"""
+    """Return a dictionary containing the expected values of the BioSample Table"""
 
     columns = [
         "id",
@@ -281,7 +283,7 @@ def biosample_table_data():
 
 @pytest.fixture(scope="module")
 def nucleotide_table_data():
-    """Return a dictionary containing the expected database values of the Nucleotide Table"""
+    """Return a dictionary containing the expected values of the Nucleotide Table"""
 
     columns = [
         "id",
@@ -949,7 +951,7 @@ def nucleotide_table_data():
 
 @pytest.fixture(scope="module")
 def pubmed_table_data():
-    """Return a dictionary containing the expected database values of the Pubmed Table"""
+    """Return a dictionary containing the expected values of the Pubmed Table"""
     columns = [
         "id",
         "Pubmed_id",
@@ -1019,7 +1021,7 @@ def pubmed_table_data():
 
 @pytest.fixture(scope="module")
 def sra_table_data():
-    """Return a dictionary containing the expected database values of the SRA Table"""
+    """Return a dictionary containing the expected values of the SRA Table"""
 
     columns = [
         "id",
