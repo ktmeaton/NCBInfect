@@ -4,9 +4,9 @@ NCBImeta Test - Utility Functions
 @author: Katherine Eaton
 """
 
-# -----------------------------------------------------------------------#
-#                         Modules and Packages                          #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                         Modules and Packages                                 #
+# -----------------------------------------------------------------------------#
 
 import pytest  # Testing suite
 from ncbimeta import NCBImetaUtilities  # Utility Functions
@@ -16,13 +16,13 @@ import sqlite3  # Database storage and queries
 from lxml import etree  # XML Parsing
 from Bio import Entrez  # Entrez queries (NCBI)
 
-# -----------------------------------------------------------------------#
-#                           Test Function                               #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                           Test Function                                      #
+# -----------------------------------------------------------------------------#
 
 
 def test_check_accessory_dir(tmpdir):
-    """Test the utility function check_accessory_dir (create log/ and database/)."""
+    """Test the utility function to create log/ and database/ directories"""
     tmpdir = tmpdir.strpath
     NCBImetaUtilities.check_accessory_dir(tmpdir)
     assert os.path.exists(os.path.join(tmpdir, "log")) and os.path.exists(
@@ -31,7 +31,7 @@ def test_check_accessory_dir(tmpdir):
 
 
 def test_table_exists(tmpdir):
-    """Test the utility function table_exists (check if Table is present in sqlite db)"""
+    """Test the utility function to check if Table is present in sqlite db"""
     # Connect to database and establish cursor for commands.
     tmpdir = tmpdir.strpath
     test_db = os.path.join(tmpdir, "test.sqlite")
@@ -48,8 +48,14 @@ def test_table_exists(tmpdir):
 
 
 def test_xml_search_nodetext():
-    """Test the utility function xml_search (retrieve xml text node)"""
-    test_xml = "<Root><Assembly><AssemblyAccession>GCA_003086155.1</AssemblyAccession></Assembly></Root>"
+    """Test the utility function to retrieve xml text node"""
+    test_xml = """
+    <Root>
+        <Assembly>
+           <AssemblyAccession>GCA_003086155.1</AssemblyAccession>
+        </Assembly>
+    </Root>
+    """
     test_root = etree.fromstring(test_xml)
     test_search_list = ["Assembly", "AssemblyAccession"]
     test_current_tag = test_search_list[0]
@@ -84,7 +90,13 @@ def test_xml_search_nodeattr():
 def test_xml_search_nodeattrtext():
     """Test the utility function xml_search (retrieve xml attr text)"""
     # test_xml = "<Root><LIBRARY_LAYOUT><PAIRED/></LIBRARY_LAYOUT></Root>"
-    test_xml = "<Root><Stats><Stat category='chromosome_count' sequence_tag='all'>1</Stat></Stats></Root>"
+    test_xml = """
+    <Root>
+        <Stats>
+            <Stat category='chromosome_count' sequence_tag='all'>1</Stat>
+        </Stats>
+    </Root>
+    """
     test_root = etree.fromstring(test_xml)
     test_search_list = ["Stat", "category", "chromosome_count"]
     test_current_tag = test_search_list[0]
@@ -149,7 +161,7 @@ def test_sql_sanitize():
 
 
 def test_adv_xml_search_abs():
-    """Test the utility function adv_xml_search, navigating from root of document (use XPath query, PR #9)"""
+    """Test advanced xml searching, to navigate from root of document (PR #9)"""
     test_xml = """
     <GBSeq_feature-table>
         <GBFeature>
@@ -175,7 +187,8 @@ def test_adv_xml_search_abs():
     test_xml_root = etree.fromstring(test_xml)
     test_payload = (
         "XPATH, //GBSeq_feature-table/GBFeature[GBFeature_key/text() = 'source']"
-        "/GBFeature_quals/GBQualifier[GBQualifier_name/text() = 'organism']/GBQualifier_value"
+        "/GBFeature_quals/GBQualifier[GBQualifier_name/text() = 'organism']"
+        "/GBQualifier_value"
     )
     test_xpath = test_payload.split(", ")[1]
     test_column_name = "GBOrganismName"
@@ -188,7 +201,7 @@ def test_adv_xml_search_abs():
 
 
 def test_adv_xml_search_rel():
-    """Test the utility function adv_xml_search, navigating from tip of document (use XPath query, PR #9)"""
+    """Test advanced xml searching, to navigate from tip of document (PR #9)"""
     test_xml = """
     <GBSeq_feature-table>
         <GBFeature>
@@ -226,7 +239,7 @@ def test_adv_xml_search_rel():
 
 
 def test_adv_xml_search_attr():
-    """Test the utility function adv_xml_search, label conditional (use XPath query, PR #9)"""
+    """Test advanced xml searching, label conditional (PR #9) """
     # Atpical xml indent here is to avoid extra long linese
     test_xml = """
     <Links>
@@ -251,7 +264,7 @@ def test_adv_xml_search_attr():
 
 
 def test_adv_xml_search_multigood():
-    """Test the utility function adv_xml_search, multiple good node match (use XPath query, PR #9)"""
+    """Test advanced xml searching, multiple good node match (PR #9)"""
     test_xml = """
     <RUN_SET>
         <RUN alias="E-MTAB-8370:untagged-His-run30_S9_L003" accession="ERR3549715">
@@ -279,7 +292,7 @@ def test_adv_xml_search_multigood():
 
 
 def test_adv_xml_search_multibad():
-    """Test the utility function adv_xml_search, multiple bad node match (use XPath query, PR #9)"""
+    """Test advanced xml searching, multiple bad node match (PR #9)"""
     test_xml = """
     <RUN_SET>
         <RUN alias="E-MTAB-8370:untagged-His-run30_S9_L003" accession="ERR3549715">
