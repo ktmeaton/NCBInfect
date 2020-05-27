@@ -38,4 +38,4 @@ repos:
     rev: v0.23.1
     hooks:
       - id: markdownlint
-        args: [--config=.github/markdown_lint.yaml]
+        args: [--config=.github/markdown_lint.yaml, --ignore=paper/]

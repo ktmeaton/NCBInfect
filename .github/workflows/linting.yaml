@@ -70,6 +70,6 @@ jobs:
       - name: Install markdownlint
         run: npm install -g markdownlint-cli
       - name: Run Markdownlint
-        run: markdownlint ${GITHUB_WORKSPACE} --config ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml
+        run: markdownlint ${GITHUB_WORKSPACE} --config ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml --ignore paper/
 
   # YAML Lint To-Do
