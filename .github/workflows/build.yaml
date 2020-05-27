@@ -21,10 +21,32 @@ on:
       - '*'
 
 jobs:
-
-  # Source Build and Install
+  #----------------------------------------------------------------------------#
+  #                         Ubuntu Source Build and Install                    #
+  #----------------------------------------------------------------------------#
   source_build_ubuntu_py:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8]
+    steps:
+      - uses: actions/checkout@v2
+      # Setup the difference versions of python
+      - name: Python Setup ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      # Install the main program with setuptools
+      - name: Build From Source
+        run: |
+          pip install .
+          NCBImeta.py --version
+
+  #----------------------------------------------------------------------------#
+  #                         Mac OS Source Build and Install                    #
+  #----------------------------------------------------------------------------#
+  source_build_macos_py:
+    runs-on: macos-latest
     strategy:
       matrix:
         python-version: [3.5, 3.6, 3.7, 3.8]
