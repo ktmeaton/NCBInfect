@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
@@ -15,6 +16,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [v0.6.6] - 2020-0525 - PyPI Github Actions
 
 ### Added
+
 - MANIFEST.in to make sure requirements.txt is packaged for PyPI
 - GitHub Actions Continuous Integration (Build, PyTest, Example, Linting)
 - Pre-Commit hooks
@@ -22,6 +24,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Some config now in setup.cfg
 
 ### Changed
+
 - Convert BioProjectTitle to XPath query
 - The Annotate scripts (Replace and Concatenate) now properly handle inserting/updating values.
 - ncbimeta/ lint checklist:
@@ -43,31 +46,36 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   - [ ] test_xml.py
   - [ ] test_ncbimeta.py
 
-
 ### Removed
+
 - Travis Continuous Integration
 - Keep an eye on BioProjectPublished values.
 
 ## [v0.6.5] - 2020-0318 - XPath Advanced
 
 ### Added
+
 - NCBImetaUtilties.py function: adv_xml_search to allow pre-formatted XPath query (PR #9)
 - Three new error classes ErrorXPathQueryMultiElement, ErrorXPathElementUnknown, ErrorXPathQueryMissing
 
 ### Changed
+
 - Bug: Improved specificity of SRABioSampleAccession and SRABioProjectAccession
 - NucleotideBioSampleAccession now a preformatted XPath query (previously empty value)
 - BioSampleBioProjectAccession now a preformatted XPath query (previously non-specific)
 
 ### Removed
+
 - Non-specific node NucleotideAssemblyAccession
 
 ## [v0.6.4] - 2020-0220 - Bobby Tables
 
 ### Added
+
 - Extra param checking for yaml config files (Issue #7)
 
 ### Changed
+
 - Bugfix for table joining multiple records (Isssue #8))
 - SQL query execution is now done by parameterizing Value
 - SQL query tables and columns are checked manually
@@ -77,6 +85,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ## [v0.6.3] - 2020-0124 - Automating the Chain
 
 ### Added
+
 - Will rely on bioconda's autobump to maintain bioconda releases.
 - Just in case, packaging scripts are located in the new branch bioconda as a backup
 - .conda_update.sh to automate conda recipe updating after Travis-CI tag run
@@ -86,25 +95,29 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - git update-index --add --chmod=+x ver_update.sh
 
 ### Changed
+
 - 2020-01-23: the master branch switched to the bioconda-recipes repo. I'm uncertain about why this happened but I
 copied the master branch to a new branch called 'bc-tbd' (bioconda to-be-determined). To recover, I'm copying v0.6.2 to
 a new master branch.
-- 2020-01-24: Solved. This happened during Travis-CI testing. While working in the bioconda-recipes repo, my remote.origin.url was pointed towards the NCBImeta repo because of incorrected usage of the TRAVIS_REPO_SLUG env var. And I force pushed the bioconda commits onto the NCBImeta master branch. This can be undone with git reset --hard <commit> and then git push --force. Deleted branch 'bc-tbd'.
+- 2020-01-24: Solved. This happened during Travis-CI testing. While working in the bioconda-recipes repo, my remote.origin.url was pointed towards the NCBImeta repo because of incorrected usage of the TRAVIS_REPO_SLUG env var. And I force pushed the bioconda commits onto the NCBImeta master branch. This can be undone with git reset --hard \<commit\> and then git push --force. Deleted branch 'bc-tbd'.
 
 ## [v0.6.2] - 2020-0123 - JOSS Review and Bioconda
 
 ### Added
+
 - Bioconda packaging and installation now available (PR: \#5 , credits and thanks to @druvus)
 - Discovered biocontainers automatically created through bioconda
 - PyPI Deployment through Travis-CI on tagged commits
 - Discovered piwheels automatically created through PyPI
 
 ### Changed
+
 - If the output directory does not exist, it is now created rather than raising an error (Issue: \#4).
 
 ## [v0.6.1] - 2019-1220 - JOSS Submission and Zenodo
 
 ### Added
+
 - paper directory
 - JOSS Paper: paper.md and paper.bib
 - JOSS Figures: NCBImeta_Workflow.jpg, NCBImeta_aeruginosa_db_subset.jpg, NCBImeta_aeruginosa_geogene.jpg
@@ -112,15 +125,18 @@ a new master branch.
 - Zenodo Integration
 
 ### Changed
+
 - Switched CLI gif to an asciinema recording (web host)
 - Switched DB gif to ShareX recording (github host)
 - Fixed changelog compare links
 - Fixed version numbering in python executables
 
 ## [v0.6.0] - 2019-1218 - XML Overhaul XPath
+
 Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to be not backwards compatible.
 
 ### Added
+
 - XML overhaul (lxml module added, minidom removed)
 - Multimatch nodes are concatenated by semi-colon
 - All tables except assembly now use efetch rather than esummary
@@ -137,11 +153,13 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
   - Pubmed: XML
 
 ### Removed
+
 - BioProject Fields: BioProjectType, BioProjectSequencingStatus
 - SRA Fields: SRAExperimentStatus, SRAExperimentVersion, SRAStudyName, SRATotalRuns, SRAUpdateDate
 - Nucleotide Fields: NucleotideFirstAccession, NucleotideLastAccession
 
 ### Changed
+
 - BioProject Fields: BioProjectRegistrationDate -> BioProjectSubmissionDate
 - BioSample Fields: BioSampleDate -> BioSampleSubmissionDate
 - SRA Fields: SRAContactName -> SRAContactEmail, SRACreateDate -> SRARunPublishDate
@@ -151,10 +169,12 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 ## [v0.5.0] - 2019-1204 - PyTest and Codecov
 
 ### Removed
+
 - Python 3.4 Support (End of Life) and pytest 5.x.y conflicts.
 - NCBImeta now requires Python3.5+
 
 ### Added
+
 - pytest integration (all NCBImeta functions and classes, verify database contents)
 - codecov integration
 - conftest file to control fixtures for pytest
@@ -162,6 +182,7 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - bugfix in ncbimeta record parsing: column_index position
 
 ### Changed
+
 - Code documentation, Major cleanup of unneeded
 - Major bugfix of flatten_dict method
 - Move method HTTPErrorCatch to NCBImetaUtilties
@@ -174,9 +195,11 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 ## [v0.4.2] - 2019-1127 - Pip Installation
 
 ### Added
+
 - setup.py for installation from PyPI and source
 
 ### Changed
+
 - Rename all files containing "NCBImeta_" to "NCBImeta", correct all references
 - Change src/ directory to ncbimeta/ directory
 - requirements.txt loads into setup.py
@@ -185,12 +208,15 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 ## [v0.4.1] - 2019-1127 - Travis CI Integration
 
 ### Changed
+
 - Execute permissions (git update-index --add --chmod=+x src/\*.py)
 - Bugfix for esearch, more HTTP Error catching
 - Travis CI Integration (Linux, MacOSX)
 
 ## [v0.4.0] - 2019-1031 - YAML Configuration Files
+
 ### Added
+
 - requirements.txt for pip install dependencies
 - PyYAML is now a required module for yaml config file loading
 - HTTP 429 Error catching for efetch
@@ -198,6 +224,7 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - yaml schema metadata files for all 6 tables
 
 ### Changed
+
 - Configuration files now implemented in YAML format
 - Source file (NCBImeta.py) and documentation changes to reflect
 - Minimal Working Example (MWE) back to plague for quicker execution
@@ -206,70 +233,92 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - renamed the annot file and restricted records to 2019-2020.
 
 ### Removed
+
 - Configuration Files: Comprehensive_config.py,  pseudomonas_aeruginosa.py, config.py
 - All 6 schema txt files: (ex. schema/Assembly.txt)
 - scripts folder with very deprecated R code for plotting
 - excessive annotation files 2 and 3.
 
 ## [v0.3.4] - 2019-1028 - HTTP Error Catching
+
 ### Added
+
 - HTTP Error catching
 - Bug fixes for HTTP Error 429
 
 ## [v0.3.3] - 2019-0912 - Pubmed Table Support
+
 ### Added
+
 - Pubmed Table support
 
-
 ## [v0.3.2] - 2019-0905 - Genome Annotation Capture
+
 ### Added
+
 - Command example in README.md for creating a master join table of BioSample, BioProject, Assemble, SRA, and Nucleotide tables.
 - Three new annotation files for the example.
 
 ### Changed
+
 - Python2 no longer supported, Python3 is now mandatory.
 - Improved Nucleotide Table annotation parsing
 - Fixed missing BioSampleAccession from the Nucleotide Table
 - Fixed incorrect directory paths in README.md example commands.
 
 ## [v0.3.1] - 2018-0702 - Alpha Release for User Testing
+
 ### Added
+
 - README files for config and schema
 - Usage in main README
 
 ### Changed
+
 - Alphabetized schema entries
 
 ## [v0.3.0] - 2018-0629
+
 ### Added
+
 - Automation mode
 - Supported Tables: Assembly, BioProject, BioSample, Nucleotide, SRA
 
 ### Changed
+
 - Repository Rename: NCBInfect -> NCBImeta
 
 ## [v0.2.1] - 2018-0308
 
 ### Changed
+
 - Fully Functional
 
 ## [v0.2.0] - 2018-0122
+
 ### Changed
+
 - Repository Rename: GenomeCollector -> NCBInfect
 
 ## [v0.1.2] - 2017-0920
+
 ### Added
+
 - Bugfixes
 
 ## [v0.1.1] - 2017-0919
+
 ### Added
+
 - SRA Table
 
 ### Changed
+
 - Bug-fix, multiple accession versions
 - Started better version control
 
 ## [v0.1.0] - 2016-0622
+
 - Repository migrated from GenomeCollector
 
 [Development]: https://github.com/ktmeaton/NCBImeta/compare/HEAD...dev
