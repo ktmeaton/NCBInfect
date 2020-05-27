@@ -40,7 +40,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   - [x] test_annotatereplace.py
   - [x] test_errors.py
   - [x] test_export.py
-  - [ ] conftest.py
+  - [x] conftest.py
   - [x] test_join.py
   - [x] test_utilities.py
   - [x] test_xml.py
