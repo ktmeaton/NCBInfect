@@ -3,8 +3,6 @@
 NCBImeta Export Tool - Export SQLite database to tabular text files.
 
 @author: Katherine Eaton
-
-update: lint
 """
 
 # -----------------------------------------------------------------------------#
