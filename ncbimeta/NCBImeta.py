@@ -493,7 +493,7 @@ def UpdateDB(
                     working_root, column_payload_xpath, column_name, column_dict
                 )
             else:
-                # If there are special character, this query should not be used for xpath!!
+                # If there's special characters this query shouldn't be used for xpath
                 bool_special_char = False
                 for char in XPATH_SPECIAL_CHAR:
                     for xquery in column_payload:
@@ -510,7 +510,7 @@ def UpdateDB(
                     )
 
             # Special parsing for GBSeq_comment
-            # If we're on the GBSeq_comment element and the comment was added to the dictionary
+            # If it's the GBSeq_comment element and the comment was added to the dict
             if "GBSeq_comment" in column_payload and len(column_dict[column_name]) > 0:
                 comment = column_dict[column_name][0]
                 # Fix the CDS vs CDSs ambiguity
@@ -605,8 +605,8 @@ for table in CONFIG_TABLES:
     TABLE_COLUMNS = CONFIG_TABLE_COLUMNS[_index][table]
 
     # Check for duplicate column names
-    # -- Note this is only PER TABLE (Checking for duplicate between table only happens
-    # -- later in the database Join script)
+    # -- Note this is only PER TABLE (Checking for duplicate between table
+    # -- only happens later in the database Join script)
     table_col_names = []
     for element in TABLE_COLUMNS:
         table_col_names += list(element.keys())

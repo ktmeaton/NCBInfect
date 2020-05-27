@@ -9,7 +9,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - TO DO: A true quick start example, just SRA data?
 - Fetching nucleotide annotations could probably be improved with xpath xml.
 - change flake8 max line length to 80 (88)
-- error check the "for _index" in NCBImeta.py
+- error check the "for \_index" in NCBImeta.py
 - add back in max-osx for gh-actions
 
 ## [v0.6.6] - 2020-0525 - PyPI Github Actions
@@ -25,23 +25,23 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Convert BioProjectTitle to XPath query
 - The Annotate scripts (Replace and Concatenate) now properly handle inserting/updating values.
 - ncbimeta/ lint checklist:
-  - [x] NCBImetaUtilities.py
-  - [x] NCBImetaErrors.py
-  - [x] NCBImetaJoin.py
-  - [x] NCBImetaAnnotateConcatenate.py
-  - [x] NCBImetaAnnotateReplace.py
-  - [x] NCBImetaExport.py
+  - [ ] NCBImetaUtilities.py
+  - [ ] NCBImetaErrors.py
+  - [ ] NCBImetaJoin.py
+  - [ ] NCBImetaAnnotateConcatenate.py
+  - [ ] NCBImetaAnnotateReplace.py
+  - [ ] NCBImetaExport.py
   - [x] NCBImeta.py
 - test/ lint checklist:
-  - [x] test_annotateconcatenate.py
-  - [x] test_annotatereplace.py
-  - [x] test_errors.py
-  - [x] test_export.py
-  - [x] conftest.py
-  - [x] test_join.py
-  - [x] test_utilities.py
-  - [x] test_xml.py
-  - [x] test_ncbimeta.py
+  - [ ] test_annotateconcatenate.py
+  - [ ] test_annotatereplace.py
+  - [ ] test_errors.py
+  - [ ] test_export.py
+  - [ ] conftest.py
+  - [ ] test_join.py
+  - [ ] test_utilities.py
+  - [ ] test_xml.py
+  - [ ] test_ncbimeta.py
 
 
 ### Removed
