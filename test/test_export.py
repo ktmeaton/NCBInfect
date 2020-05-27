@@ -4,17 +4,17 @@ NCBImeta Test - Export
 @author: Katherine Eaton
 """
 
-# -----------------------------------------------------------------------#
-#                         Modules and Packages                           #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                         Modules and Packages                                 #
+# -----------------------------------------------------------------------------#
 
 import os  # Filepath operations
 import test.test_ncbimeta as test_ncbimeta  # Run main program to create test db
 import subprocess  # Execute CLI/Shell
 
-# -----------------------------------------------------------------------#
-#                           Test Function                                #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                           Test Function                                      #
+# -----------------------------------------------------------------------------#
 
 
 def test_export_run():
@@ -43,7 +43,7 @@ def test_export_assemblyvalues(assembly_table_data):
     Test the integrity of the Assembly table values based on expected values.
 
     Parameters:
-    assembly_table_data (fixture): Dict fixture of Assembly table data from conftest.py
+    assembly_table_data (fixture): Dict fixture of Assembly data from conftest
     """
     # Setup the assembly table file
     test_filename = os.path.join(
@@ -72,7 +72,7 @@ def test_export_bioprojectvalues(bioproject_table_data):
     Test the integrity of the BioProject table values based on expected values.
 
     Parameters:
-    bioproject_table_data (fixture): Dict fixture of BioProject table data from conftest.py
+    bioproject_table_data (fixture): Dict fixture of BioProject data from conftest
     """
     # Setup the assembly table file
     test_filename = os.path.join(
@@ -99,7 +99,7 @@ def test_export_biosamplevalues(biosample_table_data):
     Test the integrity of the BioSample table values based on expected values.
 
     Parameters:
-    biosample_table_data (fixture): Dict fixture of BioSample table data from conftest.py
+    biosample_table_data (fixture): Dict fixture of BioSample data from conftest
     """
     # Setup the assembly table file
     test_filename = os.path.join(
@@ -126,7 +126,7 @@ def test_export_nucleotidevalues(nucleotide_table_data):
     Test the integrity of the Nucleotide table values based on expected values.
 
     Parameters:
-    nucleotide_table_data (fixture): Dict fixture of Nucleotide table data from conftest.py
+    nucleotide_table_data (fixture): Dict fixture of Nucleotide data from conftest
     """
     # Setup the assembly table file
     test_filename = os.path.join(
@@ -164,7 +164,7 @@ def test_export_pubmedvalues(pubmed_table_data):
     Test the integrity of the Pubmed table values based on expected values.
 
     Parameters:
-    pubmed_table_data (fixture): Dict fixture of Pubmed table data from conftest.py
+    pubmed_table_data (fixture): Dict fixture of Pubmed data from conftest
     """
     # Setup the assembly table file
     test_filename = os.path.join(
@@ -236,10 +236,11 @@ def test_export_sravalues(sra_table_data):
 #     Test the integrity of the Master table values based on expected values.
 #
 #     Parameters:
-#     biosample_table_data (fixture): Dict fixture of BioSample table data from conftest.py
+#     biosample_table_data (fixture): Dict fixture of BioSample data from conftest
 #     '''
 #     # Setup the assembly table file
-#     test_filename = os.path.join(os.path.dirname(os.path.abspath(__file__)),"test_Master.txt")
+#     test_filename = os.path.dirname(os.path.abspath(__file__))
+#     test_filename = os.path.join(test_filename,"test_Master.txt")
 #     test_file = open(test_filename,'r')
 #     # Retrieve the headers and fields
 #     test_column_list = test_file.readline().strip('\n').split("\t")
