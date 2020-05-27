@@ -1,4 +1,4 @@
-name: Quick-Start Example
+name: Example
 #This is a workflow for the quick-start example, triggered on a push or pull-request.
 on:
   # Triggered on Push for master and dev branches
