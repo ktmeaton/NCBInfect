@@ -45,6 +45,9 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
   - [ ] test_utilities.py
   - [ ] test_xml.py
   - [ ] test_ncbimeta.py
+- markdown checklist:
+  - [x] CHANGELOG
+  - [x] README
 
 ### Removed
 
