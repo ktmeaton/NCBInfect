@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-NCBImeta Annotation Tool - Concatenate database fields with values from an annotation file.
+NCBImeta Annotation Tool - Concatenate database fields with
+                           values from an annotation file.
 
 @author: Katherine Eaton
 """
 
-# -----------------------------------------------------------------------#
-#                            Argument Parsing                            #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                            Argument Parsing                                  #
+# -----------------------------------------------------------------------------#
 
 import argparse  # Command-line argument parsing
 import sqlite3  # Database storage and queries
@@ -16,13 +17,14 @@ import os  # Filepath operations
 from ncbimeta import NCBImetaErrors  # NCBImeta Error Classes
 from ncbimeta import NCBImetaUtilities  # Need table_exists and sql_sanitize
 
-# -----------------------------------------------------------------------#
-#                            Argument Parsing                            #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                            Argument Parsing                                  #
+# -----------------------------------------------------------------------------#
 
 parser = argparse.ArgumentParser(
     description=(
-        "NCBImeta Annotation Tool - Concatenate database fields with values from an annotation file."
+        "NCBImeta Annotation Tool - Concatenate database fields with "
+        + " values from an annotation file."
     ),
     add_help=True,
 )
@@ -50,7 +52,10 @@ mandatory.add_argument(
 
 mandatory.add_argument(
     "--annotfile",
-    help="Path to annotation file. The first column must contain a field that is unique to the record (ex. Accession)",
+    help=(
+        "Path to annotation file. The first column must contain a "
+        + "field that is unique to the record (ex. Accession)"
+    ),
     type=str,
     action="store",
     dest="annotFile",
@@ -68,12 +73,12 @@ annot_file_name = args["annotFile"]
 db_value_sep = ";"
 
 
-# -----------------------------------------------------------------------#
-#                           Argument Checking                            #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                           Argument Checking                                  #
+# -----------------------------------------------------------------------------#
 
 
-# ---------------------------Check Database------------------------------#
+# ---------------------------Check Database------------------------------------#
 
 if os.path.exists(db_name):
     conn = sqlite3.connect(db_name)
@@ -87,7 +92,7 @@ if not os.path.exists(annot_file_name):
 # no errors were raised, safe to connect to db
 cur = conn.cursor()
 
-# ---------------------------Check Table---------------------------------#
+# ---------------------------Check Table---------------------------------------#
 
 # Check table name
 table_name = db_table
@@ -100,17 +105,17 @@ if not NCBImetaUtilities.table_exists(cur, db_table):
     raise NCBImetaErrors.ErrorTableNotInDB(db_table)
 
 
-# -----------------------------------------------------------------------#
-#                                File Setup                              #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                                File Setup                                    #
+# -----------------------------------------------------------------------------#
 
 # get list of column names in Table
 cur.execute("""SELECT * FROM {}""".format(db_table))
 db_col_names = [description[0] for description in cur.description]
 
-# -----------------------------------------------------------------------#
-#                             Annotation Setup                           #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                             Annotation Setup                                 #
+# -----------------------------------------------------------------------------#
 annot_file = open(annot_file_name, "r")
 annot_dict = {}
 
@@ -133,9 +138,9 @@ for i, header in enumerate(header_columns_list):
 annot_line = annot_file.readline()
 
 
-# -----------------------------------------------------------------------#
-#                         Process Annotations                            #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                         Process Annotations                                  #
+# -----------------------------------------------------------------------------#
 
 while annot_line:
     # Create a dictionary for storing all attributes for this one line
@@ -149,7 +154,7 @@ while annot_line:
         # Cleanup extra white space?
         element = element.strip()
 
-        # If it's the first column (index 0) this is the unique column for matching
+        # If it's the first col (index 0) this is the unique col for matching
         if i == 0:
             unique_header = header
             unique_element = element
@@ -235,9 +240,9 @@ while annot_line:
     # Read in the next line
     annot_line = annot_file.readline()
 
-# -----------------------------------------------------------------------#
-#                                    Cleanup                             #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                                    Cleanup                                   #
+# -----------------------------------------------------------------------------#
 # Commit changes
 conn.commit()
 print("Closing database: " + db_name, flush=True)
