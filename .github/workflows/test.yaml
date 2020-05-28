@@ -1,4 +1,4 @@
-name: Unit Tests
+name: Test
 #This is a workflow for unit tests.
 
 on:

@@ -1,0 +1,89 @@
+name: Lint
+#This is a workflow for linting
+
+on:
+  # Triggered on Push for all branches
+  push:
+    branches:
+      - '*'
+    # On change to workflow, markdown, python
+    paths:
+      - '.github/workflows/*.yaml'
+      - '.github/*.yaml'
+      - 'schema/*.yaml'
+      - 'example/*.yaml'
+      - '*.md'
+      - 'config/*md'
+      - 'schema/*md'
+      - ncbimeta/*.py
+      - test/*.py
+  # Triggered on PR for all branches, any file
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+
+  pre_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.x'
+
+      - name: Install pre-commit
+        run: |
+          pip install pre-commit
+          pre-commit install-hooks
+      - name: pre-commit Linting
+        run: pre-commit run --all-files
+
+  # Markdown template from nf-core eager to trial
+  markdown_lint:
+    needs: pre_commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+      - name: Run Markdownlint
+        run: markdownlint ${GITHUB_WORKSPACE} --config ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml --ignore paper/
+
+  # Python lint with flake8 bugbear extension
+  python_lint:
+    needs: pre_commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.x'
+
+      - name: Install flake8
+        run: |
+          pip install flake8 flake8-bugbear
+
+      - name: Run flake8
+        run: |
+          flake8 --config ${GITHUB_WORKSPACE}/setup.cfg $(find ${GITHUB_WORKSPACE} -type f -name "*.py")
+
+  # YAML lint template from nf-core eager to trial
+  yaml_lint:
+    needs: pre_commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+      - name: Install yaml-lint
+        run: npm install -g yaml-lint
+
+      - name: Run yaml-lint
+        run: yamllint $(find ${GITHUB_WORKSPACE} -type f -name "*.yaml")

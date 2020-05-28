@@ -1,14 +1,14 @@
+# NCBImeta
+
+**Efficient and comprehensive metadata acquisition from NCBI databases (includes SRA).**
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ktmeaton/NCBImeta/blob/master/LICENSE)
-[![Build Status](https://travis-ci.org/ktmeaton/NCBImeta.svg?branch=master)](https://travis-ci.org/ktmeaton/NCBImeta)
-[![codecov](https://codecov.io/gh/ktmeaton/ncbimeta/branch/dev/graph/badge.svg)](https://codecov.io/gh/ktmeaton/NCBImeta/branch/master)
+[![Build Status](https://github.com/ktmeaton/NCBImeta/workflows/Building/badge.svg?branch=master)](https://github.com/ktmeaton/NCBImeta/actions?query=workflow%3ABuilding+branch%3Amaster)
+[![codecov](https://codecov.io/gh/ktmeaton/ncbimeta/branch/master/graph/badge.svg)](https://codecov.io/gh/ktmeaton/NCBImeta/branch/master)
 [![status](https://joss.theoj.org/papers/72376aa12ddf832465c92490b2074e7b/status.svg)](https://joss.theoj.org/papers/72376aa12ddf832465c92490b2074e7b)
 [![GitHub issues](https://img.shields.io/github/issues/ktmeaton/NCBImeta.svg)](https://github.com/ktmeaton/NCBImeta/issues)
 [![PyPI version](https://badge.fury.io/py/NCBImeta.svg)](https://badge.fury.io/py/NCBImeta)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/ncbimeta/badges/version.svg)](https://anaconda.org/bioconda/ncbimeta)
-
-# NCBImeta
-
-Efficient and comprehensive metadata acquisition from NCBI databases (includes SRA).
 
 ## Why NCBImeta?
 
@@ -16,8 +16,9 @@ NCBImeta is a command-line application that retrieves and organizes metadata fro
 
 ## Requirements
 
-NCBImeta is written in Python 3 and supported on Linux and macOS. Dependencies that will be installed are listed in [requirements.txt](https://github.com/ktmeaton/NCBImeta/blob/master/requirements.txt).
-[Check all Python versions and OS with verified build status](https://travis-ci.org/ktmeaton/NCBImeta)
+* NCBImeta is written in Python 3 and supported on Linux and macOS.
+* Dependencies that will be installed are listed in [requirements.txt](https://github.com/ktmeaton/NCBImeta/blob/master/requirements.txt).
+* [Check all Python versions and OS with verified build status](https://github.com/ktmeaton/NCBImeta/actions?query=workflow%3ABuilding+branch%3Amaster)
 
 Conda is the recommended installation method. To install with pip or setuptools, ```gcc``` is required.
 
@@ -33,22 +34,16 @@ conda install -c bioconda ncbimeta
 
 ### 2. PyPI
 
-PyPI installation is currently under development! Please use the Bioconda or Source options for now.
-NCBImeta can be install with pip using:
+```bash
+pip install ncbimeta
+```
+
+### 3. Github
 
 ```bash
 git clone https://github.com/ktmeaton/NCBImeta.git
 cd NCBImeta
 pip install .
-```
-
-
-### 3. Source
-
-```bash
-git clone https://github.com/ktmeaton/NCBImeta.git
-cd NCBImeta
-python setup.py install
 ```
 
 Test that the installation was successful:
@@ -81,7 +76,6 @@ NCBImeta.py --flat --config example/config.yaml
 Example output of the command-line interface (v0.6.1):
 [![asciicast](https://asciinema.org/a/289560.svg)](https://asciinema.org/a/289560)
 
-
 ### Annotate the database with the user's custom metadata
 
 ```bash
@@ -104,7 +98,6 @@ NCBImetaJoin.py --database example/yersinia_pestis_db.sqlite --final Master --an
 
 The rows of the output "Master" table will be from the anchor table "BioSample", with additional columns added in from the accessory tables "BioProject", "Assembly", "SRA", and "Nucleotide". Unique accession numbers for BioSample (both primary and secondary) and BioProject allow this join to be unambiguous.
 
-
 ### Export the database to tab-separated text files by table.
 
 ```bash
@@ -114,8 +107,9 @@ NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir examp
 Each table within the database will be exported to its own tab-separated .txt file in the specified output directory.
 
 ### Explore!
+
 1. Explore your database text files using a spreadsheet viewer (Microsoft Excel, Google Sheets, etc.)
-2. Browse your SQLite database using DB Browser for SQLite (https://sqlitebrowser.org/)
+2. Browse your SQLite database using DB Browser for SQLite (<https://sqlitebrowser.org/>)
 3. Use the columns with FTP links to download your data files of interest.
 
 Example database output (a subset of the BioSample table)
@@ -123,18 +117,18 @@ Example database output (a subset of the BioSample table)
 <img src="https://raw.githubusercontent.com/ktmeaton/NCBImeta/master/images/NCBImetaDB.gif" alt="NCBImetaDB" width="700px"/>
 
 ## Currently Supported NCBI Tables
-- Assembly
-- BioProject
-- BioSample
-- Nucleotide
-- SRA
-- Pubmed
+
+* Assembly
+* BioProject
+* BioSample
+* Nucleotide
+* SRA
+* Pubmed
 
 ## Upcoming Features
 
-- [Project v0.6.6 - "PyPI Requirements Bug"](https://github.com/ktmeaton/NCBImeta/projects/8): Deployment Bug Fixes - DEVELOPMENT
-- Project v0.6.7
-- Project v0.6.x
+* [Project v0.6.6 - "PyPI Requirements Bug"](https://github.com/ktmeaton/NCBImeta/projects/8): Deployment and Linting - RELEASED
+* [Project v0.6.7 - "Read The Docs"](https://github.com/ktmeaton/NCBImeta/projects/7): Documentation Overhaul - DEVELOPMENT
 
 ## Documentation
 
@@ -143,7 +137,6 @@ To get started with customizing the search terms, database, and metadata fields,
 1. [Config File README](https://github.com/ktmeaton/NCBImeta/blob/master/config/README_config.md)
 2. [Schema File README](https://github.com/ktmeaton/NCBImeta/blob/master/schema/README_schema.md)
 
-
 ## Issues, Questions, and Suggestions
 
 Please submit your questions, suggestions, and bug reports to the
@@ -151,45 +144,17 @@ Please submit your questions, suggestions, and bug reports to the
 
 Please do not hesitate to post any manner of curiosity in the "Issues" tracker :) User-feedback and ideas are the most valuable resource for emerging software.
 
-
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request!
+Want to add features and fix bugs? Check out the [Contributor's Guide](https://github.com/ktmeaton/NCBImeta/.github/CONTRIBUTING.md) for suggestions on getting started.
 
 ## Community
 
 GitHub not your style? Join the [NCBImeta Slack Group](https://join.slack.com/t/ncbimeta/shared_invite/zt-crbtn51t-bdQKeBqz6Nkmj~hgU8ZZFA) to see release alerts, chat with other users, and get insider perspective on development.
 
-## Contributing
-
-1. Fork it!
-
-Clone the repository
-
-```bash
-git clone https://github.com/ktmeaton/NCBImeta.git
-cd NCBImeta
-```
-
-Install dependencies, including developer pre-requesities.
-
-```bash
-pip install .[dev]
-```
-
-Install pre-commit hooks for linting and formatting misc.
-
-```
-pre-commit install
-```
-
 ## Citation
 
-Eaton, K. (2020). NCBImeta: efficient and comprehensive metadata retrieval from NCBI databases. Journal of Open Source Software, 5(46), 1990, https://doi.org/10.21105/joss.01990
+Eaton, K. (2020). NCBImeta: efficient and comprehensive metadata retrieval from NCBI databases. Journal of Open Source Software, 5(46), 1990, <https://doi.org/10.21105/joss.01990>
 
 ## Credits
 

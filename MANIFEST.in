@@ -1,3 +1,4 @@
 include *.md
 include *.txt
 include LICENSE
+recursive-exclude test *

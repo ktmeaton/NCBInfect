@@ -3,13 +3,11 @@
 NCBImeta Utility Functions
 
 @author: Katherine Eaton
-
-Formatting: black, flake8
 """
 
-# -----------------------------------------------------------------------#
-#                         Modules and Packages                           #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                         Modules and Packages                                 #
+# -----------------------------------------------------------------------------#
 
 import os  # Filepath operations
 from ncbimeta import NCBImetaErrors  # NCBImeta Error classes
@@ -17,9 +15,9 @@ import urllib.error  # HTTP Error Catching
 import time  # Allow sleeping of processes
 from lxml import etree  # XML Parsing
 
-# -----------------------------------------------------------------------#
-#                         Utility Functions                              #
-# -----------------------------------------------------------------------#
+# -----------------------------------------------------------------------------#
+#                         Utility Functions                                    #
+# -----------------------------------------------------------------------------#
 
 
 def check_accessory_dir(output_dir):
@@ -115,9 +113,9 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
     """
     # Xpath query (could be tag or attribute)
     tag_xpath = ".//" + current_tag
-    # ------------------------------------------------------------------------#
-    #                   Recursion Bottom (End of Search List)                 #
-    # ------------------------------------------------------------------------#
+    # -------------------------------------------------------------------------#
+    #                   Recursion Bottom (End of Search List)                  #
+    # -------------------------------------------------------------------------#
     if search_list.index(current_tag) == len(search_list) - 1:
         # --- First try the current_tag as attribute ---#
         try:
@@ -142,9 +140,9 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
                     xml_dict[column_name].append(result[0].tag)
         except IndexError:
             pass
-    # ------------------------------------------------------------------------#
-    #                                 Ongoing Recursion                       #
-    # ------------------------------------------------------------------------#
+    # -------------------------------------------------------------------------#
+    #                                 Ongoing Recursion                        #
+    # -------------------------------------------------------------------------#
     else:
         # First try current_tag as node, allowing multiple results
         search_results = xml_root.findall(tag_xpath)
@@ -163,7 +161,8 @@ def xml_search(xml_root, search_list, current_tag, column_name, xml_dict):
                 .replace(close_char, ">")
                 .strip()
             )
-            xml_root_string = str(xml_root_string).replace("\\n", "").replace("\\t", "")
+            xml_root_string = str(xml_root_string).replace("\\n", "")
+            xml_root_string = xml_root_string.replace("\\t", "")
             # Strip off the first 2 char (b') and the final char '
             # print(xml_root_string)
             try:
