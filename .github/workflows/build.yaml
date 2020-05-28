@@ -1,6 +1,9 @@
 name: Build
 #This is a building workflow, triggered on any push or pull-request.
 
+env:
+    NCBIMETA_VER: 0.6.6.dev0
+
 on:
   # Triggered on Push for all branches
   push:
@@ -99,21 +102,23 @@ jobs:
           conda install -c bioconda ncbimeta
           NCBImeta.py --version
 
-  # PyPI Repository Install
-  #pip_build_ubuntu_py:
-  #  runs-on: ubuntu-latest
-  #  strategy:
-  #    matrix:
-  #      python-version: [3.5, 3.6, 3.7, 3.8]
-  #  steps:
-  #    - uses: actions/checkout@v2
-  #    # Setup the difference versions of python
-  #    - name: Python Setup ${{ matrix.python-version }}
-  #      uses: actions/setup-python@v1
-  #      with:
-  #        python-version: ${{ matrix.python-version }}
-  #    # Install the main program with pip
-  #    - name: Install Main
-  #      run: |
-  #        pip install ncbimeta
-  #        NCBImeta.py --version
+  #----------------------------------------------------------------------------#
+  #                          PyPI Repository Install                           #
+  #----------------------------------------------------------------------------#
+  pypi_build_ubuntu_py:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8]
+    steps:
+      - uses: actions/checkout@v2
+      # Setup the difference versions of python
+      - name: Python Setup ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      # Install the main program from PyPI
+      - name: Install Main
+        run: |
+          pip install ncbimeta==${{ env.NCBIMETA_VER }}
+          NCBImeta.py --version
