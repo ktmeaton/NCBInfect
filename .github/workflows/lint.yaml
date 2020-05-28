@@ -22,7 +22,7 @@ on:
     branches:
       - '*'
   release:
-    types: [created]
+    types: [published]
 
 jobs:
 
