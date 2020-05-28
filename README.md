@@ -20,7 +20,7 @@ NCBImeta is a command-line application that retrieves and organizes metadata fro
 * Dependencies that will be installed are listed in [requirements.txt](https://github.com/ktmeaton/NCBImeta/blob/master/requirements.txt).
 * [Check all Python versions and OS with verified build status](https://github.com/ktmeaton/NCBImeta/actions?query=workflow%3ABuilding+branch%3Amaster)
 
-Conda is the recommended installation method. To install with pip or setuptools, ```gcc``` is required.
+Conda is the recommended installation method. To install with pip, ```gcc``` is required.
 
 ## Installation
 
