@@ -21,6 +21,8 @@ on:
   pull_request:
     branches:
       - '*'
+  release:
+    types: [created]
 
 jobs:
 
