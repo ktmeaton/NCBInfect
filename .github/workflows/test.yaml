@@ -21,8 +21,6 @@ on:
       - '*'
   release:
     types: [published]
-  tags:
-    - v*
 
 jobs:
 

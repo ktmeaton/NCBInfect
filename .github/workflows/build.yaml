@@ -2,7 +2,7 @@ name: Build
 #This is a building workflow, triggered on any push or pull-request.
 
 on:
-  # Triggered on Push for all branches
+  # Triggered on Push for all branches and all tags
   push:
     branches:
       - '*'
