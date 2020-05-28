@@ -73,4 +73,16 @@ jobs:
         run: |
           flake8 . --config ${GITHUB_WORKSPACE}/setup.cfg
 
-  # YAML Lint To-Do
+  # YAML lint template from nf-core eager to trial
+  yaml_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+      - name: Install yaml-lint
+        run: npm install -g yaml-lint
+
+      - name: Run yaml-lint
+        run: yamllint $(find ${GITHUB_WORKSPACE} -type f -name "*.yaml")
