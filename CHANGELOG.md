@@ -12,7 +12,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - error check the "for \_index" in NCBImeta.py
 - migrate documentation to Read The Docs
 
-## [v0.6.6] - 2020-0527 - PyPI and Linting
+## [v0.6.6] - 2020-0528 - PyPI Fix and Contributor's Guide
 
 ### Added
 
@@ -304,7 +304,8 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 - Repository migrated from GenomeCollector
 
 [Development]: https://github.com/ktmeaton/NCBImeta/compare/HEAD...dev
-[v0.6.5]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.5...HEAD
+[v0.6.6]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.6...HEAD
+[v0.6.5]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.5...v0.6.6
 [v0.6.4]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.4...v0.6.5
 [v0.6.3]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.3...v0.6.4
 [v0.6.2]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.2...v0.6.3
