@@ -127,7 +127,7 @@ Example database output (a subset of the BioSample table)
 
 ## Upcoming Features
 
-* [Project v0.6.6 - "PyPI Requirements Bug"](https://github.com/ktmeaton/NCBImeta/projects/8): Deployment and Linting - RELEASED
+* [Project v0.6.6 - "PyPI Fix and Contributor's Guide"](https://github.com/ktmeaton/NCBImeta/projects/8): Deployment and Linting - DEVELOPMENT
 * [Project v0.6.7 - "Read The Docs"](https://github.com/ktmeaton/NCBImeta/projects/7): Documentation Overhaul - DEVELOPMENT
 
 ## Documentation
@@ -146,7 +146,7 @@ Please do not hesitate to post any manner of curiosity in the "Issues" tracker :
 
 ## Contributing
 
-Want to add features and fix bugs? Check out the [Contributor's Guide](https://github.com/ktmeaton/NCBImeta/.github/CONTRIBUTING.md) for suggestions on getting started.
+Want to add features and fix bugs? Check out the [Contributor's Guide](https://github.com/ktmeaton/NCBImeta/blob/master/.github/CONTRIBUTING.md) for suggestions on getting started.
 
 ## Community
 

@@ -2,7 +2,7 @@
 
 Thank you for contributing to NCBImeta! Please fill in the checklist below.
 
-* [ ] I have read the [Contributor's Guide](https://github.com/ktmeaton/NCBImeta/.github/CONTRIBUTING.md).
+* [ ] I have read the [Contributor's Guide](https://github.com/ktmeaton/NCBImeta/blob/master/.github/CONTRIBUTING.md).
 
 ## Submission Type
 
