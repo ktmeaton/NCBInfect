@@ -68,7 +68,6 @@ jobs:
       - name: Install flake8 dependencies
         run: |
           pip install flake8 flake8-bugbear
-          which flake8
-          flake8 --version
+          flake8 . --config ${GITHUB_WORKSPACE}/setup.cfg
 
   # YAML Lint To-Do
