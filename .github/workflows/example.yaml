@@ -6,9 +6,10 @@ on:
   push:
     branches:
       - '*'
-    # On change to workflow, example
+    # On change to workflow, example, src code
     paths:
       - '.github/workflows/example.yaml*'
+      - 'ncbimeta/*.py'
       - 'example/*'
 
   # Triggered on PR for all branches, any file
