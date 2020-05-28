@@ -68,6 +68,7 @@ jobs:
       - name: Install flake8 dependencies
         run: |
           pip install flake8 flake8-bugbear
+          which flake8
           flake8 --version
 
   # YAML Lint To-Do
