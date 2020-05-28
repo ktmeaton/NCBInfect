@@ -20,7 +20,8 @@ jobs:
         python-version: '3.5'
     - name: Install dependencies
       run: |
-        pip install setuptools wheel twine
+        pip install --upgrade pip
+        pip install --upgrade setuptools wheel twine
     - name: Build and Deploy
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
