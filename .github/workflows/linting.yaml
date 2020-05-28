@@ -39,24 +39,6 @@ jobs:
       - name: pre-commit Linting
         run: pre-commit run --all-files
 
-  # Use the template python package linting
-  python_lint:
-    needs: pre_commit
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.x'
-      - name: Install flake8
-        run: |
-          pip install flake8
-          flake8 --version
-      #- name: Lint with flake8
-      #  run: |
-      #    flake8 ${GITHUB_WORKSPACE} --config ${GITHUB_WORKSPACE}/setup.cfg
-
   # Markdown template from nf-core eager to trial
   markdown_lint:
     needs: pre_commit
