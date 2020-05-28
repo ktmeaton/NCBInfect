@@ -32,6 +32,7 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: '3.x'
+
       - name: Install pre-commit Dependencies
         run: |
           pip install pre-commit
@@ -45,7 +46,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up NPM
       - uses: actions/setup-node@v1
         with:
           node-version: '10'
