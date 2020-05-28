@@ -145,7 +145,7 @@ Please do not hesitate to post any manner of curiosity in the "Issues" tracker :
 
 ## Contributing
 
-Want to add features and fix bugs? Check out the [Contributor's Guide](https://github.com/ktmeaton/NCBImeta/contribute.md) for suggestions on getting started.
+Want to add features and fix bugs? Check out the [Contributor's Guide](https://github.com/ktmeaton/NCBImeta/.github/CONTRIBUTE.md) for suggestions on getting started.
 
 ## Community
 
