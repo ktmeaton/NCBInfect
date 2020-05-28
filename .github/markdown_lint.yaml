@@ -3,8 +3,9 @@ default: true,
 line-length: false
 no-trailing-punctuation: false
 no-duplicate-header:
-    siblings_only: true
+  siblings_only: true
+no-trailing-spaces:
+  br_spaces: 2
 no-inline-html:
-    allowed_elements:
-        - img
-        - p
+  allowed_elements:
+    - img

@@ -24,6 +24,7 @@ repos:
     rev: v2.4.0
     hooks:
       - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
         exclude: paper/*
       - id: end-of-file-fixer
       - id: check-yaml
