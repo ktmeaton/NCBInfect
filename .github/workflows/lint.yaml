@@ -42,6 +42,7 @@ jobs:
 
   # Markdown template from nf-core eager to trial
   markdown_lint:
+    needs: pre_commit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -55,6 +56,7 @@ jobs:
 
   # Python lint with flake8 bugbear extension
   python_lint:
+    needs: pre_commit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -73,6 +75,7 @@ jobs:
 
   # YAML lint template from nf-core eager to trial
   yaml_lint:
+    needs: pre_commit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
