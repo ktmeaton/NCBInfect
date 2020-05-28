@@ -54,4 +54,20 @@ jobs:
       - name: Run Markdownlint
         run: markdownlint ${GITHUB_WORKSPACE} --config ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml --ignore paper/
 
+  # Python lint with flake8 bugbear extension
+  python_lint:
+    needs: pre_commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.x'
+
+      - name: Install flake8 dependencies
+        run: |
+          pip install flake8 flake8-bugbear
+          flake8 --version
+
   # YAML Lint To-Do
