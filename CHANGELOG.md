@@ -10,15 +10,16 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - TO DO: A true quick start example, just SRA data?
 - Fetching nucleotide annotations could probably be improved with xpath xml.
 - error check the "for \_index" in NCBImeta.py
+- migrate documentation to Read The Docs
 
 ## [v0.6.6] - 2020-0527 - PyPI and Linting
 
 ### Added
 
-- MANIFEST.in to make sure requirements.txt is packaged for PyPI
+- MANIFEST.in to make sure requirements.txt is packaged for PyPI (Issue #10)
 - GitHub Actions Continuous Integration (Build, Test, Example, Linting)
 - Linting: python (black and flake8), markdown, yaml
-- pre-commit hooks, config in [setup.cfg](https://github.com/ktmeaton/NCBImeta/setup.cfg) and [mardkown_lint.yaml](https://github.com/ktmeaton/NCBImeta/.github/markdown_lint.yaml).
+- pre-commit hooks, config in [setup.cfg](https://github.com/ktmeaton/NCBImeta/setup.cfg) and [markdown_lint.yaml](https://github.com/ktmeaton/NCBImeta/.github/markdown_lint.yaml).
 - [Contributor's Guide](https://github.com/ktmeaton/NCBImeta/.github/CONTRIBUTING.md)
 - [Pull Request Template](https://github.com/ktmeaton/NCBImeta/.github/PULL_REQUEST_TEMPLATE/pull_request_template.md)
 
