@@ -61,7 +61,7 @@ mandatory.add_argument(
     required=True,
 )
 
-parser.add_argument("--version", action="version", version="%(prog)s v0.6.6")
+parser.add_argument("--version", action="version", version="%(prog)s v0.6.7a")
 args = vars(parser.parse_args())
 
 db_name = args["dbName"]

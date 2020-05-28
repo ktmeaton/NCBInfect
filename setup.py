@@ -8,7 +8,7 @@ with open("requirements.txt", "r") as r:
 
 setuptools.setup(
     name="NCBImeta",
-    version="0.6.6",
+    version="0.6.7a",
     description=(
         "Efficient and comprehensive metadata acquisition "
         "from the NCBI databases (includes SRA)."
