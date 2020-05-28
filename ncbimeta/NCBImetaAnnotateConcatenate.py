@@ -62,7 +62,7 @@ mandatory.add_argument(
     required=True,
 )
 
-parser.add_argument("--version", action="version", version="%(prog)s v0.6.7a")
+parser.add_argument("--version", action="version", version="%(prog)s v0.6.7a1")
 
 
 args = vars(parser.parse_args())
