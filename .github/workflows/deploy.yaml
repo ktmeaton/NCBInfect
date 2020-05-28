@@ -6,8 +6,9 @@ name: Deploy
 on:
   release:
     types: [published]
-  tags:
-    - v*
+  push:
+    tags:
+      - v*
 
 jobs:
   deploy:

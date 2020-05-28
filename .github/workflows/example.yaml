@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - '*'
+    tags:
+      - v*
     # On change to workflow, example
     paths:
       - '.github/workflows/example.yaml*'

@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - '*'
+    tags:
+      - v*
     # On change to workflow, markdown, python
     paths:
       - '.github/workflows/*.yaml'

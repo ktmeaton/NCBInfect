@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - '*'
+    tags:
+      - v*
     # On change to workflow, example, src code, test, requirements
     paths:
       - '.github/workflows/build.yaml*'
@@ -21,8 +23,6 @@ on:
       - '*'
   release:
     types: [published]
-  tags:
-    - v*
 
 jobs:
   #----------------------------------------------------------------------------#
