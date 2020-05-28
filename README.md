@@ -34,21 +34,16 @@ conda install -c bioconda ncbimeta
 
 ### 2. PyPI
 
-PyPI installation is currently under development! Please use the Bioconda or Source options for now.
-NCBImeta can be install with pip using:
+```bash
+pip install ncbimeta
+```
+
+### 3. Github
 
 ```bash
 git clone https://github.com/ktmeaton/NCBImeta.git
 cd NCBImeta
 pip install .
-```
-
-### 3. Source
-
-```bash
-git clone https://github.com/ktmeaton/NCBImeta.git
-cd NCBImeta
-python setup.py install
 ```
 
 Test that the installation was successful:
@@ -132,9 +127,7 @@ Example database output (a subset of the BioSample table)
 
 ## Upcoming Features
 
-* [Project v0.6.6 - "PyPI Requirements Bug"](https://github.com/ktmeaton/NCBImeta/projects/8): Deployment Bug Fixes - DEVELOPMENT
-* Project v0.6.7
-* Project v0.6.x
+* [Project v0.6.6 - "PyPI Requirements Bug"](https://github.com/ktmeaton/NCBImeta/projects/8): Deployment and Linting - DEVELOPMENT
 
 ## Documentation
 
