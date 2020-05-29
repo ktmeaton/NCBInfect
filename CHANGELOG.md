@@ -11,6 +11,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Fetching nucleotide annotations could probably be improved with xpath xml.
 - error check the "for \_index" in NCBImeta.py
 - migrate documentation to Read The Docs
+- Add additional contributors to README
 
 ## [v0.6.6] - 2020-0528 - PyPI Fix and Contributor's Guide
 
