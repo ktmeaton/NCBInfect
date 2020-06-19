@@ -1,5 +1,6 @@
 # This is the database schema for NCBI BioSample
 # To customize, consult README_schema.md
+# https://www-ncbi-nlm-nih-gov.libaccess.lib.mcmaster.ca/biosample/docs/attributes/
 
 # Keyword Tips
 # Only records used by SRA:

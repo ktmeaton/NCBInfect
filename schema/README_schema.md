@@ -161,3 +161,5 @@ When NCBImeta.py is run now, it will print out the xml for each record. It is re
 ```bash
 NCBImeta.py --config example/config.yaml > config_xml_output.txt
 ```
+
+Also please read through <https://www-ncbi-nlm-nih-gov.libaccess.lib.mcmaster.ca/biosample/docs/attributes/> for the BioSample database attributes.
