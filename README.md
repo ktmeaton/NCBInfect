@@ -159,5 +159,6 @@ Eaton, K. (2020). NCBImeta: efficient and comprehensive metadata retrieval from 
 ## Credits
 
 Author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)
+Logo Assets: <https://www.pexels.com/>, <https://unsplash.com/>, [Free Google Slides Templates](https://freegoogleslidestemplates.com/)
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
