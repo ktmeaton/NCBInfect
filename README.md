@@ -1,4 +1,4 @@
-# NCBImeta
+# ![ktmeaton/NCBImeta](https://raw.githubusercontent.com/ktmeaton/NCBImeta/master/docs/images/ncbimeta-logo.png)
 
 **Efficient and comprehensive metadata acquisition from NCBI databases (includes SRA).**
 
