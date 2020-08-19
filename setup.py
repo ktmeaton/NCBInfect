@@ -38,6 +38,9 @@ setuptools.setup(
             "sphinx",
             "sphinx-rtd-theme",
             "m2r",
+            "flake8",
+            "flake8-bugbear",
+            "black",
         ]
     },
     scripts=[
