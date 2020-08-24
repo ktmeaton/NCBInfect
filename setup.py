@@ -34,7 +34,7 @@ setuptools.setup(
             "pytest-cov",
             "check-manifest",
             "twine",
-            "pre-commit",
+            "pre-commit<=2.6.0",
             "sphinx",
             "sphinx-rtd-theme",
             "m2r",
