@@ -85,7 +85,7 @@ def assembly_table_data():
         "",
         "SCPM-O-DNA-18 (I-3113)",
         "",
-        "Yersinia pestis (enterobacteria)",
+        "Yersinia pestis (g-proteobacteria)",
         "632",
         "Yersinia pestis",
         "632",
