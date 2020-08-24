@@ -29,9 +29,10 @@ setuptools.setup(
     install_requires=require_list,  # external packages as dependencies
     extras_require={
         "dev": [
-            "coverage",
-            "pytest",
-            "pytest-cov",
+            "coverage==4.5.4",
+            "codecov==2.0.15",
+            "pytest==5.3.1",
+            "pytest-cov==2.8.1",
             "check-manifest",
             "twine",
             "pre-commit<=2.6.0",
