@@ -13,6 +13,23 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - migrate documentation to Read The Docs
 - Add additional contributors to README
 
+## [v0.6.7] - 2020-0824 - Dependency Updates
+
+### Branches
+
+- typeerror
+
+### Changed
+
+- Restrict biopython to >=1.74,<1.77 because of Issue (#13)
+- Restrict pre-commit dependency.
+- Updated and moved PR template.
+- Updated Contributor's Guideline
+
+### Removed
+
+- Remove Python 3.5 support because of incompatibility with black.
+
 ## [v0.6.6] - 2020-0528 - PyPI Fix and Contributor's Guide
 
 ### Added
