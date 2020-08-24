@@ -128,7 +128,8 @@ Example database output (a subset of the BioSample table)
 ## Upcoming Features
 
 * [Project v0.6.6 - "PyPI Fix and Contributor's Guide"](https://github.com/ktmeaton/NCBImeta/projects/8): Deployment and Linting - RELEASED
-* [Project "Read The Docs"](https://github.com/ktmeaton/NCBImeta/projects/7): Documentation Overhaul - DEVELOPMENT
+* [Project v0.7.0 - "Strict Version Control"](https://github.com/ktmeaton/NCBImeta/projects/9): Version Control All Dependencies - DEV
+* [Project "Read The Docs"](https://github.com/ktmeaton/NCBImeta/projects/7): Documentation Overhaul - PLANNED
 
 ## Documentation
 

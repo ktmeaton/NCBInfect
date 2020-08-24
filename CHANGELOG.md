@@ -14,7 +14,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Add additional contributors to README
 - Allow yaml parameters to be specified at run time (email, api key, force pause seconds)
 
-## [v0.7.0] - 2020-0824 - Tight Version Control
+## [v0.7.0] - 2020-0824 - Strict Version Control
 
 ### Branches
 
@@ -322,8 +322,9 @@ Jumps directly from v0.5.0 to v0.6.0 because changes are significant enough to b
 
 - Repository migrated from GenomeCollector
 
-[Development]: https://github.com/ktmeaton/NCBImeta/compare/HEAD...dev
-[v0.6.6]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.6...HEAD
+[In Development]: https://github.com/ktmeaton/NCBImeta/compare/HEAD...dev
+[v0.7.0]: https://github.com/ktmeaton/NCBImeta/compare/HEAD...dev
+[v0.6.6]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.6...dev
 [v0.6.5]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.5...v0.6.6
 [v0.6.4]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.4...v0.6.5
 [v0.6.3]: https://github.com/ktmeaton/NCBImeta/compare/v0.6.3...v0.6.4
