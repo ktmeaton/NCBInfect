@@ -105,5 +105,7 @@ jobs:
           node-version: '10'
       - name: Install linter
         run: npm install -g yaml-lint
+      #------------------------------------------------------------------------#
+      # Run yaml linter
       - name: Run yaml-lint
         run: yamllint $(find ${GITHUB_WORKSPACE} -type f -name "*.yaml")
