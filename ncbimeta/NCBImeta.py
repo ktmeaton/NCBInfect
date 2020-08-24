@@ -53,7 +53,7 @@ parser.add_argument(
     dest="flatMode",
 )
 
-parser.add_argument("--version", action="version", version="%(prog)s v0.6.7dev")
+parser.add_argument("--version", action="version", version="%(prog)s v0.7.0dev")
 
 # Retrieve user parameters
 args = vars(parser.parse_args())

@@ -8,7 +8,7 @@ with open("requirements.txt", "r") as r:
 
 setuptools.setup(
     name="NCBImeta",
-    version="0.6.7dev",
+    version="0.7.0dev",
     description=(
         "Efficient and comprehensive metadata acquisition "
         "from the NCBI databases (includes SRA)."
@@ -33,15 +33,15 @@ setuptools.setup(
             "codecov==2.0.15",
             "pytest==5.3.1",
             "pytest-cov==2.8.1",
-            "check-manifest",
-            "twine",
+            "check-manifest==0.42",
+            "twine==3.2.0",
             "pre-commit<=2.6.0",
-            "sphinx",
-            "sphinx-rtd-theme",
-            "m2r",
-            "flake8",
-            "flake8-bugbear",
-            "black",
+            "sphinx==3.2.1",
+            "sphinx-rtd-theme==0.5.0",
+            "m2r==0.2.1",
+            "flake8==3.8.3",
+            "flake8-bugbear==20.1.4",
+            "black==19.10b0",
         ]
     },
     scripts=[
