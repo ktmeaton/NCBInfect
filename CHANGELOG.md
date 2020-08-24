@@ -20,6 +20,13 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 
 - typeerror
 
+### Added
+
+- Allow the following config parameters to be specified at run-time:  
+  - --email
+  - --api
+  - --force-pause-seconds
+
 ### Changed
 
 - Restrict biopython to >=1.74,<1.77 because of Issue (#13)
@@ -30,6 +37,7 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 ### Removed
 
 - Remove Python 3.5 support because of incompatibility with black.
+- Printing out the user email and API key to stdout.
 
 ## [v0.6.6] - 2020-0528 - PyPI Fix and Contributor's Guide
 
