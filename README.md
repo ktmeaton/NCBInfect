@@ -18,7 +18,7 @@ NCBImeta is a command-line application that retrieves and organizes metadata fro
 
 * NCBImeta is written in Python 3 and supported on Linux and macOS.
 * Dependencies that will be installed are listed in [requirements.txt](https://github.com/ktmeaton/NCBImeta/blob/master/requirements.txt).
-* [Check all Python versions and OS with verified build status](https://github.com/ktmeaton/NCBImeta/actions?query=workflow%3ABuilding+branch%3Amaster)
+* [Check all Python versions and OS with verified build status](https://github.com/ktmeaton/NCBImeta/actions?query=workflow%3ABuild+branch%3Amaster)
 
 [Conda](https://docs.conda.io/en/latest/miniconda.html) is the recommended installation method. To install with pip, ```gcc``` is required.
 
@@ -128,7 +128,7 @@ Example database output (a subset of the BioSample table)
 ## Upcoming Features
 
 * [Project v0.6.6 - "PyPI Fix and Contributor's Guide"](https://github.com/ktmeaton/NCBImeta/projects/8): Deployment and Linting - RELEASED
-* [Project v0.6.7 - "Read The Docs"](https://github.com/ktmeaton/NCBImeta/projects/7): Documentation Overhaul - DEVELOPMENT
+* [Project "Read The Docs"](https://github.com/ktmeaton/NCBImeta/projects/7): Documentation Overhaul - DEVELOPMENT
 
 ## Documentation
 

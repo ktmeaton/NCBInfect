@@ -1,32 +1,39 @@
-# This workflows will upload a Python Package using Twine when a release is created
-# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
-
+#------------------------------------------------------------------------------#
 name: Deploy
-
+#------------------------------------------------------------------------------#
+# Workflow conditions
 on:
   release:
     types: [published]
-
+#------------------------------------------------------------------------------#
 jobs:
+  #----------------------------------------------------------------------------#
+  # Deploy package with twine
   deploy:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v1
-      with:
-        python-version: '3.5'
-    - name: Install dependencies
-      run: |
-        pip install --upgrade pip
-        pip install --upgrade setuptools wheel twine
-    - name: Build and Deploy
-      env:
-        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      run: |
-        python setup.py sdist bdist_wheel
-        twine upload dist/*
-        # twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+      #------------------------------------------------------------------------#
+      # Checkout repo
+      - uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      # Deploy with sepecified python ver
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+      #------------------------------------------------------------------------#
+      # Install deployment dependencies
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install --upgrade setuptools wheel twine
+      #------------------------------------------------------------------------#
+      # Build and deploy with twine
+      - name: Build and Deploy
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: |
+          python setup.py sdist bdist_wheel
+          twine upload dist/*
+          # twine upload --repository-url https://test.pypi.org/legacy/ dist/*

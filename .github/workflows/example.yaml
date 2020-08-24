@@ -1,49 +1,54 @@
+#------------------------------------------------------------------------------#
 name: Example
-#This is a workflow for the quick-start example, triggered on a push or pull-request.
-
+#------------------------------------------------------------------------------#
+# Workflow conditions
 on:
-  # Triggered on Push for all branches and all tags
   push:
     branches:
-      - '*'
-    # On change to workflow, example, src code
+      - 'master'
+      - 'dev'
     paths:
       - '.github/workflows/example.yaml*'
       - 'ncbimeta/*.py'
       - 'example/*'
-
-  # Triggered on PR for all branches, any file
+      - 'requirements.py'
+      - 'setup.py'
   pull_request:
     branches:
       - '*'
   release:
     types: [published]
-
+#------------------------------------------------------------------------------#
 jobs:
-
+#------------------------------------------------------------------------------#
   example:
     runs-on: ubuntu-latest
+    # Test across multiple versions of python
     strategy:
       matrix:
-        python-version: [3.5, 3.6, 3.7, 3.8]
-
+        python-version: [3.6, 3.7, 3.8]
     steps:
-    - uses: actions/checkout@v2
-    - name: Python Setup ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python-version }}
-
-    - name: Installation
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install .
-
-    - name: Quick Start Example
-      run: |
-        NCBImeta.py --flat --config example/config.yaml
-        NCBImetaAnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
-        NCBImetaAnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
-        NCBImetaJoin.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
-        NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/
+      #------------------------------------------------------------------------#
+      # Checkout repo
+      - uses: actions/checkout@v2
+      #------------------------------------------------------------------------#
+      # Deploy with sepecified python ver
+      - name: Python Setup ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      #------------------------------------------------------------------------#
+      # Install dependencies and program
+      - name: Installation
+        run: |
+          python -m pip install --upgrade pip
+          pip install .
+      #------------------------------------------------------------------------#
+      # Run the quick start example
+      - name: Quick Start Example
+        run: |
+          NCBImeta.py --flat --config example/config.yaml
+          NCBImetaAnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
+          NCBImetaAnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
+          NCBImetaJoin.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"
+          NCBImetaExport.py --database example/yersinia_pestis_db.sqlite --outputdir example/

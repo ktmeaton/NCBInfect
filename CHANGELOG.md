@@ -12,6 +12,24 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - error check the "for \_index" in NCBImeta.py
 - migrate documentation to Read The Docs
 - Add additional contributors to README
+- Allow yaml parameters to be specified at run time (email, api key, force pause seconds)
+
+## [v0.7.0] - 2020-0824 - Tight Version Control
+
+### Branches
+
+- typeerror
+
+### Changed
+
+- Restrict biopython to >=1.74,<1.77 because of Issue (#13)
+- Specify versions for all user and dev dependencies.
+- Updated and moved PR template.
+- Updated Contributor's Guideline
+
+### Removed
+
+- Remove Python 3.5 support because of incompatibility with black.
 
 ## [v0.6.6] - 2020-0528 - PyPI Fix and Contributor's Guide
 

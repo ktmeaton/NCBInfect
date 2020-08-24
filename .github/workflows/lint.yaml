@@ -1,12 +1,12 @@
 #------------------------------------------------------------------------------#
 name: Lint
-#This is a workflow for linting
 #------------------------------------------------------------------------------#
 # Workflow conditions
 on:
   push:
     branches:
-      - '*'
+      - 'master'
+      - 'dev'
     paths:
       - '.github/workflows/*.yaml'
       - '.github/*.yaml'
@@ -25,7 +25,7 @@ on:
 #------------------------------------------------------------------------------#
 jobs:
   #----------------------------------------------------------------------------#
-  # Pre-commit project linters
+  # Check the pre-commit linters
   pre_commit:
     runs-on: ubuntu-latest
     steps:
@@ -38,18 +38,16 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: '3.7'
-      #------------------------------------------------------------------------#
-      # Install pre-commit and linters
-      - name: Install pre-commit
+      - name: Install pre-commit with dev mode
         run: |
-          pip install pre-commit
+          pip install .[dev]
           pre-commit install-hooks
       #------------------------------------------------------------------------#
       # Lint all files
       - name: pre-commit Linting
         run: pre-commit run --all-files
   #----------------------------------------------------------------------------#
-  # Markdown template from nf-core eager to trial
+  # Check markdown linter
   markdown_lint:
     needs: pre_commit
     runs-on: ubuntu-latest
@@ -69,7 +67,7 @@ jobs:
       - name: Run Markdownlint
         run: markdownlint ${GITHUB_WORKSPACE} --config ${GITHUB_WORKSPACE}/.github/markdown_lint.yaml --ignore paper/
   #----------------------------------------------------------------------------#
-  # Python lint with black and flake8 bugbear extension
+  # Check python linters
   python_lint:
     needs: pre_commit
     runs-on: ubuntu-latest
@@ -91,7 +89,6 @@ jobs:
         run: |
           black $(find ${GITHUB_WORKSPACE} -type f -name "*.py")
           flake8 --config ${GITHUB_WORKSPACE}/setup.cfg $(find ${GITHUB_WORKSPACE} -type f -name "*.py")
-
   #----------------------------------------------------------------------------#
   # YAML lint template from nf-core eager to trial
   yaml_lint:
