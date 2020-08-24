@@ -15,6 +15,7 @@ import os  # Filepath and directory operations
 import sqlite3  # Database storage and queries
 from lxml import etree  # XML Parsing
 from Bio import Entrez  # Entrez queries (NCBI)
+import subprocess  # Execute CLI/Shell
 
 # -----------------------------------------------------------------------------#
 #                           Test Function                                      #
@@ -316,3 +317,32 @@ def test_adv_xml_search_multibad():
         NCBImetaUtilities.adv_xml_search(
             test_xml_root, test_xpath, test_column_name, test_xml_dict
         )
+
+
+def test_cli_api_key_bad():
+    """Test if a bad API key was supplied."""
+    # Use the stripped down testing config file
+    config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test.yaml")
+    test_email = "myusername@domain.com"
+    test_api_key = "abcd123"
+    test_force_pause_seconds = "2"
+    test_cmd = " ".join(
+        [
+            "ncbimeta/NCBImeta.py --config ",
+            config_file,
+            "--api",
+            test_api_key,
+            "--email",
+            test_email,
+            "--force-pause-seconds",
+            test_force_pause_seconds,
+        ]
+    )
+    # Use a try-catch with the sub-process of module
+    try:
+        subprocess.check_output(test_cmd, shell=True, stderr=subprocess.STDOUT)
+        # If an exception isn't raise then the assertion fails (0)
+        assert 0
+    except subprocess.CalledProcessError as e:
+        # If the right error is raise, it's Error Class is in the output
+        assert "ErrorMaxFetchAttemptsExceeded" in str(e.output)

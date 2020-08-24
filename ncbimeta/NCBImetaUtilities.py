@@ -270,7 +270,7 @@ def HTTPErrorCatch(http_method, max_fetch_attempts, sleep_time, **kwargs):
 
         # If the maximum number of fetch attempts has been exceeded
         if fetch_attempts == max_fetch_attempts and not ID_handle_retrieved:
-            raise NCBImetaErrors.ErrorMaxFetchAttemptsExceeded(ID_handle)
+            raise NCBImetaErrors.ErrorMaxFetchAttemptsExceeded(str(kwargs))
 
     return ID_handle
 
