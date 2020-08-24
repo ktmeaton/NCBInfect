@@ -52,6 +52,28 @@ Test that the installation was successful:
 NCBImeta.py --version
 ```
 
+## Command-Line Parameters
+
+```text
+usage: NCBImeta.py [-h] --config CONFIGPATH [--flat] [--version]
+                   [--email USEREMAIL] [--api USERAPI]
+                   [--force-pause-seconds USERFORCEPAUSESECONDS]
+
+NCBImeta: Efficient and comprehensive metadata retrieval from the NCBI
+databases.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --config CONFIGPATH   Path to the yaml configuration file (ex. config.yaml).
+  --flat                Don't create sub-directories in output directory.
+  --version             show program's version number and exit
+  --email USEREMAIL     User email to override parameter in config file.
+  --api USERAPI         User API key to override parameter in config file.
+  --force-pause-seconds USERFORCEPAUSESECONDS
+                        FORCE PAUSE SECONDS to override parameter in config
+                        file.
+```
+
 ## Quick Start Example
 
 ### Access the quick start config file
