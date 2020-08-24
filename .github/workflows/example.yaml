@@ -26,7 +26,7 @@ jobs:
     # Test across multiple versions of python
     strategy:
       matrix:
-        python-version: [3.5, 3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8]
     steps:
       #------------------------------------------------------------------------#
       # Checkout repo
