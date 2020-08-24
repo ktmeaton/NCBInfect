@@ -1,57 +1,59 @@
+#------------------------------------------------------------------------------#
 name: Test
-#This is a workflow for unit tests.
-
+#------------------------------------------------------------------------------#
+# Workflow conditions
 on:
-  # Triggered on Push for all branches
   push:
     branches:
-      - '*'
-    # On change to workflow, example, src code, test, requirements
+      - 'master'
+      - 'dev'
     paths:
       - '.github/workflows/test.yaml*'
       - 'example/*'
       - 'ncbimeta/*.py'
       - 'test/*'
       - 'requirements.txt'
-  # Triggered on PR for all branches, any file
+      - 'setup.py'
   pull_request:
     branches:
       - '*'
   release:
     types: [published]
-
+#------------------------------------------------------------------------------#
 jobs:
-
+  #----------------------------------------------------------------------------#
   pytest:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.5, 3.6, 3.7, 3.8]
-
+    #--------------------------------------------------------------------------#
     steps:
-    - uses: actions/checkout@v2
-    - name: Python Setup ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python-version }}
-
-    - name: Installation
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install codecov==2.0.15 pytest==5.3.1 coverage==4.5.4 pytest-cov==2.8.1
-        pip install .
-
-
-    - name: PyTest Modules
-      run: |
-        python -m coverage run -m pytest --cov=ncbimeta --cov-report=xml test/test_errors.py test/test_utilities.py test/test_ncbimeta.py test/test_annotateconcatenate.py test/test_annotatereplace.py test/test_join.py test/test_export.py
-
-    - name: Codecov Upload
-      uses: codecov/codecov-action@v1
-      with:
-        file: ./coverage.xml
-        flags: unittests
-        env_vars: OS,PYTHON
-        name: codecov-umbrella
-        fail_ci_if_error: true
+      #------------------------------------------------------------------------#
+      # Checkout Repo
+      - uses: actions/checkout@v2
+      - name: Python Setup ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      #------------------------------------------------------------------------#
+      # Pip install
+      - name: Installation
+        run: |
+          python -m pip install --upgrade pip
+          pip install .[dev]
+      #------------------------------------------------------------------------#
+      # Run pytest modules
+      - name: PyTest Modules
+        run: |
+          python -m coverage run -m pytest --cov=ncbimeta --cov-report=xml test/test_errors.py test/test_utilities.py test/test_ncbimeta.py test/test_annotateconcatenate.py test/test_annotatereplace.py test/test_join.py test/test_export.py
+      #------------------------------------------------------------------------#
+      # Upload codecov report
+      - name: Codecov Upload
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          env_vars: OS,PYTHON
+          name: codecov-umbrella
+          fail_ci_if_error: true

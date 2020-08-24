@@ -1,12 +1,12 @@
+#------------------------------------------------------------------------------#
 name: Build
-#This is a building workflow, triggered on any push or pull-request.
-
+#------------------------------------------------------------------------------#
+# Workflow conditions
 on:
-  # Triggered on Push for all branches and all tags
   push:
     branches:
-      - '*'
-    # On change to workflow, example, src code, test, requirements
+      - 'master'
+      - 'dev'
     paths:
       - '.github/workflows/build.yaml*'
       - 'example/*'
@@ -15,17 +15,15 @@ on:
       - 'requirements.txt'
       - 'setup.py'
       - 'setup.cfg'
-  # Triggered on PR for all branches, any file
   pull_request:
     branches:
       - '*'
   release:
     types: [published]
-
+#------------------------------------------------------------------------------#
 jobs:
   #----------------------------------------------------------------------------#
-  #                         Ubuntu Source Build and Install                    #
-  #----------------------------------------------------------------------------#
+  # Ubuntu Source Build and Install
   source_build_ubuntu_py:
     runs-on: ubuntu-latest
     strategy:
@@ -43,10 +41,8 @@ jobs:
         run: |
           pip install .
           NCBImeta.py --version
-
   #----------------------------------------------------------------------------#
-  #                         Mac OS Source Build and Install                    #
-  #----------------------------------------------------------------------------#
+  # Mac OS Source Build and Install
   source_build_macos_py:
     runs-on: macos-latest
     strategy:
@@ -64,10 +60,8 @@ jobs:
         run: |
           pip install .
           NCBImeta.py --version
-
   #----------------------------------------------------------------------------#
-  #                              Ubuntu Conda Install                          #
-  #----------------------------------------------------------------------------#
+  # Ubuntu Conda Install
   conda_build_ubuntu:
     runs-on: ubuntu-latest
     steps:
@@ -82,10 +76,8 @@ jobs:
         run: |
           conda install -c bioconda ncbimeta
           NCBImeta.py --version
-
   #----------------------------------------------------------------------------#
-  #                             MacOS Conda Install                            #
-  #----------------------------------------------------------------------------#
+  # MacOS Conda Install
   conda_build_macos:
     runs-on: macos-latest
     steps:
@@ -100,10 +92,8 @@ jobs:
         run: |
           conda install -c bioconda ncbimeta
           NCBImeta.py --version
-
   #----------------------------------------------------------------------------#
-  #                          PyPI Repository Install                           #
-  #----------------------------------------------------------------------------#
+  # PyPI Repository Install
   pypi_build_ubuntu_py:
     runs-on: ubuntu-latest
     strategy:
