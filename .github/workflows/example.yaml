@@ -47,7 +47,7 @@ jobs:
       # Run the quick start example
       - name: Quick Start Example
         run: |
-          NCBImeta.py --flat --config example/config.yaml
+          NCBImeta.py --flat --config example/config.yaml --force-pause-seconds 0 --email ${{ secrets.NCBI_EMAIL }} --api ${{ secrets.NCBI_API_KEY }}
           NCBImetaAnnotateReplace.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
           NCBImetaAnnotateConcatenate.py --database example/yersinia_pestis_db.sqlite --annotfile example/annot.txt --table BioSample
           NCBImetaJoin.py --database example/yersinia_pestis_db.sqlite --anchor BioSample --accessory "BioProject Assembly SRA Nucleotide" --final Master --unique "BioSampleAccession BioSampleAccessionSecondary BioSampleBioProjectAccession"

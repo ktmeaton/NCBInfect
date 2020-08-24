@@ -50,16 +50,45 @@ parser.add_argument(
     "--flat",
     help="Don't create sub-directories in output directory.",
     action="store_true",
+    required=False,
     dest="flatMode",
 )
 
 parser.add_argument("--version", action="version", version="%(prog)s v0.7.0dev")
+
+parser.add_argument(
+    "--email",
+    help="User email to override parameter in config file.",
+    action="store",
+    required=False,
+    dest="userEmail",
+)
+
+parser.add_argument(
+    "--api",
+    help="User API key to override parameter in config file.",
+    action="store",
+    required=False,
+    dest="userAPI",
+)
+
+parser.add_argument(
+    "--force-pause-seconds",
+    help="FORCE PAUSE SECONDS to override parameter in config file.",
+    action="store",
+    required=False,
+    dest="userForcePauseSeconds",
+)
 
 # Retrieve user parameters
 args = vars(parser.parse_args())
 
 config_path = args["configPath"]
 flat_mode = args["flatMode"]
+user_email = args["userEmail"]
+user_api = args["userAPI"]
+user_force_pause_seconds = args["userForcePauseSeconds"]
+
 
 # -----------------------------------------------------------------------------#
 #                            Error Catching                                    #
@@ -93,12 +122,17 @@ except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("EMAIL")
 if not CONFIG_EMAIL:
     raise NCBImetaErrors.ErrorConfigParameter("EMAIL")
+# Override if specified on command-line
+if user_email:
+    CONFIG_EMAIL = user_email
 # --- User API Key ---#
 try:
     CONFIG_API_KEY = config_data["API_KEY"]
 except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("API_KEY")
-
+# Override if specified on command-line
+if user_api:
+    CONFIG_API_KEY = user_api
 # --- Force pausing in between record fetching ---#
 try:
     CONFIG_FORCE_PAUSE_SECONDS = config_data["FORCE_PAUSE_SECONDS"]
@@ -106,7 +140,9 @@ except KeyError:
     raise NCBImetaErrors.ErrorConfigParameter("FORCE_PAUSE_SECONDS")
 if CONFIG_FORCE_PAUSE_SECONDS is None:
     raise NCBImetaErrors.ErrorConfigParameter("FORCE_PAUSE_SECONDS")
-
+# Override if specified on command-line
+if user_force_pause_seconds:
+    CONFIG_FORCE_PAUSE_SECONDS = float(user_force_pause_seconds)
 # --- Database file name---#
 try:
     CONFIG_DATABASE = config_data["DATABASE"]
@@ -144,10 +180,6 @@ print(
     + str(config_path)
     + "\n\tOutput Directory: "
     + str(CONFIG_OUTPUT_DIR)
-    + "\n\tEmail: "
-    + str(CONFIG_EMAIL)
-    + "\n\tAPI Key: \t\t"
-    + str(CONFIG_API_KEY)
     + "\n\tUser Database: "
     + str(CONFIG_DATABASE)
     + "\n\tTables: "
@@ -271,7 +303,6 @@ def UpdateDB(
     table_columns(dict): Dictionary of column name and API name as value.
     log_path(str): Path to the directory where the logfile is stored in.
     db_dir(str): Path to the directory where the database is stored in.
-    api_key(str): NCBI user account API Key.
     force_pause_seconds(float): Time wait in between fetch read_attempts.
     """
 
@@ -283,10 +314,6 @@ def UpdateDB(
         + database
         + "\n\tSearch Term:\t\t"
         + search_term
-        + "\n\tEmail: \t\t\t"
-        + email
-        + "\n\tAPI Key: \t\t"
-        + api_key
         + "\n\tOutput Directory: \t"
         + output_dir
         + "\n\n",

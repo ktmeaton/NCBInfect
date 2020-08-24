@@ -127,13 +127,19 @@ def test_ErrorDBNotExists(tmpdir):
 def test_ErrorMaxFetchAttemptsExceeded():
     """Test error when maximum fetch attempts has been exceeded"""
     # This file is not created, just a tmp path
-    test_ID = "123456789"
+    test_kwargs = {
+        "db": "assembly",
+        "term": "(SAMN12991206[BioSample])",
+        "retmax": "9999999",
+    }
     # Test instantiation
-    test_error = NCBImetaErrors.ErrorMaxFetchAttemptsExceeded(test_ID)
+    test_error = NCBImetaErrors.ErrorMaxFetchAttemptsExceeded(str(test_kwargs))
     # Test str representation (error message)
     error_output = str(test_error)
     error_expect = (
-        "\n\nThe Maximum number of fetch attempts was exceeded for ID:" + "\n" + test_ID
+        "\n\nThe Maximum number of fetch attempts was exceeded for ID:"
+        + "\n"
+        + str(test_kwargs)
     )
     assert error_output == error_expect
 

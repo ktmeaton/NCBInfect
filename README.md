@@ -52,6 +52,28 @@ Test that the installation was successful:
 NCBImeta.py --version
 ```
 
+## Command-Line Parameters
+
+```text
+usage: NCBImeta.py [-h] --config CONFIGPATH [--flat] [--version]
+                   [--email USEREMAIL] [--api USERAPI]
+                   [--force-pause-seconds USERFORCEPAUSESECONDS]
+
+NCBImeta: Efficient and comprehensive metadata retrieval from the NCBI
+databases.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --config CONFIGPATH   Path to the yaml configuration file (ex. config.yaml).
+  --flat                Don't create sub-directories in output directory.
+  --version             show program's version number and exit
+  --email USEREMAIL     User email to override parameter in config file.
+  --api USERAPI         User API key to override parameter in config file.
+  --force-pause-seconds USERFORCEPAUSESECONDS
+                        FORCE PAUSE SECONDS to override parameter in config
+                        file.
+```
+
 ## Quick Start Example
 
 ### Access the quick start config file
@@ -128,7 +150,8 @@ Example database output (a subset of the BioSample table)
 ## Upcoming Features
 
 * [Project v0.6.6 - "PyPI Fix and Contributor's Guide"](https://github.com/ktmeaton/NCBImeta/projects/8): Deployment and Linting - RELEASED
-* [Project "Read The Docs"](https://github.com/ktmeaton/NCBImeta/projects/7): Documentation Overhaul - DEVELOPMENT
+* [Project v0.7.0 - "Strict Version Control"](https://github.com/ktmeaton/NCBImeta/projects/9): Version Control All Dependencies - DEV
+* [Project "Read The Docs"](https://github.com/ktmeaton/NCBImeta/projects/7): Documentation Overhaul - PLANNED
 
 ## Documentation
 
@@ -144,21 +167,28 @@ Please submit your questions, suggestions, and bug reports to the
 
 Please do not hesitate to post any manner of curiosity in the "Issues" tracker :) User-feedback and ideas are the most valuable resource for emerging software.
 
+GitHub not your style? Join the [NCBImeta Slack Group](https://join.slack.com/t/ncbimeta/shared_invite/zt-crbtn51t-bdQKeBqz6Nkmj~hgU8ZZFA) to see release alerts, chat with other users, and get insider perspective on development.
+
 ## Contributing
 
 Want to add features and fix bugs? Check out the [Contributor's Guide](https://github.com/ktmeaton/NCBImeta/blob/master/.github/CONTRIBUTING.md) for suggestions on getting started.
-
-## Community
-
-GitHub not your style? Join the [NCBImeta Slack Group](https://join.slack.com/t/ncbimeta/shared_invite/zt-crbtn51t-bdQKeBqz6Nkmj~hgU8ZZFA) to see release alerts, chat with other users, and get insider perspective on development.
 
 ## Citation
 
 Eaton, K. (2020). NCBImeta: efficient and comprehensive metadata retrieval from NCBI databases. Journal of Open Source Software, 5(46), 1990, <https://doi.org/10.21105/joss.01990>
 
-## Credits
+## Authors
 
-Author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)
+Author: [Katherine Eaton](https://github.com/ktmeaton) (ktmeaton@gmail.com)  
 Logo Assets: <https://www.pexels.com/>, <https://unsplash.com/>, [Free Google Slides Templates](https://freegoogleslidestemplates.com/)
+
+## Additional Contributors
+
+Those who have filed issues, pull-requests, and participated in discussions.
+
+* [Andreas Sjödin](https://github.com/druvus)
+* [hmontenegro](https://github.com/hmontenegro)
+* [Matthew Gopez](https://github.com/hellothisisMatt)
+* [Philip Mabon](https://github.com/Takadonet)
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
