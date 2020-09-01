@@ -16,7 +16,7 @@ def test_lxml(assembly_xml):
     column_name = "AssemblyAccession"
     column_payload = ["AssemblyAccession"]
     column_value = ""
-    root = etree.fromstring(assembly_xml,)
+    root = etree.fromstring(assembly_xml)
     tag_xpath = ".//" + "Meta"
     # Step 1 going to iterate through column_payload values
     working_root = root
