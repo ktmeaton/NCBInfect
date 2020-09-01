@@ -82,13 +82,12 @@ jobs:
       #------------------------------------------------------------------------#
       # Install dependencies
       - name: Install linters
-        run: pip install black flake8 flake8-bugbear
+        run: pip install .[dev]
       #------------------------------------------------------------------------#
       # Run python linters
       - name: Run linters
         run: |
-          python3 -m black -t py37 --diff test
-          black --diff $(find ${GITHUB_WORKSPACE} -type f -name "*.py")
+          black $(find ${GITHUB_WORKSPACE} -type f -name "*.py")
           flake8 --config ${GITHUB_WORKSPACE}/setup.cfg $(find ${GITHUB_WORKSPACE} -type f -name "*.py")
   #----------------------------------------------------------------------------#
   # YAML lint template from nf-core eager to trial
