@@ -8,12 +8,12 @@ with open("requirements.txt", "r") as r:
 
 setuptools.setup(
     name="NCBImeta",
-    version="0.7.0",
+    version="0.7.1dev",
     description=(
         "Efficient and comprehensive metadata acquisition "
         "from the NCBI databases (includes SRA)."
     ),
-    python_requires=">=3",
+    python_requires=">=3.6",
     license="MIT",
     long_description=long_description,
     long_description_content_type="text/markdown",
