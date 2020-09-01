@@ -14,6 +14,12 @@ and this project "attempts" to adhere to [Semantic Versioning](http://semver.org
 - Add additional contributors to README
 - Allow yaml parameters to be specified at run time (email, api key, force pause seconds)
 
+## [v0.7.1dev] - 2020-0901 - XXX
+
+### Changed
+
+- pre-commit black linter enforced to revision 19.10b0
+
 ## [v0.7.0] - 2020-0824 - Strict Version Control
 
 ### Branches
