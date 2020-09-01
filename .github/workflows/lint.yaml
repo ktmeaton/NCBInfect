@@ -87,7 +87,7 @@ jobs:
       # Run python linters
       - name: Run linters
         run: |
-          black $(find ${GITHUB_WORKSPACE} -type f -name "*.py")
+          black --diff $(find ${GITHUB_WORKSPACE} -type f -name "*.py")
           flake8 --config ${GITHUB_WORKSPACE}/setup.cfg $(find ${GITHUB_WORKSPACE} -type f -name "*.py")
   #----------------------------------------------------------------------------#
   # YAML lint template from nf-core eager to trial
