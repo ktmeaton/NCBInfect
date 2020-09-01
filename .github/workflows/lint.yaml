@@ -49,7 +49,7 @@ jobs:
   #----------------------------------------------------------------------------#
   # Check markdown linter
   markdown_lint:
-    needs: pre_commit
+    #needs: pre_commit
     runs-on: ubuntu-latest
     steps:
       #------------------------------------------------------------------------#
@@ -69,7 +69,7 @@ jobs:
   #----------------------------------------------------------------------------#
   # Check python linters
   python_lint:
-    needs: pre_commit
+    #needs: pre_commit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -92,7 +92,7 @@ jobs:
   #----------------------------------------------------------------------------#
   # YAML lint template from nf-core eager to trial
   yaml_lint:
-    needs: pre_commit
+    #needs: pre_commit
     runs-on: ubuntu-latest
     steps:
       #------------------------------------------------------------------------#
