@@ -17,6 +17,7 @@ on:
       - 'schema/*md'
       - ncbimeta/*.py
       - test/*.py
+      - '.pre-commit-config.yaml'
   pull_request:
     branches:
       - '*'
