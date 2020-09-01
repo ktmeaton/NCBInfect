@@ -54,7 +54,7 @@ parser.add_argument(
     dest="flatMode",
 )
 
-parser.add_argument("--version", action="version", version="%(prog)s v0.7.0")
+parser.add_argument("--version", action="version", version="%(prog)s v0.7.1dev")
 
 parser.add_argument(
     "--email",
